@@ -206,8 +206,130 @@ function getRawWatchlist() {
   getJson("/api/bot/watchlist-raw");
 }
 
-function getBotTrades() {
-  getJson("/api/bot/trades?n=50");
+// ------------------------------------------------------------
+// 한글 매핑 (판단/사유)
+// ------------------------------------------------------------
+const ACTION_KO = {
+  "BUY": "매수",
+  "SELL": "매도",
+  "HOLD": "관망",
+  "SELL_SIGNAL_NO_POSITION": "매도신호(미보유)",
+  "BUY_BLOCKED": "매수 차단",
+  "BUY_SKIPPED": "매수 건너뜀",
+  "DATA_SKIPPED": "데이터 부족으로 제외",
+  "ORDER_RECONCILIATION_REQUIRED": "이전 주문 확인 필요",
+  "BUYING_POWER_UNAVAILABLE": "매수가능금액 조회 실패",
+};
+
+const REASON_KO = {
+  "model_action": "모델 판단",
+  "exit_rules": "청산 규칙(손절/익절/트레일링)",
+  "sell_signal_no_position": "매도 신호지만 보유 없음",
+  "event_level_sell_not_symbol_specific": "이벤트 단위 매도 신호 (종목별 근거 없음 → 관망)",
+  "technical_entry_not_confirmed": "기술적 진입 신호 미확인",
+  "llm confidence too low": "LLM 신뢰도 부족",
+  "too many api errors": "API 오류 과다",
+  "daily loss limit reached": "일일 손실 한도 도달",
+  "total drawdown limit reached": "누적 낙폭 한도 도달",
+  "survival gate passed": "리스크 게이트 통과",
+  "agent_did_not_select_this_symbol": "AI 에이전트가 이 종목을 선택하지 않음",
+  "prior_order_reconciliation_required": "이전 주문 미정리",
+  "max_new_buys_per_loop reached": "루프당 신규매수 한도 도달",
+  "max_open_positions reached": "최대 보유종목 수 도달",
+  "pending_broker_order_exists": "미체결 주문 존재",
+  "market_closed_or_unconfirmed": "장 마감 또는 개장 미확인",
+  "no_python_pre_screened_new_buy_candidate": "사전 스크리닝 통과 후보 없음",
+};
+
+function koAction(a) { return ACTION_KO[a] || a || "-"; }
+function koReason(r) {
+  if (!r) return "-";
+  return REASON_KO[r] || REASON_KO[String(r).trim()] || r;
+}
+
+// ------------------------------------------------------------
+// 자동투자 시작/정지 + 성과 요약
+// ------------------------------------------------------------
+async function setBotControl(run) {
+  await getJson("/api/bot/control", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ run: run }),
+  });
+  refreshBotSummary();
+}
+
+async function refreshBotSummary() {
+  const data = await getJson("/api/bot/summary");
+  if (!data) return;
+
+  const stateEl = document.getElementById("bot-run-state");
+  const modeEl = document.getElementById("bot-run-mode");
+  const running = (data.control || {}).run !== false;
+  stateEl.textContent = running ? "● 자동투자 작동 중" : "❚❚ 일시정지됨";
+  stateEl.style.color = running ? "var(--success, #30a46c)" : "var(--warning, #f5a623)";
+  modeEl.textContent = data.dry_run
+    ? "(모의 모드: 실제 주문 없음)"
+    : "(실거래 모드: 실제 주문 나감)";
+
+  document.getElementById("sum-today-buys").textContent = (data.today_buys ?? 0) + "건";
+  document.getElementById("sum-today-sells").textContent = (data.today_sells ?? 0) + "건";
+  const perf = data.performance || {};
+  document.getElementById("sum-daily-pnl").textContent = formatPercent((perf.daily_pnl_pct || 0) * 100);
+  document.getElementById("sum-drawdown").textContent = formatPercent((perf.total_drawdown_pct || 0) * 100);
+  document.getElementById("sum-equity").textContent =
+    perf.portfolio_equity_krw != null ? formatKRW(perf.portfolio_equity_krw) : "-";
+
+  const tbody = document.getElementById("executed-trades-body");
+  const rows = data.executed_recent || [];
+  if (rows.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--text-muted);">아직 실제 체결된 주문이 없어요</td></tr>`;
+  } else {
+    tbody.innerHTML = rows.map(r => {
+      const orderTxt = r.order && Object.keys(r.order).length
+        ? `${r.order.quantity ?? "-"}주 / ${r.order.order_type ?? r.order.type ?? "-"}`
+        : "-";
+      return `<tr>
+        <td>${(r.ts || "").replace("T", " ")}</td>
+        <td>${r.name || r.symbol || "-"}</td>
+        <td>${koAction(r.action)}</td>
+        <td>${r.price != null ? Number(r.price).toLocaleString("ko-KR") : "-"}</td>
+        <td>${orderTxt}</td>
+        <td>${koReason(r.reason)}</td>
+      </tr>`;
+    }).join("");
+  }
+}
+
+async function getBotTrades() {
+  const panel = document.getElementById("trades-display-panel");
+  if (panel) panel.style.display = "block";
+  const tbody = document.getElementById("trades-table-body");
+  if (tbody) tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;"><div class="loading-spinner"></div> 판단 로그 로딩 중...</td></tr>`;
+
+  const data = await getJson("/api/bot/trades?n=50");
+  if (!data || !data.result || !tbody) return;
+
+  const rows = data.result.filter(r => r.symbol || r.action || r.error);
+  if (rows.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color: var(--text-muted);">기록 없음</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = rows.slice().reverse().map(r => {
+    if (r.error) {
+      return `<tr><td>${(r.ts || "").replace("T", " ")}</td><td colspan="6" style="color: var(--danger, #e5484d);">오류: ${String(r.error).slice(0, 120)}</td></tr>`;
+    }
+    const name = (r.symbol_info || {}).name || r.symbol || "-";
+    return `<tr>
+      <td>${(r.ts || "").replace("T", " ")}</td>
+      <td>${name}</td>
+      <td>${koAction(r.action)}</td>
+      <td>${koReason(r.action_reason)}</td>
+      <td>${r.llm_prob != null ? (r.llm_prob * 100).toFixed(1) + "%" : "-"}</td>
+      <td>${r.confidence != null ? (r.confidence * 100).toFixed(0) + "%" : "-"}</td>
+      <td>${r.price != null ? Number(r.price).toLocaleString("ko-KR") : "-"}</td>
+    </tr>`;
+  }).join("");
 }
 
 function getLlmCalls() {

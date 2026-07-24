@@ -2070,6 +2070,20 @@ def main():
     start_dashboard_if_enabled(settings)
 
     while True:
+        # 대시보드의 자동투자 시작/정지 버튼 (data/bot_control.json)
+        try:
+            control_path = Path("data/bot_control.json")
+            if control_path.exists():
+                control = json.loads(control_path.read_text(encoding="utf-8"))
+                if control.get("run") is False:
+                    print(f"[{now_iso()}] 자동투자 일시정지 상태 (대시보드에서 시작 버튼을 누르면 재개)")
+                    if args.once:
+                        break
+                    time.sleep(min(30, settings.loop_seconds))
+                    continue
+        except Exception as exc:
+            print(f"[control] bot_control.json 읽기 실패, 계속 진행: {exc}")
+
         try:
             run_once(settings)
             state = load_state(settings.state_path)

@@ -1121,3 +1121,5 @@ AU,앵글로골드 아샨티,앵글로골드 아샨티,US,Country Equity,Country
 SBSW,시바녜 스틸워터(ADR),시바녜 스틸워터(ADR),US,Country Equity,Country: South Africa,true,toss_verified,toss_verified_2026-07-16;country_exposure=South_Africa
 HMY,하모니 골드 마이닝(ADR),하모니 골드 마이닝(ADR),US,Country Equity,Country: South Africa,true,toss_verified,toss_verified_2026-07-16;country_exposure=South_Africa
 DRD,DRD골드(ADR),DRD골드(ADR),US,Country Equity,Country: South Africa,true,toss_verified,toss_verified_2026-07-16;country_exposure=South_Africa
+EPHE,iShares MSCI Philippines ETF,iShares MSCI Philippines ETF,US,Country ETF,Country: Philippines,true,seeded,verify_with_toss_stock_info_before_live;country_exposure=Philippines
+ENZL,iShares MSCI New Zealand ETF,iShares MSCI New Zealand ETF,US,Country ETF,Country: New Zealand,true,seeded,verify_with_toss_stock_info_before_live;country_exposure=New_Zealand

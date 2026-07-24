@@ -418,3 +418,107 @@ def bot_data_requirements():
         return jsonify({"result": []})
     with p.open("r", encoding="utf-8-sig", newline="") as f:
         return jsonify({"result": list(csv.DictReader(f))})
+
+
+# ------------------------------------------------------------
+# 자동투자 시작/정지 제어 + 한글 요약
+# ------------------------------------------------------------
+
+BOT_CONTROL_PATH = Path("data/bot_control.json")
+
+
+def read_bot_control() -> dict:
+    if BOT_CONTROL_PATH.exists():
+        try:
+            return json.loads(BOT_CONTROL_PATH.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {"run": True, "updated_at": None}
+
+
+@app.get("/api/bot/control")
+def bot_control_get():
+    return jsonify(read_bot_control())
+
+
+@app.post("/api/bot/control")
+def bot_control_set():
+    body = request.get_json(silent=True) or {}
+    control = {
+        "run": bool(body.get("run", True)),
+        "updated_at": datetime.datetime.now().isoformat(timespec="seconds"),
+    }
+    BOT_CONTROL_PATH.parent.mkdir(parents=True, exist_ok=True)
+    BOT_CONTROL_PATH.write_text(json.dumps(control, ensure_ascii=False, indent=2), encoding="utf-8")
+    return jsonify(control)
+
+
+@app.get("/api/bot/summary")
+def bot_summary():
+    """대시보드용 한글 요약: 체결 내역·판단 통계·수익률·보유종목."""
+    s = Settings()
+
+    state = {}
+    state_path = Path(s.state_path)
+    if state_path.exists():
+        try:
+            state = json.loads(state_path.read_text(encoding="utf-8"))
+        except Exception:
+            state = {}
+
+    executed = []
+    decision_counts = {}
+    today = datetime.date.today().isoformat()
+    today_buys = today_sells = 0
+
+    p = Path(s.log_path)
+    if p.exists():
+        # 최근 2000줄만 스캔 (파일이 수백 MB일 수 있음)
+        try:
+            lines = p.read_text(encoding="utf-8").splitlines()[-2000:]
+        except Exception:
+            lines = []
+        for line in lines:
+            try:
+                rec = json.loads(line)
+            except Exception:
+                continue
+            action = rec.get("action")
+            if action:
+                decision_counts[action] = decision_counts.get(action, 0) + 1
+            execution = rec.get("execution") or {}
+            if execution.get("submitted") or execution.get("executed"):
+                ts = str(rec.get("ts", ""))
+                item = {
+                    "ts": ts,
+                    "symbol": rec.get("symbol"),
+                    "name": (rec.get("symbol_info") or {}).get("name"),
+                    "action": action,
+                    "price": rec.get("price"),
+                    "order": rec.get("order_spec") or execution.get("order") or {},
+                    "reason": rec.get("action_reason"),
+                }
+                executed.append(item)
+                if ts[:10] == today:
+                    if "BUY" in str(action).upper():
+                        today_buys += 1
+                    elif "SELL" in str(action).upper():
+                        today_sells += 1
+
+    return jsonify({
+        "control": read_bot_control(),
+        "dry_run": s.dry_run,
+        "today": today,
+        "today_buys": today_buys,
+        "today_sells": today_sells,
+        "executed_recent": executed[-30:][::-1],
+        "decision_counts": decision_counts,
+        "performance": {
+            "daily_pnl_pct": state.get("daily_pnl_pct", 0.0),
+            "total_drawdown_pct": state.get("total_drawdown_pct", 0.0),
+            "portfolio_equity_krw": state.get("portfolio_equity_krw"),
+            "portfolio_peak_equity_krw": state.get("portfolio_peak_equity_krw"),
+            "api_error_count": state.get("api_error_count", 0),
+        },
+        "positions_state": state.get("positions", {}),
+    })

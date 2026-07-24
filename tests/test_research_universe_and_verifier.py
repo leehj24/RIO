@@ -33,7 +33,8 @@ def test_country_markets_are_enabled_execution_candidates_and_resolve_into_count
     country_etfs = [row for row in symbols.values() if row.get("sector") == "Country ETF"]
     country_equities = [row for row in symbols.values() if row.get("sector") == "Country Equity"]
 
-    assert len(country_etfs) == 34
+    # 2026-07-24: 필리핀(EPHE)·뉴질랜드(ENZL) 국가 ETF 추가로 34 → 36
+    assert len(country_etfs) == 36
     assert len(country_equities) >= 120
     assert {row["market"] for row in country_etfs} == {"US"}
     assert {row["theme"] for row in country_etfs} >= {"Country: Japan", "Country: China", "Country: India"}

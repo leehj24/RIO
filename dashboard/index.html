@@ -946,6 +946,43 @@
       
       <!-- TAB 1: Bot Control -->
       <div id="bot-control" class="tab-content active">
+
+        <!-- 자동투자 제어 + 성과 요약 -->
+        <div class="card">
+          <div class="card-title">
+            자동투자 제어 & 성과 요약 <i class="bi bi-play-circle"></i>
+          </div>
+          <div class="action-row" style="align-items: center; gap: 16px;">
+            <button class="btn btn-primary" id="bot-start-btn" onclick="setBotControl(true)">
+              <i class="bi bi-play-fill"></i> 자동투자 시작
+            </button>
+            <button class="btn" id="bot-stop-btn" onclick="setBotControl(false)" style="background: var(--danger, #e5484d); color: #fff;">
+              <i class="bi bi-pause-fill"></i> 일시정지
+            </button>
+            <span id="bot-run-state" style="font-weight: 700;">상태 확인 중...</span>
+            <span id="bot-run-mode" style="font-size: 12px; color: var(--text-muted);"></span>
+          </div>
+          <div class="status-panel-grid" style="grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 16px;">
+            <div class="status-mini-card"><span>오늘 매수 체결</span><span id="sum-today-buys">-</span></div>
+            <div class="status-mini-card"><span>오늘 매도 체결</span><span id="sum-today-sells">-</span></div>
+            <div class="status-mini-card"><span>일일 손익률</span><span id="sum-daily-pnl">-</span></div>
+            <div class="status-mini-card"><span>누적 낙폭</span><span id="sum-drawdown">-</span></div>
+            <div class="status-mini-card"><span>포트폴리오 평가금액</span><span id="sum-equity">-</span></div>
+          </div>
+          <div class="table-container" style="max-height: 260px; overflow-y: auto; margin-top: 16px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>시각</th><th>종목</th><th>구분</th><th>가격</th><th>주문 내용</th><th>사유</th>
+                </tr>
+              </thead>
+              <tbody id="executed-trades-body">
+                <tr><td colspan="6" style="text-align:center; color: var(--text-muted);">아직 실제 체결된 주문이 없어요</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <div class="grid-3">
           <!-- Bot State Card -->
           <div class="card">
@@ -1062,6 +1099,23 @@
                 </tr>
               </thead>
               <tbody id="events-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 최근 전략 판단 로그 (한글 렌더링) -->
+        <div class="card" id="trades-display-panel" style="display: none;">
+          <div class="card-title">
+            최근 전략 체결/판단 로그 <i class="bi bi-journals"></i>
+          </div>
+          <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>시각</th><th>종목</th><th>판단</th><th>사유</th><th>LLM 확률</th><th>신뢰도</th><th>가격</th>
+                </tr>
+              </thead>
+              <tbody id="trades-table-body"></tbody>
             </table>
           </div>
         </div>
@@ -1410,7 +1464,10 @@
         getBotStatus();
         getAccounts();
         initStockWatchlist();
+        refreshBotSummary();
       }, 500);
+      // 자동투자 요약은 30초마다 자동 갱신
+      setInterval(refreshBotSummary, 30000);
     }
   </script>
 </body>
