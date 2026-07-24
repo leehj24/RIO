@@ -9,6 +9,12 @@ function formatKRW(val) {
   return "₩" + num.toLocaleString('ko-KR');
 }
 
+function formatUSD(val) {
+  if (val === null || val === undefined || isNaN(val)) return "$0.00";
+  const num = parseFloat(val);
+  return "$" + num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
 // Helper to format percentages
 function formatPercent(val) {
   if (val === null || val === undefined || isNaN(val)) return "0.00%";
@@ -458,17 +464,24 @@ async function getAccounts() {
 }
 
 async function getBuyingPower(accountSeq) {
-  const url = accountSeq ? `/api/buying-power?account=${accountSeq}` : "/api/buying-power";
-  const data = await getJson(url);
-  if (!data || !data.result) return;
+  const base = accountSeq ? `/api/buying-power?account=${accountSeq}&` : "/api/buying-power?";
+  const [krwData, usdData] = await Promise.all([
+    getJson(`${base}currency=KRW`),
+    getJson(`${base}currency=USD`),
+  ]);
 
-  const result = data.result;
-  const val = result.cashBuyingPower || "0";
-  
-  // Format as Korean currency
-  const formatted = formatKRW(val);
-  document.getElementById("quick-buying-power").textContent = formatted;
-  document.getElementById("portfolio-buying-power").textContent = formatted;
+  if (krwData && krwData.result) {
+    const formatted = formatKRW(krwData.result.cashBuyingPower || "0");
+    document.getElementById("quick-buying-power").textContent = formatted;
+    document.getElementById("portfolio-buying-power").textContent = formatted;
+  }
+
+  const usdVal = usdData && usdData.result ? usdData.result.cashBuyingPower : null;
+  const usdFormatted = usdVal != null ? formatUSD(usdVal) : "조회 불가";
+  const quickUsd = document.getElementById("quick-buying-power-usd");
+  if (quickUsd) quickUsd.textContent = usdFormatted;
+  const portfolioUsd = document.getElementById("portfolio-buying-power-usd");
+  if (portfolioUsd) portfolioUsd.textContent = usdFormatted;
 }
 
 async function getPositions(profit = false) {
