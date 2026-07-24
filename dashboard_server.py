@@ -56,7 +56,12 @@ def accounts():
 
 @app.get("/api/buying-power")
 def buying_power():
-    return jsonify(client().buying_power(account_seq=request.args.get("account")))
+    return jsonify(
+        client().buying_power(
+            account_seq=request.args.get("account"),
+            currency=request.args.get("currency", "KRW"),
+        )
+    )
 
 
 @app.get("/api/positions")
