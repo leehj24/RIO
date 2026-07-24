@@ -399,6 +399,7 @@ def bot_api_usage():
         "google": s.google_daily_call_limit,
         "nvidia": s.nvidia_daily_call_limit,
         "gemini_api2": s.gemini_api2_daily_call_limit,
+        "naver_search": getattr(s, "naver_search_daily_call_limit", 300),
     }.items():
         used = int(providers.get(provider, {}).get("count", 0))
         out["providers"][provider] = {

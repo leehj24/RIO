@@ -16,6 +16,7 @@ from strategy.lmsr import LMSRMarket
 from strategy.data_sources import SapienceClient, make_mock_ohlcv
 from strategy.symbol_registry import describe_symbol
 from strategy.llm_pipeline import DualProviderLLMPipeline
+from strategy.naver_search import NaverSearchClient
 from strategy.agentic.orchestrator import GeminiAgentOrchestrator
 from strategy.factors import compute_factor_scores
 from strategy.technical_entries import compute_technical_rules
@@ -1053,6 +1054,7 @@ def run_once(settings: Settings) -> None:
         print("[llm] legacy dual-provider workflow enabled")
     financial_sources = FreeFinancialSources(settings)
     sapience = SapienceClient(settings)
+    naver_search = NaverSearchClient(settings)
 
     # Broker preflight is deliberately read-only.  It proves that balance,
     # positions, currency, and outstanding-order data can all be reconciled
@@ -1290,8 +1292,15 @@ def run_once(settings: Settings) -> None:
             )
         ]
         symbol_infos_for_llm = [symbol_info_map[symbol] for symbol in llm_symbols]
+        # 네이버 뉴스(사실)·블로그(주관) evidence — LLM 판단 재료로만 사용되며
+        # 직접 주문을 생성하지 않는다. 실패해도 증거 없음으로만 작용한다.
+        try:
+            naver_evidence = naver_search.build_event_evidence(event, symbol_infos_for_llm)
+        except Exception as exc:
+            naver_evidence = {"enabled": False, "error": str(exc)}
         research_context = {
             "symbols": {symbol: research_packets[symbol] for symbol in llm_symbols},
+            "naver_news": naver_evidence,
             "lead_lag": {
                 "status": lead_lag_status,
                 "research_only": True,
@@ -1324,6 +1333,7 @@ def run_once(settings: Settings) -> None:
                 event,
                 legacy_symbols,
                 [symbol_info_map[symbol] for symbol in legacy_symbols],
+                extra_evidence=naver_evidence,
             )
             llm_symbols = legacy_symbols
 

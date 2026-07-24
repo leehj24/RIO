@@ -236,6 +236,14 @@ class Settings:
     enable_pykrx: bool = env_bool("ENABLE_PYKRX", True)
     pykrx_cache_dir: str = os.getenv("PYKRX_CACHE_DIR", "data_cache/pykrx")
 
+    # 네이버 검색 API (뉴스=사실 채널, 블로그=주관 채널 evidence)
+    enable_naver_search: bool = env_bool("ENABLE_NAVER_SEARCH", True)
+    naver_client_id: str = os.getenv("NAVER_CLIENT_ID", "")
+    naver_client_secret: str = os.getenv("NAVER_CLIENT_SECRET", "")
+    naver_search_daily_call_limit: int = env_int("NAVER_SEARCH_DAILY_CALL_LIMIT", 300)
+    naver_search_cache_ttl_seconds: int = env_int("NAVER_SEARCH_CACHE_TTL_SECONDS", 1800)
+    naver_search_cache_dir: str = os.getenv("NAVER_SEARCH_CACHE_DIR", "data_cache/naver_search")
+
     # technical entry/exit rules
     use_technical_entry_rules: bool = env_bool("USE_TECHNICAL_ENTRY_RULES", True)
     supertrend_period: int = env_int("SUPERTREND_PERIOD", 10)

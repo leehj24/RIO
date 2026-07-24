@@ -326,8 +326,19 @@ Google evidence:
         })
         return response
 
-    def analyze_event(self, event, candidate_symbols: List[str], symbol_infos: List[Dict[str, Any]]) -> Dict[str, Any]:
+    def analyze_event(
+        self,
+        event,
+        candidate_symbols: List[str],
+        symbol_infos: List[Dict[str, Any]],
+        extra_evidence: Dict[str, Any] | None = None,
+    ) -> Dict[str, Any]:
         google_evidence = self.call_google(event, candidate_symbols, symbol_infos)
+        if extra_evidence and extra_evidence.get("enabled"):
+            # 네이버 뉴스(사실)·블로그(주관) evidence를 판단 입력에 병합.
+            # 채널 라벨을 유지해 사실/주관이 섞이지 않게 한다 (03 사실주관).
+            google_evidence = dict(google_evidence)
+            google_evidence["naver_evidence"] = extra_evidence
         nvidia_judgement = self.call_nvidia(event, candidate_symbols, symbol_infos, google_evidence)
 
         yes_probability = _clip(nvidia_judgement.get("yes_probability", 0.5), 0.01, 0.99)

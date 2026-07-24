@@ -202,8 +202,29 @@ async function getBotSymbols() {
   });
 }
 
-function getRawWatchlist() {
-  getJson("/api/bot/watchlist-raw");
+function toggleJsonConsole() {
+  const section = document.getElementById("json-console-section");
+  if (section) section.style.display = section.style.display === "none" ? "block" : "none";
+}
+
+async function getRawWatchlist() {
+  const panel = document.getElementById("watchlist-raw-panel");
+  if (panel) panel.style.display = "block";
+  const head = document.getElementById("watchlist-raw-head");
+  const body = document.getElementById("watchlist-raw-body");
+  body.innerHTML = `<tr><td colspan="9" style="text-align:center;"><div class="loading-spinner"></div> 로딩 중...</td></tr>`;
+
+  const data = await getJson("/api/bot/watchlist-raw");
+  const rows = (data && data.result) || [];
+  if (rows.length === 0) {
+    head.innerHTML = "";
+    body.innerHTML = `<tr><td style="text-align:center; color: var(--text-muted);">관심종목 파일이 비어 있거나 읽지 못했어요 (data/watchlist_raw.csv)</td></tr>`;
+    return;
+  }
+  const HEAD_KO = { symbol: "종목코드", name: "이름", raw_name: "원본이름", market: "시장", sector: "섹터", theme: "테마", enabled: "사용", resolved: "확인상태", note: "비고" };
+  const cols = Object.keys(rows[0]);
+  head.innerHTML = cols.map(c => `<th>${HEAD_KO[c] || c}</th>`).join("");
+  body.innerHTML = rows.map(r => `<tr>${cols.map(c => `<td>${String(r[c] ?? "").slice(0, 60)}</td>`).join("")}</tr>`).join("");
 }
 
 // ------------------------------------------------------------
@@ -332,12 +353,86 @@ async function getBotTrades() {
   }).join("");
 }
 
-function getLlmCalls() {
-  getJson("/api/bot/llm-calls?n=50");
+const PROVIDER_KO = {
+  google: "구글 Gemini (증거 검색)",
+  nvidia: "NVIDIA (확률 판단)",
+  gemini_api2: "Gemini 에이전트팀",
+  naver_search: "네이버 뉴스/블로그",
+};
+
+async function getLlmCalls() {
+  const panel = document.getElementById("llm-calls-panel");
+  if (panel) panel.style.display = "block";
+  const body = document.getElementById("llm-calls-body");
+  body.innerHTML = `<tr><td colspan="4" style="text-align:center;"><div class="loading-spinner"></div> 로딩 중...</td></tr>`;
+
+  const data = await getJson("/api/bot/llm-calls?n=30");
+  const rows = ((data && data.result) || []).filter(r => r.provider);
+  if (rows.length === 0) {
+    body.innerHTML = `<tr><td colspan="4" style="text-align:center; color: var(--text-muted);">LLM 호출 기록이 아직 없어요</td></tr>`;
+    return;
+  }
+  body.innerHTML = rows.slice().reverse().map((r, i) => {
+    const resp = r.response || {};
+    const summary = resp._error
+      ? `⚠ 오류: ${String(resp._error).slice(0, 80)}`
+      : (resp.reason || resp.macro_summary || resp.recommendation || JSON.stringify(resp).slice(0, 80));
+    const detailId = `llm-detail-${i}`;
+    return `<tr style="cursor:pointer;" onclick="const d=document.getElementById('${detailId}'); d.style.display = d.style.display==='none' ? 'table-row' : 'none';">
+        <td>${PROVIDER_KO[r.provider] || r.provider}</td>
+        <td>${r.called_api ? "실제 호출" : "호출 안 함(예산/비활성)"}</td>
+        <td>${String(r.question || r.prompt_type || "").slice(0, 50)}</td>
+        <td>${String(summary).slice(0, 90)}</td>
+      </tr>
+      <tr id="${detailId}" style="display:none;"><td colspan="4"><pre style="white-space:pre-wrap; max-height:250px; overflow-y:auto; font-size:11px;">질문(프롬프트):\n${String(r.prompt || "").slice(0, 2000)}\n\n응답:\n${JSON.stringify(resp, null, 2).slice(0, 2000)}</pre></td></tr>`;
+  }).join("");
 }
 
-function getDataRequirements() {
-  getJson("/api/bot/data-requirements");
+async function getDataRequirements() {
+  const panel = document.getElementById("data-req-panel");
+  if (panel) panel.style.display = "block";
+  const head = document.getElementById("data-req-head");
+  const body = document.getElementById("data-req-body");
+  body.innerHTML = `<tr><td colspan="9" style="text-align:center;"><div class="loading-spinner"></div> 로딩 중...</td></tr>`;
+
+  const data = await getJson("/api/bot/data-requirements");
+  const rows = (data && data.result) || [];
+  if (rows.length === 0) {
+    head.innerHTML = "";
+    body.innerHTML = `<tr><td style="text-align:center; color: var(--text-muted);">재무 데이터 현황 파일이 아직 없어요 (봇이 한 루프 이상 돌면 생성돼요)</td></tr>`;
+    return;
+  }
+  const cols = Object.keys(rows[0]);
+  head.innerHTML = cols.map(c => `<th>${c}</th>`).join("");
+  body.innerHTML = rows.map(r => `<tr>${cols.map(c => {
+    const v = String(r[c] ?? "");
+    const mark = v.toLowerCase() === "true" ? "✅" : v.toLowerCase() === "false" ? "❌" : v.slice(0, 50);
+    return `<td>${mark}</td>`;
+  }).join("")}</tr>`).join("");
+}
+
+async function getApiUsageDetail() {
+  const panel = document.getElementById("api-usage-panel");
+  if (panel) panel.style.display = "block";
+  const body = document.getElementById("api-usage-body");
+  body.innerHTML = `<tr><td colspan="4" style="text-align:center;"><div class="loading-spinner"></div> 로딩 중...</td></tr>`;
+
+  const data = await getJson("/api/bot/api-usage");
+  getApiUsage(); // 상단 사용량 바도 갱신
+  const providers = (data && data.providers) || {};
+  const rows = [];
+  for (const [name, p] of Object.entries(providers)) {
+    const calls = p.calls || [];
+    if (calls.length === 0) {
+      rows.push(`<tr><td>${PROVIDER_KO[name] || name}</td><td>${p.used ?? 0} / ${p.limit ?? "-"}</td><td colspan="2" style="color: var(--text-muted);">오늘 호출 없음</td></tr>`);
+    } else {
+      calls.slice(-20).reverse().forEach(c => {
+        const meta = c.meta || {};
+        rows.push(`<tr><td>${PROVIDER_KO[name] || name}</td><td>${p.used} / ${p.limit}</td><td>${(c.ts || "").replace("T", " ")}</td><td>${meta.prompt_type || meta.kind || ""} ${meta.event_id || meta.query || ""}</td></tr>`);
+      });
+    }
+  }
+  body.innerHTML = rows.join("") || `<tr><td colspan="4" style="text-align:center; color: var(--text-muted);">기록 없음</td></tr>`;
 }
 
 // ------------------------------------------------------------

@@ -1071,7 +1071,7 @@
             <button class="btn" onclick="getBotTrades()">
               <i class="bi bi-journals"></i> 최근 전략 체결/판단 로그
             </button>
-            <button class="btn" onclick="getApiUsage()">
+            <button class="btn" onclick="getApiUsageDetail()">
               <i class="bi bi-bar-chart-line"></i> 상세 API 사용량 로그
             </button>
             <button class="btn" onclick="getLlmCalls()">
@@ -1079,6 +1079,9 @@
             </button>
             <button class="btn" onclick="getDataRequirements()">
               <i class="bi bi-check-circle"></i> 재무 데이터 충족 현황
+            </button>
+            <button class="btn" onclick="toggleJsonConsole()">
+              <i class="bi bi-braces"></i> 원본 JSON 콘솔 보기/숨기기
             </button>
           </div>
         </div>
@@ -1116,6 +1119,50 @@
                 </tr>
               </thead>
               <tbody id="trades-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 원본 관심종목 파일 -->
+        <div class="card" id="watchlist-raw-panel" style="display: none;">
+          <div class="card-title">원본 관심종목 파일 <i class="bi bi-bookmarks"></i></div>
+          <div class="table-container" style="max-height: 300px; overflow-y: auto;">
+            <table>
+              <thead><tr id="watchlist-raw-head"></tr></thead>
+              <tbody id="watchlist-raw-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 상세 API 사용량 로그 -->
+        <div class="card" id="api-usage-panel" style="display: none;">
+          <div class="card-title">상세 API 사용량 로그 <i class="bi bi-bar-chart-line"></i></div>
+          <div class="table-container" style="max-height: 300px; overflow-y: auto;">
+            <table>
+              <thead><tr><th>제공자</th><th>사용/한도</th><th>호출 시각</th><th>용도</th></tr></thead>
+              <tbody id="api-usage-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- LLM 원본 질의 기록 -->
+        <div class="card" id="llm-calls-panel" style="display: none;">
+          <div class="card-title">LLM 원본 질의 기록 <i class="bi bi-terminal"></i> <span style="font-size:11px; color: var(--text-muted);">(행을 클릭하면 원문이 펼쳐져요)</span></div>
+          <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+            <table>
+              <thead><tr><th>제공자</th><th>실호출</th><th>질문</th><th>응답 요약</th></tr></thead>
+              <tbody id="llm-calls-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 재무 데이터 충족 현황 -->
+        <div class="card" id="data-req-panel" style="display: none;">
+          <div class="card-title">재무 데이터 충족 현황 <i class="bi bi-check-circle"></i></div>
+          <div class="table-container" style="max-height: 300px; overflow-y: auto;">
+            <table>
+              <thead><tr id="data-req-head"></tr></thead>
+              <tbody id="data-req-body"></tbody>
             </table>
           </div>
         </div>
@@ -1405,8 +1452,8 @@
         </div>
       </div>
 
-      <!-- Bottom Console (Hidden) -->
-      <div class="terminal-section" style="display: none;">
+      <!-- Bottom Console (기본 숨김, 토글로 표시) -->
+      <div class="terminal-section" id="json-console-section" style="display: none;">
         <div class="terminal-header">
           <div class="terminal-title">
             <i class="bi bi-terminal-fill"></i> SYSTEM CORE API RESPONSE LOG CONSOLE
