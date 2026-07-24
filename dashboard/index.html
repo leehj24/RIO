@@ -1,0 +1,1417 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOSS INVEST | Algorithmic Trading Terminal</title>
+  
+  <!-- Font & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    /* Reset & CSS variables */
+    :root {
+      --bg-dark: #080B11;
+      --bg-card: rgba(17, 22, 34, 0.75);
+      --bg-card-hover: rgba(26, 33, 50, 0.85);
+      --primary: #3772FF;
+      --primary-glow: rgba(55, 114, 255, 0.35);
+      --success: #00C689;
+      --success-glow: rgba(0, 198, 137, 0.2);
+      --danger: #FF4A6B;
+      --danger-glow: rgba(255, 74, 107, 0.2);
+      --warning: #FFB800;
+      --text-main: #F4F6F9;
+      --text-muted: #8E9AA8;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --glow-shadow: 0 0 24px rgba(55, 114, 255, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(55, 114, 255, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(0, 198, 137, 0.05) 0px, transparent 50%);
+      background-attachment: fixed;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Layout structure */
+    header {
+      backdrop-filter: blur(12px);
+      background: rgba(8, 11, 17, 0.8);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand i {
+      font-size: 24px;
+      color: var(--primary);
+      text-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    .brand h1 {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, #FFF 50%, var(--text-muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand span {
+      font-size: 10px;
+      background: var(--primary);
+      color: #FFF;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    .header-status {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--success-glow);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 0.6; }
+      50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 16px var(--success); }
+      100% { transform: scale(0.9); opacity: 0.6; }
+    }
+
+    .main-container {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 61px);
+      position: relative;
+    }
+
+    /* Sidebar tabs selection */
+    .sidebar {
+      width: 240px;
+      background: rgba(10, 14, 22, 0.4);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      gap: 8px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
+    }
+
+    .nav-item:hover {
+      color: var(--text-main);
+      background: var(--border);
+    }
+
+    .nav-item.active {
+      color: #FFF;
+      background: var(--primary-glow);
+      border-color: rgba(55, 114, 255, 0.25);
+      font-weight: 600;
+    }
+
+    .nav-item i {
+      font-size: 16px;
+    }
+
+    /* Workspace */
+    .workspace {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .tab-content {
+      display: none;
+      flex-direction: column;
+      gap: 24px;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .tab-content.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Grid cards */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--glow-shadow);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-title i {
+      color: var(--primary);
+    }
+
+    /* Card values */
+    .stat-val {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #FFF;
+      margin-bottom: 6px;
+    }
+
+    .stat-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(10, 14, 22, 0.3);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    th {
+      background: rgba(15, 23, 42, 0.6);
+      padding: 12px 16px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .badge-success {
+      background: var(--success-glow);
+      color: var(--success);
+      border: 1px solid rgba(0, 198, 137, 0.15);
+    }
+
+    .badge-danger {
+      background: var(--danger-glow);
+      color: var(--danger);
+      border: 1px solid rgba(255, 74, 107, 0.15);
+    }
+
+    .badge-primary {
+      background: rgba(55, 114, 255, 0.15);
+      color: var(--primary);
+      border: 1px solid rgba(55, 114, 255, 0.15);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #FFF;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(55, 114, 255, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: #4C82FF;
+      border-color: transparent;
+      box-shadow: 0 6px 20px rgba(55, 114, 255, 0.35);
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: #FFF;
+      border-color: transparent;
+    }
+
+    .btn-success:hover {
+      background: #00DE9A;
+      border-color: transparent;
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: #FFF;
+      border-color: transparent;
+    }
+
+    .btn-danger:hover {
+      background: #FF5E7F;
+      border-color: transparent;
+    }
+
+    /* Form Controls */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+    }
+
+    input, select {
+      background: rgba(10, 14, 22, 0.5);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 10px rgba(55, 114, 255, 0.2);
+      background: rgba(10, 14, 22, 0.8);
+    }
+
+    /* Console Terminal output styling */
+    .terminal-section {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(5, 7, 12, 0.95);
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .terminal-header {
+      background: rgba(15, 22, 36, 0.5);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .terminal-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .terminal-title i {
+      color: var(--primary);
+    }
+
+    .terminal-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .term-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .term-dot.red { background: #FF5F56; }
+    .term-dot.yellow { background: #FFBD2E; }
+    .term-dot.green { background: #27C93F; }
+
+    pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #A9B2C3;
+      padding: 16px;
+      height: 250px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* Progress bar */
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), #60A5FA);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.6s ease;
+    }
+
+    /* Quick status indicators */
+    .status-panel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .status-mini-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .status-mini-card span:first-child {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .status-mini-card span:last-child {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Bot action buttons */
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Chart styles */
+    .chart-box {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    #priceChart {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    /* Loading overlay */
+    .loading-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      border-top-color: var(--primary);
+      animation: spin 1s ease infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Stock Analysis Tab Layout Updates */
+    .stock-layout {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      height: calc(100vh - 140px);
+      align-items: stretch;
+    }
+
+    .stock-sidebar {
+      /* Keep the candidates on the left, but reserve most of the screen for
+         the chart and the detailed explanation on the right. */
+      flex: 0 0 300px;
+      width: 300px;
+      min-width: 300px;
+      max-width: 300px;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      gap: 10px;
+    }
+
+    .stock-sidebar-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stock-list-scroll {
+      flex: 1;
+      min-height: 0;
+      min-width: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-right: 4px;
+    }
+
+    .stock-item {
+      min-width: 0;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .stock-item:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      transform: translateX(2px);
+    }
+
+    .stock-item.active {
+      background: var(--primary-glow);
+      border-color: var(--primary);
+      box-shadow: 0 0 12px rgba(55, 114, 255, 0.2);
+    }
+
+    .stock-item-info {
+      min-width: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stock-item-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .stock-item-code {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Stock Market Filter Tabs & Search Bar styles */
+    .stock-market-tabs {
+      min-width: 0;
+      display: flex;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 4px;
+      max-width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      white-space: nowrap;
+      touch-action: pan-x;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .stock-market-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .stock-market-tabs.is-dragging {
+      cursor: grabbing;
+    }
+
+    .market-tab {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .market-tab:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .market-tab.active {
+      color: #FFF;
+      background: var(--primary);
+      box-shadow: 0 0 8px var(--primary-glow);
+    }
+
+    .search-box-container {
+      min-width: 0;
+      position: relative;
+    }
+
+    .search-box-container i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    #stock-search-input {
+      width: 100%;
+      padding: 10px 12px 10px 36px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-main);
+      font-size: 13px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    #stock-search-input:focus {
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    .stock-detail-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    /* Larger right-side chart while the compact symbol list remains on the left. */
+    .chart-card-container {
+      flex: 0 0 510px !important;
+      height: 510px !important;
+      min-height: unset !important;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Chart interval/unit selector styling */
+    .chart-unit-tabs {
+      display: flex;
+      gap: 2px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2px;
+    }
+
+    .unit-tab {
+      padding: 4px 10px;
+      background: transparent;
+      border: none;
+      border-radius: 4px;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .unit-tab:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .unit-tab.active {
+      color: #FFF;
+      background: var(--primary);
+      box-shadow: 0 0 6px var(--primary-glow);
+    }
+
+    /* Flexible scrollable card layout for Detail card */
+    .detail-card-container {
+      flex: 1 !important;
+      min-height: 0 !important;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Scrollable body wrapper inside Detail card */
+    .detail-card-scroll-body {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-right: 4px;
+    }
+
+    .stock-detail-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+    }
+
+    .stock-info-meta-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .stock-info-meta-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .stock-info-meta-value {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    @media (max-width: 900px) {
+      .stock-layout {
+        height: auto;
+        min-height: calc(100vh - 140px);
+        flex-direction: column;
+      }
+
+      .stock-sidebar {
+        flex: 0 0 auto;
+      }
+
+      .chart-card-container {
+        flex-basis: 460px !important;
+        height: 460px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <i class="bi bi-rocket-takeoff-fill"></i>
+      <div>
+        <h1>TOSS INVEST TERMINAL</h1>
+      </div>
+      <span>LMSR AGGRESSIVE BOT</span>
+    </div>
+    
+    <div class="header-status">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="pulse-dot"></span>
+        <span style="font-size: 13px; font-weight: 600;" id="connection-status">CONNECTED</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-container">
+    
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+      <div class="nav-item active" onclick="switchTab('bot-control', this)">
+        <i class="bi bi-cpu-fill"></i> 자동매매 전략 & 봇
+      </div>
+      <div class="nav-item" onclick="switchTab('my-portfolio', this)">
+        <i class="bi bi-wallet2"></i> 자산 & 포트폴리오
+      </div>
+      <div class="nav-item" onclick="switchTab('stock-analysis', this)">
+        <i class="bi bi-graph-up-arrow"></i> 차트 & 시장 분석
+      </div>
+      <div class="nav-item" onclick="switchTab('trading-desk', this)">
+        <i class="bi bi-shield-fill-check"></i> 주문 & 매매 데스크
+      </div>
+      
+      <div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px; padding-top: 20px; border-top: 1px solid var(--border);">
+        <button class="btn btn-primary" style="width: 100%;" onclick="issueToken()">
+          <i class="bi bi-arrow-repeat"></i> 토큰 수동 갱신
+        </button>
+      </div>
+    </div>
+
+    <!-- Central Workspace -->
+    <div class="workspace">
+      
+      <!-- TAB 1: Bot Control -->
+      <div id="bot-control" class="tab-content active">
+        <div class="grid-3">
+          <!-- Bot State Card -->
+          <div class="card">
+            <div class="card-title">
+              봇 운영 상태 <i class="bi bi-activity"></i>
+            </div>
+            <div id="bot-mode-display" class="stat-val">---</div>
+            <div class="status-panel-grid" style="grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px;">
+              <div class="status-mini-card">
+                <span>루프 주기</span>
+                <span id="bot-loop-display">-- 초</span>
+              </div>
+              <div class="status-mini-card">
+                <span>위험 한도</span>
+                <span>₩300,000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- API Usage Card -->
+          <div class="card">
+            <div class="card-title">
+              LLM API 사용률 (DAILY) <i class="bi bi-cpu"></i>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 600;">
+                  <span>GOOGLE GEMINI</span>
+                  <span id="usage-google-txt">0 / 10 calls</span>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar" id="usage-google-bar"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 600;">
+                  <span>NVIDIA DEEPSEEK</span>
+                  <span id="usage-nvidia-txt">0 / 10 calls</span>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar" id="usage-nvidia-bar"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 600;">
+                  <span>GEMINI_API2 AGENTS</span>
+                  <span id="usage-gemini-api2-txt">0 / 30 calls</span>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar" id="usage-gemini-api2-bar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Balance Card -->
+          <div class="card">
+            <div class="card-title">
+              실시간 주문가능금액 <i class="bi bi-cash-coin"></i>
+            </div>
+            <div class="stat-val" id="quick-buying-power">₩---,---</div>
+            <div class="stat-sub">
+              <i class="bi bi-wallet2"></i> 계좌 번호: <span id="quick-account-no">조회 필요</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strategy Control Center -->
+        <div class="card">
+          <div class="card-title">
+            전략 조회 및 관리 <i class="bi bi-sliders"></i>
+          </div>
+          <div class="action-row">
+            <button class="btn btn-primary" onclick="getBotStatus()">
+              <i class="bi bi-radar"></i> 봇 정보 실시간 로드
+            </button>
+            <button class="btn" onclick="getBotEvents()">
+              <i class="bi bi-lightbulb"></i> 평가 이벤트 질문 목록
+            </button>
+            <button class="btn" onclick="getBotSymbols()">
+              <i class="bi bi-file-earmark-spreadsheet"></i> 로드된 종목 CSV 목록
+            </button>
+            <button class="btn" onclick="getRawWatchlist()">
+              <i class="bi bi-bookmarks"></i> 원본 관심종목 파일
+            </button>
+            <button class="btn" onclick="getBotTrades()">
+              <i class="bi bi-journals"></i> 최근 전략 체결/판단 로그
+            </button>
+            <button class="btn" onclick="getApiUsage()">
+              <i class="bi bi-bar-chart-line"></i> 상세 API 사용량 로그
+            </button>
+            <button class="btn" onclick="getLlmCalls()">
+              <i class="bi bi-terminal"></i> LLM 원본 질의 기록
+            </button>
+            <button class="btn" onclick="getDataRequirements()">
+              <i class="bi bi-check-circle"></i> 재무 데이터 충족 현황
+            </button>
+          </div>
+        </div>
+
+        <!-- Events List (Dynamic Rendering Panel) -->
+        <div class="card" id="events-display-panel" style="display: none;">
+          <div class="card-title">
+            현재 평가 이벤트 예측 상태 <i class="bi bi-calendar-event"></i>
+          </div>
+          <div class="table-container">
+            <table id="events-table">
+              <thead>
+                <tr>
+                  <th>테마</th>
+                  <th>예측 질문</th>
+                  <th>매핑 종목</th>
+                  <th>기준 가격 (B)</th>
+                </tr>
+              </thead>
+              <tbody id="events-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Portfolio Items in Bot tab -->
+        <div class="card" id="watchlist-display-panel" style="display: none;">
+          <div class="card-title">
+            종목 매핑 레지스트리 <i class="bi bi-search"></i>
+          </div>
+          <div class="table-container" style="max-height: 350px; overflow-y: auto;">
+            <table id="symbols-registry-table">
+              <thead>
+                <tr>
+                  <th>종목코드</th>
+                  <th>종목이름</th>
+                  <th>시장구분</th>
+                  <th>전략 적용 대상</th>
+                  <th>설명</th>
+                </tr>
+              </thead>
+              <tbody id="symbols-registry-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: Asset & Portfolio -->
+      <div id="my-portfolio" class="tab-content">
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-title">기본 계좌 <i class="bi bi-credit-card-2-front"></i></div>
+            <div class="stat-val" id="portfolio-account-seq" style="font-size: 22px;">---</div>
+            <div class="stat-sub"><i class="bi bi-bank"></i> 토스증권 위탁계좌: <span id="portfolio-account-no">--</span></div>
+          </div>
+          <div class="card">
+            <div class="card-title">원화 예수금 <i class="bi bi-cash"></i></div>
+            <div class="stat-val" id="portfolio-buying-power">₩---,---</div>
+            <div class="stat-sub"><i class="bi bi-currency-exchange"></i> 통화 기준: KRW</div>
+          </div>
+          <div class="card">
+            <div class="card-title">포트폴리오 총 평가금액 <i class="bi bi-safe"></i></div>
+            <div class="stat-val" id="portfolio-total-value">₩---,---</div>
+            <div class="stat-sub"><span id="portfolio-total-pnl-badge">---</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title" style="margin-bottom: 20px;">
+            보유 주식 현황 (실시간 잔고) <i class="bi bi-box-seam"></i>
+            <div>
+              <button class="btn btn-primary" onclick="getPositions(false)" style="padding: 6px 12px; font-size: 11px;">
+                <i class="bi bi-arrow-clockwise"></i> 기본 조회
+              </button>
+              <button class="btn btn-success" onclick="getPositions(true)" style="padding: 6px 12px; font-size: 11px;">
+                <i class="bi bi-percent"></i> 수익률 정밀 분석 로드
+              </button>
+            </div>
+          </div>
+          
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>종목코드</th>
+                  <th>종목명</th>
+                  <th>보유수량</th>
+                  <th>매입평균가</th>
+                  <th>현재가</th>
+                  <th>총 매입금액</th>
+                  <th>평가금액</th>
+                  <th>평가손익</th>
+                  <th>수익률</th>
+                </tr>
+              </thead>
+              <tbody id="positions-table-body">
+                <tr>
+                  <td colspan="9" style="text-align: center; color: var(--text-muted); padding: 30px;">
+                    <i class="bi bi-info-circle"></i> 자산 탭 조회를 눌러 실시간 포트폴리오를 로드하십시오.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: Stock Analysis -->
+      <div id="stock-analysis" class="tab-content">
+        <div class="stock-layout">
+          <!-- Left: Scrollable Stock List Sidebar -->
+          <div class="stock-sidebar">
+            <div class="stock-sidebar-title">
+              대상 종목 리스트 <i class="bi bi-list-stars" style="color: var(--primary);"></i>
+            </div>
+            
+            <!-- Execution-market and country-exposure tabs are added from symbols.csv. -->
+            <div class="stock-market-tabs" id="stock-market-tabs">
+              <button class="market-tab active" id="market-tab-all" onclick="filterMarket('ALL')">전체</button>
+              <button class="market-tab" id="market-tab-kr" onclick="filterMarket('KR')">국내</button>
+              <button class="market-tab" id="market-tab-us" onclick="filterMarket('US')">해외</button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-box-container">
+              <i class="bi bi-search"></i>
+              <input type="text" id="stock-search-input" placeholder="종목코드 또는 한글명 검색..." onkeyup="handleStockSearch()" />
+            </div>
+
+            <div id="stock-list" class="stock-list-scroll">
+              <div style="text-align: center; color: var(--text-muted); padding-top: 40px;">
+                <div class="loading-spinner"></div>
+                <p style="margin-top: 10px; font-size: 12px;">종목 로딩 중...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Detailed Content Area (Chart + Information) -->
+          <div class="stock-detail-content">
+            <!-- Price Chart Card -->
+            <div class="card chart-card-container">
+              <div class="card-title" style="margin-bottom: 16px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  실시간 시세 차트 분석 <i class="bi bi-graph-up" style="color: var(--primary);"></i>
+                  <span id="active-stock-title" class="badge badge-primary" style="font-size: 12px; padding: 4px 10px;">종목을 선택하세요</span>
+                </div>
+                <!-- Unit Tabs Menu -->
+                <div class="chart-unit-tabs" id="chart-unit-selector" style="display: none;">
+                  <button class="unit-tab active" id="unit-tab-1y" onclick="changeChartUnit('1y')">1년</button>
+                  <button class="unit-tab" id="unit-tab-1m" onclick="changeChartUnit('1m')">1달</button>
+                  <button class="unit-tab" id="unit-tab-1w" onclick="changeChartUnit('1w')">1주</button>
+                  <button class="unit-tab" id="unit-tab-1d" onclick="changeChartUnit('1d')">1일</button>
+                </div>
+              </div>
+              <div class="chart-box">
+                <canvas id="priceChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Detailed Stock Information Description Card -->
+            <div class="card detail-card-container" id="stock-detail-card" style="display: none;">
+              <div class="card-title" style="margin-bottom: 12px;">
+                종목 기본 정보 및 상세 설명 <i class="bi bi-card-text" style="color: var(--primary);"></i>
+              </div>
+              <div class="detail-card-scroll-body">
+                <!-- Grid of metadata -->
+                <div class="stock-detail-info-grid">
+                  <div class="stock-info-meta-card">
+                    <span class="stock-info-meta-label">종목 코드</span>
+                    <span class="stock-info-meta-value" id="detail-stock-code">--</span>
+                  </div>
+                  <div class="stock-info-meta-card">
+                    <span class="stock-info-meta-label">종목 한글명</span>
+                    <span class="stock-info-meta-value" id="detail-stock-name">--</span>
+                  </div>
+                  <div class="stock-info-meta-card">
+                    <span class="stock-info-meta-label">시장 구분</span>
+                    <span class="stock-info-meta-value" id="detail-stock-market">--</span>
+                  </div>
+                  <div class="stock-info-meta-card">
+                    <span class="stock-info-meta-label">자동매매 적용 여부</span>
+                    <span id="detail-stock-tradable" class="stock-info-meta-value">--</span>
+                  </div>
+                </div>
+
+                <!-- Live Price and Change Info -->
+                <div class="stock-detail-info-grid">
+                  <div class="stock-info-meta-card" style="background: rgba(55, 114, 255, 0.05); border-color: rgba(55, 114, 255, 0.15);">
+                    <span class="stock-info-meta-label" style="color: #60A5FA;">현재가 (실시간)</span>
+                    <span class="stock-info-meta-value" id="detail-stock-price" style="font-size: 18px; font-weight: 800; color: #60A5FA;">--</span>
+                  </div>
+                  <div class="stock-info-meta-card" id="detail-stock-change-card">
+                    <span class="stock-info-meta-label">전일 대비 변동률</span>
+                    <span class="stock-info-meta-value" id="detail-stock-change" style="font-size: 18px; font-weight: 800;">--</span>
+                  </div>
+                </div>
+
+                <!-- Text Description -->
+                <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 4px;">
+                    <span style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; display: flex; align-items: center; gap: 6px;">
+                      <i class="bi bi-cpu" style="color: var(--primary);"></i> 전략 관점 종목 분석 및 설명
+                    </span>
+                    <div id="ai-analyze-btn-container"></div>
+                  </div>
+                  <div id="detail-stock-description" style="font-size: 13.5px; line-height: 1.6; color: var(--text-main); white-space: pre-line;">
+                    선택된 종목에 대한 분석 데이터 및 설명이 여기에 로드됩니다.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Placeholder block when no stock is selected -->
+            <div class="card detail-card-container" id="stock-detail-placeholder" style="display: flex; justify-content: center; align-items: center; padding: 60px; text-align: center;">
+              <div style="max-width: 400px;">
+                <i class="bi bi-graph-up-arrow" style="font-size: 48px; color: var(--text-muted); opacity: 0.3; display: block; margin-bottom: 16px;"></i>
+                <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--text-main);">차트 및 분석할 종목을 선택하십시오</h3>
+                <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.5;">왼쪽의 대상 종목 리스트에서 종목을 클릭하면, 실시간 120일 캔들 차트 분석 정보와 전략적 상세 보고서가 자동으로 로드됩니다.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: Trading Desk -->
+      <div id="trading-desk" class="tab-content">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <!-- Order Placement Card -->
+          <div class="card">
+            <div class="card-title">주문 작성 <i class="bi bi-shield-fill-exclamation"></i></div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="symbol">종목코드</label>
+                <input id="symbol" value="005930" />
+              </div>
+              <div class="form-group">
+                <label for="side">주문 구분</label>
+                <select id="side">
+                  <option value="BUY">매수 (BUY)</option>
+                  <option value="SELL">매도 (SELL)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="orderType">호가 유형</label>
+                <select id="orderType" onchange="toggleOrderTypeFields()">
+                  <option value="LIMIT">지정가 (LIMIT)</option>
+                  <option value="MARKET">시장가 (MARKET)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="price">주문 단가 (지정가 전용)</label>
+                <input id="price" placeholder="가격 입력" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="quantity">주문 수량</label>
+                <input id="quantity" placeholder="수량 입력 (주)" />
+              </div>
+              <div class="form-group">
+                <label for="orderAmount">주문 총액 (선택사항)</label>
+                <input id="orderAmount" placeholder="소액 투자 총액 (원)" />
+              </div>
+            </div>
+
+            <div style="margin-top: 10px;">
+              <button class="btn btn-primary" onclick="createOrder()" style="width: 100%; height: 46px; font-size: 15px;">
+                <i class="bi bi-lightning-charge-fill"></i> 신규 주문 전송
+              </button>
+            </div>
+          </div>
+
+          <!-- Order modification / cancel -->
+          <div class="card" style="display: flex; flex-direction: column; gap: 20px;">
+            <div class="card-title">미체결 주문 정정 / 취소 <i class="bi bi-trash"></i></div>
+            
+            <div class="form-group">
+              <label for="orderId">대상 주문 ID (OrderId)</label>
+              <input id="orderId" placeholder="정정/취소할 토스 주문 ID" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="modifyQty">정정 수량</label>
+                <input id="modifyQty" placeholder="정정할 수량" />
+              </div>
+              <div class="form-group">
+                <label for="modifyPrice">정정 단가</label>
+                <input id="modifyPrice" placeholder="정정할 지정가 단가" />
+              </div>
+            </div>
+
+            <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px;">
+              <button class="btn" onclick="modifyOrder()" style="height: 42px;">
+                <i class="bi bi-pencil-square"></i> 지정가 정정 전송
+              </button>
+              <button class="btn btn-danger" onclick="cancelOrder()" style="height: 42px;">
+                <i class="bi bi-x-circle-fill"></i> 주문 취소 전송
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Console (Hidden) -->
+      <div class="terminal-section" style="display: none;">
+        <div class="terminal-header">
+          <div class="terminal-title">
+            <i class="bi bi-terminal-fill"></i> SYSTEM CORE API RESPONSE LOG CONSOLE
+          </div>
+          <div class="terminal-actions">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+          </div>
+        </div>
+        <pre id="out">// Toss Securities API Console initialized successfully.
+// Click any status query or action above to inspect live gateway responses.</pre>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+  <script>
+    // Tab switching controller
+    function switchTab(tabId, el) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      // Deactivate all nav items
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Show active tab
+      document.getElementById(tabId).classList.add('active');
+      // Highlight active navigation
+      el.classList.add('active');
+    }
+
+    // Toggle disabled status for market/limit fields
+    function toggleOrderTypeFields() {
+      const type = document.getElementById("orderType").value;
+      const priceField = document.getElementById("price");
+      if (type === "MARKET") {
+        priceField.disabled = true;
+        priceField.placeholder = "시장가 주문 (가격 불필요)";
+        priceField.value = "";
+      } else {
+        priceField.disabled = false;
+        priceField.placeholder = "가격 입력";
+      }
+    }
+
+    // Default trigger to fetch status on load
+    window.onload = function() {
+      // Fetch status, accounts and buying power on initial render
+      setTimeout(() => {
+        getBotStatus();
+        getAccounts();
+        initStockWatchlist();
+      }, 500);
+    }
+  </script>
+</body>
+</html>

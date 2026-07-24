@@ -1,0 +1,18 @@
+# secrets
+.env
+.toss_token_cache.json
+
+# runtime state / logs (대용량)
+trades.jsonl
+llm_calls.jsonl
+state.json
+api_usage_state.json
+log/
+data_cache/
+scratch/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/

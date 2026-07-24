@@ -1,0 +1,1130 @@
+[
+  {
+    "category": "Core/Runtime",
+    "requirement": "서버비 안 씀",
+    "status": "O",
+    "code_location": "main.py",
+    "formula_or_rule": "로컬 Python",
+    "note": ""
+  },
+  {
+    "category": "Core/Runtime",
+    "requirement": "내 PC에서 실행",
+    "status": "O",
+    "code_location": "main.py",
+    "formula_or_rule": "while True",
+    "note": ""
+  },
+  {
+    "category": "Core/Runtime",
+    "requirement": "10분마다 자동 실행",
+    "status": "O",
+    "code_location": "LOOP_SECONDS",
+    "formula_or_rule": "sleep(600)",
+    "note": ""
+  },
+  {
+    "category": "Core/Runtime",
+    "requirement": "한 번만 실행 옵션",
+    "status": "O",
+    "code_location": "--once",
+    "formula_or_rule": "one cycle",
+    "note": ""
+  },
+  {
+    "category": "Core/Runtime",
+    "requirement": "기본 dry-run",
+    "status": "O",
+    "code_location": ".env",
+    "formula_or_rule": "DRY_RUN=true",
+    "note": ""
+  },
+  {
+    "category": "Core/Runtime",
+    "requirement": "live 전환",
+    "status": "O",
+    "code_location": ".env",
+    "formula_or_rule": "DRY_RUN=false",
+    "note": ""
+  },
+  {
+    "category": "Core/Runtime",
+    "requirement": "대시보드 자동 실행",
+    "status": "O",
+    "code_location": "main.py",
+    "formula_or_rule": "Flask thread",
+    "note": ""
+  },
+  {
+    "category": "Core/Runtime",
+    "requirement": "브라우저 자동 열림",
+    "status": "O",
+    "code_location": "DASHBOARD_OPEN_BROWSER",
+    "formula_or_rule": "webbrowser.open",
+    "note": ""
+  },
+  {
+    "category": "Core/Runtime",
+    "requirement": "전략 로그 저장",
+    "status": "O",
+    "code_location": "trades.jsonl",
+    "formula_or_rule": "append_jsonl",
+    "note": ""
+  },
+  {
+    "category": "Core/Runtime",
+    "requirement": "상태 저장",
+    "status": "O",
+    "code_location": "state.json",
+    "formula_or_rule": "LMSR/sim_positions",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "토큰 자동갱신",
+    "status": "O",
+    "code_location": "auth.py",
+    "formula_or_rule": "expires_at",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "401 재시도",
+    "status": "O",
+    "code_location": "toss_client.py",
+    "formula_or_rule": "force_refresh",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "accountSeq 자동조회",
+    "status": "O",
+    "code_location": "toss_client.py",
+    "formula_or_rule": "GET /api/v1/accounts",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "주문가능금액 실데이터",
+    "status": "O",
+    "code_location": "live_data_guard.py",
+    "formula_or_rule": "LIVE 실패 차단",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "보유수량 실데이터",
+    "status": "O",
+    "code_location": "parse_positions",
+    "formula_or_rule": "Toss positions",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "매도가능수량 실데이터",
+    "status": "O",
+    "code_location": "validate_sellable_quantity",
+    "formula_or_rule": "requested<=sellable",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "현재가 실데이터",
+    "status": "O",
+    "code_location": "parse_current_price",
+    "formula_or_rule": "LIVE fallback 금지",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "주문 가능 여부",
+    "status": "O",
+    "code_location": "validate_orderability",
+    "formula_or_rule": "stock_info+market_status",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "체결 결과 확인",
+    "status": "O",
+    "code_location": "validate_order_response",
+    "formula_or_rule": "orderId 필수",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "KR quantity 주문",
+    "status": "O",
+    "code_location": "order_builder.py",
+    "formula_or_rule": "floor(value/price)",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "US orderAmount 주문",
+    "status": "O",
+    "code_location": "order_builder.py",
+    "formula_or_rule": "KRW/USD_KRW",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "SELL quantity 주문",
+    "status": "O",
+    "code_location": "order_builder.py",
+    "formula_or_rule": "qty*fraction",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "시장 닫힘 차단",
+    "status": "O",
+    "code_location": "is_market_open_from_clock",
+    "formula_or_rule": "market_open=false",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "거래정지/상폐 차단",
+    "status": "O",
+    "code_location": "parse_stock_tradability",
+    "formula_or_rule": "bad status",
+    "note": ""
+  },
+  {
+    "category": "Toss/LiveData",
+    "requirement": "Toss endpoint env 수정",
+    "status": "O",
+    "code_location": ".env.example",
+    "formula_or_rule": "TOSS_ENDPOINT_*",
+    "note": ""
+  },
+  {
+    "category": "LLM/API",
+    "requirement": "Google/Gemini API",
+    "status": "O",
+    "code_location": "llm_pipeline.py",
+    "formula_or_rule": "evidence",
+    "note": ""
+  },
+  {
+    "category": "LLM/API",
+    "requirement": "NVIDIA API",
+    "status": "O",
+    "code_location": "llm_pipeline.py",
+    "formula_or_rule": "probability",
+    "note": ""
+  },
+  {
+    "category": "LLM/API",
+    "requirement": "Google 하루 10회",
+    "status": "O",
+    "code_location": "api_budget.py",
+    "formula_or_rule": "limit-used",
+    "note": ""
+  },
+  {
+    "category": "LLM/API",
+    "requirement": "NVIDIA 하루 10회",
+    "status": "O",
+    "code_location": "api_budget.py",
+    "formula_or_rule": "limit-used",
+    "note": ""
+  },
+  {
+    "category": "LLM/API",
+    "requirement": "질문/답변 로그",
+    "status": "O",
+    "code_location": "llm_calls.jsonl",
+    "formula_or_rule": "prompt+response",
+    "note": ""
+  },
+  {
+    "category": "LLM/API",
+    "requirement": "뉴스 evidence",
+    "status": "O",
+    "code_location": "build_google_prompt",
+    "formula_or_rule": "news/economy/politics",
+    "note": ""
+  },
+  {
+    "category": "LLM/API",
+    "requirement": "기상 evidence",
+    "status": "O",
+    "code_location": "build_google_prompt",
+    "formula_or_rule": "weather",
+    "note": ""
+  },
+  {
+    "category": "LLM/API",
+    "requirement": "스포츠 evidence",
+    "status": "O",
+    "code_location": "build_google_prompt",
+    "formula_or_rule": "sports",
+    "note": ""
+  },
+  {
+    "category": "LLM/API",
+    "requirement": "온체인 evidence",
+    "status": "O",
+    "code_location": "build_google_prompt",
+    "formula_or_rule": "onchain",
+    "note": ""
+  },
+  {
+    "category": "LLM/API",
+    "requirement": "확률 JSON 판단",
+    "status": "O",
+    "code_location": "build_nvidia_prompt",
+    "formula_or_rule": "yes_probability/confidence/news_score",
+    "note": ""
+  },
+  {
+    "category": "LLM/API",
+    "requirement": "API 소진 fallback",
+    "status": "O",
+    "code_location": "mock_*",
+    "formula_or_rule": "budget exceeded",
+    "note": ""
+  },
+  {
+    "category": "LLM/API",
+    "requirement": "LLM confidence gate",
+    "status": "O",
+    "code_location": "survival_gate",
+    "formula_or_rule": "confidence>=min",
+    "note": ""
+  },
+  {
+    "category": "LLM/API",
+    "requirement": "top_candidate_symbols",
+    "status": "O",
+    "code_location": "NVIDIA response",
+    "formula_or_rule": "candidate hint",
+    "note": ""
+  },
+  {
+    "category": "Prediction/LMSR/Kelly",
+    "requirement": "Polymarket 직접거래 안 함",
+    "status": "O",
+    "code_location": "전체",
+    "formula_or_rule": "no polymarket order",
+    "note": ""
+  },
+  {
+    "category": "Prediction/LMSR/Kelly",
+    "requirement": "LMSR 내부 예측시장",
+    "status": "O",
+    "code_location": "lmsr.py",
+    "formula_or_rule": "C=b ln(exp(qy/b)+exp(qn/b))",
+    "note": ""
+  },
+  {
+    "category": "Prediction/LMSR/Kelly",
+    "requirement": "LMSR YES가격",
+    "status": "O",
+    "code_location": "lmsr.py",
+    "formula_or_rule": "P=exp(qy/b)/(exp(qy/b)+exp(qn/b))",
+    "note": ""
+  },
+  {
+    "category": "Prediction/LMSR/Kelly",
+    "requirement": "EventEdge",
+    "status": "O",
+    "code_location": "main.py",
+    "formula_or_rule": "p_llm-p_lmsr",
+    "note": ""
+  },
+  {
+    "category": "Prediction/LMSR/Kelly",
+    "requirement": "LMSR 상태 누적",
+    "status": "O",
+    "code_location": "state.json",
+    "formula_or_rule": "q_yes/q_no",
+    "note": ""
+  },
+  {
+    "category": "Prediction/LMSR/Kelly",
+    "requirement": "Sapience 외부가격",
+    "status": "△",
+    "code_location": "data_sources.py",
+    "formula_or_rule": "0.7 LMSR+0.3 Sapience",
+    "note": "placeholder"
+  },
+  {
+    "category": "Prediction/LMSR/Kelly",
+    "requirement": "Kelly YES",
+    "status": "O",
+    "code_location": "kelly.py",
+    "formula_or_rule": "(p-C)/(1-C)",
+    "note": ""
+  },
+  {
+    "category": "Prediction/LMSR/Kelly",
+    "requirement": "Kelly NO",
+    "status": "O",
+    "code_location": "kelly.py",
+    "formula_or_rule": "(C-p)/C",
+    "note": ""
+  },
+  {
+    "category": "Prediction/LMSR/Kelly",
+    "requirement": "Kelly multiplier",
+    "status": "O",
+    "code_location": ".env",
+    "formula_or_rule": "KELLY_MULTIPLIER",
+    "note": ""
+  },
+  {
+    "category": "Prediction/LMSR/Kelly",
+    "requirement": "position cap",
+    "status": "O",
+    "code_location": ".env",
+    "formula_or_rule": "min(f,MAX_POSITION_FRACTION)",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "Value 팩터",
+    "status": "O",
+    "code_location": "factors.py",
+    "formula_or_rule": "z(-PER),z(-PBR),z(FCFYield)",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "Momentum 팩터",
+    "status": "O",
+    "code_location": "factors.py",
+    "formula_or_rule": "3M/6M/12-1M return",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "Quality 팩터",
+    "status": "O",
+    "code_location": "factors.py",
+    "formula_or_rule": "ROE/ROIC/margins",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "Risk 팩터",
+    "status": "O",
+    "code_location": "factors.py",
+    "formula_or_rule": "-beta,-vol,-MDD",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "Liquidity 팩터",
+    "status": "O",
+    "code_location": "factors.py",
+    "formula_or_rule": "volume/value/mcap",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "Growth/Revision 팩터",
+    "status": "O",
+    "code_location": "factors.py",
+    "formula_or_rule": "growth/revision",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "News/Event 팩터",
+    "status": "O",
+    "code_location": "factors.py",
+    "formula_or_rule": "llm_sentiment",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "팩터 가중합",
+    "status": "O",
+    "code_location": "factors.py",
+    "formula_or_rule": "0.16V+0.20M+0.16Q+0.12R+0.12L+0.14G+0.10N",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "tanh 압축",
+    "status": "O",
+    "code_location": "factors.py",
+    "formula_or_rule": "tanh(raw)",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "무료 재무데이터 반영",
+    "status": "O",
+    "code_location": "main.py",
+    "formula_or_rule": "universe override",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "yfinance 해외",
+    "status": "O",
+    "code_location": "yfinance_client.py",
+    "formula_or_rule": "financials/balance/cashflow/info",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "SEC submissions",
+    "status": "O",
+    "code_location": "sec_edgar_client.py",
+    "formula_or_rule": "/submissions/CIK",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "SEC companyfacts",
+    "status": "O",
+    "code_location": "sec_edgar_client.py",
+    "formula_or_rule": "/api/xbrl/companyfacts",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "Naver WiseReport",
+    "status": "O",
+    "code_location": "naver_finance.py",
+    "formula_or_rule": "cF1001/read_html",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "SEC 우선 yfinance 보조",
+    "status": "O",
+    "code_location": "free_financial_sources.py",
+    "formula_or_rule": "merge(sec,yf)",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "OpenDART",
+    "status": "△",
+    "code_location": "README",
+    "formula_or_rule": "권장, 미구현",
+    "note": ""
+  },
+  {
+    "category": "Factors/Fundamentals",
+    "requirement": "KRX/pykrx",
+    "status": "△",
+    "code_location": "README",
+    "formula_or_rule": "권장, 미구현",
+    "note": ""
+  },
+  {
+    "category": "SDE/GBM",
+    "requirement": "SDE/GBM",
+    "status": "O",
+    "code_location": "sde.py",
+    "formula_or_rule": "dS/S=mu dt+sigma dW",
+    "note": ""
+  },
+  {
+    "category": "SDE/GBM",
+    "requirement": "mu 구성",
+    "status": "O",
+    "code_location": "sde.py",
+    "formula_or_rule": "base+0.12factor+0.15edge+0.10trend+0.06news",
+    "note": ""
+  },
+  {
+    "category": "SDE/GBM",
+    "requirement": "sigma 구성",
+    "status": "O",
+    "code_location": "sde.py",
+    "formula_or_rule": "hist_vol*multipliers",
+    "note": ""
+  },
+  {
+    "category": "SDE/GBM",
+    "requirement": "20일 +3% 확률",
+    "status": "O",
+    "code_location": "sde.py",
+    "formula_or_rule": "P(S_T>S0*1.03)",
+    "note": ""
+  },
+  {
+    "category": "SDE/GBM",
+    "requirement": "sde_prob_score",
+    "status": "O",
+    "code_location": "main.py",
+    "formula_or_rule": "2*(prob-0.5)",
+    "note": ""
+  },
+  {
+    "category": "SDE/GBM",
+    "requirement": "SDE threshold",
+    "status": "O",
+    "code_location": ".env",
+    "formula_or_rule": "prob>=MIN_SDE_PROB_UP",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "ATR",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "TR=max(H-L,|H-PC|,|L-PC|)",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "HL2",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "(H+L)/2",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "Supertrend fast",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "mult=2",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "Supertrend slow",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "mult=4",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "색상 전환 진입",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "fast_flip",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "더블트렌드 필터",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "fast_dir==slow_dir",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "점선 돌파 진입",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "slow flip+agreement",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "10캔들 유지",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "slow_age>=10",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "리테스트 매매",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "near ST line + reversal",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "쌍바닥",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "double_bottom_top",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "쌍고점",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "double_bottom_top",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "라운드 패턴",
+    "status": "△",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "단순 패턴 대체",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "추세선 중첩",
+    "status": "△",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "ST≈EMA mid",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "횡보 신호 3회",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "flip_count>=3",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "실선 반대신호 2회",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "partial exit",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "돌파트렌드 실제 시간가중 ATR",
+    "status": "X",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "비공개라 정확복제 불가",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "Dolpa-like 채널",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "EMA±ATR",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "노란/파란 상태",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "close>=mid",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "화살표 근사",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "upper/lower breakout",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "중단선 손절",
+    "status": "O",
+    "code_location": "exit_rules.py",
+    "formula_or_rule": "midline break",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "손익비 1:2",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "TP=entry+2*risk",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "중단선 눌림",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "midline retest",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "박스 하단 매수",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "lower zone+bullish",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "박스 상단 매도",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "upper zone+bearish",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "박스 돌파/이탈",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "box_breakout",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "볼린저 중단선",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "SMA20±2σ",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "볼린저 눌림",
+    "status": "O",
+    "code_location": "technical_entries.py",
+    "formula_or_rule": "near BB_mid",
+    "note": ""
+  },
+  {
+    "category": "TechnicalRules",
+    "requirement": "진입 박스 저장",
+    "status": "O",
+    "code_location": "technical.levels",
+    "formula_or_rule": "box_high/low",
+    "note": ""
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "BUY 조건",
+    "status": "O",
+    "code_location": "risk.py/main.py",
+    "formula_or_rule": "edge&alpha&sde&trend&tech",
+    "note": ""
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "기술 신호 없으면 HOLD",
+    "status": "O",
+    "code_location": "main.py",
+    "formula_or_rule": "BUY->HOLD",
+    "note": ""
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "최소주문금액",
+    "status": "O",
+    "code_location": "order_builder.py",
+    "formula_or_rule": ">=MIN_ORDER_KRW",
+    "note": ""
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "국내 1주 이상",
+    "status": "O",
+    "code_location": "order_builder.py",
+    "formula_or_rule": "floor(value/price)>=1",
+    "note": ""
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "현금 reserve",
+    "status": "O",
+    "code_location": "main.py",
+    "formula_or_rule": "deployable=effective*(1-reserve)",
+    "note": ""
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "운용상한",
+    "status": "O",
+    "code_location": "main.py",
+    "formula_or_rule": "min(cash,cap)",
+    "note": ""
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "신규매수 제한",
+    "status": "O",
+    "code_location": "MAX_NEW_BUYS_PER_LOOP",
+    "formula_or_rule": "per loop cap",
+    "note": ""
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "분산매수",
+    "status": "△",
+    "code_location": "main.py",
+    "formula_or_rule": "조건통과 순서로 매수",
+    "note": "TopN allocator 미완"
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "MAX_OPEN_POSITIONS",
+    "status": "△",
+    "code_location": "config.py",
+    "formula_or_rule": "설정 존재",
+    "note": "완전 적용은 allocator 필요"
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "손절",
+    "status": "O",
+    "code_location": "exit_rules.py",
+    "formula_or_rule": "pnl<=-stop",
+    "note": ""
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "익절",
+    "status": "O",
+    "code_location": "exit_rules.py",
+    "formula_or_rule": "pnl>=take",
+    "note": ""
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "분할익절",
+    "status": "O",
+    "code_location": "exit_rules.py",
+    "formula_or_rule": "sell 50%",
+    "note": ""
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "모델악화 매도",
+    "status": "O",
+    "code_location": "exit_rules.py",
+    "formula_or_rule": "edge/alpha/sde/trend",
+    "note": ""
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "기술적 매도",
+    "status": "O",
+    "code_location": "exit_rules.py",
+    "formula_or_rule": "technical triggers",
+    "note": ""
+  },
+  {
+    "category": "Trading/Portfolio",
+    "requirement": "매도 후 재투입",
+    "status": "△",
+    "code_location": "main.py",
+    "formula_or_rule": "다음 루프 buying_power",
+    "note": "redeploy fraction 미구현"
+  },
+  {
+    "category": "Dashboard/Data",
+    "requirement": "봇 상태",
+    "status": "O",
+    "code_location": "/api/bot/status",
+    "formula_or_rule": "state/log",
+    "note": ""
+  },
+  {
+    "category": "Dashboard/Data",
+    "requirement": "이벤트 질문",
+    "status": "O",
+    "code_location": "/api/bot/events",
+    "formula_or_rule": "event_questions",
+    "note": ""
+  },
+  {
+    "category": "Dashboard/Data",
+    "requirement": "종목 CSV",
+    "status": "O",
+    "code_location": "/api/bot/symbols",
+    "formula_or_rule": "symbols.csv",
+    "note": ""
+  },
+  {
+    "category": "Dashboard/Data",
+    "requirement": "원본 관심종목",
+    "status": "O",
+    "code_location": "/api/bot/watchlist-raw",
+    "formula_or_rule": "watchlist_raw",
+    "note": ""
+  },
+  {
+    "category": "Dashboard/Data",
+    "requirement": "최근 로그",
+    "status": "O",
+    "code_location": "/api/bot/trades",
+    "formula_or_rule": "trades.jsonl",
+    "note": ""
+  },
+  {
+    "category": "Dashboard/Data",
+    "requirement": "API 사용량",
+    "status": "O",
+    "code_location": "/api/bot/api-usage",
+    "formula_or_rule": "api_usage_state",
+    "note": ""
+  },
+  {
+    "category": "Dashboard/Data",
+    "requirement": "LLM 로그",
+    "status": "O",
+    "code_location": "/api/bot/llm-calls",
+    "formula_or_rule": "llm_calls",
+    "note": ""
+  },
+  {
+    "category": "Dashboard/Data",
+    "requirement": "데이터 요구사항",
+    "status": "O",
+    "code_location": "/api/bot/data-requirements",
+    "formula_or_rule": "actual_data_requirements",
+    "note": ""
+  },
+  {
+    "category": "Dashboard/Data",
+    "requirement": "토큰 버튼",
+    "status": "O",
+    "code_location": "dashboard",
+    "formula_or_rule": "/api/token",
+    "note": ""
+  },
+  {
+    "category": "Dashboard/Data",
+    "requirement": "계좌 버튼",
+    "status": "O",
+    "code_location": "dashboard",
+    "formula_or_rule": "/api/accounts",
+    "note": ""
+  },
+  {
+    "category": "Dashboard/Data",
+    "requirement": "잔고 버튼",
+    "status": "O",
+    "code_location": "dashboard",
+    "formula_or_rule": "/api/buying-power",
+    "note": ""
+  },
+  {
+    "category": "Dashboard/Data",
+    "requirement": "보유종목 버튼",
+    "status": "O",
+    "code_location": "dashboard",
+    "formula_or_rule": "/api/positions",
+    "note": ""
+  },
+  {
+    "category": "Dashboard/Data",
+    "requirement": "주문 생성/정정/취소",
+    "status": "O",
+    "code_location": "dashboard",
+    "formula_or_rule": "orders",
+    "note": ""
+  },
+  {
+    "category": "Data/Controls",
+    "requirement": "질문 CSV",
+    "status": "O",
+    "code_location": "event_questions.csv",
+    "formula_or_rule": "mapped_symbols",
+    "note": ""
+  },
+  {
+    "category": "Data/Controls",
+    "requirement": "질문 회전",
+    "status": "O",
+    "code_location": "question_templates.csv",
+    "formula_or_rule": "random",
+    "note": ""
+  },
+  {
+    "category": "Data/Controls",
+    "requirement": "MARKET:KR",
+    "status": "O",
+    "code_location": "events.py",
+    "formula_or_rule": "market mapping",
+    "note": ""
+  },
+  {
+    "category": "Data/Controls",
+    "requirement": "THEME 매핑",
+    "status": "O",
+    "code_location": "events.py",
+    "formula_or_rule": "theme mapping",
+    "note": ""
+  },
+  {
+    "category": "Data/Controls",
+    "requirement": "MAX_SYMBOLS_PER_EVENT",
+    "status": "O",
+    "code_location": "main.py",
+    "formula_or_rule": "candidate cap",
+    "note": ""
+  },
+  {
+    "category": "Data/Controls",
+    "requirement": "원본 리스트 보존",
+    "status": "O",
+    "code_location": "watchlist_raw.csv",
+    "formula_or_rule": "raw",
+    "note": ""
+  },
+  {
+    "category": "Data/Controls",
+    "requirement": "미확정 심볼 비활성",
+    "status": "O",
+    "code_location": "symbols.csv",
+    "formula_or_rule": "enabled=false",
+    "note": ""
+  },
+  {
+    "category": "Data/Controls",
+    "requirement": "API key env",
+    "status": "O",
+    "code_location": ".env.example",
+    "formula_or_rule": "no hardcode",
+    "note": ""
+  },
+  {
+    "category": "Data/Controls",
+    "requirement": "SEC User-Agent",
+    "status": "O",
+    "code_location": ".env.example",
+    "formula_or_rule": "SEC_USER_AGENT",
+    "note": ""
+  },
+  {
+    "category": "Data/Controls",
+    "requirement": "데이터 캐시",
+    "status": "O",
+    "code_location": "data_cache",
+    "formula_or_rule": "SEC/Naver",
+    "note": ""
+  },
+  {
+    "category": "Data/Controls",
+    "requirement": "실전 전 dry-run 권고",
+    "status": "O",
+    "code_location": "README",
+    "formula_or_rule": "validation",
+    "note": ""
+  },
+  {
+    "category": "Data/Controls",
+    "requirement": "Toss 문서 검증 필요",
+    "status": "△",
+    "code_location": "README",
+    "formula_or_rule": "endpoint/fields",
+    "note": ""
+  },
+  {
+    "category": "Data/Controls",
+    "requirement": "장기수익 보장 없음",
+    "status": "O",
+    "code_location": "README",
+    "formula_or_rule": "risk warning",
+    "note": ""
+  },
+  {
+    "category": "Data/Controls",
+    "requirement": "로컬 대시보드",
+    "status": "O",
+    "code_location": "Flask",
+    "formula_or_rule": "127.0.0.1",
+    "note": ""
+  }
+]

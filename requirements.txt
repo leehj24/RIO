@@ -1,0 +1,13 @@
+requests
+python-dotenv
+numpy
+pandas
+scipy
+openai
+flask
+yfinance
+lxml
+html5lib
+beautifulsoup4
+pykrx
+openpyxl

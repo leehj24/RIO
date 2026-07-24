@@ -1,0 +1,1123 @@
+﻿symbol,name,raw_name,market,sector,theme,enabled,resolved,note
+ABB,ABB,ABB,US,Industrial,Global Industrial,false,toss_unverified,toss_price_unavailable_2026-07-15;exclude_from_execution_until_reverified
+,크레디트스위스,크레디트스위스,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+NVS,Novartis,Novartis,US,Healthcare,Pharma,true,seeded,verify_with_toss_stock_info_before_live;country_exposure=Switzerland
+,Roche,Roche,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+UBS,UBS,UBS,US,Financial,Bank,true,seeded,verify_with_toss_stock_info_before_live;country_exposure=Switzerland
+,BYD,BYD,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,CNNC,CNNC,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+BIDU,Baidu,Baidu,US,Internet,China AI,true,seeded,verify_with_toss_stock_info_before_live;country_exposure=China
+,DJI,DJI,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+EH,EHang,EHang,US,Aviation,Drone/eVTOL,true,seeded,verify_with_toss_stock_info_before_live
+NIO,NIO,NIO,US,EV,EV,true,seeded,verify_with_toss_stock_info_before_live;country_exposure=China
+,BMW,BMW,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+BNTX,BioNTech,BioNTech,US,Healthcare,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+,시멘스에너지,시멘스에너지,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,Mercedes-Benz,Mercedes-Benz,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+SAP,SAP,SAP,US,Software,Enterprise Software,true,seeded,verify_with_toss_stock_info_before_live;country_exposure=Germany
+,Volkswagen,Volkswagen,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,NKT,NKT,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,Orsted,Orsted,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,Vestas Wind Systems,Vestas Wind Systems,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,이베르드롤라,이베르드롤라,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,EDF,EDF,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,탈레스,탈레스,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,넥산스,넥산스,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,파롯,파롯,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,Geely,Geely,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,차이나전력,차이나전력,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,Quantum Machines,Quantum Machines,GLOBAL_CANDIDATE,,Quantum Computing,false,unresolved,symbol_required_before_live_trading
+,엔엘,엔엘,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,프리즈미안,프리즈미안,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,후루카와전기,후루카와전기,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,스미토모전기,스미토모전기,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,Yaskawa Electric,Yaskawa Electric,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,FANUC,FANUC,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,미쓰비시중공업,미쓰비시중공업,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,도쿄전력,도쿄전력,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,토시바,토시바,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+000100,유한양행,유한양행,KR,Healthcare,Pharma,true,seeded,verify_with_toss_stock_info_before_live
+000270,기아,기아,KR,Auto,EV/Auto,true,seeded,verify_with_toss_stock_info_before_live
+000500,가온전선,가온전선,KR,Cable,Power Grid,true,seeded,verify_with_toss_stock_info_before_live
+000660,SK하이닉스,SK하이닉스,KR,Semiconductor,AI Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+000720,현대건설,현대건설,KR,Construction,Infrastructure,true,seeded,verify_with_toss_stock_info_before_live
+000880,한화,한화,KR,Holding/Defense,Defense,true,seeded,verify_with_toss_stock_info_before_live
+000990,DB하이텍,DB하이텍,KR,Semiconductor,Foundry,true,seeded,verify_with_toss_stock_info_before_live
+001290,상상인증권,상상인증권,KR,Financial,Securities,true,seeded,verify_with_toss_stock_info_before_live
+001440,대한전선,대한전선,KR,Cable,Power Grid,true,seeded,verify_with_toss_stock_info_before_live
+001520,동양,동양,KR,Construction Materials,Infrastructure,true,seeded,verify_with_toss_stock_info_before_live
+002320,한진,한진,KR,Logistics,Logistics,true,seeded,verify_with_toss_stock_info_before_live
+002630,오리엔트바이오,오리엔트바이오,KR,Biotech,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+002780,진흥기업,진흥기업,KR,Construction,Infrastructure,true,seeded,verify_with_toss_stock_info_before_live
+003470,유안타증권,유안타증권,KR,Financial,Securities,true,seeded,verify_with_toss_stock_info_before_live
+003530,한화투자증권,한화투자증권,KR,Financial,Securities,true,seeded,verify_with_toss_stock_info_before_live
+003540,대신증권,대신증권,KR,Financial,Securities,true,seeded,verify_with_toss_stock_info_before_live
+003570,SNT다이내믹스,SNT다이내믹스,KR,Defense/Auto Parts,Defense,true,seeded,verify_with_toss_stock_info_before_live
+003670,포스코퓨처엠,포스코퓨처엠,KR,Battery Materials,Battery,true,seeded,verify_with_toss_stock_info_before_live
+004410,서울식품,서울식품,KR,Food,Consumer,true,seeded,verify_with_toss_stock_info_before_live
+005380,현대차,현대자동차,KR,Auto,EV/Auto,true,seeded,verify_with_toss_stock_info_before_live
+005680,삼영전자,삼영전기,KR,Electronic Components,Components,true,seeded,verify_with_toss_stock_info_before_live
+005930,삼성전자,삼성전자,KR,Semiconductor,AI Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+005940,NH투자증권,NH투자증권,KR,Financial,Securities,true,seeded,verify_with_toss_stock_info_before_live
+006280,녹십자,녹십자,KR,Healthcare,Pharma,true,seeded,verify_with_toss_stock_info_before_live
+006340,대원전선,대원전선,KR,Cable,Power Grid,true,seeded,verify_with_toss_stock_info_before_live
+006400,삼성SDI,삼성SDI,KR,Battery,Battery,true,seeded,verify_with_toss_stock_info_before_live
+006730,서부T&D,서부T&D,KR,Real Estate/Logistics,Real Estate,true,seeded,verify_with_toss_stock_info_before_live
+006800,미래에셋증권,미래에셋증권,KR,Financial,Securities,true,seeded,verify_with_toss_stock_info_before_live
+007460,에이프로젠,에이프로젠,KR,Biotech,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+008040,사조동아원,사조동아원,KR,Food,Consumer,true,seeded,verify_with_toss_stock_info_before_live
+,아진전자부품,아진전자부품,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+009520,포스코엠텍,포스코엠텍,KR,Materials,Secondary Battery,true,seeded,verify_with_toss_stock_info_before_live
+009830,한화솔루션,한화솔루션,KR,Chemical/Solar,Solar,true,seeded,verify_with_toss_stock_info_before_live
+010820,퍼스텍,퍼스텍,KR,Defense,Defense,true,seeded,verify_with_toss_stock_info_before_live
+011560,세보엠이씨,세보엠이씨,KR,Construction Equipment,Infrastructure,true,seeded,verify_with_toss_stock_info_before_live
+012280,영화금속,영화금속,KR,Auto Parts,Auto Parts,true,seeded,verify_with_toss_stock_info_before_live
+012450,한화에어로스페이스,한화에어로스페이스,KR,Defense,Aerospace/Defense,true,seeded,verify_with_toss_stock_info_before_live
+012510,더존비즈온,더존비즈온,KR,Software,Enterprise Software,false,toss_unverified,toss_price_unavailable_2026-07-15;exclude_from_execution_until_reverified
+013570,디와이,디와이,KR,Machinery,Industrial,true,seeded,verify_with_toss_stock_info_before_live
+013580,계룡건설,계룡건설,KR,Construction,Infrastructure,true,seeded,verify_with_toss_stock_info_before_live
+013810,스페코,스페코,KR,Defense/Wind,Defense,true,seeded,verify_with_toss_stock_info_before_live
+014470,부방,부방,KR,Consumer,Holding,true,seeded,verify_with_toss_stock_info_before_live
+015760,한국전력,한국전력공사,KR,Utilities,Power,true,seeded,verify_with_toss_stock_info_before_live
+016360,삼성증권,삼성증권,KR,Financial,Securities,true,seeded,verify_with_toss_stock_info_before_live
+016920,카스,카스,KR,Equipment,Equipment,true,seeded,verify_with_toss_stock_info_before_live
+017040,광명전기,광명전기,KR,Electrical Equipment,Power Grid,true,seeded,verify_with_toss_stock_info_before_live
+017670,SK텔레콤,SK텔레콤,KR,Telecom,Telecom/AI,true,seeded,verify_with_toss_stock_info_before_live
+018000,유니슨,유니슨,KR,Wind,Renewable Energy,true,seeded,verify_with_toss_stock_info_before_live
+018260,삼성SDS,삼성SDS,KR,IT Service,Cloud/AI,true,seeded,verify_with_toss_stock_info_before_live
+018290,브이티,브이티,KR,Cosmetics,Consumer,true,seeded,verify_with_toss_stock_info_before_live
+019210,와이지-원,와이지-원,KR,Machinery,Industrial,true,seeded,verify_with_toss_stock_info_before_live
+019550,SBI인베스트먼트,SBI인베스트먼트,KR,Venture Capital,VC,true,seeded,verify_with_toss_stock_info_before_live
+019680,대교,대교,KR,Education,Education,true,seeded,verify_with_toss_stock_info_before_live
+020150,롯데에너지머티리얼즈,롯데에너지머티리얼즈,KR,Battery Materials,Battery,true,seeded,verify_with_toss_stock_info_before_live
+020180,대신정보통신,대신정보통신,KR,IT Service,IT Service,true,seeded,verify_with_toss_stock_info_before_live
+021040,대호특수강,대호특수강,KR,Steel,Materials,true,seeded,verify_with_toss_stock_info_before_live
+023590,다우기술,다우기술,KR,IT Service,IT Service,true,seeded,verify_with_toss_stock_info_before_live
+024090,디씨엠,디씨엠,KR,Materials,Materials,true,seeded,verify_with_toss_stock_info_before_live
+025950,동신건설,동신건설,KR,Construction,Infrastructure,true,seeded,verify_with_toss_stock_info_before_live
+027710,팜스토리,팜스토리,KR,Food,Agri/Food,true,seeded,verify_with_toss_stock_info_before_live
+027830,대성창투,대성창투,KR,Venture Capital,VC,true,seeded,verify_with_toss_stock_info_before_live
+027970,한국제지,한국제지,KR,Paper,Materials,true,seeded,verify_with_toss_stock_info_before_live
+028260,삼성물산,삼성물산,KR,Holding/Construction,Holding,true,seeded,verify_with_toss_stock_info_before_live
+030200,KT,KT,KR,Telecom,Telecom/AI,true,seeded,verify_with_toss_stock_info_before_live
+030520,한글과컴퓨터,한글과컴퓨터,KR,Software,AI Software,true,seeded,verify_with_toss_stock_info_before_live
+031310,아이즈비전,아이즈비전,KR,Telecom,Telecom,true,seeded,verify_with_toss_stock_info_before_live
+031430,신세계인터내셔날,신세계인터내셔날,KR,Consumer,Consumer,true,seeded,verify_with_toss_stock_info_before_live
+,오스템,오스템,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+032640,LG유플러스,LG유플러스,KR,Telecom,Telecom/AI,true,seeded,verify_with_toss_stock_info_before_live
+033270,유나이티드제약,유나이티드제약,KR,Healthcare,Pharma,true,seeded,verify_with_toss_stock_info_before_live
+033500,동성화인텍,동성화인텍,KR,Materials,LNG,true,seeded,verify_with_toss_stock_info_before_live
+033640,네패스,네패스,KR,Semiconductor,Semiconductor Packaging,true,seeded,verify_with_toss_stock_info_before_live
+034020,두산에너빌리티,두산에너빌리티,KR,Energy Equipment,Nuclear/Power,true,seeded,verify_with_toss_stock_info_before_live
+035420,NAVER,NAVER,KR,Internet,AI Software,true,seeded,verify_with_toss_stock_info_before_live
+035720,카카오,카카오,KR,Internet,Platform,true,seeded,verify_with_toss_stock_info_before_live
+039290,인포뱅크,인포뱅크,KR,Software,Mobility/AI,true,seeded,verify_with_toss_stock_info_before_live
+042000,카페24,카페24,KR,E-commerce,E-commerce,true,seeded,verify_with_toss_stock_info_before_live
+042700,한미반도체,한미반도체,KR,Semiconductor Equipment,HBM/Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+044450,KSS해운,KSS해운,KR,Shipping,Shipping,true,seeded,verify_with_toss_stock_info_before_live
+047400,유니온머티리얼,유니온머티리얼,KR,Materials,Rare Earth,true,seeded,verify_with_toss_stock_info_before_live
+047560,이스트소프트,이스트소프트,KR,Software,AI Software,true,seeded,verify_with_toss_stock_info_before_live
+047810,한국항공우주,한국항공우주,KR,Aerospace/Defense,Aerospace/Defense,true,seeded,verify_with_toss_stock_info_before_live
+051500,CJ프레시웨이,CJ프레시웨이,KR,Food Service,Consumer,true,seeded,verify_with_toss_stock_info_before_live
+051600,한전KPS,한전KPS,KR,Utilities Service,Nuclear/Power,true,seeded,verify_with_toss_stock_info_before_live
+,중앙첨단소재,중앙첨단소재,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+052690,한전기술,한전기술,KR,Engineering,Nuclear/Power,true,seeded,verify_with_toss_stock_info_before_live
+053690,한미글로벌,한미글로벌,KR,Construction Management,Infrastructure,true,seeded,verify_with_toss_stock_info_before_live
+053800,안랩,안랩,KR,Cybersecurity,Cybersecurity,true,seeded,verify_with_toss_stock_info_before_live
+054090,삼진엘앤디,삼진엘앤디,KR,Components,Components,true,seeded,verify_with_toss_stock_info_before_live
+054450,텔레칩스,텔레칩스,KR,Semiconductor,Automotive Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+055550,신한지주,신한지주,KR,Financial,Bank,true,seeded,verify_with_toss_stock_info_before_live
+058470,리노공업,리노공업,KR,Semiconductor Equipment,Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+058610,에스피지,에스피지,KR,Robotics Parts,Robotics,true,seeded,verify_with_toss_stock_info_before_live
+058820,CMG제약,CMG제약,KR,Healthcare,Pharma,true,seeded,verify_with_toss_stock_info_before_live
+064350,현대로템,현대로템,KR,Defense/Rail,Defense,true,seeded,verify_with_toss_stock_info_before_live
+,LG CNS,LG CNS,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+065450,빅텍,빅텍,KR,Defense,Defense,true,seeded,verify_with_toss_stock_info_before_live
+066570,LG전자,LG전자,KR,Electronics,Electronics/AI,true,seeded,verify_with_toss_stock_info_before_live
+066970,엘앤에프,엘앤에프,KR,Battery Materials,Battery,true,seeded,verify_with_toss_stock_info_before_live
+068270,셀트리온,셀트리온,KR,Healthcare,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+068330,일신바이오,일신바이오,KR,Bio Equipment,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+071050,한국금융지주,한국금융지주,KR,Financial,Securities,true,seeded,verify_with_toss_stock_info_before_live
+078000,텔코웨어,텔코웨어,KR,Telecom Software,Telecom,true,seeded,verify_with_toss_stock_info_before_live
+079550,LIG넥스원,LIG넥스원,KR,Defense,Defense,true,seeded,verify_with_toss_stock_info_before_live
+082270,젬백스,젬백스,KR,Biotech,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+083470,이엠앤아이,이엠앤아이,KR,Materials,Materials,true,seeded,verify_with_toss_stock_info_before_live
+084370,유진테크,유진테크,KR,Semiconductor Equipment,Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+084440,유비온,유비온,KR,Education/Software,EdTech,true,seeded,verify_with_toss_stock_info_before_live
+085660,차바이오텍,차바이오텍,KR,Biotech,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+086900,메디톡스,메디톡스,KR,Healthcare,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+087260,모바일어플라이언스,모바일어플라이언스,KR,Mobility,Autonomous,true,seeded,verify_with_toss_stock_info_before_live
+090080,평화산업,평화산업,KR,Auto Parts,Auto Parts,true,seeded,verify_with_toss_stock_info_before_live
+091580,상신이디피,상신이디피,KR,Battery Parts,Battery,true,seeded,verify_with_toss_stock_info_before_live
+,트리니티항공,트리니티항공,KR_CANDIDATE,,Space/Defense,false,unresolved,symbol_required_before_live_trading
+,셀트리온헬스케어,셀트리온헬스케어,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+094820,일진파워,일진파워,KR,Power Plant,Nuclear/Power,true,seeded,verify_with_toss_stock_info_before_live
+095610,테스,테스,KR,Semiconductor Equipment,Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+095910,에스에너지,에스에너지,KR,Solar,Renewable Energy,true,seeded,verify_with_toss_stock_info_before_live
+096770,SK이노베이션,SK이노베이션,KR,Energy/Battery,Battery,true,seeded,verify_with_toss_stock_info_before_live
+097520,엠씨넥스,엠씨넥스,KR,Camera Module,Mobility,true,seeded,verify_with_toss_stock_info_before_live
+099320,쎄트렉아이,쎄트렉아이,KR,Satellite,Space,true,seeded,verify_with_toss_stock_info_before_live
+101170,우림피티에스,우림피티에스,KR,Machinery,Robotics,true,seeded,verify_with_toss_stock_info_before_live
+101490,에스앤에스텍,에스앤에스텍,KR,Semiconductor Materials,Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+103590,일진전기,일진전기,KR,Electrical Equipment,Power Grid,true,seeded,verify_with_toss_stock_info_before_live
+105560,KB금융,KB금융,KR,Financial,Bank,true,seeded,verify_with_toss_stock_info_before_live
+108380,대양전기공업,대양전기공업,KR,Electrical Equipment,Ship/Defense,true,seeded,verify_with_toss_stock_info_before_live
+108490,로보티즈,로보티즈,KR,Robotics,Robotics,true,seeded,verify_with_toss_stock_info_before_live
+108860,셀바스AI,셀바스AI,KR,AI Software,AI Software,true,seeded,verify_with_toss_stock_info_before_live
+115180,큐리언트,큐리언트,KR,Biotech,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+117730,티로보틱스,티로보틱스,KR,Robotics,Robotics,true,seeded,verify_with_toss_stock_info_before_live
+118990,모트렉스,모트렉스,KR,Mobility,Autonomous,true,seeded,verify_with_toss_stock_info_before_live
+128940,한미약품,한미약품,KR,Healthcare,Pharma,true,seeded,verify_with_toss_stock_info_before_live
+129890,앱코,앱코,KR,Hardware,Consumer Tech,true,seeded,verify_with_toss_stock_info_before_live
+133820,화인베스틸,화인베스틸,KR,Steel,Materials,true,seeded,verify_with_toss_stock_info_before_live
+134580,탑코미디어,탑코미디어,KR,Media,Media,true,seeded,verify_with_toss_stock_info_before_live
+,원일티엔아이,원일티엔아이,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+138040,메리츠금융지주,메리츠금융지주,KR,Financial,Financial Holding,true,seeded,verify_with_toss_stock_info_before_live
+144510,지씨셀,지씨셀,KR,Biotech,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+,율촌,율촌,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+181710,NHN,NHN,KR,Internet/Cloud,Cloud/AI,true,seeded,verify_with_toss_stock_info_before_live
+185750,종근당,종근당,KR,Healthcare,Pharma,true,seeded,verify_with_toss_stock_info_before_live
+194480,데브시스터즈,데브시스터즈,KR,Game,Game,true,seeded,verify_with_toss_stock_info_before_live
+195870,해성디에스,해성디에스,KR,Semiconductor Components,Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+196700,웹스,웹스,KR,Materials,Materials,true,seeded,verify_with_toss_stock_info_before_live
+203400,에이비온,에이비온,KR,Biotech,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+204320,HL만도,HL만도,KR,Auto Parts,Mobility,true,seeded,verify_with_toss_stock_info_before_live
+207940,삼성바이오로직스,삼성바이오로직스,KR,Healthcare,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+,다산디엠씨,다산디엠씨,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+214680,디알텍,디알텍,KR,Medical Device,Medical AI,true,seeded,verify_with_toss_stock_info_before_live
+215790,이노인스트루먼트,이노인스트루먼트,KR,Equipment,Equipment,true,seeded,verify_with_toss_stock_info_before_live
+,티엠씨,티엠씨,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+217820,원익피앤이,원익피앤이,KR,Battery Equipment,Battery,true,seeded,verify_with_toss_stock_info_before_live
+222420,쎄노텍,쎄노텍,KR,Materials,Materials,true,seeded,verify_with_toss_stock_info_before_live
+227950,엔투텍,엔투텍,KR,Semiconductor Equipment,Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+229640,LS에코에너지,LS에코에너지,KR,Cable/Energy,Power Grid,true,seeded,verify_with_toss_stock_info_before_live
+236810,엔비티,엔비티,KR,AdTech,AdTech,true,seeded,verify_with_toss_stock_info_before_live
+240810,원익IPS,원익IPS,KR,Semiconductor Equipment,Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+247540,에코프로비엠,에코프로비엠,KR,Battery Materials,Battery,true,seeded,verify_with_toss_stock_info_before_live
+272210,한화시스템,한화시스템,KR,Defense/ICT,Defense AI,true,seeded,verify_with_toss_stock_info_before_live
+273060,와이즈버즈,와이즈버즈,KR,AdTech,AI/AdTech,true,seeded,verify_with_toss_stock_info_before_live
+274090,켄코아에어로스페이스,켄코아에어로스페이스,KR,Aerospace,Aerospace/Defense,true,seeded,verify_with_toss_stock_info_before_live
+277810,레인보우로보틱스,레인보우로보틱스,KR,Robotics,Robotics,true,seeded,verify_with_toss_stock_info_before_live
+286940,롯데이노베이트,롯데이노베이트,KR,IT Service,Cloud/AI,true,seeded,verify_with_toss_stock_info_before_live
+,인투셀,인투셀,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+289010,아이스크림에듀,아이스크림에듀,KR,Education,EdTech,true,seeded,verify_with_toss_stock_info_before_live
+291810,핀텔,핀텔,KR,AI Vision,AI Software,true,seeded,verify_with_toss_stock_info_before_live
+298040,효성중공업,효성중공업,KR,Electrical Equipment,Power Grid,true,seeded,verify_with_toss_stock_info_before_live
+300120,라온피플,라온피플,KR,AI Vision,AI Software,true,seeded,verify_with_toss_stock_info_before_live
+301300,바이브컴퍼니,바이브컴퍼니,KR,AI Software,AI Software,true,seeded,verify_with_toss_stock_info_before_live
+304100,솔트룩스,솔트룩스,KR,AI Software,AI Software,true,seeded,verify_with_toss_stock_info_before_live
+306620,네온테크,네온테크,KR,Drone/Automation,Drone,true,seeded,verify_with_toss_stock_info_before_live
+307950,현대오토에버,현대오토에버,KR,IT Service,Mobility/AI,true,seeded,verify_with_toss_stock_info_before_live
+,셀비온,셀비온,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+315640,딥노이드,딥노이드,KR,Medical AI,Medical AI,true,seeded,verify_with_toss_stock_info_before_live
+317120,라닉스,라닉스,KR,Mobility Semiconductor,Autonomous,true,seeded,verify_with_toss_stock_info_before_live
+317330,덕산테코피아,덕산테코피아,KR,Battery/Semiconductor Materials,Battery,true,seeded,verify_with_toss_stock_info_before_live
+322000,현대에너지솔루션,현대에너지솔루션,KR,Solar,Renewable Energy,true,seeded,verify_with_toss_stock_info_before_live
+322310,오로스테크놀로지,오로스테크놀로지,KR,Semiconductor Equipment,Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+328130,루닛,루닛,KR,Medical AI,Medical AI,true,seeded,verify_with_toss_stock_info_before_live
+332290,누보,누보,KR,Agri,Agri/Food,true,seeded,verify_with_toss_stock_info_before_live
+336260,두산퓨얼셀,두산퓨얼셀,KR,Hydrogen,Hydrogen,true,seeded,verify_with_toss_stock_info_before_live
+338220,뷰노,뷰노,KR,Medical AI,Medical AI,true,seeded,verify_with_toss_stock_info_before_live
+340440,세림B&G,세림B&G,KR,Eco Materials,Eco Materials,true,seeded,verify_with_toss_stock_info_before_live
+,스피어,스피어,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+348340,뉴로메카,뉴로메카,KR,Robotics,Robotics,true,seeded,verify_with_toss_stock_info_before_live
+358570,지아이이노베이션,지아이이노베이션,KR,Biotech,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+360070,탑머티리얼,탑머티리얼,KR,Battery Materials,Battery,true,seeded,verify_with_toss_stock_info_before_live
+361390,제노코,제노코,KR,Satellite/Defense,Space/Defense,true,seeded,verify_with_toss_stock_info_before_live
+361610,SK아이이테크놀로지,SK아이이테크놀로지,KR,Battery Materials,Battery,true,seeded,verify_with_toss_stock_info_before_live
+,드림인사이트,드림인사이트,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+365590,하이딥,하이딥,KR,Semiconductor,Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+372170,윤성에프앤씨,윤성에프앤씨,KR,Battery Equipment,Battery,true,seeded,verify_with_toss_stock_info_before_live
+373220,LG에너지솔루션,LG에너지솔루션,KR,Battery,Battery,true,seeded,verify_with_toss_stock_info_before_live
+375500,DL이앤씨,DL이앤씨,KR,Construction,Infrastructure,true,seeded,verify_with_toss_stock_info_before_live
+377480,마음AI,마인즈랩,KR,AI Software,AI Software,true,seeded,verify_with_toss_stock_info_before_live
+,뉴로핏,뉴로핏,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+382900,범한퓨얼셀,범한퓨얼셀,KR,Hydrogen,Hydrogen,true,seeded,verify_with_toss_stock_info_before_live
+388720,유일로보틱스,유일로보틱스,KR,Robotics,Robotics,true,seeded,verify_with_toss_stock_info_before_live
+389260,대명에너지,대명에너지,KR,Renewable Energy,Renewable Energy,true,seeded,verify_with_toss_stock_info_before_live
+389500,에스비비테크,에스비비테크,KR,Robotics Parts,Robotics,true,seeded,verify_with_toss_stock_info_before_live
+393890,더블유씨피,더블유씨피,KR,Battery Materials,Battery,true,seeded,verify_with_toss_stock_info_before_live
+,리센스메디컬,리센스메디컬,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+396270,넥스트칩,넥스트칩,KR,Automotive Semiconductor,Autonomous,true,seeded,verify_with_toss_stock_info_before_live
+417200,LS머트리얼즈,LS머트리얼즈,KR,Battery/Materials,Battery,true,seeded,verify_with_toss_stock_info_before_live
+452280,한선엔지니어링,한선엔지니어링,KR,Equipment,Power/Hydrogen,true,seeded,verify_with_toss_stock_info_before_live
+453340,현대그린푸드,현대그린푸드,KR,Food,Consumer,true,seeded,verify_with_toss_stock_info_before_live
+454910,두산로보틱스,두산로보틱스,KR,Robotics,Robotics,true,seeded,verify_with_toss_stock_info_before_live
+456040,OCI,OCI,KR,Chemical/Materials,Solar Materials,true,seeded,verify_with_toss_stock_info_before_live
+457550,우진엔텍,우진엔텍,KR,Nuclear Service,Nuclear/Power,true,seeded,verify_with_toss_stock_info_before_live
+464080,에스오에스랩,에스오에스랩,KR,LiDAR,Autonomous,true,seeded,verify_with_toss_stock_info_before_live
+,오가노이드사이언스,오가노이드사이언스,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,나라스페이스테크놀로지,나라스페이스테크놀로지,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,큐브엔텍,큐브엔텍,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,드론플라이,드론플라이,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,동서발전,동서발전,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,GS파워,GS파워,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,한미전기,한미전기,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,아이크로스큐,아이크로스큐,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,서부발전,서부발전,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,한국과학기술원 관련 산학기업,한국과학기술원 관련 산학기업,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,카카오엔터프라이즈,카카오엔터프라이즈,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,중부발전,중부발전,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,남부발전,남부발전,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,네이버클라우드,네이버클라우드,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,포스코건설,포스코건설,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,포스코에너지,포스코에너지,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,퀀텀에너지연구소,퀀텀에너지연구소,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,퀀텀테크코리아,퀀텀테크코리아,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,삼양컴텍,삼양컴텍,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,SK에코플랜트,SK에코플랜트,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,SK E&S,SK E&S,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,유콘시스템,유콘시스템,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+ASML,ASML,ASML,US,Semiconductor Equipment,Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+STLA,Stellantis,Stellantis,US,Auto,EV/Auto,true,seeded,verify_with_toss_stock_info_before_live
+,로사톰,로사톰,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,사브,사브,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+AZN,AstraZeneca,AstraZeneca,US,Healthcare,Pharma,true,seeded,verify_with_toss_stock_info_before_live;country_exposure=United_Kingdom
+,BAE Systems,BAE Systems,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+BCS,Barclays,바클레이즈,US,Financial,Bank,true,seeded,verify_with_toss_stock_info_before_live;country_exposure=United_Kingdom
+HSBC,HSBC,HSBC,US,Financial,Bank,true,seeded,verify_with_toss_stock_info_before_live;country_exposure=United_Kingdom
+AAPL,Apple,Apple,US,Technology,Big Tech,true,seeded,verify_with_toss_stock_info_before_live
+AI,C3.ai,C3.ai,US,Software,AI Software,true,seeded,verify_with_toss_stock_info_before_live
+AMAT,Applied Materials,Applied Materials,US,Semiconductor Equipment,Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+AMD,Advanced Micro Devices,AMD,US,Semiconductor,AI Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+AMGN,Amgen,Amgen,US,Healthcare,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+AMZN,Amazon,Amazon,US,Technology,Big Tech,true,seeded,verify_with_toss_stock_info_before_live
+ASTS,AST SpaceMobile,AST 스페이스모바일,US,Space,Space,true,seeded,verify_with_toss_stock_info_before_live
+AUR,Aurora Innovation,Aurora Innovation,US,Autonomous Driving,Autonomous,true,seeded,verify_with_toss_stock_info_before_live
+AVAV,AeroVironment,AeroVironment,US,Defense,Drone,true,seeded,verify_with_toss_stock_info_before_live
+AVGO,Broadcom,Broadcom,US,Semiconductor,AI Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+BA,Boeing,보잉,US,Aerospace,Aerospace/Defense,true,seeded,verify_with_toss_stock_info_before_live
+BABA,Alibaba,Alibaba,US,Internet,China Tech,true,seeded,verify_with_toss_stock_info_before_live;country_exposure=China
+BAC,Bank of America,뱅크오브아메리카,US,Financial,Bank,true,seeded,verify_with_toss_stock_info_before_live
+BE,Bloom Energy,Bloom Energy,US,Energy,Hydrogen,true,seeded,verify_with_toss_stock_info_before_live
+,Boston Dynamics,Boston Dynamics,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,씨티그룹,씨티그룹,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,카메코,카메코,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,코브라케이블,코브라케이블,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+CSCO,Cisco,Cisco,US,Networking,Network Infrastructure,true,seeded,verify_with_toss_stock_info_before_live
+CSIQ,Canadian Solar,Canadian Solar,US,Solar,Renewable Energy,true,seeded,verify_with_toss_stock_info_before_live
+,케이블&와이어즈,케이블&와이어즈,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+DELL,Dell Technologies,Dell,US,Hardware,AI Infrastructure,true,seeded,verify_with_toss_stock_info_before_live
+DUK,Duke Energy,듀크에너지,US,Utilities,Power Grid,true,seeded,verify_with_toss_stock_info_before_live
+,엘빗시스템즈,엘빗시스템즈,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+F,Ford,Ford,US,Auto,EV/Auto,true,seeded,verify_with_toss_stock_info_before_live
+,Figure AI,Figure AI,GLOBAL_CANDIDATE,,AI Semiconductor,false,unresolved,symbol_required_before_live_trading
+,파이어플라이 에어로스페이스,파이어플라이 에어로스페이스,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+FSLR,First Solar,First Solar,US,Solar,Renewable Energy,true,seeded,verify_with_toss_stock_info_before_live
+GD,General Dynamics,제너럴 다이내믹스,US,Defense,Aerospace/Defense,true,seeded,verify_with_toss_stock_info_before_live
+GEV,GE Vernova,GE Vernova,US,Energy,Power Grid,true,seeded,verify_with_toss_stock_info_before_live
+GILD,Gilead Sciences,Gilead Sciences,US,Healthcare,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+GM,General Motors,General Motors,US,Auto,EV/Auto,true,seeded,verify_with_toss_stock_info_before_live
+GOOGL,Alphabet,Alphabet,US,Technology,Big Tech,true,seeded,verify_with_toss_stock_info_before_live
+GS,Goldman Sachs,골드만삭스,US,Financial,Bank,true,seeded,verify_with_toss_stock_info_before_live
+GSAT,Globalstar,글로벌스타,US,Satellite,Space,true,seeded,verify_with_toss_stock_info_before_live
+,헬리오스와이어,헬리오스와이어,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+HON,Honeywell,Honeywell,US,Industrial,Aerospace/Industrial,true,seeded,verify_with_toss_stock_info_before_live
+HPQ,HP,HP,US,Hardware,PC/Hardware,true,seeded,verify_with_toss_stock_info_before_live
+IBM,IBM,IBM,US,Technology,Enterprise AI,true,seeded,verify_with_toss_stock_info_before_live
+INTC,Intel,Intel,US,Semiconductor,AI Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+IONQ,IonQ,IonQ,US,Quantum,Quantum Computing,true,seeded,verify_with_toss_stock_info_before_live
+IRBT,iRobot,iRobot,US,Robotics,Robotics,false,toss_unverified,toss_stock_and_price_unavailable_2026-07-15;exclude_from_execution_until_reverified
+ISRG,Intuitive Surgical,Intuitive Surgical,US,Healthcare,Medical Robot,true,seeded,verify_with_toss_stock_info_before_live
+JNJ,Johnson & Johnson,Johnson & Johnson,US,Healthcare,Pharma,true,seeded,verify_with_toss_stock_info_before_live
+JPM,JPMorgan Chase,JP모건체이스,US,Financial,Bank,true,seeded,verify_with_toss_stock_info_before_live
+KEP,KEPCO ADR,KEPCO ADR,US,Utilities,Power,true,seeded,verify_with_toss_stock_info_before_live
+,카르만 홀딩스,카르만 홀딩스,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+KTOS,Kratos Defense,Kratos Defense,US,Defense,Drone/Defense,true,seeded,verify_with_toss_stock_info_before_live
+LCID,Lucid,Lucid,US,EV,EV,true,seeded,verify_with_toss_stock_info_before_live
+LLY,Eli Lilly,Eli Lilly,US,Healthcare,Pharma,true,seeded,verify_with_toss_stock_info_before_live
+LMT,Lockheed Martin,록히드마틴,US,Defense,Aerospace/Defense,true,seeded,verify_with_toss_stock_info_before_live
+LRCX,Lam Research,Lam Research,US,Semiconductor Equipment,Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+LUNR,Intuitive Machines,인튜이티브 머신스,US,Space,Space,true,seeded,verify_with_toss_stock_info_before_live
+MBLY,Mobileye,Mobileye,US,Autonomous Driving,Autonomous,true,seeded,verify_with_toss_stock_info_before_live
+META,Meta Platforms,Meta,US,Technology,Big Tech,true,seeded,verify_with_toss_stock_info_before_live
+MRNA,Moderna,Moderna,US,Healthcare,Biotech,true,seeded,verify_with_toss_stock_info_before_live
+MS,Morgan Stanley,모건스탠리,US,Financial,Bank,true,seeded,verify_with_toss_stock_info_before_live
+MSFT,Microsoft,Microsoft,US,Technology,AI Software,true,seeded,verify_with_toss_stock_info_before_live
+MU,Micron,Micron,US,Semiconductor,Memory/HBM,true,seeded,verify_with_toss_stock_info_before_live
+NEE,NextEra Energy,넥스트에라에너지,US,Utilities,Renewable Energy,true,seeded,verify_with_toss_stock_info_before_live
+NOC,Northrop Grumman,노스럽그루먼,US,Defense,Aerospace/Defense,true,seeded,verify_with_toss_stock_info_before_live
+NVDA,NVIDIA,NVIDIA,US,Semiconductor,AI Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+ORCL,Oracle,Oracle,US,Software,Cloud/AI,true,seeded,verify_with_toss_stock_info_before_live
+PCG,PG&E,PG&E,US,Utilities,Power Grid,true,seeded,verify_with_toss_stock_info_before_live
+PFE,Pfizer,Pfizer,US,Healthcare,Pharma,true,seeded,verify_with_toss_stock_info_before_live
+PL,Planet Labs,플래닛 랩스,US,Space,Satellite,true,seeded,verify_with_toss_stock_info_before_live
+PLTR,Palantir,Palantir,US,Software,Defense AI,true,seeded,verify_with_toss_stock_info_before_live
+PLUG,Plug Power,Plug Power,US,Hydrogen,Hydrogen,true,seeded,verify_with_toss_stock_info_before_live
+QBTS,D-Wave Quantum,D-Wave Quantum,US,Quantum,Quantum Computing,true,seeded,verify_with_toss_stock_info_before_live
+QCOM,Qualcomm,Qualcomm,US,Semiconductor,AI Edge,true,seeded,verify_with_toss_stock_info_before_live
+RDW,Redwire,레드와이어,US,Space,Space,true,seeded,verify_with_toss_stock_info_before_live
+,RealSense,RealSense,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+RGTI,Rigetti Computing,Rigetti Computing,US,Quantum,Quantum Computing,true,seeded,verify_with_toss_stock_info_before_live
+RIVN,Rivian,Rivian,US,EV,EV,true,seeded,verify_with_toss_stock_info_before_live
+RKLB,Rocket Lab,로켓랩,US,Space,Space,true,seeded,verify_with_toss_stock_info_before_live
+RTX,RTX,레이시온 테크놀로지스,US,Defense,Aerospace/Defense,true,seeded,verify_with_toss_stock_info_before_live
+SATS,EchoStar,에코스타,US,Satellite,Satellite,false,toss_unverified,toss_stock_and_price_unavailable_2026-07-15;exclude_from_execution_until_reverified
+,사우스와이어,사우스와이어,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+TER,Teradyne,Teradyne,US,Semiconductor Equipment,Robotics/Semiconductor,true,seeded,verify_with_toss_stock_info_before_live
+TSLA,Tesla,Tesla,US,EV,EV/AI,true,seeded,verify_with_toss_stock_info_before_live
+TSM,Taiwan Semiconductor Manufacturing,TSMC,US,Semiconductor,AI Semiconductor,true,seeded,verify_with_toss_stock_info_before_live;country_exposure=Taiwan
+,보이저 스페이스,보이저 스페이스,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+,웨스팅하우스,웨스팅하우스,KR_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+WFC,Wells Fargo,웰스파고,US,Financial,Bank,true,seeded,verify_with_toss_stock_info_before_live
+,Zapata Computing,Zapata Computing,GLOBAL_CANDIDATE,,Watchlist,false,unresolved,symbol_required_before_live_trading
+7203.T,Toyota Motor,Toyota Motor,JP,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+7267.T,Honda Motor,Honda Motor,JP,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+6758.T,Sony Group,Sony Group,JP,Technology,AI,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+9984.T,SoftBank Group,SoftBank Group,JP,Technology,AI,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+6861.T,Keyence,Keyence,JP,Industrial Automation,Robotics,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+6501.T,Hitachi,Hitachi,JP,Technology,AI,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+6954.T,FANUC,FANUC,JP,Industrial Automation,Robotics,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+6594.T,Nidec,Nidec,JP,Industrial Automation,Robotics,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+8035.T,Tokyo Electron,Tokyo Electron,JP,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+6857.T,Advantest,Advantest,JP,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+6723.T,Renesas Electronics,Renesas Electronics,JP,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+4063.T,Shin-Etsu Chemical,Shin-Etsu Chemical,JP,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+7011.T,Mitsubishi Heavy Industries,Mitsubishi Heavy Industries,JP,Defense,Defense,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+7012.T,Kawasaki Heavy Industries,Kawasaki Heavy Industries,JP,Aerospace,Aerospace,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+7013.T,IHI,IHI,JP,Aerospace,Aerospace,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+4502.T,Takeda Pharmaceutical,Takeda Pharmaceutical,JP,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+4519.T,Chugai Pharmaceutical,Chugai Pharmaceutical,JP,Healthcare,Biotech,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+4568.T,Daiichi Sankyo,Daiichi Sankyo,JP,Healthcare,Biotech,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+7741.T,HOYA,HOYA,JP,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+8306.T,Mitsubishi UFJ Financial Group,Mitsubishi UFJ Financial Group,JP,Financial,Bank,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+8316.T,Sumitomo Mitsui Financial Group,Sumitomo Mitsui Financial Group,JP,Financial,Bank,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+8411.T,Mizuho Financial Group,Mizuho Financial Group,JP,Financial,Bank,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+1605.T,INPEX,INPEX,JP,Energy,Energy,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+5020.T,ENEOS Holdings,ENEOS Holdings,JP,Energy,Energy,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+9501.T,Tokyo Electric Power,Tokyo Electric Power,JP,Energy,Energy,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+5713.T,Sumitomo Metal Mining,Sumitomo Metal Mining,JP,Metals & Mining,Copper,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+5711.T,Mitsubishi Materials,Mitsubishi Materials,JP,Resources,Resources,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+5801.T,Furukawa Electric,Furukawa Electric,JP,Metals & Mining,Copper,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+5802.T,Sumitomo Electric Industries,Sumitomo Electric Industries,JP,Metals & Mining,Copper,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+6367.T,Daikin Industries,Daikin Industries,JP,Environmental Services,Green,false,unresolved,seed_candidate;country=Japan;verify_with_toss_stock_info_before_live;country_market=JP;research_only;current_toss_live_support=KR_US_only
+RELIANCE.NS,Reliance Industries,Reliance Industries,IN,Energy,Energy,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+TCS.NS,Tata Consultancy Services,Tata Consultancy Services,IN,Technology,AI,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+INFY.NS,Infosys,Infosys,IN,Technology,AI,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+HDFCBANK.NS,HDFC Bank,HDFC Bank,IN,Financial,Bank,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+ICICIBANK.NS,ICICI Bank,ICICI Bank,IN,Financial,Bank,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+SBIN.NS,State Bank of India,State Bank of India,IN,Financial,Bank,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+LT.NS,Larsen & Toubro,Larsen & Toubro,IN,Construction,Construction,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+TATAMOTORS.NS,Tata Motors,Tata Motors,IN,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+M&M.NS,Mahindra & Mahindra,Mahindra & Mahindra,IN,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+MARUTI.NS,Maruti Suzuki India,Maruti Suzuki India,IN,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+TATAELXSI.NS,Tata Elxsi,Tata Elxsi,IN,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+PERSISTENT.NS,Persistent Systems,Persistent Systems,IN,Technology,AI,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+DIXON.NS,Dixon Technologies,Dixon Technologies,IN,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+SUNPHARMA.NS,Sun Pharmaceutical Industries,Sun Pharmaceutical Industries,IN,Healthcare,Healthcare,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+DRREDDY.NS,Dr. Reddy's Laboratories,Dr. Reddy's Laboratories,IN,Healthcare,Biotech,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+CIPLA.NS,Cipla,Cipla,IN,Healthcare,Healthcare,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+DIVISLAB.NS,Divi's Laboratories,Divi's Laboratories,IN,Healthcare,Biotech,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+HAL.NS,Hindustan Aeronautics,Hindustan Aeronautics,IN,Aerospace,Aerospace,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+BEL.NS,Bharat Electronics,Bharat Electronics,IN,Defense,Defense,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+BDL.NS,Bharat Dynamics,Bharat Dynamics,IN,Defense,Defense,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+COCHINSHIP.NS,Cochin Shipyard,Cochin Shipyard,IN,Defense,Defense,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+MAZDOCK.NS,Mazagon Dock Shipbuilders,Mazagon Dock Shipbuilders,IN,Defense,Defense,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+ADANIGREEN.NS,Adani Green Energy,Adani Green Energy,IN,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+SUZLON.NS,Suzlon Energy,Suzlon Energy,IN,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+TATAPOWER.NS,Tata Power,Tata Power,IN,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+NTPC.NS,NTPC,NTPC,IN,Energy,Energy,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+ONGC.NS,Oil and Natural Gas Corporation,Oil and Natural Gas Corporation,IN,Energy,Energy,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+COALINDIA.NS,Coal India,Coal India,IN,Resources,Resources,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+HINDALCO.NS,Hindalco Industries,Hindalco Industries,IN,Metals & Mining,Copper,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+VEDL.NS,Vedanta,Vedanta,IN,Resources,Resources,false,unresolved,seed_candidate;country=India;verify_with_toss_stock_info_before_live;country_market=IN;research_only;current_toss_live_support=KR_US_only
+FPT.VN,FPT Corporation,FPT Corporation,VN,Technology,AI,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+VCB.VN,Vietcombank,Vietcombank,VN,Financial,Bank,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+BID.VN,BIDV,BIDV,VN,Financial,Bank,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+CTG.VN,VietinBank,VietinBank,VN,Financial,Bank,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+TCB.VN,Techcombank,Techcombank,VN,Financial,Bank,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+MBB.VN,Military Commercial Joint Stock Bank,Military Commercial Joint Stock Bank,VN,Financial,Bank,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+ACB.VN,Asia Commercial Bank,Asia Commercial Bank,VN,Financial,Bank,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+STB.VN,Sacombank,Sacombank,VN,Financial,Bank,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+VIB.VN,Vietnam International Bank,Vietnam International Bank,VN,Financial,Bank,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+TPB.VN,TPBank,TPBank,VN,Financial,Bank,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+HPG.VN,Hoa Phat Group,Hoa Phat Group,VN,Resources,Resources,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+VHM.VN,Vinhomes,Vinhomes,VN,Construction,Construction,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+VIC.VN,Vingroup,Vingroup,VN,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+VNM.VN,Vinamilk,Vinamilk,VN,Consumer,Consumer,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+GAS.VN,PV Gas,PV Gas,VN,Energy,Energy,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+PLX.VN,Petrolimex,Petrolimex,VN,Energy,Energy,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+POW.VN,PV Power,PV Power,VN,Energy,Energy,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+PVD.VN,Petrovietnam Drilling,Petrovietnam Drilling,VN,Energy,Energy,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+PVS.HN,PetroVietnam Technical Services,PetroVietnam Technical Services,VN,Energy,Energy,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+DGC.VN,Duc Giang Chemicals,Duc Giang Chemicals,VN,Resources,Resources,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+DPM.VN,PetroVietnam Fertilizer and Chemicals,PetroVietnam Fertilizer and Chemicals,VN,Resources,Resources,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+GVR.VN,Vietnam Rubber Group,Vietnam Rubber Group,VN,Resources,Resources,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+MSN.VN,Masan Group,Masan Group,VN,Resources,Resources,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+VJC.VN,VietJet Aviation,VietJet Aviation,VN,Aerospace,Aerospace,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+HVN.VN,Vietnam Airlines,Vietnam Airlines,VN,Aerospace,Aerospace,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+SSI.VN,SSI Securities,SSI Securities,VN,Financial,Bank,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+HCM.VN,Ho Chi Minh City Securities,Ho Chi Minh City Securities,VN,Financial,Bank,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+VND.VN,VNDirect Securities,VNDirect Securities,VN,Financial,Bank,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+MWG.VN,Mobile World Investment,Mobile World Investment,VN,Consumer,Consumer,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+VRE.VN,Vincom Retail,Vincom Retail,VN,Real Estate,Real Estate,false,unresolved,seed_candidate;country=Vietnam;verify_with_toss_stock_info_before_live;country_market=VN;research_only;current_toss_live_support=KR_US_only
+2330.TW,Taiwan Semiconductor Manufacturing,Taiwan Semiconductor Manufacturing,TW,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2454.TW,MediaTek,MediaTek,TW,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2317.TW,Hon Hai Precision Industry,Hon Hai Precision Industry,TW,Technology,AI,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2308.TW,Delta Electronics,Delta Electronics,TW,Environmental Services,Green,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2382.TW,Quanta Computer,Quanta Computer,TW,Technology,AI,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+3231.TW,Wistron,Wistron,TW,Technology,AI,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2357.TW,ASUSTeK Computer,ASUSTeK Computer,TW,Technology,AI,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2379.TW,Realtek Semiconductor,Realtek Semiconductor,TW,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+3034.TW,Novatek Microelectronics,Novatek Microelectronics,TW,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+3711.TW,ASE Technology Holding,ASE Technology Holding,TW,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2303.TW,United Microelectronics,United Microelectronics,TW,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2408.TW,Nanya Technology,Nanya Technology,TW,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+6488.TWO,GlobalWafers,GlobalWafers,TW,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+3008.TW,Largan Precision,Largan Precision,TW,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2327.TW,Yageo,Yageo,TW,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2301.TW,Lite-On Technology,Lite-On Technology,TW,Environmental Services,Green,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2345.TW,Accton Technology,Accton Technology,TW,Technology,AI,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+3661.TW,Alchip Technologies,Alchip Technologies,TW,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2412.TW,Chunghwa Telecom,Chunghwa Telecom,TW,Telecommunication,Telecom,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2881.TW,Fubon Financial Holding,Fubon Financial Holding,TW,Financial,Bank,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2882.TW,Cathay Financial Holding,Cathay Financial Holding,TW,Financial,Bank,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2891.TW,CTBC Financial Holding,CTBC Financial Holding,TW,Financial,Bank,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2886.TW,Mega Financial Holding,Mega Financial Holding,TW,Financial,Bank,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+1301.TW,Formosa Plastics,Formosa Plastics,TW,Resources,Resources,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+1303.TW,Nan Ya Plastics,Nan Ya Plastics,TW,Resources,Resources,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+1326.TW,Formosa Chemicals & Fibre,Formosa Chemicals & Fibre,TW,Resources,Resources,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+6505.TW,Formosa Petrochemical,Formosa Petrochemical,TW,Energy,Energy,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2002.TW,China Steel,China Steel,TW,Resources,Resources,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+1101.TW,Taiwan Cement,Taiwan Cement,TW,Construction,Construction,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+2207.TW,Hotai Motor,Hotai Motor,TW,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=Taiwan;verify_with_toss_stock_info_before_live;country_market=TW;research_only;current_toss_live_support=KR_US_only
+AIR.PA,Airbus,Airbus,FR,Aerospace,Aerospace,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+HO.PA,Thales,Thales,FR,Defense,Defense,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+SAF.PA,Safran,Safran,FR,Aerospace,Aerospace,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+SU.PA,Schneider Electric,Schneider Electric,FR,Environmental Services,Green,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+CAP.PA,Capgemini,Capgemini,FR,Technology,AI,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+DSY.PA,Dassault Systemes,Dassault Systemes,FR,Technology,AI,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+STMPA.PA,STMicroelectronics,STMicroelectronics,FR,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+SAN.PA,Sanofi,Sanofi,FR,Healthcare,Healthcare,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+OR.PA,L'Oreal,L'Oreal,FR,Healthcare,Healthcare,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+AI.PA,Air Liquide,Air Liquide,FR,Energy,Energy,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+TTE.PA,TotalEnergies,TotalEnergies,FR,Energy,Energy,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+ENGI.PA,Engie,Engie,FR,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+VIE.PA,Veolia Environnement,Veolia Environnement,FR,Environmental Services,Green,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+NEX.PA,Nexans,Nexans,FR,Metals & Mining,Copper,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+DG.PA,Vinci,Vinci,FR,Construction,Construction,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+EN.PA,Bouygues,Bouygues,FR,Construction,Construction,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+SGO.PA,Saint-Gobain,Saint-Gobain,FR,Construction,Construction,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+RNO.PA,Renault,Renault,FR,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+ML.PA,Michelin,Michelin,FR,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+BNP.PA,BNP Paribas,BNP Paribas,FR,Financial,Bank,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+ACA.PA,Credit Agricole,Credit Agricole,FR,Financial,Bank,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+GLE.PA,Societe Generale,Societe Generale,FR,Financial,Bank,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+CS.PA,AXA,AXA,FR,Insurance,Insurance,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+MC.PA,LVMH,LVMH,FR,Consumer,Consumer,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+RMS.PA,Hermes International,Hermes International,FR,Consumer,Consumer,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+BN.PA,Danone,Danone,FR,Consumer,Consumer,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+ORA.PA,Orange,Orange,FR,Telecommunication,Telecom,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+PUB.PA,Publicis Groupe,Publicis Groupe,FR,Technology,AI,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+RI.PA,Pernod Ricard,Pernod Ricard,FR,Consumer,Consumer,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+VIV.PA,Vivendi,Vivendi,FR,Consumer,Consumer,false,unresolved,seed_candidate;country=France;verify_with_toss_stock_info_before_live;country_market=FR;research_only;current_toss_live_support=KR_US_only
+SAP.DE,SAP,SAP,DE,Technology,AI,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+SIE.DE,Siemens,Siemens,DE,Industrial Automation,Robotics,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+ENR.DE,Siemens Energy,Siemens Energy,DE,Energy,Energy,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+IFX.DE,Infineon Technologies,Infineon Technologies,DE,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+RHM.DE,Rheinmetall,Rheinmetall,DE,Defense,Defense,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+HAG.DE,Hensoldt,Hensoldt,DE,Defense,Defense,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+AIR.DE,Airbus,Airbus,DE,Aerospace,Aerospace,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+MBG.DE,Mercedes-Benz Group,Mercedes-Benz Group,DE,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+BMW.DE,BMW,BMW,DE,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+VOW3.DE,Volkswagen,Volkswagen,DE,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+P911.DE,Porsche AG,Porsche AG,DE,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+PAH3.DE,Porsche Automobil Holding,Porsche Automobil Holding,DE,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+BAS.DE,BASF,BASF,DE,Resources,Resources,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+BAYN.DE,Bayer,Bayer,DE,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+MRK.DE,Merck KGaA,Merck KGaA,DE,Healthcare,Biotech,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+SHL.DE,Siemens Healthineers,Siemens Healthineers,DE,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+QIA.DE,Qiagen,Qiagen,DE,Healthcare,Biotech,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+FME.DE,Fresenius Medical Care,Fresenius Medical Care,DE,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+DTE.DE,Deutsche Telekom,Deutsche Telekom,DE,Telecommunication,Telecom,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+DBK.DE,Deutsche Bank,Deutsche Bank,DE,Financial,Bank,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+CBK.DE,Commerzbank,Commerzbank,DE,Financial,Bank,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+ALV.DE,Allianz,Allianz,DE,Insurance,Insurance,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+MUV2.DE,Munich Re,Munich Re,DE,Insurance,Insurance,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+HEI.DE,Heidelberg Materials,Heidelberg Materials,DE,Construction,Construction,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+HOT.DE,Hochtief,Hochtief,DE,Construction,Construction,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+RWE.DE,RWE,RWE,DE,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+EOAN.DE,E.ON,E.ON,DE,Energy,Energy,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+NDX1.DE,Nordex,Nordex,DE,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+VNA.DE,Vonovia,Vonovia,DE,Real Estate,Real Estate,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+HEN3.DE,Henkel,Henkel,DE,Environmental Services,Green,false,unresolved,seed_candidate;country=Germany;verify_with_toss_stock_info_before_live;country_market=DE;research_only;current_toss_live_support=KR_US_only
+AZN.L,AstraZeneca,AstraZeneca,GB,Healthcare,Biotech,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+GSK.L,GSK,GSK,GB,Healthcare,Healthcare,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+SHEL.L,Shell,Shell,GB,Energy,Energy,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+BP.L,BP,BP,GB,Energy,Energy,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+NG.L,National Grid,National Grid,GB,Energy,Energy,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+SSE.L,SSE,SSE,GB,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+RR.L,Rolls-Royce Holdings,Rolls-Royce Holdings,GB,Aerospace,Aerospace,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+BA.L,BAE Systems,BAE Systems,GB,Defense,Defense,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+IAG.L,International Consolidated Airlines Group,International Consolidated Airlines Group,GB,Aerospace,Aerospace,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+EZJ.L,easyJet,easyJet,GB,Aerospace,Aerospace,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+HSBA.L,HSBC Holdings,HSBC Holdings,GB,Financial,Bank,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+BARC.L,Barclays,Barclays,GB,Financial,Bank,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+LLOY.L,Lloyds Banking Group,Lloyds Banking Group,GB,Financial,Bank,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+NWG.L,NatWest Group,NatWest Group,GB,Financial,Bank,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+LSEG.L,London Stock Exchange Group,London Stock Exchange Group,GB,Technology,AI,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+REL.L,RELX,RELX,GB,Technology,AI,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+III.L,3i Group,3i Group,GB,Financial,Bank,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+RIO.L,Rio Tinto,Rio Tinto,GB,Resources,Resources,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+GLEN.L,Glencore,Glencore,GB,Metals & Mining,Copper,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+AAL.L,Anglo American,Anglo American,GB,Resources,Resources,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+ANTO.L,Antofagasta,Antofagasta,GB,Metals & Mining,Copper,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+CRH.L,CRH,CRH,GB,Construction,Construction,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+BDEV.L,Barratt Redrow,Barratt Redrow,GB,Construction,Construction,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+PSN.L,Persimmon,Persimmon,GB,Construction,Construction,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+VOD.L,Vodafone Group,Vodafone Group,GB,Telecommunication,Telecom,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+BT.A.L,BT Group,BT Group,GB,Telecommunication,Telecom,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+ULVR.L,Unilever,Unilever,GB,Consumer,Consumer,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+DGE.L,Diageo,Diageo,GB,Consumer,Consumer,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+SMT.L,Scottish Mortgage Investment Trust,Scottish Mortgage Investment Trust,GB,Technology,AI,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+WPP.L,WPP,WPP,GB,Technology,AI,false,unresolved,seed_candidate;country=United Kingdom;verify_with_toss_stock_info_before_live;country_market=GB;research_only;current_toss_live_support=KR_US_only
+300750.SZ,Contemporary Amperex Technology,Contemporary Amperex Technology,CN,Battery Materials,Secondary Battery,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+002594.SZ,BYD,BYD,CN,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+688981.SS,Semiconductor Manufacturing International,Semiconductor Manufacturing International,CN,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+688041.SS,Hygon Information Technology,Hygon Information Technology,CN,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+603501.SS,Will Semiconductor,Will Semiconductor,CN,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+000063.SZ,ZTE,ZTE,CN,Technology,AI,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+002415.SZ,Hangzhou Hikvision Digital Technology,Hangzhou Hikvision Digital Technology,CN,Technology,AI,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+000333.SZ,Midea Group,Midea Group,CN,Industrial Automation,Robotics,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+000651.SZ,Gree Electric Appliances,Gree Electric Appliances,CN,Industrial Automation,Robotics,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+601012.SS,LONGi Green Energy Technology,LONGi Green Energy Technology,CN,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+600438.SS,Tongwei,Tongwei,CN,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+601857.SS,PetroChina,PetroChina,CN,Energy,Energy,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+600028.SS,China Petroleum & Chemical,China Petroleum & Chemical,CN,Energy,Energy,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+601088.SS,China Shenhua Energy,China Shenhua Energy,CN,Resources,Resources,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+601899.SS,Zijin Mining Group,Zijin Mining Group,CN,Metals & Mining,Copper,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+600547.SS,Shandong Gold Mining,Shandong Gold Mining,CN,Resources,Resources,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+600276.SS,Jiangsu Hengrui Pharmaceuticals,Jiangsu Hengrui Pharmaceuticals,CN,Healthcare,Biotech,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+300760.SZ,Shenzhen Mindray Bio-Medical Electronics,Shenzhen Mindray Bio-Medical Electronics,CN,Healthcare,Healthcare,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+601668.SS,China State Construction Engineering,China State Construction Engineering,CN,Construction,Construction,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+601390.SS,China Railway Group,China Railway Group,CN,Construction,Construction,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+601186.SS,China Railway Construction,China Railway Construction,CN,Construction,Construction,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+600893.SS,AVIC Shenyang Aircraft,AVIC Shenyang Aircraft,CN,Defense,Defense,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+600760.SS,AVIC Xi'an Aircraft Industry Group,AVIC Xi'an Aircraft Industry Group,CN,Aerospace,Aerospace,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+601318.SS,Ping An Insurance,Ping An Insurance,CN,Insurance,Insurance,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+600036.SS,China Merchants Bank,China Merchants Bank,CN,Financial,Bank,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+601398.SS,Industrial and Commercial Bank of China,Industrial and Commercial Bank of China,CN,Financial,Bank,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+601288.SS,Agricultural Bank of China,Agricultural Bank of China,CN,Financial,Bank,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+601939.SS,China Construction Bank,China Construction Bank,CN,Financial,Bank,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+601988.SS,Bank of China,Bank of China,CN,Financial,Bank,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+600030.SS,CITIC Securities,CITIC Securities,CN,Financial,Bank,false,unresolved,seed_candidate;country=China;verify_with_toss_stock_info_before_live;country_market=CN;research_only;current_toss_live_support=KR_US_only
+D05.SI,DBS Group Holdings,DBS Group Holdings,SG,Financial,Bank,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+O39.SI,Oversea-Chinese Banking Corporation,Oversea-Chinese Banking Corporation,SG,Financial,Bank,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+U11.SI,United Overseas Bank,United Overseas Bank,SG,Financial,Bank,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+S68.SI,Singapore Exchange,Singapore Exchange,SG,Financial,Bank,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+Z74.SI,Singapore Telecommunications,Singapore Telecommunications,SG,Telecommunication,Telecom,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+S63.SI,Singapore Technologies Engineering,Singapore Technologies Engineering,SG,Defense,Defense,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+C6L.SI,Singapore Airlines,Singapore Airlines,SG,Aerospace,Aerospace,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+S58.SI,SATS,SATS,SG,Transportation,Logistics,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+BN4.SI,Keppel,Keppel,SG,Environmental Services,Green,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+U96.SI,Sembcorp Industries,Sembcorp Industries,SG,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+S51.SI,Seatrium,Seatrium,SG,Energy,Energy,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+BS6.SI,Yangzijiang Shipbuilding Holdings,Yangzijiang Shipbuilding Holdings,SG,Defense,Defense,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+V03.SI,Venture Corporation,Venture Corporation,SG,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+AWX.SI,AEM Holdings,AEM Holdings,SG,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+558.SI,UMS Integration,UMS Integration,SG,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+MZH.SI,Nanofilm Technologies International,Nanofilm Technologies International,SG,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+AIY.SI,iFAST Corporation,iFAST Corporation,SG,Technology,AI,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+BSL.SI,Raffles Medical Group,Raffles Medical Group,SG,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+C09.SI,City Developments,City Developments,SG,Construction,Construction,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+C38U.SI,CapitaLand Integrated Commercial Trust,CapitaLand Integrated Commercial Trust,SG,Real Estate,Real Estate,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+A17U.SI,CapitaLand Ascendas REIT,CapitaLand Ascendas REIT,SG,Real Estate,Real Estate,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+M44U.SI,Mapletree Logistics Trust,Mapletree Logistics Trust,SG,Transportation,Logistics,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+ME8U.SI,Mapletree Industrial Trust,Mapletree Industrial Trust,SG,Real Estate,Real Estate,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+BUOU.SI,Frasers Logistics & Commercial Trust,Frasers Logistics & Commercial Trust,SG,Transportation,Logistics,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+F34.SI,Wilmar International,Wilmar International,SG,Resources,Resources,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+VC2.SI,Olam Group,Olam Group,SG,Resources,Resources,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+C52.SI,ComfortDelGro,ComfortDelGro,SG,Environmental Services,Green,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+G13.SI,Genting Singapore,Genting Singapore,SG,Consumer,Consumer,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+Y92.SI,Thai Beverage,Thai Beverage,SG,Consumer,Consumer,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+H78.SI,Hongkong Land Holdings,Hongkong Land Holdings,SG,Real Estate,Real Estate,false,unresolved,seed_candidate;country=Singapore;verify_with_toss_stock_info_before_live;country_market=SG;research_only;current_toss_live_support=KR_US_only
+BHP.AX,BHP Group,BHP Group,AU,Resources,Resources,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+RIO.AX,Rio Tinto,Rio Tinto,AU,Resources,Resources,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+FMG.AX,Fortescue,Fortescue,AU,Resources,Resources,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+SFR.AX,Sandfire Resources,Sandfire Resources,AU,Metals & Mining,Copper,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+MIN.AX,Mineral Resources,Mineral Resources,AU,Battery Materials,Secondary Battery,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+PLS.AX,Pilbara Minerals,Pilbara Minerals,AU,Battery Materials,Secondary Battery,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+LTR.AX,Liontown Resources,Liontown Resources,AU,Battery Materials,Secondary Battery,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+IGO.AX,IGO,IGO,AU,Battery Materials,Secondary Battery,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+LYC.AX,Lynas Rare Earths,Lynas Rare Earths,AU,Resources,Resources,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+WDS.AX,Woodside Energy Group,Woodside Energy Group,AU,Energy,Energy,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+STO.AX,Santos,Santos,AU,Energy,Energy,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+ORG.AX,Origin Energy,Origin Energy,AU,Energy,Energy,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+AGL.AX,AGL Energy,AGL Energy,AU,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+CBA.AX,Commonwealth Bank of Australia,Commonwealth Bank of Australia,AU,Financial,Bank,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+WBC.AX,Westpac Banking Corporation,Westpac Banking Corporation,AU,Financial,Bank,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+NAB.AX,National Australia Bank,National Australia Bank,AU,Financial,Bank,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+ANZ.AX,ANZ Group Holdings,ANZ Group Holdings,AU,Financial,Bank,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+MQG.AX,Macquarie Group,Macquarie Group,AU,Financial,Bank,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+CSL.AX,CSL,CSL,AU,Healthcare,Biotech,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+COH.AX,Cochlear,Cochlear,AU,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+RMD.AX,ResMed,ResMed,AU,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+XRO.AX,Xero,Xero,AU,Technology,AI,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+WTC.AX,WiseTech Global,WiseTech Global,AU,Technology,AI,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+ALU.AX,Altium,Altium,AU,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+NXT.AX,NEXTDC,NEXTDC,AU,Technology,AI,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+REA.AX,REA Group,REA Group,AU,Technology,AI,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+TCL.AX,Transurban Group,Transurban Group,AU,Construction,Construction,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+QAN.AX,Qantas Airways,Qantas Airways,AU,Aerospace,Aerospace,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+WES.AX,Wesfarmers,Wesfarmers,AU,Resources,Resources,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+WOW.AX,Woolworths Group,Woolworths Group,AU,Consumer,Consumer,false,unresolved,seed_candidate;country=Australia;verify_with_toss_stock_info_before_live;country_market=AU;research_only;current_toss_live_support=KR_US_only
+PETR4.SA,Petroleo Brasileiro,Petroleo Brasileiro,BR,Energy,Energy,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+PRIO3.SA,PRIO,PRIO,BR,Energy,Energy,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+CSAN3.SA,Cosan,Cosan,BR,Energy,Energy,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+ELET3.SA,Eletrobras,Eletrobras,BR,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+ENEV3.SA,Eneva,Eneva,BR,Energy,Energy,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+EQTL3.SA,Equatorial Energia,Equatorial Energia,BR,Energy,Energy,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+CPFE3.SA,CPFL Energia,CPFL Energia,BR,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+EGIE3.SA,ENGIE Brasil Energia,ENGIE Brasil Energia,BR,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+VALE3.SA,Vale,Vale,BR,Resources,Resources,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+GGBR4.SA,Gerdau,Gerdau,BR,Resources,Resources,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+CSNA3.SA,Companhia Siderurgica Nacional,Companhia Siderurgica Nacional,BR,Resources,Resources,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+USIM5.SA,Usinas Siderurgicas de Minas Gerais,Usinas Siderurgicas de Minas Gerais,BR,Resources,Resources,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+SUZB3.SA,Suzano,Suzano,BR,Resources,Resources,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+KLBN11.SA,Klabin,Klabin,BR,Resources,Resources,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+ITUB4.SA,Itau Unibanco Holding,Itau Unibanco Holding,BR,Financial,Bank,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+BBDC4.SA,Banco Bradesco,Banco Bradesco,BR,Financial,Bank,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+BBAS3.SA,Banco do Brasil,Banco do Brasil,BR,Financial,Bank,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+SANB11.SA,Banco Santander Brasil,Banco Santander Brasil,BR,Financial,Bank,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+B3SA3.SA,B3,B3,BR,Financial,Bank,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+WEGE3.SA,WEG,WEG,BR,Industrial Automation,Robotics,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+EMBR3.SA,Embraer,Embraer,BR,Aerospace,Aerospace,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+TOTS3.SA,TOTVS,TOTVS,BR,Technology,AI,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+RADL3.SA,Raia Drogasil,Raia Drogasil,BR,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+HAPV3.SA,Hapvida Participacoes,Hapvida Participacoes,BR,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+RDOR3.SA,Rede D'Or Sao Luiz,Rede D'Or Sao Luiz,BR,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+CYRE3.SA,Cyrela Brazil Realty,Cyrela Brazil Realty,BR,Construction,Construction,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+MRVE3.SA,MRV Engenharia e Participacoes,MRV Engenharia e Participacoes,BR,Construction,Construction,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+JBSS3.SA,JBS,JBS,BR,Consumer,Consumer,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+BRFS3.SA,BRF,BRF,BR,Consumer,Consumer,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+LREN3.SA,Lojas Renner,Lojas Renner,BR,Consumer,Consumer,false,unresolved,seed_candidate;country=Brazil;verify_with_toss_stock_info_before_live;country_market=BR;research_only;current_toss_live_support=KR_US_only
+2222.SR,Saudi Arabian Oil Company,Saudi Arabian Oil Company,SA,Energy,Energy,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+2010.SR,Saudi Basic Industries Corporation,Saudi Basic Industries Corporation,SA,Resources,Resources,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+1211.SR,Saudi Arabian Mining Company,Saudi Arabian Mining Company,SA,Resources,Resources,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+2082.SR,ACWA Power,ACWA Power,SA,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+5110.SR,Saudi Electricity Company,Saudi Electricity Company,SA,Energy,Energy,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+7010.SR,Saudi Telecom Company,Saudi Telecom Company,SA,Telecommunication,Telecom,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+7203.SR,Elm Company,Elm Company,SA,Technology,AI,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+1120.SR,Al Rajhi Bank,Al Rajhi Bank,SA,Financial,Bank,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+1180.SR,Saudi National Bank,Saudi National Bank,SA,Financial,Bank,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+1150.SR,Alinma Bank,Alinma Bank,SA,Financial,Bank,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+1010.SR,Riyad Bank,Riyad Bank,SA,Financial,Bank,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+1020.SR,Bank AlJazira,Bank AlJazira,SA,Financial,Bank,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+1050.SR,Banque Saudi Fransi,Banque Saudi Fransi,SA,Financial,Bank,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+1060.SR,Saudi Awwal Bank,Saudi Awwal Bank,SA,Financial,Bank,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+1140.SR,Bank Albilad,Bank Albilad,SA,Financial,Bank,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+2330.SR,Advanced Petrochemical Company,Advanced Petrochemical Company,SA,Resources,Resources,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+2350.SR,Saudi Kayan Petrochemical,Saudi Kayan Petrochemical,SA,Resources,Resources,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+2290.SR,Yanbu National Petrochemical,Yanbu National Petrochemical,SA,Resources,Resources,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+2310.SR,Sahara International Petrochemical,Sahara International Petrochemical,SA,Resources,Resources,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+2060.SR,National Industrialization Company,National Industrialization Company,SA,Resources,Resources,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+4030.SR,National Shipping Company of Saudi Arabia,National Shipping Company of Saudi Arabia,SA,Transportation,Logistics,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+4013.SR,Dr. Sulaiman Al Habib Medical Services,Dr. Sulaiman Al Habib Medical Services,SA,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+4002.SR,Mouwasat Medical Services,Mouwasat Medical Services,SA,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+4004.SR,Dallah Healthcare,Dallah Healthcare,SA,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+4009.SR,Middle East Healthcare Company,Middle East Healthcare Company,SA,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+3030.SR,Saudi Cement Company,Saudi Cement Company,SA,Construction,Construction,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+3020.SR,Yamama Cement Company,Yamama Cement Company,SA,Construction,Construction,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+3050.SR,Southern Province Cement Company,Southern Province Cement Company,SA,Construction,Construction,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+1304.SR,Al Yamamah Steel Industries,Al Yamamah Steel Industries,SA,Construction,Construction,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+2240.SR,Zamil Industrial Investment,Zamil Industrial Investment,SA,Construction,Construction,false,unresolved,seed_candidate;country=Saudi Arabia;verify_with_toss_stock_info_before_live;country_market=SA;research_only;current_toss_live_support=KR_US_only
+BBCA.JK,Bank Central Asia,Bank Central Asia,ID,Financial,Bank,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+BBRI.JK,Bank Rakyat Indonesia,Bank Rakyat Indonesia,ID,Financial,Bank,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+BMRI.JK,Bank Mandiri,Bank Mandiri,ID,Financial,Bank,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+BBNI.JK,Bank Negara Indonesia,Bank Negara Indonesia,ID,Financial,Bank,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+TLKM.JK,Telkom Indonesia,Telkom Indonesia,ID,Telecommunication,Telecom,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+GOTO.JK,GoTo Gojek Tokopedia,GoTo Gojek Tokopedia,ID,Technology,AI,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+BUKA.JK,Bukalapak.com,Bukalapak.com,ID,Technology,AI,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+ASII.JK,Astra International,Astra International,ID,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+ANTM.JK,Aneka Tambang,Aneka Tambang,ID,Battery Materials,Secondary Battery,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+INCO.JK,Vale Indonesia,Vale Indonesia,ID,Battery Materials,Secondary Battery,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+MDKA.JK,Merdeka Copper Gold,Merdeka Copper Gold,ID,Metals & Mining,Copper,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+TINS.JK,Timah,Timah,ID,Resources,Resources,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+PTBA.JK,Bukit Asam,Bukit Asam,ID,Resources,Resources,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+ADRO.JK,Alamtri Resources Indonesia,Alamtri Resources Indonesia,ID,Resources,Resources,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+ITMG.JK,Indo Tambangraya Megah,Indo Tambangraya Megah,ID,Resources,Resources,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+PGAS.JK,Perusahaan Gas Negara,Perusahaan Gas Negara,ID,Energy,Energy,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+MEDC.JK,Medco Energi Internasional,Medco Energi Internasional,ID,Energy,Energy,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+AKRA.JK,AKR Corporindo,AKR Corporindo,ID,Energy,Energy,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+KLBF.JK,Kalbe Farma,Kalbe Farma,ID,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+MIKA.JK,Mitra Keluarga Karyasehat,Mitra Keluarga Karyasehat,ID,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+HEAL.JK,Medikaloka Hermina,Medikaloka Hermina,ID,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+SIDO.JK,Industri Jamu dan Farmasi Sido Muncul,Industri Jamu dan Farmasi Sido Muncul,ID,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+SMGR.JK,Semen Indonesia,Semen Indonesia,ID,Construction,Construction,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+INTP.JK,Indocement Tunggal Prakarsa,Indocement Tunggal Prakarsa,ID,Construction,Construction,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+WIKA.JK,Wijaya Karya,Wijaya Karya,ID,Construction,Construction,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+PTPP.JK,PP Persero,PP Persero,ID,Construction,Construction,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+ADHI.JK,Adhi Karya,Adhi Karya,ID,Construction,Construction,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+JSMR.JK,Jasa Marga,Jasa Marga,ID,Construction,Construction,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+INDF.JK,Indofood Sukses Makmur,Indofood Sukses Makmur,ID,Consumer,Consumer,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+ICBP.JK,Indofood CBP Sukses Makmur,Indofood CBP Sukses Makmur,ID,Consumer,Consumer,false,unresolved,seed_candidate;country=Indonesia;verify_with_toss_stock_info_before_live;country_market=ID;research_only;current_toss_live_support=KR_US_only
+ENI.MI,Eni,Eni,IT,Energy,Energy,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+ENEL.MI,Enel,Enel,IT,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+TRN.MI,Terna,Terna,IT,Energy,Energy,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+SRG.MI,Snam,Snam,IT,Energy,Energy,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+A2A.MI,A2A,A2A,IT,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+ERG.MI,ERG,ERG,IT,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+IG.MI,Italgas,Italgas,IT,Energy,Energy,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+ISP.MI,Intesa Sanpaolo,Intesa Sanpaolo,IT,Financial,Bank,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+UCG.MI,UniCredit,UniCredit,IT,Financial,Bank,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+BMED.MI,Banca Mediolanum,Banca Mediolanum,IT,Financial,Bank,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+BPE.MI,BPER Banca,BPER Banca,IT,Financial,Bank,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+MB.MI,Mediobanca,Mediobanca,IT,Financial,Bank,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+G.MI,Assicurazioni Generali,Assicurazioni Generali,IT,Insurance,Insurance,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+STLAM.MI,Stellantis,Stellantis,IT,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+RACE.MI,Ferrari,Ferrari,IT,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+CNHI.MI,CNH Industrial,CNH Industrial,IT,Industrial Automation,Robotics,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+LDO.MI,Leonardo,Leonardo,IT,Defense,Defense,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+FCT.MI,Fincantieri,Fincantieri,IT,Defense,Defense,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+PRY.MI,Prysmian,Prysmian,IT,Metals & Mining,Copper,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+STM.MI,STMicroelectronics,STMicroelectronics,IT,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+AMP.MI,Amplifon,Amplifon,IT,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+DIA.MI,DiaSorin,DiaSorin,IT,Healthcare,Biotech,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+REC.MI,Recordati,Recordati,IT,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+TEN.MI,Tenaris,Tenaris,IT,Resources,Resources,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+BZU.MI,Buzzi,Buzzi,IT,Construction,Construction,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+PIRC.MI,Pirelli,Pirelli,IT,Automotive,Autonomous Driving,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+TIT.MI,Telecom Italia,Telecom Italia,IT,Telecommunication,Telecom,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+INW.MI,Infrastrutture Wireless Italiane,Infrastrutture Wireless Italiane,IT,Telecommunication,Telecom,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+MONC.MI,Moncler,Moncler,IT,Consumer,Consumer,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+CPR.MI,Davide Campari-Milano,Davide Campari-Milano,IT,Consumer,Consumer,false,unresolved,seed_candidate;country=Italy;verify_with_toss_stock_info_before_live;country_market=IT;research_only;current_toss_live_support=KR_US_only
+NOVN.SW,Novartis,Novartis,CH,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+ROG.SW,Roche Holding,Roche Holding,CH,Healthcare,Biotech,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+SANN.SW,Santhera Pharmaceuticals,Santhera Pharmaceuticals,CH,Healthcare,Biotech,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+ABBN.SW,ABB,ABB,CH,Industrial Automation,Robotics,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+LOGN.SW,Logitech International,Logitech International,CH,Technology,AI,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+TEMN.SW,Temenos,Temenos,CH,Technology,AI,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+SOON.SW,Sonova Holding,Sonova Holding,CH,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+VATN.SW,VAT Group,VAT Group,CH,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+AMS.SW,ams-OSRAM,ams-OSRAM,CH,Semiconductor,Semiconductor,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+SLHN.SW,Swiss Life Holding,Swiss Life Holding,CH,Insurance,Insurance,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+UBSG.SW,UBS Group,UBS Group,CH,Financial,Bank,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+BAER.SW,Julius Baer Group,Julius Baer Group,CH,Financial,Bank,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+CMBN.SW,Cembra Money Bank,Cembra Money Bank,CH,Financial,Bank,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+ZURN.SW,Zurich Insurance Group,Zurich Insurance Group,CH,Insurance,Insurance,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+SREN.SW,Swiss Re,Swiss Re,CH,Insurance,Insurance,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+SIKA.SW,Sika,Sika,CH,Construction,Construction,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+HOLN.SW,Holcim,Holcim,CH,Construction,Construction,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+GEBN.SW,Geberit,Geberit,CH,Construction,Construction,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+SCHN.SW,Schindler Holding,Schindler Holding,CH,Construction,Construction,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+BKW.SW,BKW,BKW,CH,Renewable Energy,Renewable Energy,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+LONN.SW,Lonza Group,Lonza Group,CH,Healthcare,Biotech,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+SGSN.SW,SGS,SGS,CH,Environmental Services,Green,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+GIVN.SW,Givaudan,Givaudan,CH,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+PGHN.SW,Partners Group Holding,Partners Group Holding,CH,Financial,Bank,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+ALC.SW,Alcon,Alcon,CH,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+NESN.SW,Nestle,Nestle,CH,Consumer,Consumer,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+CFR.SW,Compagnie Financiere Richemont,Compagnie Financiere Richemont,CH,Consumer,Consumer,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+UHR.SW,The Swatch Group,The Swatch Group,CH,Consumer,Consumer,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+BARN.SW,Barry Callebaut,Barry Callebaut,CH,Consumer,Consumer,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+BEAN.SW,Belimo Holding,Belimo Holding,CH,Environmental Services,Green,false,unresolved,seed_candidate;country=Switzerland;verify_with_toss_stock_info_before_live;country_market=CH;research_only;current_toss_live_support=KR_US_only
+RY.TO,Royal Bank of Canada,Royal Bank of Canada,CA,Financial,Bank,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+TD.TO,Toronto-Dominion Bank,Toronto-Dominion Bank,CA,Financial,Bank,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+BMO.TO,Bank of Montreal,Bank of Montreal,CA,Financial,Bank,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+BNS.TO,Bank of Nova Scotia,Bank of Nova Scotia,CA,Financial,Bank,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+CM.TO,Canadian Imperial Bank of Commerce,Canadian Imperial Bank of Commerce,CA,Financial,Bank,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+NA.TO,National Bank of Canada,National Bank of Canada,CA,Financial,Bank,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+SHOP.TO,Shopify,Shopify,CA,Technology,AI,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+CSU.TO,Constellation Software,Constellation Software,CA,Technology,AI,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+TRI.TO,Thomson Reuters,Thomson Reuters,CA,Technology,AI,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+OTEX.TO,Open Text,Open Text,CA,Technology,AI,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+ENB.TO,Enbridge,Enbridge,CA,Energy,Energy,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+TRP.TO,TC Energy,TC Energy,CA,Energy,Energy,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+CNQ.TO,Canadian Natural Resources,Canadian Natural Resources,CA,Energy,Energy,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+SU.TO,Suncor Energy,Suncor Energy,CA,Energy,Energy,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+CVE.TO,Cenovus Energy,Cenovus Energy,CA,Energy,Energy,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+CCO.TO,Cameco,Cameco,CA,Resources,Resources,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+NTR.TO,Nutrien,Nutrien,CA,Resources,Resources,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+TECK.B.TO,Teck Resources,Teck Resources,CA,Metals & Mining,Copper,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+FM.TO,First Quantum Minerals,First Quantum Minerals,CA,Metals & Mining,Copper,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+WPM.TO,Wheaton Precious Metals,Wheaton Precious Metals,CA,Resources,Resources,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+AEM.TO,Agnico Eagle Mines,Agnico Eagle Mines,CA,Resources,Resources,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+ABX.TO,Barrick Gold,Barrick Gold,CA,Resources,Resources,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+CP.TO,Canadian Pacific Kansas City,Canadian Pacific Kansas City,CA,Transportation,Logistics,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+CNR.TO,Canadian National Railway,Canadian National Railway,CA,Transportation,Logistics,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+WSP.TO,WSP Global,WSP Global,CA,Construction,Construction,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+ATRL.TO,AtkinsRealis Group,AtkinsRealis Group,CA,Construction,Construction,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+MFC.TO,Manulife Financial,Manulife Financial,CA,Insurance,Insurance,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+SLF.TO,Sun Life Financial,Sun Life Financial,CA,Insurance,Insurance,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+BCE.TO,BCE,BCE,CA,Telecommunication,Telecom,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+T.TO,TELUS,TELUS,CA,Telecommunication,Telecom,false,unresolved,seed_candidate;country=Canada;verify_with_toss_stock_info_before_live;country_market=CA;research_only;current_toss_live_support=KR_US_only
+NPN.JO,Naspers,Naspers,ZA,Technology,AI,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+MTN.JO,MTN Group,MTN Group,ZA,Telecommunication,Telecom,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+VOD.JO,Vodacom Group,Vodacom Group,ZA,Telecommunication,Telecom,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+SOL.JO,Sasol,Sasol,ZA,Energy,Energy,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+FSR.JO,FirstRand,FirstRand,ZA,Financial,Bank,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+SBK.JO,Standard Bank Group,Standard Bank Group,ZA,Financial,Bank,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+NED.JO,Nedbank Group,Nedbank Group,ZA,Financial,Bank,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+ABG.JO,Absa Group,Absa Group,ZA,Financial,Bank,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+CPI.JO,Capitec Bank Holdings,Capitec Bank Holdings,ZA,Financial,Bank,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+ANG.JO,AngloGold Ashanti,AngloGold Ashanti,ZA,Resources,Resources,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+GFI.JO,Gold Fields,Gold Fields,ZA,Resources,Resources,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+HAR.JO,Harmony Gold Mining,Harmony Gold Mining,ZA,Resources,Resources,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+AMS.JO,Anglo American Platinum,Anglo American Platinum,ZA,Resources,Resources,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+IMP.JO,Impala Platinum Holdings,Impala Platinum Holdings,ZA,Resources,Resources,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+SSW.JO,Sibanye Stillwater,Sibanye Stillwater,ZA,Resources,Resources,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+KIO.JO,Kumba Iron Ore,Kumba Iron Ore,ZA,Resources,Resources,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+AGL.JO,Anglo American,Anglo American,ZA,Metals & Mining,Copper,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+BHP.JO,BHP Group,BHP Group,ZA,Resources,Resources,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+APN.JO,Aspen Pharmacare Holdings,Aspen Pharmacare Holdings,ZA,Healthcare,Healthcare,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+CLS.JO,Clicks Group,Clicks Group,ZA,Healthcare,Healthcare,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+SHP.JO,Shoprite Holdings,Shoprite Holdings,ZA,Consumer,Consumer,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+WHL.JO,Woolworths Holdings,Woolworths Holdings,ZA,Consumer,Consumer,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+MRP.JO,Mr Price Group,Mr Price Group,ZA,Consumer,Consumer,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+BID.JO,Bid Corporation,Bid Corporation,ZA,Consumer,Consumer,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+BVT.JO,The Bidvest Group,The Bidvest Group,ZA,Industrial,Industrial,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+PPC.JO,PPC,PPC,ZA,Construction,Construction,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+MUR.JO,Murray & Roberts Holdings,Murray & Roberts Holdings,ZA,Construction,Construction,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+REM.JO,Remgro,Remgro,ZA,Financial,Bank,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+BTI.JO,British American Tobacco,British American Tobacco,ZA,Consumer,Consumer,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+CFR.JO,Compagnie Financiere Richemont,Compagnie Financiere Richemont,ZA,Consumer,Consumer,false,unresolved,seed_candidate;country=South Africa;verify_with_toss_stock_info_before_live;country_market=ZA;research_only;current_toss_live_support=KR_US_only
+DANGCEM,Dangote Cement,Dangote Cement,NG,Construction,Construction,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+BUACEMENT,BUA Cement,BUA Cement,NG,Construction,Construction,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+WAPCO,Lafarge Africa,Lafarge Africa,NG,Construction,Construction,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+JBERGER,Julius Berger Nigeria,Julius Berger Nigeria,NG,Construction,Construction,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+MTNN,MTN Nigeria Communications,MTN Nigeria Communications,NG,Telecommunication,Telecom,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+AIRTELAFRI,Airtel Africa,Airtel Africa,NG,Telecommunication,Telecom,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+SEPLAT,Seplat Energy,Seplat Energy,NG,Energy,Energy,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+GEREGU,Geregu Power,Geregu Power,NG,Energy,Energy,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+TRANSPOWER,Transcorp Power,Transcorp Power,NG,Energy,Energy,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+OANDO,Oando,Oando,NG,Energy,Energy,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+TOTAL,TotalEnergies Marketing Nigeria,TotalEnergies Marketing Nigeria,NG,Energy,Energy,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+CONOIL,Conoil,Conoil,NG,Energy,Energy,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+ARADEL,Aradel Holdings,Aradel Holdings,NG,Energy,Energy,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+ACCESSCORP,Access Holdings,Access Holdings,NG,Financial,Bank,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+ZENITHBANK,Zenith Bank,Zenith Bank,NG,Financial,Bank,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+GTCO,Guaranty Trust Holding Company,Guaranty Trust Holding Company,NG,Financial,Bank,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+UBA,United Bank for Africa,United Bank for Africa,NG,Financial,Bank,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+FIRSTHOLDCO,First HoldCo,First HoldCo,NG,Financial,Bank,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+STANBIC,Stanbic IBTC Holdings,Stanbic IBTC Holdings,NG,Financial,Bank,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+FIDELITYBK,Fidelity Bank Nigeria,Fidelity Bank Nigeria,NG,Financial,Bank,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+FCMB,FCMB Group,FCMB Group,NG,Financial,Bank,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+WEMABANK,Wema Bank,Wema Bank,NG,Financial,Bank,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+NESTLE,Nestle Nigeria,Nestle Nigeria,NG,Consumer,Consumer,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+NB,Nigerian Breweries,Nigerian Breweries,NG,Consumer,Consumer,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+BUAFOODS,BUA Foods,BUA Foods,NG,Consumer,Consumer,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+FLOURMILL,Flour Mills of Nigeria,Flour Mills of Nigeria,NG,Consumer,Consumer,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+PRESCO,Presco,Presco,NG,Resources,Resources,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+OKOMUOIL,Okomu Oil Palm Company,Okomu Oil Palm Company,NG,Resources,Resources,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+VITAFOAM,Vitafoam Nigeria,Vitafoam Nigeria,NG,Consumer,Consumer,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+MAYBAKER,May & Baker Nigeria,May & Baker Nigeria,NG,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Nigeria;verify_with_toss_stock_info_before_live;country_market=NG;research_only;current_toss_live_support=KR_US_only
+QNBK.QA,Qatar National Bank,Qatar National Bank,QA,Financial,Bank,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+QIBK.QA,Qatar Islamic Bank,Qatar Islamic Bank,QA,Financial,Bank,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+MARK.QA,Masraf Al Rayan,Masraf Al Rayan,QA,Financial,Bank,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+CBQK.QA,Commercial Bank of Qatar,Commercial Bank of Qatar,QA,Financial,Bank,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+DHBK.QA,Doha Bank,Doha Bank,QA,Financial,Bank,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+ABQK.QA,Ahli Bank,Ahli Bank,QA,Financial,Bank,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+QIIK.QA,Qatar International Islamic Bank,Qatar International Islamic Bank,QA,Financial,Bank,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+DUBK.QA,Dukhan Bank,Dukhan Bank,QA,Financial,Bank,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+IQCD.QA,Industries Qatar,Industries Qatar,QA,Resources,Resources,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+QGTS.QA,Qatar Gas Transport Company,Qatar Gas Transport Company,QA,Energy,Energy,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+QFLS.QA,Qatar Fuel,Qatar Fuel,QA,Energy,Energy,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+QEWS.QA,Qatar Electricity and Water Company,Qatar Electricity and Water Company,QA,Energy,Energy,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+MPHC.QA,Mesaieed Petrochemical Holding,Mesaieed Petrochemical Holding,QA,Resources,Resources,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+GISS.QA,Gulf International Services,Gulf International Services,QA,Energy,Energy,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+QNNS.QA,Qatar Navigation,Qatar Navigation,QA,Transportation,Logistics,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+ORDS.QA,Ooredoo,Ooredoo,QA,Telecommunication,Telecom,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+VFQS.QA,Vodafone Qatar,Vodafone Qatar,QA,Telecommunication,Telecom,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+QATI.QA,Qatar Insurance Company,Qatar Insurance Company,QA,Insurance,Insurance,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+DOHI.QA,Doha Insurance Group,Doha Insurance Group,QA,Insurance,Insurance,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+QLMI.QA,QLM Life and Medical Insurance,QLM Life and Medical Insurance,QA,Insurance,Insurance,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+BRES.QA,Barwa Real Estate,Barwa Real Estate,QA,Construction,Construction,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+UDCD.QA,United Development Company,United Development Company,QA,Construction,Construction,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+ERES.QA,Ezdan Holding Group,Ezdan Holding Group,QA,Real Estate,Real Estate,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+MRDS.QA,Mazaya Real Estate Development,Mazaya Real Estate Development,QA,Construction,Construction,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+QGMD.QA,Qatar German Medical Devices,Qatar German Medical Devices,QA,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+MCGS.QA,Medicare Group,Medicare Group,QA,Healthcare,Healthcare,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+BLDN.QA,Baladna,Baladna,QA,Consumer,Consumer,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+WDAM.QA,Widam Food,Widam Food,QA,Consumer,Consumer,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+QAMC.QA,Qatar Aluminium Manufacturing,Qatar Aluminium Manufacturing,QA,Resources,Resources,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+IGRD.QA,Estithmar Holding,Estithmar Holding,QA,Construction,Construction,false,unresolved,seed_candidate;country=Qatar;verify_with_toss_stock_info_before_live;country_market=QA;research_only;current_toss_live_support=KR_US_only
+EWJ,iShares MSCI Japan ETF,iShares MSCI Japan ETF,US,Country ETF,Country: Japan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Japan
+DXJ,WisdomTree Japan Hedged Equity Fund,WisdomTree Japan Hedged Equity Fund,US,Country ETF,Country: Japan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Japan
+FLJP,Franklin FTSE Japan ETF,Franklin FTSE Japan ETF,US,Country ETF,Country: Japan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Japan
+INDA,iShares MSCI India ETF,iShares MSCI India ETF,US,Country ETF,Country: India,true,toss_verified,toss_verified_2026-07-16;country_exposure=India
+INDY,iShares India 50 ETF,iShares India 50 ETF,US,Country ETF,Country: India,true,toss_verified,toss_verified_2026-07-16;country_exposure=India
+EPI,WisdomTree India Earnings Fund,WisdomTree India Earnings Fund,US,Country ETF,Country: India,true,toss_verified,toss_verified_2026-07-16;country_exposure=India
+VNM,VanEck Vietnam ETF,VanEck Vietnam ETF,US,Country ETF,Country: Vietnam,true,toss_verified,toss_verified_2026-07-16;country_exposure=Vietnam
+EWT,iShares MSCI Taiwan ETF,iShares MSCI Taiwan ETF,US,Country ETF,Country: Taiwan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Taiwan
+FLTW,Franklin FTSE Taiwan ETF,Franklin FTSE Taiwan ETF,US,Country ETF,Country: Taiwan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Taiwan
+EWQ,iShares MSCI France ETF,iShares MSCI France ETF,US,Country ETF,Country: France,true,toss_verified,toss_verified_2026-07-16;country_exposure=France
+EWG,iShares MSCI Germany ETF,iShares MSCI Germany ETF,US,Country ETF,Country: Germany,true,toss_verified,toss_verified_2026-07-16;country_exposure=Germany
+FGM,First Trust Germany AlphaDEX Fund,First Trust Germany AlphaDEX Fund,US,Country ETF,Country: Germany,true,toss_verified,toss_verified_2026-07-16;country_exposure=Germany
+EWU,iShares MSCI United Kingdom ETF,iShares MSCI United Kingdom ETF,US,Country ETF,Country: United Kingdom,true,toss_verified,toss_verified_2026-07-16;country_exposure=United_Kingdom
+EWUS,iShares MSCI United Kingdom Small-Cap ETF,iShares MSCI United Kingdom Small-Cap ETF,US,Country ETF,Country: United Kingdom,true,toss_verified,toss_verified_2026-07-16;country_exposure=United_Kingdom
+MCHI,iShares MSCI China ETF,iShares MSCI China ETF,US,Country ETF,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+FXI,iShares China Large-Cap ETF,iShares China Large-Cap ETF,US,Country ETF,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+KWEB,KraneShares CSI China Internet ETF,KraneShares CSI China Internet ETF,US,Country ETF,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+ASHR,Xtrackers Harvest CSI 300 China A-Shares ETF,Xtrackers Harvest CSI 300 China A-Shares ETF,US,Country ETF,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+CQQQ,Invesco China Technology ETF,Invesco China Technology ETF,US,Country ETF,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+EWS,iShares MSCI Singapore ETF,iShares MSCI Singapore ETF,US,Country ETF,Country: Singapore,true,toss_verified,toss_verified_2026-07-16;country_exposure=Singapore
+EWA,iShares MSCI Australia ETF,iShares MSCI Australia ETF,US,Country ETF,Country: Australia,true,toss_verified,toss_verified_2026-07-16;country_exposure=Australia
+FLAX,Franklin FTSE Australia ETF,Franklin FTSE Australia ETF,US,Country ETF,Country: Australia,true,toss_verified,toss_verified_2026-07-16;country_exposure=Australia
+EWZ,iShares MSCI Brazil ETF,iShares MSCI Brazil ETF,US,Country ETF,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+FLBR,Franklin FTSE Brazil ETF,Franklin FTSE Brazil ETF,US,Country ETF,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+KSA,iShares MSCI Saudi Arabia ETF,iShares MSCI Saudi Arabia ETF,US,Country ETF,Country: Saudi Arabia,true,toss_verified,toss_verified_2026-07-16;country_exposure=Saudi_Arabia
+EIDO,iShares MSCI Indonesia ETF,iShares MSCI Indonesia ETF,US,Country ETF,Country: Indonesia,true,toss_verified,toss_verified_2026-07-16;country_exposure=Indonesia
+EWI,iShares MSCI Italy ETF,iShares MSCI Italy ETF,US,Country ETF,Country: Italy,true,toss_verified,toss_verified_2026-07-16;country_exposure=Italy
+EWL,iShares MSCI Switzerland ETF,iShares MSCI Switzerland ETF,US,Country ETF,Country: Switzerland,true,toss_verified,toss_verified_2026-07-16;country_exposure=Switzerland
+EWC,iShares MSCI Canada ETF,iShares MSCI Canada ETF,US,Country ETF,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+FLCA,Franklin FTSE Canada ETF,Franklin FTSE Canada ETF,US,Country ETF,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+EZA,iShares MSCI South Africa ETF,iShares MSCI South Africa ETF,US,Country ETF,Country: South Africa,true,toss_verified,toss_verified_2026-07-16;country_exposure=South_Africa
+AFK,VanEck Africa Index ETF,VanEck Africa Index ETF,US,Country ETF,Country: Nigeria,true,toss_verified,toss_verified_2026-07-16;country_proxy=Africa_including_Nigeria
+QAT,iShares MSCI Qatar ETF,iShares MSCI Qatar ETF,US,Country ETF,Country: Qatar,true,toss_verified,toss_verified_2026-07-16;country_exposure=Qatar
+IBB,iShares Biotechnology ETF,iShares Biotechnology ETF,US,Thematic ETF,Biotech,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Biotech
+XBI,SPDR S&P Biotech ETF,SPDR S&P Biotech ETF,US,Thematic ETF,Biotech,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Biotech
+AIQ,Global X Artificial Intelligence & Technology ETF,Global X Artificial Intelligence & Technology ETF,US,Thematic ETF,AI,true,toss_verified,toss_verified_2026-07-16;theme_exposure=AI
+THNQ,ROBO Global Artificial Intelligence ETF,ROBO Global Artificial Intelligence ETF,US,Thematic ETF,AI,true,toss_verified,toss_verified_2026-07-16;theme_exposure=AI
+SMH,VanEck Semiconductor ETF,VanEck Semiconductor ETF,US,Thematic ETF,AI Semiconductor,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Semiconductor
+SOXX,iShares Semiconductor ETF,iShares Semiconductor ETF,US,Thematic ETF,AI Semiconductor,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Semiconductor
+DRIV,Global X Autonomous & Electric Vehicles ETF,Global X Autonomous & Electric Vehicles ETF,US,Thematic ETF,Autonomous,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Autonomous_Driving
+IDRV,iShares Self-Driving EV and Tech ETF,iShares Self-Driving EV and Tech ETF,US,Thematic ETF,Autonomous,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Autonomous_Driving
+BOTZ,Global X Robotics & Artificial Intelligence ETF,Global X Robotics & Artificial Intelligence ETF,US,Thematic ETF,Robotics,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Robotics
+ROBO,ROBO Global Robotics and Automation ETF,ROBO Global Robotics and Automation ETF,US,Thematic ETF,Robotics,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Robotics
+QTUM,Defiance Quantum ETF,Defiance Quantum ETF,US,Thematic ETF,Quantum Computing,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Quantum_Computing
+ITA,iShares U.S. Aerospace & Defense ETF,iShares U.S. Aerospace & Defense ETF,US,Thematic ETF,Space/Defense,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Defense
+XAR,SPDR S&P Aerospace & Defense ETF,SPDR S&P Aerospace & Defense ETF,US,Thematic ETF,Space/Defense,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Aerospace_Defense
+XLE,Energy Select Sector SPDR Fund,Energy Select Sector SPDR Fund,US,Thematic ETF,Energy,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Energy
+IXC,iShares Global Energy ETF,iShares Global Energy ETF,US,Thematic ETF,Energy,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Energy
+TLT,iShares 20+ Year Treasury Bond ETF,iShares 20+ Year Treasury Bond ETF,US,Thematic ETF,Bond,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Bond
+BND,Vanguard Total Bond Market ETF,Vanguard Total Bond Market ETF,US,Thematic ETF,Bond,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Bond
+LIT,Global X Lithium & Battery Tech ETF,Global X Lithium & Battery Tech ETF,US,Thematic ETF,Battery,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Battery
+BATT,Amplify Lithium & Battery Technology ETF,Amplify Lithium & Battery Technology ETF,US,Thematic ETF,Battery,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Battery
+UFO,Procure Space ETF,Procure Space ETF,US,Thematic ETF,Space/Defense,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Space
+ARKX,ARK Space Exploration & Innovation ETF,ARK Space Exploration & Innovation ETF,US,Thematic ETF,Space/Defense,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Space
+ICLN,iShares Global Clean Energy ETF,iShares Global Clean Energy ETF,US,Thematic ETF,Renewable Energy,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Clean_Energy
+TAN,Invesco Solar ETF,Invesco Solar ETF,US,Thematic ETF,Renewable Energy,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Solar
+XLV,Health Care Select Sector SPDR Fund,Health Care Select Sector SPDR Fund,US,Thematic ETF,Healthcare,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Healthcare
+IHI,iShares U.S. Medical Devices ETF,iShares U.S. Medical Devices ETF,US,Thematic ETF,Healthcare,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Medical_Devices
+ITB,iShares U.S. Home Construction ETF,iShares U.S. Home Construction ETF,US,Thematic ETF,Construction,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Construction
+XHB,SPDR S&P Homebuilders ETF,SPDR S&P Homebuilders ETF,US,Thematic ETF,Construction,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Construction
+CPER,United States Copper Index Fund,United States Copper Index Fund,US,Thematic ETF,Copper,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Copper
+COPX,Global X Copper Miners ETF,Global X Copper Miners ETF,US,Thematic ETF,Copper,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Copper
+PICK,iShares MSCI Global Metals & Mining Producers ETF,iShares MSCI Global Metals & Mining Producers ETF,US,Thematic ETF,Resources,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Resources
+XME,SPDR S&P Metals & Mining ETF,SPDR S&P Metals & Mining ETF,US,Thematic ETF,Resources,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Resources
+ACES,ALPS Clean Energy ETF,ALPS Clean Energy ETF,US,Thematic ETF,Renewable Energy,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Clean_Energy
+PBW,Invesco WilderHill Clean Energy ETF,Invesco WilderHill Clean Energy ETF,US,Thematic ETF,Renewable Energy,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Clean_Energy
+XLF,Financial Select Sector SPDR Fund,Financial Select Sector SPDR Fund,US,Thematic ETF,Bank,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Bank
+KRE,SPDR S&P Regional Banking ETF,SPDR S&P Regional Banking ETF,US,Thematic ETF,Bank,true,toss_verified,toss_verified_2026-07-16;theme_exposure=Bank
+TM,토요타 모터(ADR),토요타 모터(ADR),US,Country Equity,Country: Japan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Japan
+HMC,혼다 모터스(ADR),혼다 모터스(ADR),US,Country Equity,Country: Japan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Japan
+SONY,소니(ADR),소니(ADR),US,Country Equity,Country: Japan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Japan
+MUFG,미쓰비시 UFJ 파이낸셜(ADR),미쓰비시 UFJ 파이낸셜(ADR),US,Country Equity,Country: Japan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Japan
+SMFG,스미토모 미쓰이 파이낸셜 그룹(ADR),스미토모 미쓰이 파이낸셜 그룹(ADR),US,Country Equity,Country: Japan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Japan
+MFG,미즈호 파이낸셜 그룹(ADR),미즈호 파이낸셜 그룹(ADR),US,Country Equity,Country: Japan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Japan
+TAK,다케다 파마슈티컬(ADR),다케다 파마슈티컬(ADR),US,Country Equity,Country: Japan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Japan
+NMR,노무라 홀딩스(ADR),노무라 홀딩스(ADR),US,Country Equity,Country: Japan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Japan
+IX,오릭스(ADR),오릭스(ADR),US,Country Equity,Country: Japan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Japan
+INFY,인포시스(ADR),인포시스(ADR),US,Country Equity,Country: India,true,toss_verified,toss_verified_2026-07-16;country_exposure=India
+WIT,위프로(ADR),위프로(ADR),US,Country Equity,Country: India,true,toss_verified,toss_verified_2026-07-16;country_exposure=India
+HDB,HDFC 뱅크(ADR),HDFC 뱅크(ADR),US,Country Equity,Country: India,true,toss_verified,toss_verified_2026-07-16;country_exposure=India
+IBN,ICICI 뱅크(ADR),ICICI 뱅크(ADR),US,Country Equity,Country: India,true,toss_verified,toss_verified_2026-07-16;country_exposure=India
+RDY,닥터 레디스 래버러토리스(ADR),닥터 레디스 래버러토리스(ADR),US,Country Equity,Country: India,true,toss_verified,toss_verified_2026-07-16;country_exposure=India
+WNS,WNS 홀딩스,WNS 홀딩스,US,Country Equity,Country: India,true,toss_verified,toss_verified_2026-07-16;country_exposure=India
+MMYT,메이크마이트립,메이크마이트립,US,Country Equity,Country: India,true,toss_verified,toss_verified_2026-07-16;country_exposure=India
+YTRA,야트라 온라인,야트라 온라인,US,Country Equity,Country: India,true,toss_verified,toss_verified_2026-07-16;country_exposure=India
+SIFY,시피 테크놀로지스(ADR),시피 테크놀로지스(ADR),US,Country Equity,Country: India,true,toss_verified,toss_verified_2026-07-16;country_exposure=India
+VFS,빈패스트,빈패스트,US,Country Equity,Country: Vietnam,true,toss_verified,toss_verified_2026-07-16;country_exposure=Vietnam
+UMC,UMC(ADR),UMC(ADR),US,Country Equity,Country: Taiwan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Taiwan
+ASX,ASE 테크놀로지 홀딩(ADR),ASE 테크놀로지 홀딩(ADR),US,Country Equity,Country: Taiwan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Taiwan
+HIMX,하이맥스 테크놀로지스(ADR),하이맥스 테크놀로지스(ADR),US,Country Equity,Country: Taiwan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Taiwan
+GIGM,기가미디어,기가미디어,US,Country Equity,Country: Taiwan,true,toss_verified,toss_verified_2026-07-16;country_exposure=Taiwan
+TTE,토탈에너지스,토탈에너지스,US,Country Equity,Country: France,true,toss_verified,toss_verified_2026-07-16;country_exposure=France
+SNY,사노피(ADR),사노피(ADR),US,Country Equity,Country: France,true,toss_verified,toss_verified_2026-07-16;country_exposure=France
+DB,도이치뱅크,도이치뱅크,US,Country Equity,Country: Germany,true,toss_verified,toss_verified_2026-07-16;country_exposure=Germany
+UL,유니레버(ADR),유니레버(ADR),US,Country Equity,Country: United Kingdom,true,toss_verified,toss_verified_2026-07-16;country_exposure=United_Kingdom
+BP,BP(ADR),BP(ADR),US,Country Equity,Country: United Kingdom,true,toss_verified,toss_verified_2026-07-16;country_exposure=United_Kingdom
+SHEL,쉘(ADR),쉘(ADR),US,Country Equity,Country: United Kingdom,true,toss_verified,toss_verified_2026-07-16;country_exposure=United_Kingdom
+LYG,로이즈 뱅킹 그룹(ADR),로이즈 뱅킹 그룹(ADR),US,Country Equity,Country: United Kingdom,true,toss_verified,toss_verified_2026-07-16;country_exposure=United_Kingdom
+GSK,글락소스미스클라인(ADR),글락소스미스클라인(ADR),US,Country Equity,Country: United Kingdom,true,toss_verified,toss_verified_2026-07-16;country_exposure=United_Kingdom
+NGG,내셔널 그리드(ADR),내셔널 그리드(ADR),US,Country Equity,Country: United Kingdom,true,toss_verified,toss_verified_2026-07-16;country_exposure=United_Kingdom
+RELX,릴렉스(ADR),릴렉스(ADR),US,Country Equity,Country: United Kingdom,true,toss_verified,toss_verified_2026-07-16;country_exposure=United_Kingdom
+DEO,디아지오(ADR),디아지오(ADR),US,Country Equity,Country: United Kingdom,true,toss_verified,toss_verified_2026-07-16;country_exposure=United_Kingdom
+PUK,푸르덴셜(ADR),푸르덴셜(ADR),US,Country Equity,Country: United Kingdom,true,toss_verified,toss_verified_2026-07-16;country_exposure=United_Kingdom
+JD,징동닷컴(ADR),징동닷컴(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+PDD,핀둬둬(ADR),핀둬둬(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+LI,리 오토(ADR),리 오토(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+XPEV,샤오펑(ADR),샤오펑(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+YUMC,염 차이나 홀딩스,염 차이나 홀딩스,US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+TME,텐센트 뮤직 엔터테인먼트(ADR),텐센트 뮤직 엔터테인먼트(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+BILI,빌리빌리(ADR),빌리빌리(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+BEKE,KE 홀딩스(ADR),KE 홀딩스(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+ZTO,ZTO 익스프레스(ADR),ZTO 익스프레스(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+TAL,TAL 에듀케이션(ADR),TAL 에듀케이션(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+NTES,넷이즈(ADR),넷이즈(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+WB,웨이보(ADR),웨이보(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+FUTU,푸투 홀딩스(ADR),푸투 홀딩스(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+DDL,딩동 케이먼(ADR),딩동 케이먼(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+KC,킹소프트 클라우드 홀딩스(ADR),킹소프트 클라우드 홀딩스(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+GDS,GDS 홀딩스(ADR),GDS 홀딩스(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+TCOM,트립닷컴(ADR),트립닷컴(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+ATHM,오토홈(ADR),오토홈(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+TIGR,업 핀테크 홀딩스(ADR),업 핀테크 홀딩스(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+QFIN,치푸 테크놀로지(ADR),치푸 테크놀로지(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+VIPS,브이아이피숍 홀딩스(ADR),브이아이피숍 홀딩스(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+DOYU,도유 인터내셔널 홀딩스(ADR),도유 인터내셔널 홀딩스(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+EDU,뉴 오리엔탈 에듀케이션 앤 테크놀로지 그룹(ADR),뉴 오리엔탈 에듀케이션 앤 테크놀로지 그룹(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+GOTU,가오투 테크에듀(ADR),가오투 테크에듀(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+RLX,RLX 테크놀로지(ADR),RLX 테크놀로지(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+ZLAB,자이 랩(ADR),자이 랩(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+JKS,진코솔라 홀딩(ADR),진코솔라 홀딩(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+TUYA,투야(ADR),투야(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+MNSO,미니소(ADR),미니소(ADR),US,Country Equity,Country: China,true,toss_verified,toss_verified_2026-07-16;country_exposure=China
+SE,씨(ADR),씨(ADR),US,Country Equity,Country: Singapore,true,toss_verified,toss_verified_2026-07-16;country_exposure=Singapore
+GRAB,그랩 홀딩스,그랩 홀딩스,US,Country Equity,Country: Singapore,true,toss_verified,toss_verified_2026-07-16;country_exposure=Singapore
+BHP,BHP 그룹(ADR),BHP 그룹(ADR),US,Country Equity,Country: Australia,true,toss_verified,toss_verified_2026-07-16;country_exposure=Australia
+RIO,리오 틴토(ADR),리오 틴토(ADR),US,Country Equity,Country: Australia,true,toss_verified,toss_verified_2026-07-16;country_exposure=Australia
+WDS,우드사이드 에너지 그룹(ADR),우드사이드 에너지 그룹(ADR),US,Country Equity,Country: Australia,true,toss_verified,toss_verified_2026-07-16;country_exposure=Australia
+VALE,발리(ADR),발리(ADR),US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+PBR,페트로브라스(ADR),페트로브라스(ADR),US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+ITUB,이타우 우니방쿠 홀딩스(ADR),이타우 우니방쿠 홀딩스(ADR),US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+BBD,방쿠 브라데스쿠 우선주(ADR),방쿠 브라데스쿠 우선주(ADR),US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+ABEV,암베브(ADR),암베브(ADR),US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+NU,누 홀딩스,누 홀딩스,US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+SID,시데루르지카 나시오나우(ADR),시데루르지카 나시오나우(ADR),US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+BSBR,방코 산탄데르 브라질(ADR),방코 산탄데르 브라질(ADR),US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+PAGS,파그세구로 디지털,파그세구로 디지털,US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+STNE,스톤코,스톤코,US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+CIG,이네르제치카 지 미나스 제라이스 우선주(ADR),이네르제치카 지 미나스 제라이스 우선주(ADR),US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+GGB,제르다우(ADR),제르다우(ADR),US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+TIMB,팀 브라질(ADR),팀 브라질(ADR),US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+UGP,울트라파르(ADR),울트라파르(ADR),US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+AZUL,AZUL(ADR),AZUL(ADR),US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+AFYA,아피야,아피야,US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+XP,XP,XP,US,Country Equity,Country: Brazil,true,toss_verified,toss_verified_2026-07-16;country_exposure=Brazil
+FLSA,FLSA,FLSA,US,Country ETF,Country: Saudi Arabia,true,toss_verified,toss_verified_2026-07-16;country_exposure=Saudi_Arabia
+TLK,텔콤 인도네시아(ADR),텔콤 인도네시아(ADR),US,Country Equity,Country: Indonesia,true,toss_verified,toss_verified_2026-07-16;country_exposure=Indonesia
+RACE,페라리,페라리,US,Country Equity,Country: Italy,true,toss_verified,toss_verified_2026-07-16;country_exposure=Italy
+SHOP,쇼피파이,쇼피파이,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+RY,로열 뱅크 오브 캐나다,로열 뱅크 오브 캐나다,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+TD,토론토 도미니언 뱅크,토론토 도미니언 뱅크,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+BMO,뱅크 오브 몬트리올,뱅크 오브 몬트리올,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+BNS,뱅크 오브 노바스코샤,뱅크 오브 노바스코샤,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+ENB,엔브리지,엔브리지,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+TRP,TC 에너지,TC 에너지,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+SU,선코어 에너지,선코어 에너지,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+CNQ,캐나디안 내추럴 리소시스,캐나디안 내추럴 리소시스,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+CNI,캐나디안 내셔널 레일웨이,캐나디안 내셔널 레일웨이,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+CP,캐나디안 퍼시픽 레일웨이,캐나디안 퍼시픽 레일웨이,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+BCE,BCE,BCE,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+CM,캐나디안 임페리얼 뱅크 오브 커머스,캐나디안 임페리얼 뱅크 오브 커머스,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+MFC,매뉴라이프 파이낸셜,매뉴라이프 파이낸셜,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+WCN,웨이스트 커넥션스,웨이스트 커넥션스,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+CCJ,카메코,카메코,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+NTR,뉴트리엔,뉴트리엔,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+IMO,임페리얼 오일,임페리얼 오일,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+TECK,텍 리소시스,텍 리소시스,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+GIL,질단 액티브웨어,질단 액티브웨어,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+LULU,룰루레몬,룰루레몬,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+CVE,세노버스 에너지,세노버스 에너지,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+WPM,휘턴 프레셔스 메탈스,휘턴 프레셔스 메탈스,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+FNV,프랑코 네바다,프랑코 네바다,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+BIP,브룩필드 인프라스트럭처 파트너스,브룩필드 인프라스트럭처 파트너스,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+BAM,브룩필드 에셋 매니지먼트,브룩필드 에셋 매니지먼트,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+BEPC,브룩필드 리뉴어블,브룩필드 리뉴어블,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+TAC,트랜스알타,트랜스알타,US,Country Equity,Country: Canada,true,toss_verified,toss_verified_2026-07-16;country_exposure=Canada
+GFI,골드 필즈(ADR),골드 필즈(ADR),US,Country Equity,Country: South Africa,true,toss_verified,toss_verified_2026-07-16;country_exposure=South_Africa
+AU,앵글로골드 아샨티,앵글로골드 아샨티,US,Country Equity,Country: South Africa,true,toss_verified,toss_verified_2026-07-16;country_exposure=South_Africa
+SBSW,시바녜 스틸워터(ADR),시바녜 스틸워터(ADR),US,Country Equity,Country: South Africa,true,toss_verified,toss_verified_2026-07-16;country_exposure=South_Africa
+HMY,하모니 골드 마이닝(ADR),하모니 골드 마이닝(ADR),US,Country Equity,Country: South Africa,true,toss_verified,toss_verified_2026-07-16;country_exposure=South_Africa
+DRD,DRD골드(ADR),DRD골드(ADR),US,Country Equity,Country: South Africa,true,toss_verified,toss_verified_2026-07-16;country_exposure=South_Africa

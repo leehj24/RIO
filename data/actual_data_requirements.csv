@@ -1,0 +1,16 @@
+﻿data_item,purpose,primary_source,fallback_or_proxy,live_rule_v7
+주문가능금액/현금,"운용금 상한, 현금 보유, 신규 매수 가능액 계산",Toss buying_power,DRY_RUN mock cash / 수동 입력,LIVE에서는 실데이터 파싱 실패 시 주문 차단
+보유종목/수량/평단,"실제 매도 수량, PnL, 손절/익절 판단",Toss positions,state.json sim_positions,LIVE에서는 실데이터 파싱 실패 시 주문 차단
+현재가,"매수 가능 여부, 주문 수량, 평가손익",Toss prices,dry-run fallback price,LIVE에서는 실데이터 파싱 실패 시 주문 차단
+일봉 OHLCV,Supertrend/DoubleTrend/Dolpa/Bollinger/SDE 변동성,Toss candles,make_mock_ohlcv,"DRY_RUN 대체 가능, LIVE에서는 설정에 따라 차단/허용"
+분봉 OHLCV,실시간 눌림/반등/박스권 진입 정밀화,Toss candles interval,일봉 기반 간이 판단,"DRY_RUN 대체 가능, LIVE에서는 설정에 따라 차단/허용"
+종목 master,심볼/시장/KR/US/테마 매핑,Toss stocks + data/symbols.csv,수동 symbols.csv,"DRY_RUN 대체 가능, LIVE에서는 설정에 따라 차단/허용"
+재무 데이터 PER/PBR/ROE 등,Value/Quality/Growth 팩터,Naver/KRX/DART/상용 데이터,mock universe / LLM 요약,"DRY_RUN 대체 가능, LIVE에서는 설정에 따라 차단/허용"
+거래대금/시총/스프레드,Liquidity/Risk 팩터,Toss/거래소/외부 API,가격/거래량 proxy,"DRY_RUN 대체 가능, LIVE에서는 설정에 따라 차단/허용"
+공시/실적/리비전,Growth/Revision/News 팩터,DART/거래소/뉴스,Google evidence,"DRY_RUN 대체 가능, LIVE에서는 설정에 따라 차단/허용"
+뉴스/정치/경제,"Google evidence, NVIDIA 확률 판단",Gemini grounding,mock evidence,"DRY_RUN 대체 가능, LIVE에서는 설정에 따라 차단/허용"
+기상,전력/농산물/운송/재생에너지 테마,기상 API/Google evidence,검색 생략 또는 Google evidence,"DRY_RUN 대체 가능, LIVE에서는 설정에 따라 차단/허용"
+스포츠,스포츠/엔터 이벤트 관련 테마,스포츠 API/Google evidence,검색 생략,"DRY_RUN 대체 가능, LIVE에서는 설정에 따라 차단/허용"
+온체인/BTC,크립토/거래소/채굴/ETF 테마,온체인 API/Google evidence,Google evidence,"DRY_RUN 대체 가능, LIVE에서는 설정에 따라 차단/허용"
+환율,"US orderAmount 환산, 해외주식 투자금 계산",Toss exchange/외부 FX,USD_KRW_FX_RATE 수동값,"DRY_RUN 대체 가능, LIVE에서는 설정에 따라 차단/허용"
+Sapience/외부 예측시장 가격,LMSR 외부 reference price,Sapience SDK/API,내부 LMSR만 사용,"DRY_RUN 대체 가능, LIVE에서는 설정에 따라 차단/허용"

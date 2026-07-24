@@ -1,0 +1,363 @@
+﻿raw_name,market_guess,theme_guess,note
+ABB,US,Global Industrial,user_supplied_watchlist
+크레디트스위스,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+Novartis,US,Pharma,user_supplied_watchlist
+Roche,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+UBS,US,Bank,user_supplied_watchlist
+BYD,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+CNNC,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+Baidu,US,China AI,user_supplied_watchlist
+DJI,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+EHang,US,Drone/eVTOL,user_supplied_watchlist
+NIO,US,EV,user_supplied_watchlist
+BMW,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+BioNTech,US,Biotech,user_supplied_watchlist
+시멘스에너지,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+Mercedes-Benz,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+SAP,US,Enterprise Software,user_supplied_watchlist
+Volkswagen,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+NKT,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+Orsted,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+Vestas Wind Systems,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+이베르드롤라,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+EDF,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+탈레스,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+넥산스,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+파롯,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+Geely,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+차이나전력,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+Quantum Machines,GLOBAL_CANDIDATE,Quantum Computing,user_supplied_watchlist
+엔엘,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+프리즈미안,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+후루카와전기,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+스미토모전기,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+Yaskawa Electric,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+FANUC,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+미쓰비시중공업,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+도쿄전력,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+토시바,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+유한양행,KR,Pharma,user_supplied_watchlist
+기아,KR,EV/Auto,user_supplied_watchlist
+가온전선,KR,Power Grid,user_supplied_watchlist
+SK하이닉스,KR,AI Semiconductor,user_supplied_watchlist
+현대건설,KR,Infrastructure,user_supplied_watchlist
+한화,KR,Defense,user_supplied_watchlist
+DB하이텍,KR,Foundry,user_supplied_watchlist
+상상인증권,KR,Securities,user_supplied_watchlist
+대한전선,KR,Power Grid,user_supplied_watchlist
+동양,KR,Infrastructure,user_supplied_watchlist
+한진,KR,Logistics,user_supplied_watchlist
+오리엔트바이오,KR,Biotech,user_supplied_watchlist
+진흥기업,KR,Infrastructure,user_supplied_watchlist
+유안타증권,KR,Securities,user_supplied_watchlist
+한화투자증권,KR,Securities,user_supplied_watchlist
+대신증권,KR,Securities,user_supplied_watchlist
+SNT다이내믹스,KR,Defense,user_supplied_watchlist
+포스코퓨처엠,KR,Battery,user_supplied_watchlist
+서울식품,KR,Consumer,user_supplied_watchlist
+현대자동차,KR,EV/Auto,user_supplied_watchlist
+삼영전기,KR,Components,user_supplied_watchlist
+삼성전자,KR,AI Semiconductor,user_supplied_watchlist
+NH투자증권,KR,Securities,user_supplied_watchlist
+녹십자,KR,Pharma,user_supplied_watchlist
+대원전선,KR,Power Grid,user_supplied_watchlist
+삼성SDI,KR,Battery,user_supplied_watchlist
+서부T&D,KR,Real Estate,user_supplied_watchlist
+미래에셋증권,KR,Securities,user_supplied_watchlist
+에이프로젠,KR,Biotech,user_supplied_watchlist
+사조동아원,KR,Consumer,user_supplied_watchlist
+아진전자부품,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+포스코엠텍,KR,Secondary Battery,user_supplied_watchlist
+한화솔루션,KR,Solar,user_supplied_watchlist
+퍼스텍,KR,Defense,user_supplied_watchlist
+세보엠이씨,KR,Infrastructure,user_supplied_watchlist
+영화금속,KR,Auto Parts,user_supplied_watchlist
+한화에어로스페이스,KR,Aerospace/Defense,user_supplied_watchlist
+더존비즈온,KR,Enterprise Software,user_supplied_watchlist
+디와이,KR,Industrial,user_supplied_watchlist
+계룡건설,KR,Infrastructure,user_supplied_watchlist
+스페코,KR,Defense,user_supplied_watchlist
+부방,KR,Holding,user_supplied_watchlist
+한국전력공사,KR,Power,user_supplied_watchlist
+삼성증권,KR,Securities,user_supplied_watchlist
+카스,KR,Equipment,user_supplied_watchlist
+광명전기,KR,Power Grid,user_supplied_watchlist
+SK텔레콤,KR,Telecom/AI,user_supplied_watchlist
+유니슨,KR,Renewable Energy,user_supplied_watchlist
+삼성SDS,KR,Cloud/AI,user_supplied_watchlist
+브이티,KR,Consumer,user_supplied_watchlist
+와이지-원,KR,Industrial,user_supplied_watchlist
+SBI인베스트먼트,KR,VC,user_supplied_watchlist
+대교,KR,Education,user_supplied_watchlist
+롯데에너지머티리얼즈,KR,Battery,user_supplied_watchlist
+대신정보통신,KR,IT Service,user_supplied_watchlist
+대호특수강,KR,Materials,user_supplied_watchlist
+다우기술,KR,IT Service,user_supplied_watchlist
+디씨엠,KR,Materials,user_supplied_watchlist
+동신건설,KR,Infrastructure,user_supplied_watchlist
+팜스토리,KR,Agri/Food,user_supplied_watchlist
+대성창투,KR,VC,user_supplied_watchlist
+한국제지,KR,Materials,user_supplied_watchlist
+삼성물산,KR,Holding,user_supplied_watchlist
+KT,KR,Telecom/AI,user_supplied_watchlist
+한글과컴퓨터,KR,AI Software,user_supplied_watchlist
+아이즈비전,KR,Telecom,user_supplied_watchlist
+신세계인터내셔날,KR,Consumer,user_supplied_watchlist
+오스템,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+LG유플러스,KR,Telecom/AI,user_supplied_watchlist
+유나이티드제약,KR,Pharma,user_supplied_watchlist
+동성화인텍,KR,LNG,user_supplied_watchlist
+네패스,KR,Semiconductor Packaging,user_supplied_watchlist
+두산에너빌리티,KR,Nuclear/Power,user_supplied_watchlist
+NAVER,KR,AI Software,user_supplied_watchlist
+카카오,KR,Platform,user_supplied_watchlist
+인포뱅크,KR,Mobility/AI,user_supplied_watchlist
+카페24,KR,E-commerce,user_supplied_watchlist
+한미반도체,KR,HBM/Semiconductor,user_supplied_watchlist
+KSS해운,KR,Shipping,user_supplied_watchlist
+유니온머티리얼,KR,Rare Earth,user_supplied_watchlist
+이스트소프트,KR,AI Software,user_supplied_watchlist
+한국항공우주,KR,Aerospace/Defense,user_supplied_watchlist
+CJ프레시웨이,KR,Consumer,user_supplied_watchlist
+한전KPS,KR,Nuclear/Power,user_supplied_watchlist
+중앙첨단소재,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+한전기술,KR,Nuclear/Power,user_supplied_watchlist
+한미글로벌,KR,Infrastructure,user_supplied_watchlist
+안랩,KR,Cybersecurity,user_supplied_watchlist
+삼진엘앤디,KR,Components,user_supplied_watchlist
+텔레칩스,KR,Automotive Semiconductor,user_supplied_watchlist
+신한지주,KR,Bank,user_supplied_watchlist
+리노공업,KR,Semiconductor,user_supplied_watchlist
+에스피지,KR,Robotics,user_supplied_watchlist
+CMG제약,KR,Pharma,user_supplied_watchlist
+현대로템,KR,Defense,user_supplied_watchlist
+LG CNS,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+빅텍,KR,Defense,user_supplied_watchlist
+LG전자,KR,Electronics/AI,user_supplied_watchlist
+엘앤에프,KR,Battery,user_supplied_watchlist
+셀트리온,KR,Biotech,user_supplied_watchlist
+일신바이오,KR,Biotech,user_supplied_watchlist
+한국금융지주,KR,Securities,user_supplied_watchlist
+텔코웨어,KR,Telecom,user_supplied_watchlist
+LIG넥스원,KR,Defense,user_supplied_watchlist
+젬백스,KR,Biotech,user_supplied_watchlist
+이엠앤아이,KR,Materials,user_supplied_watchlist
+유진테크,KR,Semiconductor,user_supplied_watchlist
+유비온,KR,EdTech,user_supplied_watchlist
+차바이오텍,KR,Biotech,user_supplied_watchlist
+메디톡스,KR,Biotech,user_supplied_watchlist
+모바일어플라이언스,KR,Autonomous,user_supplied_watchlist
+평화산업,KR,Auto Parts,user_supplied_watchlist
+상신이디피,KR,Battery,user_supplied_watchlist
+트리니티항공,KR_CANDIDATE,Space/Defense,user_supplied_watchlist
+셀트리온헬스케어,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+일진파워,KR,Nuclear/Power,user_supplied_watchlist
+테스,KR,Semiconductor,user_supplied_watchlist
+에스에너지,KR,Renewable Energy,user_supplied_watchlist
+SK이노베이션,KR,Battery,user_supplied_watchlist
+엠씨넥스,KR,Mobility,user_supplied_watchlist
+쎄트렉아이,KR,Space,user_supplied_watchlist
+우림피티에스,KR,Robotics,user_supplied_watchlist
+에스앤에스텍,KR,Semiconductor,user_supplied_watchlist
+일진전기,KR,Power Grid,user_supplied_watchlist
+KB금융,KR,Bank,user_supplied_watchlist
+대양전기공업,KR,Ship/Defense,user_supplied_watchlist
+로보티즈,KR,Robotics,user_supplied_watchlist
+셀바스AI,KR,AI Software,user_supplied_watchlist
+큐리언트,KR,Biotech,user_supplied_watchlist
+티로보틱스,KR,Robotics,user_supplied_watchlist
+모트렉스,KR,Autonomous,user_supplied_watchlist
+한미약품,KR,Pharma,user_supplied_watchlist
+앱코,KR,Consumer Tech,user_supplied_watchlist
+화인베스틸,KR,Materials,user_supplied_watchlist
+탑코미디어,KR,Media,user_supplied_watchlist
+원일티엔아이,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+메리츠금융지주,KR,Financial Holding,user_supplied_watchlist
+지씨셀,KR,Biotech,user_supplied_watchlist
+율촌,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+NHN,KR,Cloud/AI,user_supplied_watchlist
+종근당,KR,Pharma,user_supplied_watchlist
+데브시스터즈,KR,Game,user_supplied_watchlist
+해성디에스,KR,Semiconductor,user_supplied_watchlist
+웹스,KR,Materials,user_supplied_watchlist
+에이비온,KR,Biotech,user_supplied_watchlist
+HL만도,KR,Mobility,user_supplied_watchlist
+삼성바이오로직스,KR,Biotech,user_supplied_watchlist
+다산디엠씨,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+디알텍,KR,Medical AI,user_supplied_watchlist
+이노인스트루먼트,KR,Equipment,user_supplied_watchlist
+티엠씨,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+원익피앤이,KR,Battery,user_supplied_watchlist
+쎄노텍,KR,Materials,user_supplied_watchlist
+엔투텍,KR,Semiconductor,user_supplied_watchlist
+LS에코에너지,KR,Power Grid,user_supplied_watchlist
+엔비티,KR,AdTech,user_supplied_watchlist
+원익IPS,KR,Semiconductor,user_supplied_watchlist
+에코프로비엠,KR,Battery,user_supplied_watchlist
+한화시스템,KR,Defense AI,user_supplied_watchlist
+와이즈버즈,KR,AI/AdTech,user_supplied_watchlist
+켄코아에어로스페이스,KR,Aerospace/Defense,user_supplied_watchlist
+레인보우로보틱스,KR,Robotics,user_supplied_watchlist
+롯데이노베이트,KR,Cloud/AI,user_supplied_watchlist
+인투셀,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+아이스크림에듀,KR,EdTech,user_supplied_watchlist
+핀텔,KR,AI Software,user_supplied_watchlist
+효성중공업,KR,Power Grid,user_supplied_watchlist
+라온피플,KR,AI Software,user_supplied_watchlist
+바이브컴퍼니,KR,AI Software,user_supplied_watchlist
+솔트룩스,KR,AI Software,user_supplied_watchlist
+네온테크,KR,Drone,user_supplied_watchlist
+현대오토에버,KR,Mobility/AI,user_supplied_watchlist
+셀비온,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+딥노이드,KR,Medical AI,user_supplied_watchlist
+라닉스,KR,Autonomous,user_supplied_watchlist
+덕산테코피아,KR,Battery,user_supplied_watchlist
+현대에너지솔루션,KR,Renewable Energy,user_supplied_watchlist
+오로스테크놀로지,KR,Semiconductor,user_supplied_watchlist
+루닛,KR,Medical AI,user_supplied_watchlist
+누보,KR,Agri/Food,user_supplied_watchlist
+두산퓨얼셀,KR,Hydrogen,user_supplied_watchlist
+뷰노,KR,Medical AI,user_supplied_watchlist
+세림B&G,KR,Eco Materials,user_supplied_watchlist
+스피어,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+뉴로메카,KR,Robotics,user_supplied_watchlist
+지아이이노베이션,KR,Biotech,user_supplied_watchlist
+탑머티리얼,KR,Battery,user_supplied_watchlist
+제노코,KR,Space/Defense,user_supplied_watchlist
+SK아이이테크놀로지,KR,Battery,user_supplied_watchlist
+드림인사이트,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+하이딥,KR,Semiconductor,user_supplied_watchlist
+윤성에프앤씨,KR,Battery,user_supplied_watchlist
+LG에너지솔루션,KR,Battery,user_supplied_watchlist
+DL이앤씨,KR,Infrastructure,user_supplied_watchlist
+마인즈랩,KR,AI Software,user_supplied_watchlist
+뉴로핏,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+범한퓨얼셀,KR,Hydrogen,user_supplied_watchlist
+유일로보틱스,KR,Robotics,user_supplied_watchlist
+대명에너지,KR,Renewable Energy,user_supplied_watchlist
+에스비비테크,KR,Robotics,user_supplied_watchlist
+더블유씨피,KR,Battery,user_supplied_watchlist
+리센스메디컬,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+넥스트칩,KR,Autonomous,user_supplied_watchlist
+LS머트리얼즈,KR,Battery,user_supplied_watchlist
+한선엔지니어링,KR,Power/Hydrogen,user_supplied_watchlist
+현대그린푸드,KR,Consumer,user_supplied_watchlist
+두산로보틱스,KR,Robotics,user_supplied_watchlist
+OCI,KR,Solar Materials,user_supplied_watchlist
+우진엔텍,KR,Nuclear/Power,user_supplied_watchlist
+에스오에스랩,KR,Autonomous,user_supplied_watchlist
+오가노이드사이언스,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+나라스페이스테크놀로지,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+큐브엔텍,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+드론플라이,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+동서발전,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+GS파워,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+한미전기,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+아이크로스큐,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+서부발전,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+한국과학기술원 관련 산학기업,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+카카오엔터프라이즈,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+중부발전,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+남부발전,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+네이버클라우드,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+포스코건설,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+포스코에너지,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+퀀텀에너지연구소,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+퀀텀테크코리아,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+삼양컴텍,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+SK에코플랜트,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+SK E&S,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+유콘시스템,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+ASML,US,Semiconductor,user_supplied_watchlist
+Stellantis,US,EV/Auto,user_supplied_watchlist
+로사톰,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+사브,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+AstraZeneca,US,Pharma,user_supplied_watchlist
+BAE Systems,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+바클레이즈,US,Bank,user_supplied_watchlist
+HSBC,US,Bank,user_supplied_watchlist
+Apple,US,Big Tech,user_supplied_watchlist
+C3.ai,US,AI Software,user_supplied_watchlist
+Applied Materials,US,Semiconductor,user_supplied_watchlist
+AMD,US,AI Semiconductor,user_supplied_watchlist
+Amgen,US,Biotech,user_supplied_watchlist
+Amazon,US,Big Tech,user_supplied_watchlist
+AST 스페이스모바일,US,Space,user_supplied_watchlist
+Aurora Innovation,US,Autonomous,user_supplied_watchlist
+AeroVironment,US,Drone,user_supplied_watchlist
+Broadcom,US,AI Semiconductor,user_supplied_watchlist
+보잉,US,Aerospace/Defense,user_supplied_watchlist
+Alibaba,US,China Tech,user_supplied_watchlist
+뱅크오브아메리카,US,Bank,user_supplied_watchlist
+Bloom Energy,US,Hydrogen,user_supplied_watchlist
+Boston Dynamics,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+씨티그룹,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+카메코,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+코브라케이블,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+Cisco,US,Network Infrastructure,user_supplied_watchlist
+Canadian Solar,US,Renewable Energy,user_supplied_watchlist
+케이블&와이어즈,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+Dell,US,AI Infrastructure,user_supplied_watchlist
+듀크에너지,US,Power Grid,user_supplied_watchlist
+엘빗시스템즈,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+Ford,US,EV/Auto,user_supplied_watchlist
+Figure AI,GLOBAL_CANDIDATE,AI Semiconductor,user_supplied_watchlist
+파이어플라이 에어로스페이스,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+First Solar,US,Renewable Energy,user_supplied_watchlist
+제너럴 다이내믹스,US,Aerospace/Defense,user_supplied_watchlist
+GE Vernova,US,Power Grid,user_supplied_watchlist
+Gilead Sciences,US,Biotech,user_supplied_watchlist
+General Motors,US,EV/Auto,user_supplied_watchlist
+Alphabet,US,Big Tech,user_supplied_watchlist
+골드만삭스,US,Bank,user_supplied_watchlist
+글로벌스타,US,Space,user_supplied_watchlist
+헬리오스와이어,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+Honeywell,US,Aerospace/Industrial,user_supplied_watchlist
+HP,US,PC/Hardware,user_supplied_watchlist
+IBM,US,Enterprise AI,user_supplied_watchlist
+Intel,US,AI Semiconductor,user_supplied_watchlist
+IonQ,US,Quantum Computing,user_supplied_watchlist
+iRobot,US,Robotics,user_supplied_watchlist
+Intuitive Surgical,US,Medical Robot,user_supplied_watchlist
+Johnson & Johnson,US,Pharma,user_supplied_watchlist
+JP모건체이스,US,Bank,user_supplied_watchlist
+KEPCO ADR,US,Power,user_supplied_watchlist
+카르만 홀딩스,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+Kratos Defense,US,Drone/Defense,user_supplied_watchlist
+Lucid,US,EV,user_supplied_watchlist
+Eli Lilly,US,Pharma,user_supplied_watchlist
+록히드마틴,US,Aerospace/Defense,user_supplied_watchlist
+Lam Research,US,Semiconductor,user_supplied_watchlist
+인튜이티브 머신스,US,Space,user_supplied_watchlist
+Mobileye,US,Autonomous,user_supplied_watchlist
+Meta,US,Big Tech,user_supplied_watchlist
+Moderna,US,Biotech,user_supplied_watchlist
+모건스탠리,US,Bank,user_supplied_watchlist
+Microsoft,US,AI Software,user_supplied_watchlist
+Micron,US,Memory/HBM,user_supplied_watchlist
+넥스트에라에너지,US,Renewable Energy,user_supplied_watchlist
+노스럽그루먼,US,Aerospace/Defense,user_supplied_watchlist
+NVIDIA,US,AI Semiconductor,user_supplied_watchlist
+Oracle,US,Cloud/AI,user_supplied_watchlist
+PG&E,US,Power Grid,user_supplied_watchlist
+Pfizer,US,Pharma,user_supplied_watchlist
+플래닛 랩스,US,Satellite,user_supplied_watchlist
+Palantir,US,Defense AI,user_supplied_watchlist
+Plug Power,US,Hydrogen,user_supplied_watchlist
+D-Wave Quantum,US,Quantum Computing,user_supplied_watchlist
+Qualcomm,US,AI Edge,user_supplied_watchlist
+레드와이어,US,Space,user_supplied_watchlist
+RealSense,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist
+Rigetti Computing,US,Quantum Computing,user_supplied_watchlist
+Rivian,US,EV,user_supplied_watchlist
+로켓랩,US,Space,user_supplied_watchlist
+레이시온 테크놀로지스,US,Aerospace/Defense,user_supplied_watchlist
+에코스타,US,Satellite,user_supplied_watchlist
+사우스와이어,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+Teradyne,US,Robotics/Semiconductor,user_supplied_watchlist
+Tesla,US,EV/AI,user_supplied_watchlist
+TSMC,US,AI Semiconductor,user_supplied_watchlist
+보이저 스페이스,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+웨스팅하우스,KR_CANDIDATE,Watchlist,user_supplied_watchlist
+웰스파고,US,Bank,user_supplied_watchlist
+Zapata Computing,GLOBAL_CANDIDATE,Watchlist,user_supplied_watchlist

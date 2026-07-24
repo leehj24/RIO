@@ -1,0 +1,15 @@
+{
+  "version": "v9",
+  "python_compile_errors": [],
+  "changed_partial_to_actual": [
+    "Sapience",
+    "OpenDART",
+    "KRX/pykrx",
+    "round pattern"
+  ],
+  "requirement_status_counts": {
+    "O": 140,
+    "△": 5,
+    "X": 1
+  }
+}

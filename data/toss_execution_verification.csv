@@ -1,0 +1,464 @@
+﻿symbol,name,market,theme,stock_info_found,price_found,last_price,currency,verification_status,failure_reason,verified_at_utc
+NVS,Novartis,US,Pharma,True,True,150.8,USD,verified,,2026-07-16T00:44:44Z
+UBS,UBS,US,Bank,True,True,55.01,USD,verified,,2026-07-16T00:44:44Z
+BIDU,Baidu,US,China AI,True,True,111.68,USD,verified,,2026-07-16T00:44:44Z
+EH,EHang,US,Drone/eVTOL,True,True,5.47,USD,verified,,2026-07-16T00:44:44Z
+NIO,NIO,US,EV,True,True,5.05,USD,verified,,2026-07-16T00:44:44Z
+BNTX,BioNTech,US,Biotech,True,True,91.99,USD,verified,,2026-07-16T00:44:44Z
+SAP,SAP,US,Enterprise Software,True,True,158.24,USD,verified,,2026-07-16T00:44:44Z
+000100,유한양행,KR,Pharma,True,True,69700,KRW,verified,,2026-07-16T00:44:44Z
+000270,기아,KR,EV/Auto,True,True,145300,KRW,verified,,2026-07-16T00:44:44Z
+000500,가온전선,KR,Power Grid,True,True,200000,KRW,verified,,2026-07-16T00:44:44Z
+000660,SK하이닉스,KR,AI Semiconductor,True,True,1851000,KRW,verified,,2026-07-16T00:44:44Z
+000720,현대건설,KR,Infrastructure,True,True,99000,KRW,verified,,2026-07-16T00:44:44Z
+000880,한화,KR,Defense,True,True,92600,KRW,verified,,2026-07-16T00:44:44Z
+000990,DB하이텍,KR,Foundry,True,True,112400,KRW,verified,,2026-07-16T00:44:44Z
+001290,상상인증권,KR,Securities,True,True,732,KRW,verified,,2026-07-16T00:44:44Z
+001440,대한전선,KR,Power Grid,True,True,28275,KRW,verified,,2026-07-16T00:44:44Z
+001520,동양,KR,Infrastructure,True,True,550,KRW,verified,,2026-07-16T00:44:44Z
+002320,한진,KR,Logistics,True,True,15540,KRW,verified,,2026-07-16T00:44:44Z
+002630,오리엔트바이오,KR,Biotech,True,True,870,KRW,verified,,2026-07-16T00:44:44Z
+002780,진흥기업,KR,Infrastructure,True,True,775,KRW,verified,,2026-07-16T00:44:44Z
+003470,유안타증권,KR,Securities,True,True,4465,KRW,verified,,2026-07-16T00:44:44Z
+003530,한화투자증권,KR,Securities,True,True,4515,KRW,verified,,2026-07-16T00:44:44Z
+003540,대신증권,KR,Securities,True,True,25750,KRW,verified,,2026-07-16T00:44:44Z
+003570,SNT다이내믹스,KR,Defense,True,True,34250,KRW,verified,,2026-07-16T00:44:44Z
+003670,포스코퓨처엠,KR,Battery,True,True,153400,KRW,verified,,2026-07-16T00:44:44Z
+004410,서울식품,KR,Consumer,True,True,1031,KRW,verified,,2026-07-16T00:44:44Z
+005380,현대차,KR,EV/Auto,True,True,424000,KRW,verified,,2026-07-16T00:44:44Z
+005680,삼영전자,KR,Components,True,True,14470,KRW,verified,,2026-07-16T00:44:44Z
+005930,삼성전자,KR,AI Semiconductor,True,True,256500,KRW,verified,,2026-07-16T00:44:44Z
+005940,NH투자증권,KR,Securities,True,True,30450,KRW,verified,,2026-07-16T00:44:44Z
+006280,녹십자,KR,Pharma,True,True,121700,KRW,verified,,2026-07-16T00:44:44Z
+006340,대원전선,KR,Power Grid,True,True,12300,KRW,verified,,2026-07-16T00:44:44Z
+006400,삼성SDI,KR,Battery,True,True,445500,KRW,verified,,2026-07-16T00:44:44Z
+006730,서부T&D,KR,Real Estate,True,True,10350,KRW,verified,,2026-07-16T00:44:44Z
+006800,미래에셋증권,KR,Securities,True,True,39700,KRW,verified,,2026-07-16T00:44:44Z
+007460,에이프로젠,KR,Biotech,True,True,2290,KRW,verified,,2026-07-16T00:44:44Z
+008040,사조동아원,KR,Consumer,True,True,847,KRW,verified,,2026-07-16T00:44:44Z
+009520,포스코엠텍,KR,Secondary Battery,True,True,10880,KRW,verified,,2026-07-16T00:44:44Z
+009830,한화솔루션,KR,Solar,True,True,29900,KRW,verified,,2026-07-16T00:44:44Z
+010820,퍼스텍,KR,Defense,True,True,5850,KRW,verified,,2026-07-16T00:44:44Z
+011560,세보엠이씨,KR,Infrastructure,True,True,22150,KRW,verified,,2026-07-16T00:44:44Z
+012280,영화금속,KR,Auto Parts,True,True,832,KRW,verified,,2026-07-16T00:44:44Z
+012450,한화에어로스페이스,KR,Aerospace/Defense,True,True,935000,KRW,verified,,2026-07-16T00:44:44Z
+013570,디와이,KR,Industrial,True,True,3880,KRW,verified,,2026-07-16T00:44:44Z
+013580,계룡건설,KR,Infrastructure,True,True,18680,KRW,verified,,2026-07-16T00:44:44Z
+013810,스페코,KR,Defense,True,True,1787,KRW,verified,,2026-07-16T00:44:44Z
+014470,부방,KR,Holding,True,True,1001,KRW,verified,,2026-07-16T00:44:44Z
+015760,한국전력,KR,Power,True,True,34100,KRW,verified,,2026-07-16T00:44:44Z
+016360,삼성증권,KR,Securities,True,True,106800,KRW,verified,,2026-07-16T00:44:44Z
+016920,카스,KR,Equipment,True,True,995,KRW,verified,,2026-07-16T00:44:44Z
+017040,광명전기,KR,Power Grid,True,True,932,KRW,verified,,2026-07-16T00:44:44Z
+017670,SK텔레콤,KR,Telecom/AI,True,True,89700,KRW,verified,,2026-07-16T00:44:44Z
+018000,유니슨,KR,Renewable Energy,True,True,899,KRW,verified,,2026-07-16T00:44:44Z
+018260,삼성SDS,KR,Cloud/AI,True,True,196500,KRW,verified,,2026-07-16T00:44:44Z
+018290,브이티,KR,Consumer,True,True,12150,KRW,verified,,2026-07-16T00:44:44Z
+019210,와이지-원,KR,Industrial,True,True,23900,KRW,verified,,2026-07-16T00:44:44Z
+019550,SBI인베스트먼트,KR,VC,True,True,948,KRW,verified,,2026-07-16T00:44:44Z
+019680,대교,KR,Education,True,True,976,KRW,verified,,2026-07-16T00:44:44Z
+020150,롯데에너지머티리얼즈,KR,Battery,True,True,32700,KRW,verified,,2026-07-16T00:44:44Z
+020180,대신정보통신,KR,IT Service,True,True,880,KRW,verified,,2026-07-16T00:44:44Z
+021040,대호특수강,KR,Materials,True,True,945,KRW,verified,,2026-07-16T00:44:44Z
+023590,다우기술,KR,IT Service,True,True,35500,KRW,verified,,2026-07-16T00:44:44Z
+024090,디씨엠,KR,Materials,True,True,11080,KRW,verified,,2026-07-16T00:44:44Z
+025950,동신건설,KR,Infrastructure,True,True,11130,KRW,verified,,2026-07-16T00:44:44Z
+027710,팜스토리,KR,Agri/Food,True,True,1089,KRW,verified,,2026-07-16T00:44:44Z
+027830,대성창투,KR,VC,True,True,975,KRW,verified,,2026-07-16T00:44:44Z
+027970,한국제지,KR,Materials,True,True,541,KRW,verified,,2026-07-16T00:44:44Z
+028260,삼성물산,KR,Holding,True,True,344500,KRW,verified,,2026-07-16T00:44:44Z
+030200,KT,KR,Telecom/AI,True,True,52500,KRW,verified,,2026-07-16T00:44:44Z
+030520,한글과컴퓨터,KR,AI Software,True,True,16700,KRW,verified,,2026-07-16T00:44:44Z
+031310,아이즈비전,KR,Telecom,True,True,941,KRW,verified,,2026-07-16T00:44:44Z
+031430,신세계인터내셔날,KR,Consumer,True,True,11750,KRW,verified,,2026-07-16T00:44:44Z
+032640,LG유플러스,KR,Telecom/AI,True,True,14430,KRW,verified,,2026-07-16T00:44:44Z
+033270,유나이티드제약,KR,Pharma,True,True,17780,KRW,verified,,2026-07-16T00:44:44Z
+033500,동성화인텍,KR,LNG,True,True,16000,KRW,verified,,2026-07-16T00:44:44Z
+033640,네패스,KR,Semiconductor Packaging,True,True,19410,KRW,verified,,2026-07-16T00:44:44Z
+034020,두산에너빌리티,KR,Nuclear/Power,True,True,70200,KRW,verified,,2026-07-16T00:44:44Z
+035420,NAVER,KR,AI Software,True,True,187400,KRW,verified,,2026-07-16T00:44:44Z
+035720,카카오,KR,Platform,True,True,34950,KRW,verified,,2026-07-16T00:44:44Z
+039290,인포뱅크,KR,Mobility/AI,True,True,3535,KRW,verified,,2026-07-16T00:44:44Z
+042000,카페24,KR,E-commerce,True,True,16340,KRW,verified,,2026-07-16T00:44:44Z
+042700,한미반도체,KR,HBM/Semiconductor,True,True,248000,KRW,verified,,2026-07-16T00:44:44Z
+044450,KSS해운,KR,Shipping,True,True,9850,KRW,verified,,2026-07-16T00:44:44Z
+047400,유니온머티리얼,KR,Rare Earth,True,True,1021,KRW,verified,,2026-07-16T00:44:44Z
+047560,이스트소프트,KR,AI Software,True,True,7930,KRW,verified,,2026-07-16T00:44:44Z
+047810,한국항공우주,KR,Aerospace/Defense,True,True,148800,KRW,verified,,2026-07-16T00:44:44Z
+051500,CJ프레시웨이,KR,Consumer,True,True,22700,KRW,verified,,2026-07-16T00:44:44Z
+051600,한전KPS,KR,Nuclear/Power,True,True,43600,KRW,verified,,2026-07-16T00:44:44Z
+052690,한전기술,KR,Nuclear/Power,True,True,92300,KRW,verified,,2026-07-16T00:44:44Z
+053690,한미글로벌,KR,Infrastructure,True,True,16040,KRW,verified,,2026-07-16T00:44:44Z
+053800,안랩,KR,Cybersecurity,True,True,54900,KRW,verified,,2026-07-16T00:44:44Z
+054090,삼진엘앤디,KR,Components,True,True,931,KRW,verified,,2026-07-16T00:44:44Z
+054450,텔레칩스,KR,Automotive Semiconductor,True,True,9980,KRW,verified,,2026-07-16T00:44:44Z
+055550,신한지주,KR,Bank,True,True,107200,KRW,verified,,2026-07-16T00:44:44Z
+058470,리노공업,KR,Semiconductor,True,True,73600,KRW,verified,,2026-07-16T00:44:44Z
+058610,에스피지,KR,Robotics,True,True,67100,KRW,verified,,2026-07-16T00:44:44Z
+058820,CMG제약,KR,Pharma,True,True,869,KRW,verified,,2026-07-16T00:44:44Z
+064350,현대로템,KR,Defense,True,True,160600,KRW,verified,,2026-07-16T00:44:44Z
+065450,빅텍,KR,Defense,True,True,3130,KRW,verified,,2026-07-16T00:44:44Z
+066570,LG전자,KR,Electronics/AI,True,True,187400,KRW,verified,,2026-07-16T00:44:44Z
+066970,엘앤에프,KR,Battery,True,True,94200,KRW,verified,,2026-07-16T00:44:44Z
+068270,셀트리온,KR,Biotech,True,True,173200,KRW,verified,,2026-07-16T00:44:44Z
+068330,일신바이오,KR,Biotech,True,True,965,KRW,verified,,2026-07-16T00:44:44Z
+071050,한국금융지주,KR,Securities,True,True,226000,KRW,verified,,2026-07-16T00:44:44Z
+078000,텔코웨어,KR,Telecom,True,True,12630,KRW,verified,,2026-07-16T00:44:44Z
+079550,LIG넥스원,KR,Defense,True,True,737000,KRW,verified,,2026-07-16T00:44:44Z
+082270,젬백스,KR,Biotech,True,True,10320,KRW,verified,,2026-07-16T00:44:44Z
+083470,이엠앤아이,KR,Materials,True,True,705,KRW,verified,,2026-07-16T00:44:44Z
+084370,유진테크,KR,Semiconductor,True,True,145400,KRW,verified,,2026-07-16T00:44:44Z
+084440,유비온,KR,EdTech,True,True,928,KRW,verified,,2026-07-16T00:44:44Z
+085660,차바이오텍,KR,Biotech,True,True,9470,KRW,verified,,2026-07-16T00:44:44Z
+086900,메디톡스,KR,Biotech,True,True,73000,KRW,verified,,2026-07-16T00:44:44Z
+087260,모바일어플라이언스,KR,Autonomous,True,True,269,KRW,verified,,2026-07-16T00:44:44Z
+090080,평화산업,KR,Auto Parts,True,True,871,KRW,verified,,2026-07-16T00:44:44Z
+091580,상신이디피,KR,Battery,True,True,14980,KRW,verified,,2026-07-16T00:44:44Z
+094820,일진파워,KR,Nuclear/Power,True,True,10980,KRW,verified,,2026-07-16T00:44:44Z
+095610,테스,KR,Semiconductor,True,True,192700,KRW,verified,,2026-07-16T00:44:44Z
+095910,에스에너지,KR,Renewable Energy,True,True,768,KRW,verified,,2026-07-16T00:44:44Z
+096770,SK이노베이션,KR,Battery,True,True,124800,KRW,verified,,2026-07-16T00:44:44Z
+097520,엠씨넥스,KR,Mobility,True,True,18090,KRW,verified,,2026-07-16T00:44:44Z
+099320,쎄트렉아이,KR,Space,True,True,78000,KRW,verified,,2026-07-16T00:44:44Z
+101170,우림피티에스,KR,Robotics,True,True,7010,KRW,verified,,2026-07-16T00:44:44Z
+101490,에스앤에스텍,KR,Semiconductor,True,True,44550,KRW,verified,,2026-07-16T00:44:44Z
+103590,일진전기,KR,Power Grid,True,True,59800,KRW,verified,,2026-07-16T00:44:44Z
+105560,KB금융,KR,Bank,True,True,181100,KRW,verified,,2026-07-16T00:44:44Z
+108380,대양전기공업,KR,Ship/Defense,True,True,16900,KRW,verified,,2026-07-16T00:44:44Z
+108490,로보티즈,KR,Robotics,True,True,204500,KRW,verified,,2026-07-16T00:44:44Z
+108860,셀바스AI,KR,AI Software,True,True,6640,KRW,verified,,2026-07-16T00:44:44Z
+115180,큐리언트,KR,Biotech,True,True,17980,KRW,verified,,2026-07-16T00:44:44Z
+117730,티로보틱스,KR,Robotics,True,True,11220,KRW,verified,,2026-07-16T00:44:44Z
+118990,모트렉스,KR,Autonomous,True,True,5360,KRW,verified,,2026-07-16T00:44:44Z
+128940,한미약품,KR,Pharma,True,True,386500,KRW,verified,,2026-07-16T00:44:44Z
+129890,앱코,KR,Consumer Tech,True,True,937,KRW,verified,,2026-07-16T00:44:44Z
+133820,화인베스틸,KR,Materials,True,True,1077,KRW,verified,,2026-07-16T00:44:44Z
+134580,탑코미디어,KR,Media,True,True,1094,KRW,verified,,2026-07-16T00:44:44Z
+138040,메리츠금융지주,KR,Financial Holding,True,True,115800,KRW,verified,,2026-07-16T00:44:44Z
+144510,지씨셀,KR,Biotech,True,True,13530,KRW,verified,,2026-07-16T00:44:44Z
+181710,NHN,KR,Cloud/AI,True,True,37750,KRW,verified,,2026-07-16T00:44:44Z
+185750,종근당,KR,Pharma,True,True,68200,KRW,verified,,2026-07-16T00:44:44Z
+194480,데브시스터즈,KR,Game,True,True,16240,KRW,verified,,2026-07-16T00:44:44Z
+195870,해성디에스,KR,Semiconductor,True,True,56900,KRW,verified,,2026-07-16T00:44:44Z
+196700,웹스,KR,Materials,True,True,1065,KRW,verified,,2026-07-16T00:44:44Z
+203400,에이비온,KR,Biotech,True,True,703,KRW,verified,,2026-07-16T00:44:44Z
+204320,HL만도,KR,Mobility,True,True,45400,KRW,verified,,2026-07-16T00:44:44Z
+207940,삼성바이오로직스,KR,Biotech,True,True,1381000,KRW,verified,,2026-07-16T00:44:44Z
+214680,디알텍,KR,Medical AI,True,True,964,KRW,verified,,2026-07-16T00:44:44Z
+215790,이노인스트루먼트,KR,Equipment,True,True,850,KRW,verified,,2026-07-16T00:44:44Z
+217820,원익피앤이,KR,Battery,True,True,1861,KRW,verified,,2026-07-16T00:44:44Z
+222420,쎄노텍,KR,Materials,True,True,875,KRW,verified,,2026-07-16T00:44:44Z
+227950,엔투텍,KR,Semiconductor,True,True,1185,KRW,verified,,2026-07-16T00:44:44Z
+229640,LS에코에너지,KR,Power Grid,True,True,43350,KRW,verified,,2026-07-16T00:44:44Z
+236810,엔비티,KR,AdTech,True,True,1004,KRW,verified,,2026-07-16T00:44:44Z
+240810,원익IPS,KR,Semiconductor,True,True,128500,KRW,verified,,2026-07-16T00:44:44Z
+247540,에코프로비엠,KR,Battery,True,True,117800,KRW,verified,,2026-07-16T00:44:44Z
+272210,한화시스템,KR,Defense AI,True,True,65900,KRW,verified,,2026-07-16T00:44:44Z
+273060,와이즈버즈,KR,AI/AdTech,True,True,838,KRW,verified,,2026-07-16T00:44:44Z
+274090,켄코아에어로스페이스,KR,Aerospace/Defense,True,True,9650,KRW,verified,,2026-07-16T00:44:44Z
+277810,레인보우로보틱스,KR,Robotics,True,True,405000,KRW,verified,,2026-07-16T00:44:44Z
+286940,롯데이노베이트,KR,Cloud/AI,True,True,17070,KRW,verified,,2026-07-16T00:44:44Z
+289010,아이스크림에듀,KR,EdTech,True,True,913,KRW,verified,,2026-07-16T00:44:44Z
+291810,핀텔,KR,AI Software,True,True,1636,KRW,verified,,2026-07-16T00:44:44Z
+298040,효성중공업,KR,Power Grid,True,True,2781000,KRW,verified,,2026-07-16T00:44:44Z
+300120,라온피플,KR,AI Software,True,True,491,KRW,verified,,2026-07-16T00:44:44Z
+301300,바이브컴퍼니,KR,AI Software,True,True,1360,KRW,verified,,2026-07-16T00:44:44Z
+304100,솔트룩스,KR,AI Software,True,True,11140,KRW,verified,,2026-07-16T00:44:44Z
+306620,네온테크,KR,Drone,True,True,1743,KRW,verified,,2026-07-16T00:44:44Z
+307950,현대오토에버,KR,Mobility/AI,True,True,400000,KRW,verified,,2026-07-16T00:44:44Z
+315640,딥노이드,KR,Medical AI,True,True,1335,KRW,verified,,2026-07-16T00:44:44Z
+317120,라닉스,KR,Autonomous,True,True,1325,KRW,verified,,2026-07-16T00:44:44Z
+317330,덕산테코피아,KR,Battery,True,True,10370,KRW,verified,,2026-07-16T00:44:44Z
+322000,현대에너지솔루션,KR,Renewable Energy,True,True,115900,KRW,verified,,2026-07-16T00:44:44Z
+322310,오로스테크놀로지,KR,Semiconductor,True,True,18260,KRW,verified,,2026-07-16T00:44:44Z
+328130,루닛,KR,Medical AI,True,True,9960,KRW,verified,,2026-07-16T00:44:44Z
+332290,누보,KR,Agri/Food,True,True,772,KRW,verified,,2026-07-16T00:44:44Z
+336260,두산퓨얼셀,KR,Hydrogen,True,True,44200,KRW,verified,,2026-07-16T00:44:44Z
+338220,뷰노,KR,Medical AI,True,True,7370,KRW,verified,,2026-07-16T00:44:44Z
+340440,세림B&G,KR,Eco Materials,True,True,957,KRW,verified,,2026-07-16T00:44:44Z
+348340,뉴로메카,KR,Robotics,True,True,30900,KRW,verified,,2026-07-16T00:44:44Z
+358570,지아이이노베이션,KR,Biotech,True,True,7430,KRW,verified,,2026-07-16T00:44:44Z
+360070,탑머티리얼,KR,Battery,True,True,8640,KRW,verified,,2026-07-16T00:44:44Z
+361390,제노코,KR,Space/Defense,True,True,13350,KRW,verified,,2026-07-16T00:44:44Z
+361610,SK아이이테크놀로지,KR,Battery,True,True,14410,KRW,verified,,2026-07-16T00:44:44Z
+365590,하이딥,KR,Semiconductor,True,True,967,KRW,verified,,2026-07-16T00:44:44Z
+372170,윤성에프앤씨,KR,Battery,True,True,16140,KRW,verified,,2026-07-16T00:44:44Z
+373220,LG에너지솔루션,KR,Battery,True,True,341000,KRW,verified,,2026-07-16T00:44:44Z
+375500,DL이앤씨,KR,Infrastructure,True,True,60600,KRW,verified,,2026-07-16T00:44:44Z
+377480,마음AI,KR,AI Software,True,True,8490,KRW,verified,,2026-07-16T00:44:44Z
+382900,범한퓨얼셀,KR,Hydrogen,True,True,16720,KRW,verified,,2026-07-16T00:44:44Z
+388720,유일로보틱스,KR,Robotics,True,True,61000,KRW,verified,,2026-07-16T00:44:44Z
+389260,대명에너지,KR,Renewable Energy,True,True,13660,KRW,verified,,2026-07-16T00:44:44Z
+389500,에스비비테크,KR,Robotics,True,True,31850,KRW,verified,,2026-07-16T00:44:44Z
+393890,더블유씨피,KR,Battery,True,True,8300,KRW,verified,,2026-07-16T00:44:44Z
+396270,넥스트칩,KR,Autonomous,True,True,2305,KRW,verified,,2026-07-16T00:44:44Z
+417200,LS머트리얼즈,KR,Battery,True,True,11740,KRW,verified,,2026-07-16T00:44:44Z
+452280,한선엔지니어링,KR,Power/Hydrogen,True,True,10400,KRW,verified,,2026-07-16T00:44:44Z
+453340,현대그린푸드,KR,Consumer,True,True,18500,KRW,verified,,2026-07-16T00:44:44Z
+454910,두산로보틱스,KR,Robotics,True,True,66900,KRW,verified,,2026-07-16T00:44:44Z
+456040,OCI,KR,Solar Materials,True,True,87300,KRW,verified,,2026-07-16T00:44:44Z
+457550,우진엔텍,KR,Nuclear/Power,True,True,14820,KRW,verified,,2026-07-16T00:44:44Z
+464080,에스오에스랩,KR,Autonomous,True,True,8080,KRW,verified,,2026-07-16T00:44:44Z
+ASML,ASML,US,Semiconductor,True,True,1805,USD,verified,,2026-07-16T00:44:44Z
+STLA,Stellantis,US,EV/Auto,True,True,5.9,USD,verified,,2026-07-16T00:44:44Z
+AZN,AstraZeneca,US,Pharma,True,True,168.37,USD,verified,,2026-07-16T00:44:44Z
+BCS,Barclays,US,Bank,True,True,28.35,USD,verified,,2026-07-16T00:44:44Z
+HSBC,HSBC,US,Bank,True,True,100.93,USD,verified,,2026-07-16T00:44:44Z
+AAPL,Apple,US,Big Tech,True,True,328.13,USD,verified,,2026-07-16T00:44:44Z
+AI,C3.ai,US,AI Software,True,True,9.17,USD,verified,,2026-07-16T00:44:44Z
+AMAT,Applied Materials,US,Semiconductor,True,True,573.42,USD,verified,,2026-07-16T00:44:44Z
+AMD,Advanced Micro Devices,US,AI Semiconductor,True,True,523.66,USD,verified,,2026-07-16T00:44:44Z
+AMGN,Amgen,US,Biotech,True,True,358.32,USD,verified,,2026-07-16T00:44:44Z
+AMZN,Amazon,US,Big Tech,True,True,255.63,USD,verified,,2026-07-16T00:44:44Z
+ASTS,AST SpaceMobile,US,Space,True,True,58.39,USD,verified,,2026-07-16T00:44:44Z
+AUR,Aurora Innovation,US,Autonomous,True,True,6.03,USD,verified,,2026-07-16T00:44:44Z
+AVAV,AeroVironment,US,Drone,True,True,142.01,USD,verified,,2026-07-16T00:44:44Z
+AVGO,Broadcom,US,AI Semiconductor,True,True,392.15,USD,verified,,2026-07-16T00:44:44Z
+BA,Boeing,US,Aerospace/Defense,True,True,218.36,USD,verified,,2026-07-16T00:44:44Z
+BABA,Alibaba,US,China Tech,True,True,118.11,USD,verified,,2026-07-16T00:44:44Z
+BAC,Bank of America,US,Bank,True,True,61.7,USD,verified,,2026-07-16T00:44:44Z
+BE,Bloom Energy,US,Hydrogen,True,True,234.9,USD,verified,,2026-07-16T00:44:44Z
+CSCO,Cisco,US,Network Infrastructure,True,True,111.95,USD,verified,,2026-07-16T00:44:44Z
+CSIQ,Canadian Solar,US,Renewable Energy,True,True,15.49,USD,verified,,2026-07-16T00:44:44Z
+DELL,Dell Technologies,US,AI Infrastructure,True,True,404.89,USD,verified,,2026-07-16T00:44:44Z
+DUK,Duke Energy,US,Power Grid,True,True,124.34,USD,verified,,2026-07-16T00:44:44Z
+F,Ford,US,EV/Auto,True,True,14.18,USD,verified,,2026-07-16T00:44:44Z
+FSLR,First Solar,US,Renewable Energy,True,True,223.7,USD,verified,,2026-07-16T00:44:44Z
+GD,General Dynamics,US,Aerospace/Defense,True,True,365.63,USD,verified,,2026-07-16T00:44:44Z
+GEV,GE Vernova,US,Power Grid,True,True,1053.9,USD,verified,,2026-07-16T00:44:44Z
+GILD,Gilead Sciences,US,Biotech,True,True,131.7,USD,verified,,2026-07-16T00:44:44Z
+GM,General Motors,US,EV/Auto,True,True,77,USD,verified,,2026-07-16T00:44:44Z
+GOOGL,Alphabet,US,Big Tech,True,True,371.89,USD,verified,,2026-07-16T00:44:44Z
+GS,Goldman Sachs,US,Bank,True,True,1151.99,USD,verified,,2026-07-16T00:44:44Z
+GSAT,Globalstar,US,Space,True,True,80.53,USD,verified,,2026-07-16T00:44:44Z
+HON,Honeywell,US,Aerospace/Industrial,True,True,222.84,USD,verified,,2026-07-16T00:44:44Z
+HPQ,HP,US,PC/Hardware,True,True,23.75,USD,verified,,2026-07-16T00:44:44Z
+IBM,IBM,US,Enterprise AI,True,True,211.53,USD,verified,,2026-07-16T00:44:44Z
+INTC,Intel,US,AI Semiconductor,True,True,102.25,USD,verified,,2026-07-16T00:44:44Z
+IONQ,IonQ,US,Quantum Computing,True,True,37.56,USD,verified,,2026-07-16T00:44:44Z
+ISRG,Intuitive Surgical,US,Medical Robot,True,True,389.2,USD,verified,,2026-07-16T00:44:44Z
+JNJ,Johnson & Johnson,US,Pharma,True,True,248,USD,verified,,2026-07-16T00:44:44Z
+JPM,JPMorgan Chase,US,Bank,True,True,347.67,USD,verified,,2026-07-16T00:44:44Z
+KEP,KEPCO ADR,US,Power,True,True,11.47,USD,verified,,2026-07-16T00:44:44Z
+KTOS,Kratos Defense,US,Drone/Defense,True,True,50.02,USD,verified,,2026-07-16T00:44:44Z
+LCID,Lucid,US,EV,True,True,5.88,USD,verified,,2026-07-16T00:44:44Z
+LLY,Eli Lilly,US,Pharma,True,True,1156.95,USD,verified,,2026-07-16T00:44:44Z
+LMT,Lockheed Martin,US,Aerospace/Defense,True,True,514.59,USD,verified,,2026-07-16T00:44:44Z
+LRCX,Lam Research,US,Semiconductor,True,True,333.67,USD,verified,,2026-07-16T00:44:44Z
+LUNR,Intuitive Machines,US,Space,True,True,14.63,USD,verified,,2026-07-16T00:44:44Z
+MBLY,Mobileye,US,Autonomous,True,True,9.41,USD,verified,,2026-07-16T00:44:44Z
+META,Meta Platforms,US,Big Tech,True,True,680.06,USD,verified,,2026-07-16T00:44:44Z
+MRNA,Moderna,US,Biotech,True,True,68.43,USD,verified,,2026-07-16T00:44:44Z
+MS,Morgan Stanley,US,Bank,True,True,229,USD,verified,,2026-07-16T00:44:44Z
+MSFT,Microsoft,US,AI Software,True,True,397.11,USD,verified,,2026-07-16T00:44:44Z
+MU,Micron,US,Memory/HBM,True,True,887.66,USD,verified,,2026-07-16T00:44:44Z
+NEE,NextEra Energy,US,Renewable Energy,True,True,89.1,USD,verified,,2026-07-16T00:44:44Z
+NOC,Northrop Grumman,US,Aerospace/Defense,True,True,525.51,USD,verified,,2026-07-16T00:44:44Z
+NVDA,NVIDIA,US,AI Semiconductor,True,True,210.46,USD,verified,,2026-07-16T00:44:44Z
+ORCL,Oracle,US,Cloud/AI,True,True,132.72,USD,verified,,2026-07-16T00:44:44Z
+PCG,PG&E,US,Power Grid,True,True,17.5,USD,verified,,2026-07-16T00:44:44Z
+PFE,Pfizer,US,Pharma,True,True,24.8,USD,verified,,2026-07-16T00:44:44Z
+PL,Planet Labs,US,Satellite,True,True,24.34,USD,verified,,2026-07-16T00:44:44Z
+PLTR,Palantir,US,Defense AI,True,True,133.31,USD,verified,,2026-07-16T00:44:44Z
+PLUG,Plug Power,US,Hydrogen,True,True,2.22,USD,verified,,2026-07-16T00:44:44Z
+QBTS,D-Wave Quantum,US,Quantum Computing,True,True,18.27,USD,verified,,2026-07-16T00:44:44Z
+QCOM,Qualcomm,US,AI Edge,True,True,177.45,USD,verified,,2026-07-16T00:44:44Z
+RDW,Redwire,US,Space,True,True,9.36,USD,verified,,2026-07-16T00:44:44Z
+RGTI,Rigetti Computing,US,Quantum Computing,True,True,15.3,USD,verified,,2026-07-16T00:44:44Z
+RIVN,Rivian,US,EV,True,True,17.82,USD,verified,,2026-07-16T00:44:44Z
+RKLB,Rocket Lab,US,Space,True,True,75.67,USD,verified,,2026-07-16T00:44:44Z
+RTX,RTX,US,Aerospace/Defense,True,True,195.05,USD,verified,,2026-07-16T00:44:44Z
+TER,Teradyne,US,Robotics/Semiconductor,True,True,341.02,USD,verified,,2026-07-16T00:44:44Z
+TSLA,Tesla,US,EV/AI,True,True,394.01,USD,verified,,2026-07-16T00:44:44Z
+TSM,Taiwan Semiconductor Manufacturing,US,AI Semiconductor,True,True,421.8,USD,verified,,2026-07-16T00:44:44Z
+WFC,Wells Fargo,US,Bank,True,True,87.65,USD,verified,,2026-07-16T00:44:44Z
+EWJ,iShares MSCI Japan ETF,US,Country: Japan,True,True,93.57,USD,verified,,2026-07-16T00:44:44Z
+DXJ,WisdomTree Japan Hedged Equity Fund,US,Country: Japan,True,True,176.71,USD,verified,,2026-07-16T00:44:44Z
+FLJP,Franklin FTSE Japan ETF,US,Country: Japan,True,True,39.95,USD,verified,,2026-07-16T00:44:44Z
+INDA,iShares MSCI India ETF,US,Country: India,True,True,48.72,USD,verified,,2026-07-16T00:44:44Z
+INDY,iShares India 50 ETF,US,Country: India,True,True,42.9,USD,verified,,2026-07-16T00:44:44Z
+EPI,WisdomTree India Earnings Fund,US,Country: India,True,True,42.27,USD,verified,,2026-07-16T00:44:44Z
+VNM,VanEck Vietnam ETF,US,Country: Vietnam,True,True,17.36,USD,verified,,2026-07-16T00:44:44Z
+EWT,iShares MSCI Taiwan ETF,US,Country: Taiwan,True,True,102.49,USD,verified,,2026-07-16T00:44:44Z
+FLTW,Franklin FTSE Taiwan ETF,US,Country: Taiwan,True,True,98.95,USD,verified,,2026-07-16T00:44:44Z
+EWQ,iShares MSCI France ETF,US,Country: France,True,True,45.47,USD,verified,,2026-07-16T00:44:44Z
+EWG,iShares MSCI Germany ETF,US,Country: Germany,True,True,41.5,USD,verified,,2026-07-16T00:44:44Z
+FGM,First Trust Germany AlphaDEX Fund,US,Country: Germany,True,True,63.1182,USD,verified,,2026-07-16T00:44:44Z
+EWU,iShares MSCI United Kingdom ETF,US,Country: United Kingdom,True,True,46.77,USD,verified,,2026-07-16T00:44:44Z
+EWUS,iShares MSCI United Kingdom Small-Cap ETF,US,Country: United Kingdom,True,True,43.1615,USD,verified,,2026-07-16T00:44:44Z
+MCHI,iShares MSCI China ETF,US,Country: China,True,True,54.15,USD,verified,,2026-07-16T00:44:44Z
+FXI,iShares China Large-Cap ETF,US,Country: China,True,True,34.27,USD,verified,,2026-07-16T00:44:44Z
+KWEB,KraneShares CSI China Internet ETF,US,Country: China,True,True,27,USD,verified,,2026-07-16T00:44:44Z
+ASHR,Xtrackers Harvest CSI 300 China A-Shares ETF,US,Country: China,True,True,35.16,USD,verified,,2026-07-16T00:44:44Z
+CQQQ,Invesco China Technology ETF,US,Country: China,True,True,53.79,USD,verified,,2026-07-16T00:44:44Z
+EWS,iShares MSCI Singapore ETF,US,Country: Singapore,True,True,32.09,USD,verified,,2026-07-16T00:44:44Z
+EWA,iShares MSCI Australia ETF,US,Country: Australia,True,True,28.8,USD,verified,,2026-07-16T00:44:44Z
+FLAX,Franklin FTSE Australia ETF,US,Country: Australia,True,True,35.6954,USD,verified,,2026-07-16T00:44:44Z
+EWZ,iShares MSCI Brazil ETF,US,Country: Brazil,True,True,35.88,USD,verified,,2026-07-16T00:44:44Z
+FLBR,Franklin FTSE Brazil ETF,US,Country: Brazil,True,True,22.44,USD,verified,,2026-07-16T00:44:44Z
+KSA,iShares MSCI Saudi Arabia ETF,US,Country: Saudi Arabia,True,True,36.97,USD,verified,,2026-07-16T00:44:44Z
+EIDO,iShares MSCI Indonesia ETF,US,Country: Indonesia,True,True,12.01,USD,verified,,2026-07-16T00:44:44Z
+EWI,iShares MSCI Italy ETF,US,Country: Italy,True,True,60.81,USD,verified,,2026-07-16T00:44:44Z
+EWL,iShares MSCI Switzerland ETF,US,Country: Switzerland,True,True,63.35,USD,verified,,2026-07-16T00:44:44Z
+EWC,iShares MSCI Canada ETF,US,Country: Canada,True,True,59.49,USD,verified,,2026-07-16T00:44:44Z
+FLCA,Franklin FTSE Canada ETF,US,Country: Canada,True,True,53.08,USD,verified,,2026-07-16T00:44:44Z
+EZA,iShares MSCI South Africa ETF,US,Country: South Africa,True,True,63.74,USD,verified,,2026-07-16T00:44:44Z
+AFK,VanEck Africa Index ETF,US,Country: Nigeria,True,True,25.99,USD,verified,,2026-07-16T00:44:44Z
+QAT,iShares MSCI Qatar ETF,US,Country: Qatar,True,True,17.78,USD,verified,,2026-07-16T00:44:44Z
+IBB,iShares Biotechnology ETF,US,Biotech,True,True,189.9,USD,verified,,2026-07-16T00:44:44Z
+XBI,SPDR S&P Biotech ETF,US,Biotech,True,True,156.22,USD,verified,,2026-07-16T00:44:44Z
+AIQ,Global X Artificial Intelligence & Technology ETF,US,AI,True,True,61,USD,verified,,2026-07-16T00:44:44Z
+THNQ,ROBO Global Artificial Intelligence ETF,US,AI,True,True,87.11,USD,verified,,2026-07-16T00:44:44Z
+SMH,VanEck Semiconductor ETF,US,AI Semiconductor,True,True,586.86,USD,verified,,2026-07-16T00:44:44Z
+SOXX,iShares Semiconductor ETF,US,AI Semiconductor,True,True,550.58,USD,verified,,2026-07-16T00:44:44Z
+DRIV,Global X Autonomous & Electric Vehicles ETF,US,Autonomous,True,True,35.695,USD,verified,,2026-07-16T00:44:44Z
+IDRV,iShares Self-Driving EV and Tech ETF,US,Autonomous,True,True,36.93,USD,verified,,2026-07-16T00:44:44Z
+BOTZ,Global X Robotics & Artificial Intelligence ETF,US,Robotics,True,True,36.03,USD,verified,,2026-07-16T00:44:44Z
+ROBO,ROBO Global Robotics and Automation ETF,US,Robotics,True,True,80.55,USD,verified,,2026-07-16T00:44:44Z
+QTUM,Defiance Quantum ETF,US,Quantum Computing,True,True,147.92,USD,verified,,2026-07-16T00:44:44Z
+ITA,iShares U.S. Aerospace & Defense ETF,US,Space/Defense,True,True,236.42,USD,verified,,2026-07-16T00:44:44Z
+XAR,SPDR S&P Aerospace & Defense ETF,US,Space/Defense,True,True,266.32,USD,verified,,2026-07-16T00:44:44Z
+XLE,Energy Select Sector SPDR Fund,US,Energy,True,True,56.45,USD,verified,,2026-07-16T00:44:44Z
+IXC,iShares Global Energy ETF,US,Energy,True,True,52.47,USD,verified,,2026-07-16T00:44:44Z
+TLT,iShares 20+ Year Treasury Bond ETF,US,Bond,True,True,84.19,USD,verified,,2026-07-16T00:44:44Z
+BND,Vanguard Total Bond Market ETF,US,Bond,True,True,72.72,USD,verified,,2026-07-16T00:44:44Z
+LIT,Global X Lithium & Battery Tech ETF,US,Battery,True,True,71.06,USD,verified,,2026-07-16T00:44:44Z
+BATT,Amplify Lithium & Battery Technology ETF,US,Battery,True,True,14.7,USD,verified,,2026-07-16T00:44:44Z
+UFO,Procure Space ETF,US,Space/Defense,True,True,45.37,USD,verified,,2026-07-16T00:44:44Z
+ARKX,ARK Space Exploration & Innovation ETF,US,Space/Defense,True,True,31.32,USD,verified,,2026-07-16T00:44:44Z
+ICLN,iShares Global Clean Energy ETF,US,Renewable Energy,True,True,19.08,USD,verified,,2026-07-16T00:44:44Z
+TAN,Invesco Solar ETF,US,Renewable Energy,True,True,55.8,USD,verified,,2026-07-16T00:44:44Z
+XLV,Health Care Select Sector SPDR Fund,US,Healthcare,True,True,158.29,USD,verified,,2026-07-16T00:44:44Z
+IHI,iShares U.S. Medical Devices ETF,US,Healthcare,True,True,49.86,USD,verified,,2026-07-16T00:44:44Z
+ITB,iShares U.S. Home Construction ETF,US,Construction,True,True,97.94,USD,verified,,2026-07-16T00:44:44Z
+XHB,SPDR S&P Homebuilders ETF,US,Construction,True,True,108.92,USD,verified,,2026-07-16T00:44:44Z
+CPER,United States Copper Index Fund,US,Copper,True,True,38.63,USD,verified,,2026-07-16T00:44:44Z
+COPX,Global X Copper Miners ETF,US,Copper,True,True,77,USD,verified,,2026-07-16T00:44:44Z
+PICK,iShares MSCI Global Metals & Mining Producers ETF,US,Resources,True,True,58.25,USD,verified,,2026-07-16T00:44:44Z
+XME,SPDR S&P Metals & Mining ETF,US,Resources,True,True,103.2,USD,verified,,2026-07-16T00:44:44Z
+ACES,ALPS Clean Energy ETF,US,Renewable Energy,True,True,33.39,USD,verified,,2026-07-16T00:44:44Z
+PBW,Invesco WilderHill Clean Energy ETF,US,Renewable Energy,True,True,34.92,USD,verified,,2026-07-16T00:44:44Z
+XLF,Financial Select Sector SPDR Fund,US,Bank,True,True,56.61,USD,verified,,2026-07-16T00:44:44Z
+KRE,SPDR S&P Regional Banking ETF,US,Bank,True,True,75.78,USD,verified,,2026-07-16T00:44:44Z
+TM,토요타 모터(ADR),US,Country: Japan,True,True,178.92,USD,verified,,2026-07-16T00:44:44Z
+HMC,혼다 모터스(ADR),US,Country: Japan,True,True,28.47,USD,verified,,2026-07-16T00:44:44Z
+SONY,소니(ADR),US,Country: Japan,True,True,21.1,USD,verified,,2026-07-16T00:44:44Z
+MUFG,미쓰비시 UFJ 파이낸셜(ADR),US,Country: Japan,True,True,22.7,USD,verified,,2026-07-16T00:44:44Z
+SMFG,스미토모 미쓰이 파이낸셜 그룹(ADR),US,Country: Japan,True,True,26.35,USD,verified,,2026-07-16T00:44:44Z
+MFG,미즈호 파이낸셜 그룹(ADR),US,Country: Japan,True,True,10.66,USD,verified,,2026-07-16T00:44:44Z
+TAK,다케다 파마슈티컬(ADR),US,Country: Japan,True,True,16.57,USD,verified,,2026-07-16T00:44:44Z
+NMR,노무라 홀딩스(ADR),US,Country: Japan,True,True,10.02,USD,verified,,2026-07-16T00:44:44Z
+IX,오릭스(ADR),US,Country: Japan,True,True,40.59,USD,verified,,2026-07-16T00:44:44Z
+INFY,인포시스(ADR),US,Country: India,True,True,11.04,USD,verified,,2026-07-16T00:44:44Z
+WIT,위프로(ADR),US,Country: India,True,True,1.84,USD,verified,,2026-07-16T00:44:44Z
+HDB,HDFC 뱅크(ADR),US,Country: India,True,True,26.19,USD,verified,,2026-07-16T00:44:44Z
+IBN,ICICI 뱅크(ADR),US,Country: India,True,True,29.4,USD,verified,,2026-07-16T00:44:44Z
+RDY,닥터 레디스 래버러토리스(ADR),US,Country: India,True,True,12.77,USD,verified,,2026-07-16T00:44:44Z
+WNS,WNS 홀딩스,US,Country: India,True,True,76.48,USD,verified,,2026-07-16T00:44:44Z
+MMYT,메이크마이트립,US,Country: India,True,True,55.23,USD,verified,,2026-07-16T00:44:44Z
+YTRA,야트라 온라인,US,Country: India,True,True,0.9,USD,verified,,2026-07-16T00:44:44Z
+SIFY,시피 테크놀로지스(ADR),US,Country: India,True,True,14.34,USD,verified,,2026-07-16T00:44:44Z
+VFS,빈패스트,US,Country: Vietnam,True,True,3.09,USD,verified,,2026-07-16T00:44:44Z
+UMC,UMC(ADR),US,Country: Taiwan,True,True,24.92,USD,verified,,2026-07-16T00:44:44Z
+ASX,ASE 테크놀로지 홀딩(ADR),US,Country: Taiwan,True,True,40.65,USD,verified,,2026-07-16T00:44:44Z
+HIMX,하이맥스 테크놀로지스(ADR),US,Country: Taiwan,True,True,13.92,USD,verified,,2026-07-16T00:44:44Z
+GIGM,기가미디어,US,Country: Taiwan,True,True,1.37,USD,verified,,2026-07-16T00:44:44Z
+TTE,토탈에너지스,US,Country: France,True,True,80.34,USD,verified,,2026-07-16T00:44:44Z
+SNY,사노피(ADR),US,Country: France,True,True,43.68,USD,verified,,2026-07-16T00:44:44Z
+DB,도이치뱅크,US,Country: Germany,True,True,36.56,USD,verified,,2026-07-16T00:44:44Z
+UL,유니레버(ADR),US,Country: United Kingdom,True,True,61.45,USD,verified,,2026-07-16T00:44:44Z
+BP,BP(ADR),US,Country: United Kingdom,True,True,41.01,USD,verified,,2026-07-16T00:44:44Z
+SHEL,쉘(ADR),US,Country: United Kingdom,True,True,84.64,USD,verified,,2026-07-16T00:44:44Z
+LYG,로이즈 뱅킹 그룹(ADR),US,Country: United Kingdom,True,True,6.06,USD,verified,,2026-07-16T00:44:44Z
+GSK,글락소스미스클라인(ADR),US,Country: United Kingdom,True,True,51.45,USD,verified,,2026-07-16T00:44:44Z
+NGG,내셔널 그리드(ADR),US,Country: United Kingdom,True,True,82.91,USD,verified,,2026-07-16T00:44:44Z
+RELX,릴렉스(ADR),US,Country: United Kingdom,True,True,33.51,USD,verified,,2026-07-16T00:44:44Z
+DEO,디아지오(ADR),US,Country: United Kingdom,True,True,82.21,USD,verified,,2026-07-16T00:44:44Z
+PUK,푸르덴셜(ADR),US,Country: United Kingdom,True,True,29.08,USD,verified,,2026-07-16T00:44:44Z
+JD,징동닷컴(ADR),US,Country: China,True,True,29.28,USD,verified,,2026-07-16T00:44:44Z
+PDD,핀둬둬(ADR),US,Country: China,True,True,85.73,USD,verified,,2026-07-16T00:44:44Z
+LI,리 오토(ADR),US,Country: China,True,True,12.69,USD,verified,,2026-07-16T00:44:44Z
+XPEV,샤오펑(ADR),US,Country: China,True,True,13.83,USD,verified,,2026-07-16T00:44:44Z
+YUMC,염 차이나 홀딩스,US,Country: China,True,True,43.17,USD,verified,,2026-07-16T00:44:44Z
+TME,텐센트 뮤직 엔터테인먼트(ADR),US,Country: China,True,True,8.89,USD,verified,,2026-07-16T00:44:44Z
+BILI,빌리빌리(ADR),US,Country: China,True,True,18.25,USD,verified,,2026-07-16T00:44:44Z
+BEKE,KE 홀딩스(ADR),US,Country: China,True,True,17.03,USD,verified,,2026-07-16T00:44:44Z
+ZTO,ZTO 익스프레스(ADR),US,Country: China,True,True,24.55,USD,verified,,2026-07-16T00:44:44Z
+TAL,TAL 에듀케이션(ADR),US,Country: China,True,True,10.45,USD,verified,,2026-07-16T00:44:44Z
+NTES,넷이즈(ADR),US,Country: China,True,True,129.76,USD,verified,,2026-07-16T00:44:44Z
+WB,웨이보(ADR),US,Country: China,True,True,7.74,USD,verified,,2026-07-16T00:44:44Z
+FUTU,푸투 홀딩스(ADR),US,Country: China,True,True,99.5,USD,verified,,2026-07-16T00:44:44Z
+DDL,딩동 케이먼(ADR),US,Country: China,True,True,2.28,USD,verified,,2026-07-16T00:44:44Z
+KC,킹소프트 클라우드 홀딩스(ADR),US,Country: China,True,True,10.03,USD,verified,,2026-07-16T00:44:44Z
+GDS,GDS 홀딩스(ADR),US,Country: China,True,True,33.39,USD,verified,,2026-07-16T00:44:44Z
+TCOM,트립닷컴(ADR),US,Country: China,True,True,42.87,USD,verified,,2026-07-16T00:44:44Z
+ATHM,오토홈(ADR),US,Country: China,True,True,21.59,USD,verified,,2026-07-16T00:44:44Z
+TIGR,업 핀테크 홀딩스(ADR),US,Country: China,True,True,4.71,USD,verified,,2026-07-16T00:44:44Z
+QFIN,치푸 테크놀로지(ADR),US,Country: China,True,True,12.9,USD,verified,,2026-07-16T00:44:44Z
+VIPS,브이아이피숍 홀딩스(ADR),US,Country: China,True,True,14.23,USD,verified,,2026-07-16T00:44:44Z
+DOYU,도유 인터내셔널 홀딩스(ADR),US,Country: China,True,True,4.52,USD,verified,,2026-07-16T00:44:44Z
+EDU,뉴 오리엔탈 에듀케이션 앤 테크놀로지 그룹(ADR),US,Country: China,True,True,49.91,USD,verified,,2026-07-16T00:44:44Z
+GOTU,가오투 테크에듀(ADR),US,Country: China,True,True,1.8,USD,verified,,2026-07-16T00:44:44Z
+RLX,RLX 테크놀로지(ADR),US,Country: China,True,True,2.01,USD,verified,,2026-07-16T00:44:44Z
+ZLAB,자이 랩(ADR),US,Country: China,True,True,20.44,USD,verified,,2026-07-16T00:44:44Z
+JKS,진코솔라 홀딩(ADR),US,Country: China,True,True,15.99,USD,verified,,2026-07-16T00:44:44Z
+TUYA,투야(ADR),US,Country: China,True,True,1.78,USD,verified,,2026-07-16T00:44:44Z
+MNSO,미니소(ADR),US,Country: China,True,True,12.62,USD,verified,,2026-07-16T00:44:44Z
+SE,씨(ADR),US,Country: Singapore,True,True,111.53,USD,verified,,2026-07-16T00:44:44Z
+GRAB,그랩 홀딩스,US,Country: Singapore,True,True,3.81,USD,verified,,2026-07-16T00:44:44Z
+BHP,BHP 그룹(ADR),US,Country: Australia,True,True,83.8,USD,verified,,2026-07-16T00:44:44Z
+RIO,리오 틴토(ADR),US,Country: Australia,True,True,93.62,USD,verified,,2026-07-16T00:44:44Z
+WDS,우드사이드 에너지 그룹(ADR),US,Country: Australia,True,True,20.88,USD,verified,,2026-07-16T00:44:44Z
+VALE,발리(ADR),US,Country: Brazil,True,True,14.67,USD,verified,,2026-07-16T00:44:44Z
+PBR,페트로브라스(ADR),US,Country: Brazil,True,True,17.72,USD,verified,,2026-07-16T00:44:44Z
+ITUB,이타우 우니방쿠 홀딩스(ADR),US,Country: Brazil,True,True,8.45,USD,verified,,2026-07-16T00:44:44Z
+BBD,방쿠 브라데스쿠 우선주(ADR),US,Country: Brazil,True,True,3.62,USD,verified,,2026-07-16T00:44:44Z
+ABEV,암베브(ADR),US,Country: Brazil,True,True,3.03,USD,verified,,2026-07-16T00:44:44Z
+NU,누 홀딩스,US,Country: Brazil,True,True,13.85,USD,verified,,2026-07-16T00:44:44Z
+SID,시데루르지카 나시오나우(ADR),US,Country: Brazil,True,True,1.03,USD,verified,,2026-07-16T00:44:44Z
+BSBR,방코 산탄데르 브라질(ADR),US,Country: Brazil,True,True,5.35,USD,verified,,2026-07-16T00:44:44Z
+PAGS,파그세구로 디지털,US,Country: Brazil,True,True,9.21,USD,verified,,2026-07-16T00:44:44Z
+STNE,스톤코,US,Country: Brazil,True,True,11.28,USD,verified,,2026-07-16T00:44:44Z
+CIG,이네르제치카 지 미나스 제라이스 우선주(ADR),US,Country: Brazil,True,True,2.16,USD,verified,,2026-07-16T00:44:44Z
+GGB,제르다우(ADR),US,Country: Brazil,True,True,4.8,USD,verified,,2026-07-16T00:44:44Z
+TIMB,팀 브라질(ADR),US,Country: Brazil,True,True,22.36,USD,verified,,2026-07-16T00:44:44Z
+UGP,울트라파르(ADR),US,Country: Brazil,True,True,6.08,USD,verified,,2026-07-16T00:44:44Z
+AZUL,AZUL(ADR),US,Country: Brazil,True,True,8.65,USD,verified,,2026-07-16T00:44:44Z
+AFYA,아피야,US,Country: Brazil,True,True,13.98,USD,verified,,2026-07-16T00:44:44Z
+XP,XP,US,Country: Brazil,True,True,16.87,USD,verified,,2026-07-16T00:44:44Z
+FLSA,FLSA,US,Country: Saudi Arabia,True,True,31.7096,USD,verified,,2026-07-16T00:44:44Z
+TLK,텔콤 인도네시아(ADR),US,Country: Indonesia,True,True,14.14,USD,verified,,2026-07-16T00:44:44Z
+RACE,페라리,US,Country: Italy,True,True,375.74,USD,verified,,2026-07-16T00:44:44Z
+SHOP,쇼피파이,US,Country: Canada,True,True,123.4,USD,verified,,2026-07-16T00:44:44Z
+RY,로열 뱅크 오브 캐나다,US,Country: Canada,True,True,217.87,USD,verified,,2026-07-16T00:44:44Z
+TD,토론토 도미니언 뱅크,US,Country: Canada,True,True,124.58,USD,verified,,2026-07-16T00:44:44Z
+BMO,뱅크 오브 몬트리올,US,Country: Canada,True,True,184.86,USD,verified,,2026-07-16T00:44:44Z
+BNS,뱅크 오브 노바스코샤,US,Country: Canada,True,True,90.29,USD,verified,,2026-07-16T00:44:44Z
+ENB,엔브리지,US,Country: Canada,True,True,56.15,USD,verified,,2026-07-16T00:44:44Z
+TRP,TC 에너지,US,Country: Canada,True,True,69.08,USD,verified,,2026-07-16T00:44:44Z
+SU,선코어 에너지,US,Country: Canada,True,True,60.64,USD,verified,,2026-07-16T00:44:44Z
+CNQ,캐나디안 내추럴 리소시스,US,Country: Canada,True,True,42.73,USD,verified,,2026-07-16T00:44:44Z
+CNI,캐나디안 내셔널 레일웨이,US,Country: Canada,True,True,124,USD,verified,,2026-07-16T00:44:44Z
+CP,캐나디안 퍼시픽 레일웨이,US,Country: Canada,True,True,90.47,USD,verified,,2026-07-16T00:44:44Z
+BCE,BCE,US,Country: Canada,True,True,21.6,USD,verified,,2026-07-16T00:44:44Z
+CM,캐나디안 임페리얼 뱅크 오브 커머스,US,Country: Canada,True,True,120.76,USD,verified,,2026-07-16T00:44:44Z
+MFC,매뉴라이프 파이낸셜,US,Country: Canada,True,True,43.07,USD,verified,,2026-07-16T00:44:44Z
+WCN,웨이스트 커넥션스,US,Country: Canada,True,True,170.12,USD,verified,,2026-07-16T00:44:44Z
+CCJ,카메코,US,Country: Canada,True,True,90.98,USD,verified,,2026-07-16T00:44:44Z
+NTR,뉴트리엔,US,Country: Canada,True,True,68.33,USD,verified,,2026-07-16T00:44:44Z
+IMO,임페리얼 오일,US,Country: Canada,True,True,120.42,USD,verified,,2026-07-16T00:44:44Z
+TECK,텍 리소시스,US,Country: Canada,True,True,59.38,USD,verified,,2026-07-16T00:44:44Z
+GIL,질단 액티브웨어,US,Country: Canada,True,True,52.45,USD,verified,,2026-07-16T00:44:44Z
+LULU,룰루레몬,US,Country: Canada,True,True,117.42,USD,verified,,2026-07-16T00:44:44Z
+CVE,세노버스 에너지,US,Country: Canada,True,True,27.36,USD,verified,,2026-07-16T00:44:44Z
+WPM,휘턴 프레셔스 메탈스,US,Country: Canada,True,True,109.33,USD,verified,,2026-07-16T00:44:44Z
+FNV,프랑코 네바다,US,Country: Canada,True,True,202.55,USD,verified,,2026-07-16T00:44:44Z
+BIP,브룩필드 인프라스트럭처 파트너스,US,Country: Canada,True,True,38.73,USD,verified,,2026-07-16T00:44:44Z
+BAM,브룩필드 에셋 매니지먼트,US,Country: Canada,True,True,49.02,USD,verified,,2026-07-16T00:44:44Z
+BEPC,브룩필드 리뉴어블,US,Country: Canada,True,True,34.94,USD,verified,,2026-07-16T00:44:44Z
+TAC,트랜스알타,US,Country: Canada,True,True,13.62,USD,verified,,2026-07-16T00:44:44Z
+GFI,골드 필즈(ADR),US,Country: South Africa,True,True,32.99,USD,verified,,2026-07-16T00:44:44Z
+AU,앵글로골드 아샨티,US,Country: South Africa,True,True,79.14,USD,verified,,2026-07-16T00:44:44Z
+SBSW,시바녜 스틸워터(ADR),US,Country: South Africa,True,True,8.54,USD,verified,,2026-07-16T00:44:44Z
+HMY,하모니 골드 마이닝(ADR),US,Country: South Africa,True,True,15.15,USD,verified,,2026-07-16T00:44:44Z
+DRD,DRD골드(ADR),US,Country: South Africa,True,True,21.03,USD,verified,,2026-07-16T00:44:44Z
