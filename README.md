@@ -24,10 +24,24 @@
 ## 설치
 
 ```powershell
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
+conda create --name toss python=3.11 -y
+conda activate toss
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 copy .env.example .env
+```
+
+패키지는 Anaconda `base`가 아닌 프로젝트 전용 `toss` 환경에 설치하세요.
+이미 환경을 만든 경우 `conda activate toss`부터 실행하면 됩니다.
+
+NumPy ABI 오류(`compiled using NumPy 1.x`)가 발생했다면 `toss` 환경을
+활성화한 상태에서 바이너리 패키지를 호환 버전으로 다시 설치하세요.
+
+```powershell
+conda activate toss
+python -m pip install --upgrade --force-reinstall "numpy>=2,<3" "pandas>=2.2,<3" "scipy>=1.13,<2" "pyarrow>=17"
+python -c "import sys; print(sys.executable)"
+python -m pip check
 ```
 
 `.env`에 토스 토큰과 계좌번호를 넣으세요.

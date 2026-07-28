@@ -1,13 +1,19 @@
 requests
 python-dotenv
-numpy
-pandas
-scipy
+# pykrx 1.2.x requires NumPy 2+, while pandas 3 is not supported by pykrx.
+# Keep these binary packages on one compatible ABI instead of inheriting
+# potentially incompatible wheels from an Anaconda base environment.
+numpy>=2.0,<3
+pandas>=2.2,<3
+scipy>=1.13,<2
+# pandas imports pyarrow when it is present. Requiring a NumPy 2-compatible
+# wheel prevents an older Conda copy from breaking pandas during import.
+pyarrow>=17
 openai
 flask
 yfinance
 lxml
 html5lib
 beautifulsoup4
-pykrx
+pykrx>=1.2,<2
 openpyxl
