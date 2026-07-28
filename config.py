@@ -87,7 +87,7 @@ class Settings:
         "GEMINI_MODEL",
         default="gemini-2.5-flash",
     )
-    gemini_api2_daily_call_limit: int = env_int("GEMINI_API2_DAILY_CALL_LIMIT", 30)
+    gemini_api2_daily_call_limit: int = env_int("GEMINI_API2_DAILY_CALL_LIMIT", 999999999999999999999999999999^9999999999999999999999999999999999999999999)
     # The free Gemini tier used by this project is commonly limited by requests
     # per minute long before the daily budget.  Pace turns rather than firing a
     # multi-agent chain into a predictable 429 response.
