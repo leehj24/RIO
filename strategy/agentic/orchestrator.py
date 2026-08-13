@@ -1,4 +1,4 @@
-﻿"""NVIDIA Nemotron multi-agent orchestration for the research-to-risk workflow.
+"""NVIDIA Nemotron multi-agent orchestration for the research-to-risk workflow.
 
 The class in this module is intentionally an *analysis* service.  It loads the
 role prompts in ``ai_prompts/``, runs them with the dedicated NVIDIA Nemotron key,
@@ -43,7 +43,7 @@ def _clip(value: Any, minimum: float, maximum: float, default: float) -> float:
 
 def _compact(value: Any, *, depth: int = 0) -> Any:
     """Make model output safe and bounded before it becomes later context."""
-    if depth > 5:
+    if depth > 15:
         return "[depth_limited]"
     if isinstance(value, Mapping):
         output: Dict[str, Any] = {}
@@ -62,7 +62,7 @@ def _compact(value: Any, *, depth: int = 0) -> Any:
     return str(value)[:1000]
 
 
-def _trim_json_context(value: Any, *, limit: int = 28_000) -> Any:
+def _trim_json_context(value: Any, *, limit: int = 300_000) -> Any:
     """Keep accumulated reports below a predictable prompt-size ceiling."""
     compact = _compact(value)
     try:
@@ -126,6 +126,38 @@ class NvidiaNemotronAgentOrchestrator:
                 getattr(settings, "nvidia_nemotron_min_request_interval_seconds", 0.0)
             ),
             max_retries=int(getattr(settings, "nvidia_nemotron_max_retries", 0)),
+        )
+        self.analysis_client = NvidiaNemotronAgentClient(
+            api_key=getattr(settings, "nvidia_super_api_key", settings.nvidia_nemotron_api_key),
+            model=getattr(settings, "nvidia_super_model", "nvidia/nemotron-3-super-120b-a12b"),
+            base_url=getattr(settings, "nvidia_super_base_url", settings.nvidia_nemotron_base_url),
+            enable_grounding=False,
+            temperature=getattr(settings, "nvidia_super_temperature", 1.0),
+            max_output_tokens=getattr(settings, "nvidia_super_max_output_tokens", 16384),
+            top_p=getattr(settings, "nvidia_super_top_p", 0.95),
+            reasoning_budget=getattr(settings, "nvidia_super_reasoning_budget", 16384),
+            timeout=settings.nvidia_nemotron_timeout_seconds,
+            min_request_interval_seconds=float(
+                getattr(settings, "nvidia_nemotron_min_request_interval_seconds", 0.0)
+            ),
+            max_retries=int(getattr(settings, "nvidia_nemotron_max_retries", 0)),
+            enable_thinking=getattr(settings, "nvidia_super_enable_thinking", True),
+        )
+        self.approval_client = NvidiaNemotronAgentClient(
+            api_key=getattr(settings, "nvidia_api_key", settings.nvidia_nemotron_api_key),
+            model=getattr(settings, "nvidia_model", "z-ai/glm-5.2"),
+            base_url=getattr(settings, "nvidia_base_url", settings.nvidia_nemotron_base_url),
+            enable_grounding=False,
+            temperature=1.0,
+            max_output_tokens=16384,
+            top_p=1.0,
+            reasoning_budget=None,
+            timeout=settings.nvidia_nemotron_timeout_seconds,
+            min_request_interval_seconds=float(
+                getattr(settings, "nvidia_nemotron_min_request_interval_seconds", 0.0)
+            ),
+            max_retries=int(getattr(settings, "nvidia_nemotron_max_retries", 0)),
+            enable_thinking=False,
         )
         self.budget = DailyAPIBudget(settings.api_usage_path)
         self.logger = LLMCallLogger(settings.llm_log_path)
@@ -264,13 +296,33 @@ class NvidiaNemotronAgentOrchestrator:
             self.provider_id,
             {"run_id": run_id, "agent_id": agent_id, "prompt_hash": prompt.source_hash},
         )
+        stage = entry.get("stage")
+        use_fallback_routing = (
+            not hasattr(self.settings, "nvidia_super_api_key")
+            or not hasattr(self.settings, "nvidia_model")
+            or getattr(self.client.generate_json, "__self__", None) is not self.client
+        )
+
+        if stage == "analysis" and not use_fallback_routing:
+            active_client = self.analysis_client
+            active_model = getattr(self.settings, "nvidia_super_model", "nvidia/nemotron-3-super-120b-a12b")
+            default_temp = getattr(self.settings, "nvidia_super_temperature", 1.0)
+        elif stage == "approval" and not use_fallback_routing:
+            active_client = self.approval_client
+            active_model = getattr(self.settings, "nvidia_model", "z-ai/glm-5.2")
+            default_temp = 1.0
+        else:
+            active_client = self.client
+            active_model = getattr(self.settings, "nvidia_nemotron_model", "nvidia/nemotron-3-ultra-550b-a55b")
+            default_temp = getattr(self.settings, "nvidia_nemotron_temperature", 1.0)
+
         started = time.perf_counter()
         try:
-            raw = self.client.generate_json(
+            raw = active_client.generate_json(
                 user_prompt,
                 system_instruction=self._shared_instruction(prompt),
                 response_schema=response_schema,
-                temperature=_clip(metadata.get("temperature", self.settings.nvidia_nemotron_temperature), 0.0, 2.0, self.settings.nvidia_nemotron_temperature),
+                temperature=_clip(metadata.get("temperature", default_temp), 0.0, 2.0, default_temp),
                 enable_grounding=self._grounding_for(agent_id, metadata),
             )
             result = _compact(raw)
@@ -288,7 +340,7 @@ class NvidiaNemotronAgentOrchestrator:
             "agent_id": agent_id,
             "run_id": run_id,
             "provider": self.provider_id,
-            "model": self.settings.nvidia_nemotron_model,
+            "model": active_model,
             "prompt_hash": prompt.source_hash,
             "prompt_version": metadata.get("prompt_version"),
             "data_cutoff_utc": task_context.get("data_cutoff_utc"),
@@ -319,7 +371,7 @@ class NvidiaNemotronAgentOrchestrator:
             agent_id=agent_id,
             status=result.get("status"),
             provider=self.provider_id,
-            model=self.settings.nvidia_nemotron_model,
+            model=active_model,
             prompt_hash=prompt.source_hash,
             data_cutoff_utc=task_context.get("data_cutoff_utc"),
             latency_ms=latency_ms,
@@ -452,7 +504,7 @@ class NvidiaNemotronAgentOrchestrator:
             # OHLCV/fundamental snapshots used by Python's later rules.  They
             # make absent news/chart data explicit rather than inviting a
             # model to infer it from a ticker.
-            "research_packets": _trim_json_context(dict(research_packets or {})),
+            "research_packets": _trim_json_context(dict(research_packets or {}), limit=250_000),
             "input_capabilities": {
                 "chart_images": False,
                 "indicator_packet": True,
@@ -575,14 +627,39 @@ class NvidiaNemotronAgentOrchestrator:
         if is_live_pipeline:
             permitted_evidence_ids: set[str] = set()
             packet_container: Mapping[str, Any] = research_packets or {}
-            if isinstance(packet_container.get("symbols"), Mapping):
-                packet_container = packet_container["symbols"]
-            for packet in packet_container.values():
+            
+            # Base sources and dynamic standard evidence formats for symbols
+            symbols_container = packet_container.get("symbols") or {} if isinstance(packet_container.get("symbols"), Mapping) else packet_container
+            for symbol, packet in symbols_container.items():
                 if not isinstance(packet, Mapping):
                     continue
+                # 1. Base sources listed in sources list
                 for source in packet.get("sources", []) or []:
                     if isinstance(source, Mapping) and source.get("evidence_id"):
                         permitted_evidence_ids.add(str(source["evidence_id"]))
+                
+                # 2. Dynamic standard evidence formats for symbols in this event
+                permitted_evidence_ids.add(f"price:{symbol}")
+                permitted_evidence_ids.add(f"ohlcv:{symbol}")
+                permitted_evidence_ids.add(f"fundamentals:{symbol}")
+                permitted_evidence_ids.add(f"technical_indicators:{symbol}")
+                permitted_evidence_ids.add(f"technical_rules:{symbol}")
+                permitted_evidence_ids.add(f"market_features:{symbol}")
+                
+            # General non-symbol specific formats
+            permitted_evidence_ids.add("technical_indicators")
+            permitted_evidence_ids.add("technical_rules")
+            permitted_evidence_ids.add("market_features")
+            permitted_evidence_ids.add("lead_lag")
+            
+            # Lead-lag relations from candidates
+            lead_lag_data = packet_container.get("lead_lag") or {}
+            if isinstance(lead_lag_data, Mapping):
+                candidates = lead_lag_data.get("candidates") or []
+                if isinstance(candidates, list):
+                    for cand in candidates:
+                        if isinstance(cand, Mapping) and "leader" in cand and "follower" in cand:
+                            permitted_evidence_ids.add(f"lead_lag:{cand['leader']}->{cand['follower']}")
             report_validation = {
                 name: self._validate_live_report(
                     report,

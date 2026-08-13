@@ -149,6 +149,18 @@ class Settings:
         "NVIDIA_NEMOTRON_TEACHER_LABELS_PATH", "data_cache/agentic/teacher_labels.jsonl"
     )
 
+    # NVIDIA Super (Analysis Agents tier)
+    nvidia_super_api_key: str = env_first("NVIDIA_SUPER_API_KEY", "NVIDIA_API_KEY")
+    nvidia_super_base_url: str = os.getenv(
+        "NVIDIA_SUPER_BASE_URL", os.getenv("NVIDIA_BASE_URL", "https://integrate.api.nvidia.com/v1")
+    )
+    nvidia_super_model: str = os.getenv("NVIDIA_SUPER_MODEL", "nvidia/nemotron-3-super-120b-a12b")
+    nvidia_super_temperature: float = env_float("NVIDIA_SUPER_TEMPERATURE", 1.0)
+    nvidia_super_top_p: float = env_float("NVIDIA_SUPER_TOP_P", 0.95)
+    nvidia_super_max_output_tokens: int = env_int("NVIDIA_SUPER_MAX_OUTPUT_TOKENS", 16384)
+    nvidia_super_reasoning_budget: int = env_int("NVIDIA_SUPER_REASONING_BUDGET", 16384)
+    nvidia_super_enable_thinking: bool = env_bool("NVIDIA_SUPER_ENABLE_THINKING", True)
+
     # Dual LLM API control
     enable_google_api: bool = env_bool("ENABLE_GOOGLE_API", True)
     enable_nvidia_api: bool = env_bool("ENABLE_NVIDIA_API", True)

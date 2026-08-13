@@ -357,6 +357,7 @@ class NvidiaNemotronAgentClient(NvidiaNIMClient):
         timeout: int = 90,
         min_request_interval_seconds: float = 0.0,
         max_retries: int = 0,
+        enable_thinking: bool = True,
     ):
         super().__init__(api_key=api_key, base_url=base_url, model=model, timeout=timeout)
         self.enable_grounding = enable_grounding
@@ -366,6 +367,7 @@ class NvidiaNemotronAgentClient(NvidiaNIMClient):
         self.reasoning_budget = reasoning_budget
         self.min_request_interval_seconds = min_request_interval_seconds
         self.max_retries = max_retries
+        self.enable_thinking = enable_thinking
 
     @property
     def capabilities(self) -> Dict[str, bool]:
@@ -401,10 +403,9 @@ class NvidiaNemotronAgentClient(NvidiaNIMClient):
             "top_p": self.top_p,
             "max_tokens": self.max_output_tokens or 2048,
             "messages": messages,
-            # OpenAI SDK's ``extra_body`` is serialized as top-level request
-            # fields; mirror that wire format for the requests-based client.
-            "chat_template_kwargs": {"enable_thinking": True},
         }
+        if self.enable_thinking:
+            body["chat_template_kwargs"] = {"enable_thinking": True}
         if self.reasoning_budget:
             body["reasoning_budget"] = self.reasoning_budget
         # `response_schema` is intentionally not sent: this model endpoint is
