@@ -1,7 +1,7 @@
 ---
 id: sentiment_analyst
 title: 군중 심리 분석가
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: analysis
 prompt_version: 1.0.0
 input_schema: sentiment_packet

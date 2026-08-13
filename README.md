@@ -746,6 +746,16 @@ docs/requirements_checklist_v9.json
 
 # v10 변경점: Gemini_Api2 멀티에이전트 연구 워크플로
 
+> 현재 Bull/Bear 토론 및 리스크 역할팀은 NVIDIA Nemotron NIM으로 전환되었다.
+> NVIDIA Build의 `deepseek-ai/deepseek-v4-pro` 호스티드 엔드포인트는 종료되었으므로,
+> 기본 모델은 현재 계정에서 조회되는 `nvidia/nemotron-3-ultra-550b-a55b`이다.
+
+```env
+ENABLE_NVIDIA_DEEPSEEK_AGENTS=true
+NVIDIA_DEEPSEEK_API_KEY=your_nvidia_key
+NVIDIA_DEEPSEEK_MODEL=nvidia/nemotron-3-ultra-550b-a55b
+```
+
 `ai_prompot/02_트레이딩팀.md`부터 `11_추측디코딩.md`까지의 연구 메모를 실행 가능한 역할 프롬프트와 Python 안전장치로 옮겼다. 런타임 프롬프트는 [ai_prompts/README.md](ai_prompts/README.md)에 있으며, 모든 에이전트는 전용 `Gemini_Api2` 키만 사용한다.
 
 ## 활성화 전제

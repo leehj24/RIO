@@ -1,4 +1,4 @@
-import argparse
+﻿import argparse
 import json
 import time
 import datetime as dt
@@ -17,7 +17,7 @@ from strategy.data_sources import SapienceClient, make_mock_ohlcv
 from strategy.symbol_registry import describe_symbol
 from strategy.llm_pipeline import DualProviderLLMPipeline
 from strategy.naver_search import NaverSearchClient
-from strategy.agentic.orchestrator import GeminiAgentOrchestrator
+from strategy.agentic.orchestrator import NvidiaNemotronAgentOrchestrator
 from strategy.factors import compute_factor_scores
 from strategy.technical_entries import compute_technical_rules
 from strategy.sde import build_sde_inputs, gbm_prob_up
@@ -255,11 +255,11 @@ def put_lmsr(state: dict, market: LMSRMarket) -> None:
 def pick_price(settings: Settings, toss: TossClient, symbol: str) -> tuple[float, dict]:
     """
     LIVE:
-    - Toss prices 응답에서 현재가를 실제로 파싱해야 한다.
-    - 실패/0원/fallback이면 주문 차단.
+    - Toss prices ?묐떟?먯꽌 ?꾩옱媛瑜??ㅼ젣濡??뚯떛?댁빞 ?쒕떎.
+    - ?ㅽ뙣/0??fallback?대㈃ 二쇰Ц 李⑤떒.
 
     DRY_RUN:
-    - fallback 가격 허용.
+    - fallback 媛寃??덉슜.
     """
     try:
         price_data = toss.prices([symbol])
@@ -430,7 +430,7 @@ def begin_order_lifecycle(
         lifecycle_id,
         runtime_run_id=runtime_run_id,
         agent_run_id=agentic.get("run_id"),
-        model_pipeline=str(llm_result.get("model_pipeline") or "gemini_api2_live_event_research"),
+        model_pipeline=str(llm_result.get("model_pipeline") or "nvidia_nemotron_live_event_research"),
         event_id=event_id,
         symbol=symbol,
         market=symbol_info.get("market"),
@@ -544,7 +544,7 @@ def get_cached_live_llm_result(settings: Settings, state: dict, event, candidate
         "google_evidence": {"status": "cached", "source_agent_run_id": source_run_id or None},
         "nvidia_judgement": {"status": "cached", "source_agent_run_id": source_run_id or None},
         "api_usage": _llm_usage_snapshot(llm_pipeline),
-        "model_pipeline": "gemini_api2_live_event_research_cached",
+        "model_pipeline": "nvidia_nemotron_live_event_research_cached",
         "live_agent_cache": {"hit": True, "age_seconds": round(age_seconds, 1)},
     }
 
@@ -591,8 +591,8 @@ def cache_live_llm_result(settings: Settings, state: dict, event, candidate_symb
 def pick_ohlcv(settings: Settings, toss: TossClient, symbol: str):
     """
     LIVE:
-    - technical_entries/SDE에 쓰는 캔들은 실제 candles가 필요하다.
-    - BLOCK_LIVE_ON_OHLCV_FALLBACK=true이면 mock OHLCV로 주문하지 않는다.
+    - technical_entries/SDE???곕뒗 罹붾뱾? ?ㅼ젣 candles媛 ?꾩슂?섎떎.
+    - BLOCK_LIVE_ON_OHLCV_FALLBACK=true?대㈃ mock OHLCV濡?二쇰Ц?섏? ?딅뒗??
     """
     if settings.dry_run:
         return make_mock_ohlcv(getattr(settings, "research_ohlcv_bars", 260)), {"source": "dry_run_mock_ohlcv"}
@@ -722,7 +722,7 @@ def execute_order(
         if order_spec["side"] == "BUY":
             qty = float(order_spec.get("quantity") or 0.0)
             if qty <= 0 and order_spec.get("order_amount"):
-                # US amount order dry-run: 대략 수량 환산
+                # US amount order dry-run: ????섎웾 ?섏궛
                 qty = float(order_spec["notional_krw"]) / max(float(price) * settings.usd_krw_fx_rate, 1.0)
             apply_dry_run_fill(
                 state,
@@ -976,12 +976,12 @@ def reconcile_pending_live_orders(
 
 def validate_orderability(settings: Settings, toss: TossClient, symbol: str, symbol_info: dict) -> dict:
     """
-    LIVE 주문 전:
-    - 종목 거래 가능 상태
-    - 시장 open 여부
-    를 실제 API로 확인한다.
+    LIVE 二쇰Ц ??
+    - 醫낅ぉ 嫄곕옒 媛???곹깭
+    - ?쒖옣 open ?щ?
+    瑜??ㅼ젣 API濡??뺤씤?쒕떎.
 
-    Endpoint는 Toss 최신 문서에 맞게 .env에서 바꿀 수 있다.
+    Endpoint??Toss 理쒖떊 臾몄꽌??留욊쾶 .env?먯꽌 諛붽? ???덈떎.
     """
     if settings.dry_run:
         return {"ok": True, "reason": "dry_run_skip_orderability"}
@@ -1043,12 +1043,12 @@ def run_once(settings: Settings) -> None:
         if reconciliation["reconciled"]:
             print("[broker] reconciled terminal orders: " + ", ".join(reconciliation["reconciled"]))
 
-    # The Gemini_Api2 team is opt-in and fail-closed.  Keeping the legacy
+    # The NVIDIA Nemotron team is opt-in and fail-closed.  Keeping the legacy
     # dual-provider pipeline as the default prevents a key in .env from
     # changing live behaviour until the new workflow has been dry-run tested.
-    if settings.enable_gemini_api2:
-        llm_pipeline = GeminiAgentOrchestrator(settings)
-        print("[llm] Gemini_Api2 multi-agent workflow enabled")
+    if settings.enable_nvidia_nemotron_agents:
+        llm_pipeline = NvidiaNemotronAgentOrchestrator(settings)
+        print("[llm] NVIDIA Nemotron multi-agent workflow enabled")
     else:
         llm_pipeline = DualProviderLLMPipeline(settings)
         print("[llm] legacy dual-provider workflow enabled")
@@ -1073,10 +1073,9 @@ def run_once(settings: Settings) -> None:
         pending_order_symbols: set[str] = set()
         commission_snapshot: dict = {"dry_run": True}
     else:
-        # 매수가능금액 파싱 실패가 루프 전체를 죽이면 exit/청산 로직까지 함께
-        # 멈춘다(2026-07-15~16 야간 "cannot parse buying power" 69회 연속 중단).
-        # 파싱 실패 통화는 0원으로 두어 "그 통화 신규매수만 불가" 상태로
-        # 강등하고, 루프(포지션 감시·exit)는 계속 돌게 한다. fail-closed.
+        # 留ㅼ닔媛?κ툑???뚯떛 ?ㅽ뙣媛 猷⑦봽 ?꾩껜瑜?二쎌씠硫?exit/泥?궛 濡쒖쭅源뚯? ?④퍡
+        # 硫덉텣??2026-07-15~16 ?쇨컙 "cannot parse buying power" 69???곗냽 以묐떒).
+        # ?뚯떛 ?ㅽ뙣 ?듯솕??0?먯쑝濡??먯뼱 "洹??듯솕 ?좉퇋留ㅼ닔留?遺덇?" ?곹깭濡?        # 媛뺣벑?섍퀬, 猷⑦봽(?ъ???媛먯떆쨌exit)??怨꾩냽 ?뚭쾶 ?쒕떎. fail-closed.
         krw_buying = toss.buying_power(account_seq=settings.toss_account_seq, currency="KRW")
         try:
             krw_buying_power = parse_buying_power(krw_buying)
@@ -1292,8 +1291,8 @@ def run_once(settings: Settings) -> None:
             )
         ]
         symbol_infos_for_llm = [symbol_info_map[symbol] for symbol in llm_symbols]
-        # 네이버 뉴스(사실)·블로그(주관) evidence — LLM 판단 재료로만 사용되며
-        # 직접 주문을 생성하지 않는다. 실패해도 증거 없음으로만 작용한다.
+        # ?ㅼ씠踰??댁뒪(?ъ떎)쨌釉붾줈洹?二쇨?) evidence ??LLM ?먮떒 ?щ즺濡쒕쭔 ?ъ슜?섎ŉ
+        # 吏곸젒 二쇰Ц???앹꽦?섏? ?딅뒗?? ?ㅽ뙣?대룄 利앷굅 ?놁쓬?쇰줈留??묒슜?쒕떎.
         try:
             naver_evidence = naver_search.build_event_evidence(event, symbol_infos_for_llm)
         except Exception as exc:
@@ -1308,7 +1307,7 @@ def run_once(settings: Settings) -> None:
                 "candidates": lead_lag_candidates,
             },
         }
-        if settings.enable_gemini_api2:
+        if settings.enable_nvidia_nemotron_agents:
             llm_result = get_cached_live_llm_result(settings, state, event, llm_symbols, llm_pipeline)
             if llm_result is None and llm_symbols:
                 llm_result = llm_pipeline.analyze_event(
@@ -1317,7 +1316,7 @@ def run_once(settings: Settings) -> None:
                     symbol_infos_for_llm,
                     research_context,
                 )
-                llm_result.setdefault("model_pipeline", "gemini_api2_live_event_research")
+                llm_result.setdefault("model_pipeline", "nvidia_nemotron_live_event_research")
                 cache_live_llm_result(settings, state, event, llm_symbols, llm_result)
             elif llm_result is None:
                 llm_result = skipped_live_llm_result(
@@ -1363,10 +1362,9 @@ def run_once(settings: Settings) -> None:
         kelly_yes = prediction_market_kelly_yes(llm_prob, blended_price)
         kelly_no = prediction_market_kelly_no(llm_prob, blended_price)
 
-        # alpha=0.40이면 LMSR 내부가격이 몇 루프 만에 LLM 확률로 수렴해
-        # event_edge(=llm_prob - 내부가격)가 0으로 붕괴한다. 그 결과
-        # MIN_EVENT_EDGE 게이트를 두 번 다시 통과할 수 없게 되어 지속적
-        # 강세 판단이 매수로 이어지지 않는다. 수렴 속도는 설정으로 낮춘다.
+        # alpha=0.40?대㈃ LMSR ?대?媛寃⑹씠 紐?猷⑦봽 留뚯뿉 LLM ?뺣쪧濡??섎졃??        # event_edge(=llm_prob - ?대?媛寃?媛 0?쇰줈 遺뺢눼?쒕떎. 洹?寃곌낵
+        # MIN_EVENT_EDGE 寃뚯씠?몃? ??踰??ㅼ떆 ?듦낵?????녾쾶 ?섏뼱 吏?띿쟻
+        # 媛뺤꽭 ?먮떒??留ㅼ닔濡??댁뼱吏吏 ?딅뒗?? ?섎졃 ?띾룄???ㅼ젙?쇰줈 ??텣??
         lmsr_update = lmsr.update_toward_probability(
             llm_prob, alpha=float(getattr(settings, "lmsr_update_alpha", 0.15))
         )
@@ -1422,7 +1420,7 @@ def run_once(settings: Settings) -> None:
             action = base_action
             action_reason = "model_action"
 
-            # 매도는 보유 포지션이 있는 경우 기술적/수익률/alpha exit가 우선.
+            # 留ㅻ룄??蹂댁쑀 ?ъ??섏씠 ?덈뒗 寃쎌슦 湲곗닠???섏씡瑜?alpha exit媛 ?곗꽑.
             if exit_plan["action"] in {"SELL", "PARTIAL_SELL"}:
                 action = "SELL"
                 action_reason = "exit_rules"
@@ -1469,7 +1467,7 @@ def run_once(settings: Settings) -> None:
             elif action == "BUY" and not agent_buy_allowed:
                 action = "HOLD"
                 order_value = 0.0
-                action_reason = agent_block_reason or "Gemini_Api2 did not approve a new buy"
+                action_reason = agent_block_reason or "NVIDIA Nemotron did not approve a new buy"
             elif action == "BUY" and symbol not in agent_selected_symbols:
                 action = "HOLD"
                 order_value = 0.0
@@ -2080,19 +2078,19 @@ def main():
     start_dashboard_if_enabled(settings)
 
     while True:
-        # 대시보드의 자동투자 시작/정지 버튼 (data/bot_control.json)
+        # ??쒕낫?쒖쓽 ?먮룞?ъ옄 ?쒖옉/?뺤? 踰꾪듉 (data/bot_control.json)
         try:
             control_path = Path("data/bot_control.json")
             if control_path.exists():
                 control = json.loads(control_path.read_text(encoding="utf-8"))
                 if control.get("run") is False:
-                    print(f"[{now_iso()}] 자동투자 일시정지 상태 (대시보드에서 시작 버튼을 누르면 재개)")
+                    print(f"[{now_iso()}] ?먮룞?ъ옄 ?쇱떆?뺤? ?곹깭 (??쒕낫?쒖뿉???쒖옉 踰꾪듉???꾨Ⅴ硫??ш컻)")
                     if args.once:
                         break
                     time.sleep(min(30, settings.loop_seconds))
                     continue
         except Exception as exc:
-            print(f"[control] bot_control.json 읽기 실패, 계속 진행: {exc}")
+            print(f"[control] bot_control.json ?쎄린 ?ㅽ뙣, 怨꾩냽 吏꾪뻾: {exc}")
 
         try:
             run_once(settings)
@@ -2116,3 +2114,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

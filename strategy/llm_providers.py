@@ -282,7 +282,7 @@ class NvidiaNIMClient:
         *,
         api_key: str,
         base_url: str = "https://integrate.api.nvidia.com/v1",
-        model: str = "deepseek-ai/deepseek-r1",
+        model: str = "nvidia/nemotron-3-ultra-550b-a55b",
         timeout: int = 60,
     ):
         self.api_key = api_key
@@ -323,6 +323,101 @@ class NvidiaNIMClient:
             raise RuntimeError(f"NVIDIA API error {resp.status_code}: {resp.text}")
 
         data = resp.json()
+        text = data.get("choices", [{}])[0].get("message", {}).get("content", "")
+        parsed = extract_json_object(text)
+        parsed["_raw_provider_response"] = data
+        return parsed
+
+
+class NvidiaNemotronAgentClient(NvidiaNIMClient):
+    """OpenAI-compatible NVIDIA NIM client for the debate and risk agents.
+
+    NVIDIA's hosted endpoint does not expose Gemini-style response schemas or
+    Google Search grounding.  The orchestration layer consequently keeps its
+    existing JSON validation and deterministic risk gate as the final guard.
+    """
+
+    provider_id = "nvidia_nemotron"
+    supports_system_instruction = True
+    supports_structured_output = False
+    supports_google_search_grounding = False
+    supports_token_level_speculative_decoding = False
+
+    def __init__(
+        self,
+        *,
+        api_key: str,
+        model: str,
+        base_url: str = "https://integrate.api.nvidia.com/v1",
+        enable_grounding: bool = False,
+        temperature: float = 0.1,
+        max_output_tokens: Optional[int] = 2048,
+        top_p: float = 0.95,
+        reasoning_budget: Optional[int] = None,
+        timeout: int = 90,
+        min_request_interval_seconds: float = 0.0,
+        max_retries: int = 0,
+    ):
+        super().__init__(api_key=api_key, base_url=base_url, model=model, timeout=timeout)
+        self.enable_grounding = enable_grounding
+        self.temperature = temperature
+        self.max_output_tokens = max_output_tokens
+        self.top_p = top_p
+        self.reasoning_budget = reasoning_budget
+        self.min_request_interval_seconds = min_request_interval_seconds
+        self.max_retries = max_retries
+
+    @property
+    def capabilities(self) -> Dict[str, bool]:
+        return {
+            "system_instruction": self.supports_system_instruction,
+            "structured_output": self.supports_structured_output,
+            "google_search_grounding": self.supports_google_search_grounding,
+            "token_level_speculative_decoding": self.supports_token_level_speculative_decoding,
+        }
+
+    def generate_json(
+        self,
+        prompt: str,
+        *,
+        system_instruction: str = "",
+        response_schema: Optional[Dict[str, Any]] = None,
+        temperature: float = 0.1,
+        enable_grounding: bool = False,
+    ) -> Dict[str, Any]:
+        if not self.api_key:
+            raise RuntimeError("NVIDIA_NEMOTRON_API_KEY/NVIDIA_API_KEY missing")
+        if enable_grounding:
+            raise RuntimeError("NVIDIA NIM Nemotron does not support Google Search grounding")
+
+        url = self.base_url + "/chat/completions"
+        messages = []
+        if system_instruction.strip():
+            messages.append({"role": "system", "content": system_instruction})
+        messages.append({"role": "user", "content": prompt})
+        body = {
+            "model": self.model,
+            "temperature": float(temperature),
+            "top_p": self.top_p,
+            "max_tokens": self.max_output_tokens or 2048,
+            "messages": messages,
+            # OpenAI SDK's ``extra_body`` is serialized as top-level request
+            # fields; mirror that wire format for the requests-based client.
+            "chat_template_kwargs": {"enable_thinking": True},
+        }
+        if self.reasoning_budget:
+            body["reasoning_budget"] = self.reasoning_budget
+        # `response_schema` is intentionally not sent: this model endpoint is
+        # OpenAI-compatible but does not guarantee JSON-schema support.
+        response = requests.post(
+            url,
+            headers={"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"},
+            json=body,
+            timeout=self.timeout,
+        )
+        if response.status_code >= 400:
+            raise RuntimeError(f"NVIDIA API error {response.status_code}: {response.text}")
+        data = response.json()
         text = data.get("choices", [{}])[0].get("message", {}).get("content", "")
         parsed = extract_json_object(text)
         parsed["_raw_provider_response"] = data

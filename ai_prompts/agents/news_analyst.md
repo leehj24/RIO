@@ -1,7 +1,7 @@
 ---
 id: news_analyst
 title: 뉴스·정책 분석가
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: analysis
 prompt_version: 1.0.0
 input_schema: news_packet

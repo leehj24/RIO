@@ -1,7 +1,7 @@
 ---
 id: bull_researcher
 title: 강세 연구원
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: analysis
 prompt_version: 1.0.0
 input_schema: debate_packet

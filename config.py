@@ -66,7 +66,7 @@ class Settings:
     llm_provider: str = os.getenv("LLM_PROVIDER", "mock")
     nvidia_api_key: str = os.getenv("NVIDIA_API_KEY", "")
     nvidia_base_url: str = os.getenv("NVIDIA_BASE_URL", "https://integrate.api.nvidia.com/v1")
-    nvidia_model: str = os.getenv("NVIDIA_MODEL", "deepseek-ai/deepseek-r1")
+    nvidia_model: str = os.getenv("NVIDIA_MODEL", "nvidia/nemotron-3-ultra-550b-a55b")
     gemini_api_key: str = os.getenv("GEMINI_API_KEY", "")
     gemini_model: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 
@@ -114,6 +114,40 @@ class Settings:
     # supported on selected Gemini models.  Individual research agents can
     # explicitly opt in once their configured model supports that combination.
     gemini_api2_enable_grounding: bool = env_bool("ENABLE_GEMINI_API2_GROUNDING", False)
+
+    # NVIDIA Nemotron V4 Pro is the sole provider for the Bull/Bear debate and
+    # final semantic-risk workflow.  ``NVIDIA_API_KEY`` remains an accepted
+    # fallback so an existing local secret never has to be copied into code.
+    enable_nvidia_nemotron_agents: bool = env_bool("ENABLE_NVIDIA_NEMOTRON_AGENTS", False)
+    nvidia_nemotron_api_key: str = env_first("NVIDIA_NEMOTRON_API_KEY", "NVIDIA_API_KEY")
+    nvidia_nemotron_base_url: str = os.getenv(
+        "NVIDIA_NEMOTRON_BASE_URL", os.getenv("NVIDIA_BASE_URL", "https://integrate.api.nvidia.com/v1")
+    )
+    nvidia_nemotron_model: str = os.getenv("NVIDIA_NEMOTRON_MODEL", "nvidia/nemotron-3-ultra-550b-a55b")
+    nvidia_nemotron_daily_call_limit: int = env_int("NVIDIA_NEMOTRON_DAILY_CALL_LIMIT", 30)
+    nvidia_nemotron_timeout_seconds: int = env_int("NVIDIA_NEMOTRON_TIMEOUT_SECONDS", 180)
+    nvidia_nemotron_temperature: float = env_float("NVIDIA_NEMOTRON_TEMPERATURE", 1.0)
+    nvidia_nemotron_top_p: float = env_float("NVIDIA_NEMOTRON_TOP_P", 0.95)
+    nvidia_nemotron_max_output_tokens: int = env_int("NVIDIA_NEMOTRON_MAX_OUTPUT_TOKENS", 16384)
+    nvidia_nemotron_reasoning_budget: int = env_int("NVIDIA_NEMOTRON_REASONING_BUDGET", 16384)
+    nvidia_nemotron_enable_response_schema: bool = False
+    nvidia_nemotron_enable_grounding: bool = False
+    nvidia_nemotron_min_request_interval_seconds: float = env_float(
+        "NVIDIA_NEMOTRON_MIN_REQUEST_INTERVAL_SECONDS", 0.0
+    )
+    nvidia_nemotron_max_retries: int = env_int("NVIDIA_NEMOTRON_MAX_RETRIES", 0)
+    nvidia_nemotron_max_agents_per_run: int = env_int("NVIDIA_NEMOTRON_MAX_AGENTS_PER_RUN", 20)
+    nvidia_nemotron_pipeline: str = os.getenv("NVIDIA_NEMOTRON_PIPELINE", "live_event_research")
+    nvidia_nemotron_memory_top_k: int = env_int("NVIDIA_NEMOTRON_MEMORY_TOP_K", 5)
+    nvidia_nemotron_prompt_root: str = os.getenv("NVIDIA_NEMOTRON_PROMPT_ROOT", "ai_prompts")
+    nvidia_nemotron_audit_path: str = os.getenv("NVIDIA_NEMOTRON_AUDIT_PATH", "data/agentic/audit.jsonl")
+    nvidia_nemotron_memory_path: str = os.getenv("NVIDIA_NEMOTRON_MEMORY_PATH", "data/agentic/memory.jsonl")
+    nvidia_nemotron_hypergraph_path: str = os.getenv(
+        "NVIDIA_NEMOTRON_HYPERGRAPH_PATH", "data_cache/agentic/hyperedges.jsonl"
+    )
+    nvidia_nemotron_teacher_labels_path: str = os.getenv(
+        "NVIDIA_NEMOTRON_TEACHER_LABELS_PATH", "data_cache/agentic/teacher_labels.jsonl"
+    )
 
     # Dual LLM API control
     enable_google_api: bool = env_bool("ENABLE_GOOGLE_API", True)

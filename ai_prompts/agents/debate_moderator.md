@@ -1,7 +1,7 @@
 ---
 id: debate_moderator
 title: 강세·약세 토론 촉진자
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: analysis
 prompt_version: 1.0.0
 input_schema: debate_transcript_packet

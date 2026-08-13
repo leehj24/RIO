@@ -1,7 +1,7 @@
 ---
 id: technical_vision_analyst
 title: 기술·차트 멀티모달 분석가
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: multimodal
 prompt_version: 1.0.0
 input_schema: multimodal_market_packet

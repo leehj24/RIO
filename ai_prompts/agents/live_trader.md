@@ -1,7 +1,7 @@
 ---
 id: live_trader
 title: 실거래 후보 제안 분석가
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: structured
 prompt_version: 1.0.0
 input_schema: live_research_packet

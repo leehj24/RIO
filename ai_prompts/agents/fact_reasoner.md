@@ -1,7 +1,7 @@
 ---
 id: fact_reasoner
 title: 사실 기반 추론가
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: analysis
 prompt_version: 1.0.0
 input_schema: fact_reasoning_packet

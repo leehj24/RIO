@@ -1,7 +1,7 @@
 ---
 id: fact_analyst
 title: 사실 추출 분석가
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: structured
 prompt_version: 1.0.0
 input_schema: evidence_packet

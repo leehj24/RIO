@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "default_provider": "gemini_api2",
-  "provider_config": "providers/gemini_api2.md",
+  "default_provider": "nvidia_nemotron",
+  "provider_config": "providers/nvidia_nemotron.md",
   "direct_order_execution": false,
   "shared_prompts": [
     "shared/decision_contract.md",

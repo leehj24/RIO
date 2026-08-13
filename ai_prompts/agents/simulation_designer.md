@@ -1,7 +1,7 @@
 ---
 id: simulation_designer
 title: 시장 시뮬레이션 설계자
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: offline
 prompt_version: 1.0.0
 input_schema: simulation_request

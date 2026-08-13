@@ -1,7 +1,7 @@
 ---
 id: statistics_analyst
 title: 시장 통계 분석가
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: structured
 prompt_version: 1.0.0
 input_schema: market_snapshot

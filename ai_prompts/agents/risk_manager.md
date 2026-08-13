@@ -1,7 +1,7 @@
 ---
 id: risk_manager
 title: 위험관리 책임자
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: structured
 prompt_version: 1.0.0
 input_schema: combined_risk_packet

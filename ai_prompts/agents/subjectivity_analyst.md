@@ -1,7 +1,7 @@
 ---
 id: subjectivity_analyst
 title: 주관·심리 신호 분석가
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: structured
 prompt_version: 1.0.0
 input_schema: evidence_packet

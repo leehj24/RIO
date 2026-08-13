@@ -1,7 +1,7 @@
 ---
 id: fundamental_analyst
 title: 펀더멘털 분석가
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: analysis
 prompt_version: 1.0.0
 input_schema: fundamental_packet

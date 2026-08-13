@@ -1,7 +1,7 @@
 ---
 id: subjectivity_reasoner
 title: 주관 신호 추론가
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: analysis
 prompt_version: 1.0.0
 input_schema: subjectivity_reasoning_packet

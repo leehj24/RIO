@@ -1,7 +1,7 @@
 ---
 id: live_portfolio_manager
 title: 실거래 분석 승인 관리자
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: structured
 prompt_version: 1.0.0
 input_schema: live_final_approval_packet

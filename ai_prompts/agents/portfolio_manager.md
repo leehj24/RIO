@@ -1,7 +1,7 @@
 ---
 id: portfolio_manager
 title: 포트폴리오 관리자
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: structured
 prompt_version: 1.0.0
 input_schema: manager_decision_packet

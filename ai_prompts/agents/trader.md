@@ -1,7 +1,7 @@
 ---
 id: trader
 title: 거래 제안 분석가
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: analysis
 prompt_version: 1.0.0
 input_schema: trade_proposal_packet

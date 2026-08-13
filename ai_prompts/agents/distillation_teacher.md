@@ -1,7 +1,7 @@
 ---
 id: distillation_teacher
 title: 이중증류 Teacher 설계자
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: offline
 prompt_version: 1.0.0
 input_schema: distillation_packet

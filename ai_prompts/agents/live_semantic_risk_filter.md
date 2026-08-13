@@ -1,7 +1,7 @@
 ---
 id: live_semantic_risk_filter
 title: 실거래 의미·시점 위험 필터
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: structured
 prompt_version: 1.0.0
 input_schema: live_trade_risk_snapshot

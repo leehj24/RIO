@@ -1,7 +1,7 @@
 ---
 id: semantic_risk_filter
 title: 의미 기반 위험 필터
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: structured
 prompt_version: 1.1.0
 input_schema: semantic_risk_packet

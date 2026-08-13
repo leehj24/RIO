@@ -1,7 +1,7 @@
 ---
 id: memory_curator
 title: 에이전트 기억 큐레이터
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: structured
 prompt_version: 1.0.0
 input_schema: memory_curation_packet

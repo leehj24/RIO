@@ -1,7 +1,7 @@
 ---
 id: risk_aggressive
 title: 공격적 위험 검토자
-provider: gemini_api2
+provider: nvidia_nemotron
 model_profile: analysis
 prompt_version: 1.0.0
 input_schema: risk_review_packet

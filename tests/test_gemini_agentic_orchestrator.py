@@ -7,33 +7,36 @@ from types import SimpleNamespace
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from config import env_first
-from strategy.agentic.orchestrator import GeminiAgentOrchestrator
+from strategy.agentic.orchestrator import NvidiaNemotronAgentOrchestrator
 from strategy.agentic.prompt_loader import PromptLoader
 from strategy.agentic.risk_gate import apply_semantic_risk_assessment
 from strategy.agentic.simulator import ContinuousDoubleAuction, SimOrder, SimulationLedger
-from strategy.llm_providers import GeminiAPI2Client
+from strategy.llm_providers import NvidiaNemotronAgentClient
 
 
 def make_settings(tmp_path: Path, *, enabled: bool):
     return SimpleNamespace(
-        enable_gemini_api2=enabled,
-        gemini_api2_key="test-key",
-        gemini_api2_model="gemini-test",
-        gemini_api2_enable_grounding=False,
-        gemini_api2_temperature=0.1,
-        gemini_api2_max_output_tokens=256,
-        gemini_api2_timeout_seconds=5,
-        gemini_api2_prompt_root="ai_prompts",
-        gemini_api2_daily_call_limit=30,
-        gemini_api2_max_agents_per_run=20,
-        gemini_api2_memory_top_k=3,
-        gemini_api2_enable_response_schema=False,
+        enable_nvidia_nemotron_agents=enabled,
+        nvidia_nemotron_api_key="test-key",
+        nvidia_nemotron_base_url="https://example.invalid/v1",
+        nvidia_nemotron_model="deepseek-test",
+        nvidia_nemotron_enable_grounding=False,
+        nvidia_nemotron_temperature=0.1,
+        nvidia_nemotron_top_p=0.95,
+        nvidia_nemotron_max_output_tokens=256,
+        nvidia_nemotron_reasoning_budget=128,
+        nvidia_nemotron_timeout_seconds=5,
+        nvidia_nemotron_prompt_root="ai_prompts",
+        nvidia_nemotron_daily_call_limit=30,
+        nvidia_nemotron_max_agents_per_run=20,
+        nvidia_nemotron_memory_top_k=3,
+        nvidia_nemotron_enable_response_schema=False,
         api_usage_path=str(tmp_path / "usage.json"),
         llm_log_path=str(tmp_path / "llm.jsonl"),
-        gemini_api2_audit_path=str(tmp_path / "audit.jsonl"),
-        gemini_api2_memory_path=str(tmp_path / "memory.jsonl"),
-        gemini_api2_hypergraph_path=str(tmp_path / "hyperedges.jsonl"),
-        gemini_api2_teacher_labels_path=str(tmp_path / "teacher_labels.jsonl"),
+        nvidia_nemotron_audit_path=str(tmp_path / "audit.jsonl"),
+        nvidia_nemotron_memory_path=str(tmp_path / "memory.jsonl"),
+        nvidia_nemotron_hypergraph_path=str(tmp_path / "hyperedges.jsonl"),
+        nvidia_nemotron_teacher_labels_path=str(tmp_path / "teacher_labels.jsonl"),
     )
 
 
@@ -46,28 +49,19 @@ def event():
 
 
 def test_disabled_agent_workflow_fails_closed(tmp_path):
-    orchestrator = GeminiAgentOrchestrator(make_settings(tmp_path, enabled=False))
+    orchestrator = NvidiaNemotronAgentOrchestrator(make_settings(tmp_path, enabled=False))
     result = orchestrator.analyze_event(event(), ["005930"], [{"symbol": "005930"}])
 
     assert result["confidence"] == 0.0
     assert result["buy_allowed"] is False
-    assert result["block_reason"] == "gemini_api2_disabled"
+    assert result["block_reason"] == "nvidia_nemotron_disabled"
 
 
-def test_api2_compatibility_key_and_request_body(monkeypatch):
-    monkeypatch.delenv("GEMINI_API2_KEY", raising=False)
-    monkeypatch.setenv("Gemini_Api2", "legacy-key")
-    assert env_first("GEMINI_API2_KEY", "Gemini_Api2") == "legacy-key"
-
-    client = GeminiAPI2Client(api_key="test-key", model="gemini-test", max_output_tokens=99)
-    body = client.build_request_body(
-        "input",
-        system_instruction="role",
-        response_schema={"type": "object"},
-    )
-    assert body["systemInstruction"]["parts"][0]["text"] == "role"
-    assert body["generationConfig"]["responseMimeType"] == "application/json"
-    assert body["generationConfig"]["maxOutputTokens"] == 99
+def test_nvidia_nemotron_client_capabilities():
+    client = NvidiaNemotronAgentClient(api_key="test-key", model="deepseek-test", max_output_tokens=99)
+    assert client.model == "deepseek-test"
+    assert client.max_output_tokens == 99
+    assert client.capabilities["structured_output"] is False
     assert client.capabilities["token_level_speculative_decoding"] is False
 
 
@@ -80,13 +74,13 @@ def test_all_registered_prompt_assets_are_api2_only_and_order_safe():
     for entry in registry["agents"]:
         prompt = loader.load(entry["path"])
         assert prompt.metadata["id"] == entry["id"]
-        assert prompt.metadata["provider"] == "gemini_api2"
+        assert prompt.metadata["provider"] == "nvidia_nemotron"
         assert prompt.metadata["direct_order_execution"] is False
         assert "JSON" in prompt.body
 
 
 def test_full_agent_workflow_uses_structured_decision_and_risk_gate(tmp_path, monkeypatch):
-    orchestrator = GeminiAgentOrchestrator(make_settings(tmp_path, enabled=True))
+    orchestrator = NvidiaNemotronAgentOrchestrator(make_settings(tmp_path, enabled=True))
     seen = []
     packets_seen = []
 
@@ -150,9 +144,9 @@ def test_full_agent_workflow_uses_structured_decision_and_risk_gate(tmp_path, mo
 
 def test_compact_live_pipeline_uses_four_contract_checked_agents(tmp_path, monkeypatch):
     settings = make_settings(tmp_path, enabled=True)
-    settings.gemini_api2_pipeline = "live_event_research"
-    settings.gemini_api2_max_agents_per_run = 4
-    orchestrator = GeminiAgentOrchestrator(settings)
+    settings.nvidia_nemotron_pipeline = "live_event_research"
+    settings.nvidia_nemotron_max_agents_per_run = 4
+    orchestrator = NvidiaNemotronAgentOrchestrator(settings)
     seen = []
 
     def fake_generate_json(prompt, **_kwargs):
@@ -222,7 +216,7 @@ def test_semantic_hold_never_increases_exposure():
 
 
 def test_offline_agents_persist_only_unvalidated_hypotheses(tmp_path, monkeypatch):
-    orchestrator = GeminiAgentOrchestrator(make_settings(tmp_path, enabled=True))
+    orchestrator = NvidiaNemotronAgentOrchestrator(make_settings(tmp_path, enabled=True))
     seen = []
 
     def fake_generate_json(prompt, **kwargs):
@@ -261,7 +255,7 @@ def test_offline_agents_persist_only_unvalidated_hypotheses(tmp_path, monkeypatc
 
 
 def test_post_decision_reflection_creates_append_only_memory(tmp_path, monkeypatch):
-    orchestrator = GeminiAgentOrchestrator(make_settings(tmp_path, enabled=True))
+    orchestrator = NvidiaNemotronAgentOrchestrator(make_settings(tmp_path, enabled=True))
 
     def fake_generate_json(prompt, **kwargs):
         agent_id = prompt.split("AGENT_ID: ", 1)[1].split("\n", 1)[0]
