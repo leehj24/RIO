@@ -15,6 +15,9 @@ class EventSpec:
     mapped_symbols: List[str]
     theme: str = ""
     b: float = 100.0
+    # 1 = 실주문 후보(현금가용/국내상위) 매 루프 처리, 5 = 3개월 테마 리서치로
+    # THEME_EVENT_EVERY_N_LOOPS 주기로만 처리(main.py run_once 참고).
+    priority_tier: int = 5
 
 
 def _bool(v: str) -> bool:
@@ -114,6 +117,11 @@ def load_events(
             if not mapped_symbols:
                 continue
 
+            try:
+                priority_tier = int(row.get("priority_tier", 5) or 5)
+            except (TypeError, ValueError):
+                priority_tier = 5
+
             events.append(
                 EventSpec(
                     event_id=row.get("event_id", "").strip(),
@@ -121,6 +129,7 @@ def load_events(
                     question=question,
                     mapped_symbols=mapped_symbols,
                     b=float(row.get("b", 100) or 100),
+                    priority_tier=priority_tier,
                 )
             )
 
@@ -134,5 +143,6 @@ def default_events() -> List[EventSpec]:
             theme="KR Domestic",
             question="향후 3개월 동안 국내 주식의 가능성이 높은 종목은?",
             mapped_symbols=symbols_by_market("KR"),
+            priority_tier=1,
         ),
     ]

@@ -289,20 +289,31 @@ def pick_price(settings: Settings, toss: TossClient, symbol: str) -> tuple[float
     DRY_RUN:
     - fallback 媛寃??덉슜.
     """
+    # PAPER_TRADING=true: even while DRY_RUN=true, prefer the real Toss quote
+    # over the synthetic fallback so research sees real market conditions.
+    # Order *submission* safety is untouched (TossClient.create_order() gates
+    # on self.dry_run independently) -- see config.py `paper_trading`.
     try:
         price_data = toss.prices([symbol])
-        if settings.dry_run:
+        if settings.dry_run and not settings.paper_trading:
             price = dry_run_price(symbol)
             return float(price), {"source": "dry_run_fallback", "raw": price_data}
 
         price = parse_current_price(price_data, symbol)
         if price <= 0:
             raise LiveDataError(f"[LIVE BLOCKED] invalid current price for {symbol}")
-        return float(price), {"source": "toss_prices_real", "raw": price_data}
+        source = "toss_prices_real" if not settings.dry_run else "paper_trading_real_price"
+        return float(price), {"source": source, "raw": price_data}
 
     except Exception as e:
-        if settings.dry_run:
+        if settings.dry_run and not settings.paper_trading:
             return 100.0, {"source": "dry_run_exception_fallback", "error": str(e)}
+        if settings.dry_run and settings.paper_trading:
+            # Paper mode prefers real data, but a fetch failure must not
+            # crash the whole run_once loop the way a real LIVE order-safety
+            # error would. Fall back to a clearly-labeled synthetic price so
+            # research for other symbols can still proceed.
+            return dry_run_price(symbol), {"source": "paper_trading_fetch_failed_fallback", "error": str(e)}
         raise LiveDataError(f"[LIVE BLOCKED] real current price required for {symbol}: {e}")
 
 
@@ -317,7 +328,7 @@ def fetch_prices_batched(settings: Settings, toss: TossClient, symbols: list[str
     values: dict[str, tuple[float, dict]] = {}
     errors: dict[str, str] = {}
     unique_symbols = list(dict.fromkeys(str(symbol) for symbol in symbols if str(symbol).strip()))
-    if settings.dry_run:
+    if settings.dry_run and not settings.paper_trading:
         for symbol in unique_symbols:
             values[symbol] = (
                 dry_run_price(symbol),
@@ -503,13 +514,28 @@ _COMPACT_LLM_RESULT_KEYS = (
 )
 
 
-def _compact_llm_result(llm_result: dict) -> dict:
-    """Keep state.json small while retaining every field used by Python."""
+_LIST_VALUED_RESULT_KEYS = {"selected_symbols", "top_candidate_symbols", "avoid_symbols"}
 
-    return {
-        key: json.loads(json.dumps(llm_result.get(key), ensure_ascii=False))
-        for key in _COMPACT_LLM_RESULT_KEYS
-    }
+
+def _compact_llm_result(llm_result: dict) -> dict:
+    """Keep state.json small while retaining every field used by Python.
+
+    A key that is simply absent from ``llm_result`` (e.g. an unavailable/
+    blocked model turn) must not be persisted as JSON ``null``.  Once cached,
+    a null round-trips back into a live dict as Python ``None`` on the *next*
+    daily-cache hit, and ``dict.get(key, default)`` only applies ``default``
+    when the key is missing -- not when it is present with value ``None``.
+    List-valued fields are normalized to ``[]`` here so every downstream
+    ``for symbol in llm_result.get("selected_symbols", [])`` stays iterable.
+    """
+
+    compact = {}
+    for key in _COMPACT_LLM_RESULT_KEYS:
+        value = llm_result.get(key)
+        if key in _LIST_VALUED_RESULT_KEYS and value is None:
+            value = []
+        compact[key] = json.loads(json.dumps(value, ensure_ascii=False))
+    return compact
 
 
 def event_research_day(settings: Settings, at_utc: dt.datetime | None = None) -> str:
@@ -785,8 +811,13 @@ def pick_ohlcv(
     LIVE calculations require real OHLCV. A newly listed symbol may have less
     history than requested; charts can display that partial history, while the
     strategy still requires at least 60 daily observations before trading.
+
+    PAPER_TRADING=true reuses the same real-history path as LIVE even while
+    DRY_RUN=true, so analysis is not fed synthetic bars. Order submission
+    stays simulated regardless -- this only changes where research data
+    comes from.
     """
-    if settings.dry_run:
+    if settings.dry_run and not settings.paper_trading:
         return make_mock_ohlcv(getattr(settings, "research_ohlcv_bars", 260)), {"source": "dry_run_mock_ohlcv"}
 
     try:
@@ -1220,6 +1251,15 @@ def run_once(settings: Settings) -> None:
     runtime_run_id = uuid.uuid4().hex
     forecast_ledger = ForecastLedger(settings.forecast_ledger_path)
 
+    # 실주문 후보 이벤트(tier<=PRIORITY_EVENT_MAX_TIER)를 매 루프 처리하고,
+    # 3개월 테마 리서치(tier 5)는 THEME_EVENT_EVERY_N_LOOPS번째 루프에서만
+    # 처리해 무거운 19역할 모델 호출이 실주문 계산을 지연시키지 않게 한다.
+    # 14_1분봉단타실행엔진및확률모델설계.md 3장/9장 참고. state 저장 시점이
+    # 여러 곳에 흩어져 있어 정확한 매 루프 증가는 보장하지 않지만, 이 값은
+    # 안전조건이 아니라 스케줄링 힌트이므로 근사치로 충분하다.
+    run_once_count = int(state.get("run_once_count", 0)) + 1
+    state["run_once_count"] = run_once_count
+
     if not settings.dry_run and state.get("unresolved_order_submissions"):
         unresolved = state["unresolved_order_submissions"]
         raise LiveDataError(
@@ -1263,7 +1303,7 @@ def run_once(settings: Settings) -> None:
     # Broker preflight is deliberately read-only.  It proves that balance,
     # positions, currency, and outstanding-order data can all be reconciled
     # before the old API-error circuit breaker is released.
-    if settings.dry_run:
+    if settings.dry_run and not settings.paper_trading:
         krw_buying_power = 300000.0
         usd_buying_power = 300000.0 / max(settings.usd_krw_fx_rate, 1.0)
         live_fx = float(settings.usd_krw_fx_rate)
@@ -1276,6 +1316,56 @@ def run_once(settings: Settings) -> None:
         }
         pending_order_symbols: set[str] = set()
         commission_snapshot: dict = {"dry_run": True}
+    elif settings.dry_run and settings.paper_trading:
+        # Paper trading: read the REAL account's buying power and FX so
+        # affordability screening reflects the user's actual cash, while
+        # positions/pending-orders stay simulated (sim_positions) since no
+        # order this loop is ever actually submitted to the broker. A read
+        # failure here must not crash the whole run_once loop the way a
+        # strict LIVE fail-closed error would -- it falls back to 0 buying
+        # power for that currency and keeps going.
+        try:
+            krw_buying = toss.buying_power(account_seq=settings.toss_account_seq, currency="KRW")
+            krw_buying_power = parse_buying_power(krw_buying)
+        except Exception as exc:
+            krw_buying_power = 0.0
+            append_jsonl(settings.log_path, {
+                "action": "BUYING_POWER_UNAVAILABLE",
+                "currency": "KRW",
+                "mode": "paper_trading",
+                "error": str(exc),
+            })
+        try:
+            usd_buying = toss.buying_power(account_seq=settings.toss_account_seq, currency="USD")
+            usd_buying_power = parse_buying_power(usd_buying)
+        except Exception as exc:
+            usd_buying_power = 0.0
+            append_jsonl(settings.log_path, {
+                "action": "BUYING_POWER_UNAVAILABLE",
+                "currency": "USD",
+                "mode": "paper_trading",
+                "error": str(exc),
+            })
+        try:
+            fx_raw = toss.exchange_rate("USD", "KRW")
+            live_fx = parse_exchange_rate(fx_raw)
+            settings.usd_krw_fx_rate = live_fx
+        except Exception as exc:
+            live_fx = float(settings.usd_krw_fx_rate)
+            append_jsonl(settings.log_path, {
+                "action": "EXCHANGE_RATE_UNAVAILABLE",
+                "mode": "paper_trading",
+                "error": str(exc),
+            })
+        positions_map = get_positions_map(toss, settings, state)
+        portfolio_risk_snapshot = {
+            "market_value_krw": sum(
+                float(position.get("_market_value", 0.0) or 0.0) for position in positions_map.values()
+            ),
+            "daily_pnl_pct": float(state.get("daily_pnl_pct", 0.0) or 0.0),
+        }
+        pending_order_symbols = set()
+        commission_snapshot = {"dry_run": True, "paper_trading": True}
     else:
         # 留ㅼ닔媛?κ툑???뚯떛 ?ㅽ뙣媛 猷⑦봽 ?꾩껜瑜?二쎌씠硫?exit/泥?궛 濡쒖쭅源뚯? ?④퍡
         # 硫덉텣??2026-07-15~16 ?쇨컙 "cannot parse buying power" 69???곗냽 以묐떒).
@@ -1360,6 +1450,16 @@ def run_once(settings: Settings) -> None:
         for symbol in candidate_event.mapped_symbols
     }
     for event in events:
+        event_tier = int(getattr(event, "priority_tier", 5) or 5)
+        every_n = max(1, int(settings.theme_event_every_n_loops))
+        if event_tier > settings.priority_event_max_tier and (run_once_count % every_n) != 0:
+            print(
+                f"[event-skip] {event.event_id} | tier={event_tier} | "
+                f"reason=theme_event_deferred (runs every {every_n} loops, "
+                f"this is loop {run_once_count})"
+            )
+            continue
+
         cash_affordability = None
         cash_public_question = None
         preloaded_price_cache = None
@@ -1724,7 +1824,11 @@ def run_once(settings: Settings) -> None:
         agent_buy_allowed = bool(llm_result.get("buy_allowed", True))
         agent_size_multiplier = float(np.clip(llm_result.get("size_multiplier", 1.0), 0.0, 1.0))
         agent_block_reason = str(llm_result.get("block_reason", ""))
-        agent_selected_symbols = {str(symbol) for symbol in llm_result.get("selected_symbols", []) if str(symbol) in llm_symbols}
+        # ``or []`` guards a value that is *present but None* (a stale cache
+        # entry written before the null-normalization fix above, or any
+        # other producer that sets this key to None). ``.get(key, [])``
+        # alone only substitutes the default when the key is absent.
+        agent_selected_symbols = {str(symbol) for symbol in (llm_result.get("selected_symbols") or []) if str(symbol) in llm_symbols}
         if cash_affordability is not None:
             top_cash_symbols = []
             for candidate in llm_result.get("top_candidate_symbols", []) or []:

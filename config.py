@@ -42,6 +42,25 @@ class Settings:
     dry_run: bool = env_bool("DRY_RUN", True)
     loop_seconds: int = env_int("LOOP_SECONDS", 600)
 
+    # 실주문 후보 우선순위 스케줄링(14_1분봉단타실행엔진및확률모델설계.md 9장).
+    # priority_tier가 이 값 이하인 이벤트(cash_affordable_candidates,
+    # kr_domestic_top_candidates)는 매 run_once마다 처리한다. 그보다 큰
+    # tier(3개월 테마 리서치)는 무거운 19역할 호출을 매 루프 반복하지 않도록
+    # THEME_EVENT_EVERY_N_LOOPS번째 루프에서만 처리해, 실제 주문 후보 계산이
+    # 테마 리서치 지연 뒤에서 대기하지 않게 한다.
+    priority_event_max_tier: int = env_int("PRIORITY_EVENT_MAX_TIER", 1)
+    theme_event_every_n_loops: int = env_int("THEME_EVENT_EVERY_N_LOOPS", 6)
+
+    # Paper trading: read REAL Toss prices/OHLCV/buying power/positions even
+    # while DRY_RUN=true, so research sees real market conditions. Order
+    # SUBMISSION safety is untouched -- TossClient.create_order()/modify_order()/
+    # cancel_order() gate on self.dry_run (constructed from settings.dry_run)
+    # independently of this flag and never place a real broker order while
+    # DRY_RUN=true, regardless of PAPER_TRADING. This flag only changes where
+    # *read-only* research data comes from. See
+    # system/14_1분봉단타실행엔진및확률모델설계.md 13.3.
+    paper_trading: bool = env_bool("PAPER_TRADING", False)
+
     # aggressive bankroll/risk
     max_managed_bankroll_krw: float = env_float("MAX_MANAGED_BANKROLL_KRW", 300000)
     max_position_fraction: float = env_float("MAX_POSITION_FRACTION", 0.06)

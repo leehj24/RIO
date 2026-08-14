@@ -1,6 +1,11 @@
 # secrets
 .env
+.env.*
 .toss_token_cache.json
+
+# 백업 파일 (.env 백업은 비밀값을 그대로 포함하므로 절대 커밋 금지)
+*.bak
+*.bak_*
 
 # runtime state / logs (대용량)
 trades.jsonl

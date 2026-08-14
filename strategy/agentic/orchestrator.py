@@ -787,6 +787,15 @@ class NvidiaNemotronAgentOrchestrator:
             "buy_allowed": False,
             "size_multiplier": 0.0,
             "block_reason": reason,
+            # An unavailable/blocked model turn must still produce a
+            # contract-valid, iterable result.  A missing key here becomes a
+            # JSON null once cached (see main.py _compact_llm_result), and a
+            # null read back into a live dict crashes any `.get(key, [])`
+            # call downstream when the key is present but None.
+            "selected_symbols": [],
+            "selected_symbol_reason": "no_symbol_selected_model_unavailable",
+            "top_candidate_symbols": [],
+            "avoid_symbols": [],
             "agentic_analysis": {"run_id": run_id, "status": "unavailable", "reason": reason},
             "google_evidence": {"status": "unavailable", "reason": reason},
             "nvidia_judgement": {"status": "unavailable", "reason": reason},
