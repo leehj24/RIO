@@ -10,6 +10,9 @@ api_usage_state.json
 log/
 data_cache/
 scratch/
+data/market_history.sqlite3
+data/market_history.sqlite3-shm
+data/market_history.sqlite3-wal
 
 # python
 __pycache__/

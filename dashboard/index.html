@@ -807,6 +807,8 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 2px;
+      max-width: 100%;
+      overflow-x: auto;
     }
 
     .unit-tab {
@@ -830,6 +832,18 @@
       color: #FFF;
       background: var(--primary);
       box-shadow: 0 0 6px var(--primary-glow);
+    }
+
+    .chart-history-status {
+      min-height: 20px;
+      margin: -6px 0 8px;
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .chart-history-status.partial {
+      color: var(--warning);
     }
 
     /* Flexible scrollable card layout for Detail card */
@@ -1263,9 +1277,9 @@
             
             <!-- Execution-market and country-exposure tabs are added from symbols.csv. -->
             <div class="stock-market-tabs" id="stock-market-tabs">
-              <button class="market-tab active" id="market-tab-all" onclick="filterMarket('ALL')">전체</button>
-              <button class="market-tab" id="market-tab-kr" onclick="filterMarket('KR')">국내</button>
-              <button class="market-tab" id="market-tab-us" onclick="filterMarket('US')">해외</button>
+              <button type="button" class="market-tab active" id="market-tab-all" data-market-filter="ALL" onclick="filterMarket('ALL')">전체</button>
+              <button type="button" class="market-tab" id="market-tab-kr" data-market-filter="KR" onclick="filterMarket('KR')">국내</button>
+              <button type="button" class="market-tab" id="market-tab-us" data-market-filter="US" onclick="filterMarket('US')">미국</button>
             </div>
 
             <!-- Search Bar -->
@@ -1293,12 +1307,17 @@
                 </div>
                 <!-- Unit Tabs Menu -->
                 <div class="chart-unit-tabs" id="chart-unit-selector" style="display: none;">
-                  <button class="unit-tab active" id="unit-tab-1y" onclick="changeChartUnit('1y')">1년</button>
-                  <button class="unit-tab" id="unit-tab-1m" onclick="changeChartUnit('1m')">1달</button>
-                  <button class="unit-tab" id="unit-tab-1w" onclick="changeChartUnit('1w')">1주</button>
-                  <button class="unit-tab" id="unit-tab-1d" onclick="changeChartUnit('1d')">1일</button>
+                  <button type="button" class="unit-tab" id="unit-tab-1d" onclick="changeChartUnit('1d')">1일</button>
+                  <button type="button" class="unit-tab" id="unit-tab-1w" onclick="changeChartUnit('1w')">1주</button>
+                  <button type="button" class="unit-tab" id="unit-tab-1m" onclick="changeChartUnit('1m')">1개월</button>
+                  <button type="button" class="unit-tab" id="unit-tab-3m" onclick="changeChartUnit('3m')">3개월</button>
+                  <button type="button" class="unit-tab active" id="unit-tab-1y" onclick="changeChartUnit('1y')">1년</button>
+                  <button type="button" class="unit-tab" id="unit-tab-3y" onclick="changeChartUnit('3y')">3년</button>
+                  <button type="button" class="unit-tab" id="unit-tab-5y" onclick="changeChartUnit('5y')">5년</button>
+                  <button type="button" class="unit-tab" id="unit-tab-10y" onclick="changeChartUnit('10y')">10년</button>
                 </div>
               </div>
+              <div id="chart-history-status" class="chart-history-status">종목을 선택하면 저장된 시세 범위를 표시합니다.</div>
               <div class="chart-box">
                 <canvas id="priceChart"></canvas>
               </div>

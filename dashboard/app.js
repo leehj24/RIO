@@ -586,116 +586,6 @@ function getPrices() {
   getJson("/api/prices?symbols=" + encodeURIComponent(symbols));
 }
 
-async function getCandles() {
-  const symbol = document.getElementById("chartSymbol").value;
-  const data = await getJson("/api/candles?symbol=" + encodeURIComponent(symbol));
-  if (!data) return;
-
-  let rawCandles = [];
-  if (data.result) {
-    if (Array.isArray(data.result)) {
-      rawCandles = data.result;
-    } else if (data.result.candles && Array.isArray(data.result.candles)) {
-      rawCandles = data.result.candles;
-    }
-  }
-
-  if (rawCandles.length === 0) {
-    show({ error: "Empty candles response", message: "No chart data received for symbol: " + symbol });
-    return;
-  }
-
-  // Reverse list if in descending order (Toss returns newest first)
-  const candles = [...rawCandles].reverse();
-
-  // Extract fields for chart labels and datasets
-  const labels = candles.map(c => {
-    const d = new Date(c.timestamp);
-    return `${d.getMonth() + 1}/${d.getDate()}`;
-  });
-  
-  const closePrices = candles.map(c => parseFloat(c.closePrice));
-
-  // Render chart using Chart.js
-  const ctx = document.getElementById('priceChart').getContext('2d');
-  
-  // Destroy old instance to avoid hover flicker bugs
-  if (priceChartInstance) {
-    priceChartInstance.destroy();
-  }
-
-  // Creating a nice sapphire glow gradient
-  const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-  gradient.addColorStop(0, 'rgba(55, 114, 255, 0.45)');
-  gradient.addColorStop(1, 'rgba(55, 114, 255, 0.01)');
-
-  priceChartInstance = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: `${symbol} 종가 변동 추이 (최신 120봉)`,
-        data: closePrices,
-        borderColor: '#3772FF',
-        borderWidth: 2,
-        backgroundColor: gradient,
-        fill: true,
-        tension: 0.25,
-        pointRadius: 0,
-        pointHoverRadius: 4,
-        pointHoverBackgroundColor: '#FFF',
-        pointHoverBorderColor: '#3772FF',
-        pointHoverBorderWidth: 2
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: true,
-          labels: {
-            color: '#8E9AA8',
-            font: { family: 'Plus Jakarta Sans', weight: '600', size: 11 }
-          }
-        },
-        tooltip: {
-          backgroundColor: '#0F172A',
-          titleColor: '#8E9AA8',
-          bodyColor: '#FFF',
-          titleFont: { family: 'Plus Jakarta Sans', weight: '700' },
-          bodyFont: { family: 'Plus Jakarta Sans' },
-          borderColor: 'rgba(255, 255, 255, 0.08)',
-          borderWidth: 1,
-          padding: 10,
-          displayColors: false,
-          callbacks: {
-            label: function(context) {
-              return "종가: " + context.raw.toLocaleString() + "원";
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-          grid: { color: 'rgba(255, 255, 255, 0.03)', borderDash: [2, 2] },
-          ticks: { color: '#8E9AA8', maxTicksLimit: 12, font: { size: 10 } }
-        },
-        y: {
-          grid: { color: 'rgba(255, 255, 255, 0.03)', borderDash: [2, 2] },
-          ticks: {
-            color: '#8E9AA8',
-            font: { size: 10 },
-            callback: function(val) {
-              return val.toLocaleString() + "원";
-            }
-          }
-        }
-      }
-    }
-  });
-}
-
 // ------------------------------------------------------------
 // Tab 4: Trading Desk Actions
 // ------------------------------------------------------------
@@ -858,6 +748,10 @@ function enableHorizontalDragScroll(container) {
 
   container.addEventListener("pointerdown", event => {
     if (event.button !== 0) return;
+    // Capturing a pointer that started on a button can retarget/suppress the
+    // subsequent click in some browsers. Buttons always keep native click;
+    // drag scrolling starts only from the tab strip's empty area.
+    if (event.target.closest(".market-tab")) return;
     state.pointerId = event.pointerId;
     state.startX = event.clientX;
     state.startScrollLeft = container.scrollLeft;
@@ -901,6 +795,7 @@ function buildMarketTabs() {
   container.innerHTML = "";
   tabs.forEach(tab => {
     const button = document.createElement("button");
+    button.type = "button";
     button.className = "market-tab";
     if (tab.filter === currentMarketFilter) button.classList.add("active");
     button.id = tab.id;
@@ -1126,35 +1021,55 @@ function changeChartUnit(unit) {
 // Fetch and render the chart for the currently active stock based on the active unit
 function loadChartForActiveStock() {
   if (!activeStockSymbol) return;
-
-  let interval = '1d';
-  let count = 120;
-
-  if (currentChartUnit === '1y') {
-    interval = '1d';
-    count = 200; // Toss API limits count parameter to max 200 (approx. 9.5 months of trading data)
-  } else if (currentChartUnit === '1m') {
-    interval = '1d';
-    count = 20;  // Roughly 1 month of trading days
-  } else if (currentChartUnit === '1w') {
-    interval = '1d';
-    count = 5;   // 1 week of trading days
-  } else if (currentChartUnit === '1d') {
-    interval = '1m';
-    count = 120; // 2 hours of minute candles
-  }
-
-  loadChartForSymbol(activeStockSymbol, activeStockName, activeStockMarket, interval, count);
+  loadChartForSymbol(activeStockSymbol, activeStockName, activeStockMarket, currentChartUnit);
 }
 
-// Fetch candles and load interactive line chart with currency formatting & theme
-async function loadChartForSymbol(symbol, name, market, interval = '1d', count = 120) {
+function chartDateLabel(date, interval) {
+  const yy = String(date.getFullYear()).slice(-2);
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hour = String(date.getHours()).padStart(2, '0');
+  const minute = String(date.getMinutes()).padStart(2, '0');
+  if (interval === '1m') return `${hour}:${minute}`;
+  if (interval === '15m' || interval === '1h') return `${month}/${day} ${hour}:${minute}`;
+  if (interval === '1mo') return `${date.getFullYear()}.${month}`;
+  if (interval === '1w') return `${yy}.${month}.${day}`;
+  return `${month}/${day}`;
+}
+
+function chartHistoryStatus(meta) {
+  const statusEl = document.getElementById("chart-history-status");
+  if (!statusEl) return;
+  if (!meta) {
+    statusEl.textContent = "차트 이력 정보를 확인할 수 없습니다.";
+    statusEl.classList.add("partial");
+    return;
+  }
+  const from = meta.available_from_utc ? new Date(meta.available_from_utc).toLocaleDateString('ko-KR') : "-";
+  const to = meta.available_to_utc ? new Date(meta.available_to_utc).toLocaleDateString('ko-KR') : "-";
+  const intervalLabels = { '1m': '1분봉', '15m': '15분봉', '1h': '1시간봉', '1d': '일봉', '1w': '주봉', '1mo': '월봉' };
+  const intervalLabel = intervalLabels[meta.display_interval] || meta.display_interval || "봉";
+  statusEl.classList.toggle("partial", Boolean(meta.partial_history));
+  statusEl.textContent = meta.partial_history
+    ? `${meta.range_label} 요청 · 실제 제공 이력 ${from} ~ ${to} (${intervalLabel}) · 상장일 또는 데이터 제공 시작일 이전은 표시하지 않습니다.`
+    : `${meta.range_label} · ${intervalLabel} · ${from} ~ ${to} · ${meta.display_bars || 0}개 봉`;
+}
+
+// Fetch a persistent range and render it. The backend selects 1m/1d raw
+// history and derives 15m/weekly/monthly display bars as needed.
+async function loadChartForSymbol(symbol, name, market, range = '1y') {
   const chartCanvas = document.getElementById('priceChart');
   if (chartCanvas) chartCanvas.style.display = 'block';
+  const statusEl = document.getElementById("chart-history-status");
+  if (statusEl) {
+    statusEl.classList.remove("partial");
+    statusEl.textContent = "저장된 시세를 확인하고 부족한 기간을 동기화하는 중입니다...";
+  }
   const isUS = market && market.toUpperCase() !== 'KR' && !market.toUpperCase().startsWith('KR_');
-  
-  const data = await getJson(`/api/candles?symbol=${encodeURIComponent(symbol)}&interval=${interval}&count=${count}`);
+
+  const data = await getJson(`/api/chart?symbol=${encodeURIComponent(symbol)}&range=${encodeURIComponent(range)}`);
   if (!data) return;
+  chartHistoryStatus(data.meta);
 
   let rawCandles = [];
   if (data.result) {
@@ -1170,21 +1085,21 @@ async function loadChartForSymbol(symbol, name, market, interval = '1d', count =
       priceChartInstance.destroy();
       priceChartInstance = null;
     }
+    if (statusEl) {
+      statusEl.classList.add("partial");
+      statusEl.textContent = data.message || "해당 기간에 표시할 수 있는 시세가 없습니다.";
+    }
     return;
   }
 
-  // Reverse list so chart is chronological (Toss API returns newest first)
-  const candles = [...rawCandles].reverse();
+  const candles = data.meta && data.meta.order === 'ascending'
+    ? [...rawCandles]
+    : [...rawCandles].reverse();
+  const interval = (data.meta && data.meta.display_interval) || '1d';
 
   const labels = candles.map(c => {
     const d = new Date(c.timestamp);
-    if (interval === '1m') {
-      const hh = String(d.getHours()).padStart(2, '0');
-      const mm = String(d.getMinutes()).padStart(2, '0');
-      return `${hh}:${mm}`;
-    } else {
-      return `${d.getMonth() + 1}/${d.getDate()}`;
-    }
+    return chartDateLabel(d, interval);
   });
   
   const closePrices = candles.map(c => parseFloat(c.closePrice));
@@ -1209,7 +1124,7 @@ async function loadChartForSymbol(symbol, name, market, interval = '1d', count =
     data: {
       labels: labels,
       datasets: [{
-        label: `${name} (${symbol}) 종가 변동 추이 (최신 ${count}봉)`,
+        label: `${name} (${symbol}) 종가 변동 추이 (${(data.meta && data.meta.range_label) || range})`,
         data: closePrices,
         borderColor: mainColor,
         borderWidth: 2,

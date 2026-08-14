@@ -1,4 +1,5 @@
 import csv
+import datetime as dt
 import random
 from dataclasses import dataclass
 from pathlib import Path
@@ -81,6 +82,7 @@ def load_events(
     path: str = "data/event_questions.csv",
     *,
     rotate_questions: bool = True,
+    question_date: str | None = None,
 ) -> List[EventSpec]:
     p = Path(path)
     if not p.exists():
@@ -100,7 +102,12 @@ def load_events(
             question = base_question
 
             if rotate_questions and theme in templates and templates[theme]:
-                question = random.choice(templates[theme])
+                # A process that loops every few minutes must not silently ask
+                # a different wording while reusing one daily event verdict.
+                # The selected template is deterministic for the local day.
+                day = str(question_date or dt.date.today().isoformat())
+                event_id = row.get("event_id", "").strip()
+                question = random.Random(f"{day}|{event_id}|{theme}").choice(templates[theme])
 
             mapped_symbols = resolve_symbol_tokens(row.get("mapped_symbols", ""))
 

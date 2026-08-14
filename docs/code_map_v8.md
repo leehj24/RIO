@@ -5,7 +5,7 @@
 - auth.py: Toss token 자동 갱신
 - toss_client.py: Toss 계좌/잔고/가격/캔들/주문
 - strategy/live_data_guard.py: LIVE 실데이터 강제
-- strategy/llm_pipeline.py: Google evidence + NVIDIA 확률
+- strategy/agentic/orchestrator.py: Super 분석 + Ultra Bull/Bear·Risk + GLM 최종 JSON
 - strategy/lmsr.py: LMSR 내부 예측시장
 - strategy/kelly.py: 예측시장형 Kelly
 - strategy/factors.py: 7대 팩터

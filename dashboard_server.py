@@ -8,9 +8,13 @@ from config import Settings
 from toss_client import TossClient, TossAPIError
 from auth import TossAuthError
 from strategy.events import load_events
+from strategy.market_history import MarketHistoryStore
 from strategy.symbol_registry import load_symbols, load_watchlist_raw
+from runtime_logging import configure_dashboard_access_logging
 
 app = Flask(__name__, static_folder="dashboard")
+_history_store = None
+_history_store_lock = threading.Lock()
 
 
 @app.errorhandler(TossAuthError)
@@ -32,6 +36,19 @@ def client():
         dry_run=s.dry_run,
         auto_account=s.toss_auto_account,
     )
+
+
+def market_history_store() -> MarketHistoryStore:
+    global _history_store
+    if _history_store is None:
+        with _history_store_lock:
+            if _history_store is None:
+                settings = Settings()
+                _history_store = MarketHistoryStore(
+                    settings.market_history_db_path,
+                    legacy_cache_dir=settings.toss_candle_cache_dir,
+                )
+    return _history_store
 
 
 @app.get("/")
@@ -94,6 +111,29 @@ def candles():
         interval=request.args.get("interval", "1d"),
         count=int(request.args.get("count", "120")),
     ))
+
+
+@app.get("/api/chart")
+def chart():
+    """Return a standard brokerage-style range from persistent OHLCV history."""
+
+    symbol = request.args.get("symbol", "").strip()
+    range_key = request.args.get("range", "1y").strip().lower()
+    if not symbol:
+        return jsonify({"error": "symbol_required", "message": "종목코드가 필요합니다."}), 400
+    settings = Settings()
+    try:
+        payload = market_history_store().chart_payload(
+            client(),
+            symbol,
+            range_key=range_key,
+            freshness_seconds=settings.market_history_refresh_seconds,
+        )
+    except ValueError as exc:
+        return jsonify({"error": "invalid_chart_range", "message": str(exc)}), 400
+    except Exception as exc:
+        return jsonify({"error": "chart_history_unavailable", "message": str(exc)}), 502
+    return jsonify(payload)
 
 
 @app.get("/api/stock/analyze")
@@ -276,10 +316,6 @@ def log_after_request(response):
             print(f"Error in request logger hook: {e}", flush=True)
             
     return response
-
-
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True)
 
 
 @app.get("/api/bot/status")
@@ -528,3 +564,18 @@ def bot_summary():
         },
         "positions_state": state.get("positions", {}),
     })
+
+
+if __name__ == "__main__":
+    settings = Settings()
+    access_log_path = configure_dashboard_access_logging(settings)
+    print(
+        f"[dashboard] http://{settings.dashboard_host}:{settings.dashboard_port} "
+        f"| access_log={access_log_path}"
+    )
+    app.run(
+        host=settings.dashboard_host,
+        port=settings.dashboard_port,
+        debug=False,
+        use_reloader=False,
+    )

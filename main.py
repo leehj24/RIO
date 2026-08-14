@@ -1,21 +1,22 @@
 ﻿import argparse
 import json
+import logging
 import time
 import datetime as dt
 import threading
 import uuid
 import webbrowser
 from pathlib import Path
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 import numpy as np
 
 from config import Settings
 from toss_client import TossClient, TossAPIError
-from strategy.events import load_events
+from strategy.events import EventSpec, load_events
 from strategy.lmsr import LMSRMarket
 from strategy.data_sources import SapienceClient, make_mock_ohlcv
 from strategy.symbol_registry import describe_symbol
-from strategy.llm_pipeline import DualProviderLLMPipeline
 from strategy.naver_search import NaverSearchClient
 from strategy.agentic.orchestrator import NvidiaNemotronAgentOrchestrator
 from strategy.factors import compute_factor_scores
@@ -27,7 +28,14 @@ from strategy.exit_rules import evaluate_exit_rules
 from strategy.order_builder import build_buy_order, build_sell_order
 from strategy.position_manager import get_positions_map, apply_dry_run_fill
 from strategy.portfolio_budget import buy_budget_krw, diversified_order_value_krw
-from strategy.market_data import candles_response_to_ohlcv, fetch_candles_paginated
+from strategy.market_data import candles_response_to_ohlcv
+from strategy.market_history import MarketHistoryStore
+from strategy.affordable_universe import (
+    build_cash_affordable_question,
+    cash_market_order_budgets,
+    is_cash_affordable_event,
+    select_cash_affordable_candidates,
+)
 from strategy.free_financial_sources import FreeFinancialSources
 from strategy.live_data_guard import (
     LiveDataError,
@@ -56,6 +64,7 @@ from strategy.research_packet import (
 from strategy.signal_fusion import fusion_from_agent_reports
 from strategy.order_lifecycle import OrderLifecycleLedger
 from strategy.agentic.audit_store import utc_now
+from runtime_logging import configure_dashboard_access_logging
 
 
 def now_iso() -> str:
@@ -219,12 +228,14 @@ def load_state(path: str) -> dict:
             "pending_live_orders": {},
             "unresolved_order_submissions": {},
             "live_agent_decision_cache": {},
+            "daily_event_llm_cache": {},
         }
     data = json.loads(p.read_text(encoding="utf-8"))
     data.setdefault("sim_positions", {})
     data.setdefault("pending_live_orders", {})
     data.setdefault("unresolved_order_submissions", {})
     data.setdefault("live_agent_decision_cache", {})
+    data.setdefault("daily_event_llm_cache", {})
     return data
 
 
@@ -252,6 +263,23 @@ def put_lmsr(state: dict, market: LMSRMarket) -> None:
     state.setdefault("lmsr", {})[market.event_id] = market.to_dict()
 
 
+_DRY_RUN_PRICES = {
+    "005930": 80000.0,
+    "000660": 200000.0,
+    "NVDA": 150.0,
+    "MSTR": 160.0,
+    "COIN": 250.0,
+    "IBIT": 60.0,
+    "TLT": 95.0,
+    "QQQ": 520.0,
+    "SMH": 280.0,
+}
+
+
+def dry_run_price(symbol: str) -> float:
+    return float(_DRY_RUN_PRICES.get(str(symbol), 100.0))
+
+
 def pick_price(settings: Settings, toss: TossClient, symbol: str) -> tuple[float, dict]:
     """
     LIVE:
@@ -264,17 +292,7 @@ def pick_price(settings: Settings, toss: TossClient, symbol: str) -> tuple[float
     try:
         price_data = toss.prices([symbol])
         if settings.dry_run:
-            price = {
-                "005930": 80000,
-                "000660": 200000,
-                "NVDA": 150,
-                "MSTR": 160,
-                "COIN": 250,
-                "IBIT": 60,
-                "TLT": 95,
-                "QQQ": 520,
-                "SMH": 280,
-            }.get(symbol, 100.0)
+            price = dry_run_price(symbol)
             return float(price), {"source": "dry_run_fallback", "raw": price_data}
 
         price = parse_current_price(price_data, symbol)
@@ -301,10 +319,10 @@ def fetch_prices_batched(settings: Settings, toss: TossClient, symbols: list[str
     unique_symbols = list(dict.fromkeys(str(symbol) for symbol in symbols if str(symbol).strip()))
     if settings.dry_run:
         for symbol in unique_symbols:
-            try:
-                values[symbol] = pick_price(settings, toss, symbol)
-            except Exception as exc:
-                errors[symbol] = str(exc)
+            values[symbol] = (
+                dry_run_price(symbol),
+                {"source": "dry_run_batched_fallback", "synthetic": True},
+            )
         return values, errors
 
     for start in range(0, len(unique_symbols), 200):
@@ -430,7 +448,7 @@ def begin_order_lifecycle(
         lifecycle_id,
         runtime_run_id=runtime_run_id,
         agent_run_id=agentic.get("run_id"),
-        model_pipeline=str(llm_result.get("model_pipeline") or "nvidia_nemotron_live_event_research"),
+        model_pipeline=str(llm_result.get("model_pipeline") or "nvidia_three_model_event_research"),
         event_id=event_id,
         symbol=symbol,
         market=symbol_info.get("market"),
@@ -458,11 +476,187 @@ def begin_order_lifecycle(
     return lifecycle_id
 
 
-def live_llm_cache_key(event, candidate_symbols: list[str]) -> str:
-    """Key a reusable research verdict to one theme and exact candidate set."""
+def live_llm_cache_key(event, candidate_symbols: list[str], pipeline_name: str) -> str:
+    """Key a verdict to its question, pipeline, and exact candidate set."""
 
     event_id = str(getattr(event, "event_id", "") or "")
-    return event_id + "|" + ",".join(sorted(str(symbol) for symbol in candidate_symbols))
+    question = str(getattr(event, "question", "") or "")
+    return "|".join(
+        [event_id, question, str(pipeline_name), ",".join(sorted(str(symbol) for symbol in candidate_symbols))]
+    )
+
+
+_COMPACT_LLM_RESULT_KEYS = (
+    "yes_probability",
+    "confidence",
+    "news_score",
+    "buy_allowed",
+    "size_multiplier",
+    "block_reason",
+    "predicted_return_bin",
+    "reasoning_signals",
+    "selected_symbols",
+    "selected_symbol_reason",
+    "top_candidate_symbols",
+    "avoid_symbols",
+    "model_pipeline",
+)
+
+
+def _compact_llm_result(llm_result: dict) -> dict:
+    """Keep state.json small while retaining every field used by Python."""
+
+    return {
+        key: json.loads(json.dumps(llm_result.get(key), ensure_ascii=False))
+        for key in _COMPACT_LLM_RESULT_KEYS
+    }
+
+
+def event_research_day(settings: Settings, at_utc: dt.datetime | None = None) -> str:
+    """Return the configured local date used by the once-daily LLM gate."""
+
+    timezone_name = str(getattr(settings, "event_llm_daily_timezone", "Asia/Seoul") or "Asia/Seoul")
+    try:
+        timezone = ZoneInfo(timezone_name)
+    except ZoneInfoNotFoundError:
+        # Keep the documented Korean-day boundary working on a minimal Windows
+        # Python installation that does not ship the IANA tzdata database.
+        timezone = dt.timezone(dt.timedelta(hours=9)) if timezone_name == "Asia/Seoul" else dt.timezone.utc
+    moment = at_utc or dt.datetime.now(dt.timezone.utc)
+    if moment.tzinfo is None:
+        moment = moment.replace(tzinfo=dt.timezone.utc)
+    return moment.astimezone(timezone).date().isoformat()
+
+
+def daily_event_llm_cache_key(settings: Settings, event, research_day: str) -> str:
+    pipeline_name = str(getattr(settings, "nvidia_nemotron_pipeline", "event_research") or "event_research")
+    event_id = str(getattr(event, "event_id", "") or "")
+    return "|".join((research_day, pipeline_name, event_id))
+
+
+def process_start_event_refresh_required(settings: Settings, event, research_day: str) -> bool:
+    """Return whether this process must replace the persisted daily result.
+
+    The marker deliberately lives only on the Settings instance. It disappears
+    when ``python main.py`` exits, so a new process performs one fresh attempt
+    per event while later loops in that process use the updated daily cache.
+    """
+
+    if not bool(getattr(settings, "event_llm_once_per_day", True)):
+        return False
+    if not bool(getattr(settings, "event_llm_refresh_on_process_start", False)):
+        return False
+    completed = getattr(settings, "_event_llm_process_attempts", None)
+    if not isinstance(completed, set):
+        completed = set()
+        setattr(settings, "_event_llm_process_attempts", completed)
+    return daily_event_llm_cache_key(settings, event, research_day) not in completed
+
+
+def mark_process_event_refresh_complete(settings: Settings, event, research_day: str) -> None:
+    completed = getattr(settings, "_event_llm_process_attempts", None)
+    if not isinstance(completed, set):
+        completed = set()
+        setattr(settings, "_event_llm_process_attempts", completed)
+    completed.add(daily_event_llm_cache_key(settings, event, research_day))
+
+
+def get_daily_event_llm_result(
+    settings: Settings,
+    state: dict,
+    event,
+    llm_pipeline,
+    *,
+    research_day: str,
+) -> dict | None:
+    """Return today's attempted event result, including fail-closed results.
+
+    Saving an unavailable result is intentional: a missing modality or invalid
+    final comparison must not trigger the same expensive question every bot
+    loop. The next local research day gets one fresh attempt.
+    """
+
+    if not bool(getattr(settings, "event_llm_once_per_day", True)):
+        return None
+    cache = state.get("daily_event_llm_cache", {})
+    if not isinstance(cache, dict):
+        return None
+    record = cache.get(daily_event_llm_cache_key(settings, event, research_day))
+    if not isinstance(record, dict) or record.get("research_day") != research_day:
+        return None
+    compact = record.get("result")
+    if not isinstance(compact, dict):
+        return None
+    source_run_id = str(record.get("source_agent_run_id") or "")
+    source_status = str(record.get("source_status") or "unavailable")
+    source_reason = str(record.get("source_reason") or "")
+    pipeline_name = str(record.get("pipeline_name") or "event_research")
+    return {
+        **json.loads(json.dumps(compact, ensure_ascii=False)),
+        "agentic_analysis": {
+            "run_id": source_run_id or None,
+            "status": "daily_cached" if source_status == "ok" else "daily_cached_unavailable",
+            "source_status": source_status,
+            "reason": source_reason or None,
+            "attempted_at_utc": record.get("attempted_at_utc"),
+            "research_day": research_day,
+        },
+        "google_evidence": {"status": "daily_cached", "source_agent_run_id": source_run_id or None},
+        "nvidia_judgement": {"status": "daily_cached", "source_agent_run_id": source_run_id or None},
+        "api_usage": _llm_usage_snapshot(llm_pipeline),
+        "model_pipeline": f"nvidia_three_model_{pipeline_name}_daily_cached",
+        "daily_event_cache": {
+            "hit": True,
+            "research_day": research_day,
+            "model_called_on_attempt": bool(record.get("model_called")),
+            "write_reason": str(record.get("write_reason") or "daily_first_attempt"),
+        },
+    }
+
+
+def cache_daily_event_llm_result(
+    settings: Settings,
+    state: dict,
+    event,
+    candidate_symbols: list[str],
+    llm_result: dict,
+    *,
+    research_day: str,
+    model_called: bool,
+    write_reason: str = "daily_first_attempt",
+) -> bool:
+    """Persist one compact success/failure result for the configured day."""
+
+    if not bool(getattr(settings, "event_llm_once_per_day", True)):
+        return False
+    cache = state.setdefault("daily_event_llm_cache", {})
+    if not isinstance(cache, dict):
+        state["daily_event_llm_cache"] = {}
+        cache = state["daily_event_llm_cache"]
+    # Only today's handful of event records are operationally useful. The full
+    # source reports remain in the append-only audit ledger.
+    for old_key, old_record in list(cache.items()):
+        if not isinstance(old_record, dict) or old_record.get("research_day") != research_day:
+            cache.pop(old_key, None)
+
+    agentic = llm_result.get("agentic_analysis") if isinstance(llm_result.get("agentic_analysis"), dict) else {}
+    pipeline_name = str(getattr(settings, "nvidia_nemotron_pipeline", "event_research") or "event_research")
+    cache[daily_event_llm_cache_key(settings, event, research_day)] = {
+        "research_day": research_day,
+        "timezone": str(getattr(settings, "event_llm_daily_timezone", "Asia/Seoul") or "Asia/Seoul"),
+        "attempted_at_utc": dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "event_id": str(getattr(event, "event_id", "") or ""),
+        "question": str(getattr(event, "question", "") or ""),
+        "pipeline_name": pipeline_name,
+        "candidate_symbols": sorted(str(symbol) for symbol in candidate_symbols),
+        "model_called": bool(model_called),
+        "write_reason": str(write_reason or "daily_first_attempt"),
+        "source_agent_run_id": str(agentic.get("run_id") or ""),
+        "source_status": str(agentic.get("status") or "unavailable"),
+        "source_reason": str(agentic.get("reason") or llm_result.get("block_reason") or ""),
+        "result": _compact_llm_result(llm_result),
+    }
+    return True
 
 
 def _parse_utc_iso(value: object) -> dt.datetime | None:
@@ -520,7 +714,8 @@ def get_cached_live_llm_result(settings: Settings, state: dict, event, candidate
     cache = state.get("live_agent_decision_cache", {})
     if not isinstance(cache, dict):
         return None
-    key = live_llm_cache_key(event, candidate_symbols)
+    pipeline_name = str(getattr(settings, "nvidia_nemotron_pipeline", "event_research") or "event_research")
+    key = live_llm_cache_key(event, candidate_symbols, pipeline_name)
     record = cache.get(key)
     if not isinstance(record, dict):
         return None
@@ -544,7 +739,7 @@ def get_cached_live_llm_result(settings: Settings, state: dict, event, candidate
         "google_evidence": {"status": "cached", "source_agent_run_id": source_run_id or None},
         "nvidia_judgement": {"status": "cached", "source_agent_run_id": source_run_id or None},
         "api_usage": _llm_usage_snapshot(llm_pipeline),
-        "model_pipeline": "nvidia_nemotron_live_event_research_cached",
+        "model_pipeline": f"nvidia_three_model_{pipeline_name}_cached",
         "live_agent_cache": {"hit": True, "age_seconds": round(age_seconds, 1)},
     }
 
@@ -559,40 +754,37 @@ def cache_live_llm_result(settings: Settings, state: dict, event, candidate_symb
     source_run_id = str(agentic.get("run_id") or "")
     if not source_run_id:
         return False
-    compact_keys = (
-        "yes_probability",
-        "confidence",
-        "news_score",
-        "buy_allowed",
-        "size_multiplier",
-        "block_reason",
-        "predicted_return_bin",
-        "reasoning_signals",
-        "selected_symbols",
-        "selected_symbol_reason",
-    )
-    compact = {key: llm_result.get(key) for key in compact_keys}
+    compact = _compact_llm_result(llm_result)
     cached_at = dt.datetime.now(dt.timezone.utc).replace(microsecond=0)
     expires_at = cached_at + dt.timedelta(seconds=ttl_seconds)
     cache = state.setdefault("live_agent_decision_cache", {})
     if not isinstance(cache, dict):
         state["live_agent_decision_cache"] = {}
         cache = state["live_agent_decision_cache"]
-    cache[live_llm_cache_key(event, candidate_symbols)] = {
+    pipeline_name = str(getattr(settings, "nvidia_nemotron_pipeline", "event_research") or "event_research")
+    cache[live_llm_cache_key(event, candidate_symbols, pipeline_name)] = {
         "cached_at_utc": cached_at.isoformat().replace("+00:00", "Z"),
         "expires_at_utc": expires_at.isoformat().replace("+00:00", "Z"),
         "source_agent_run_id": source_run_id,
         "candidate_symbols": sorted(str(symbol) for symbol in candidate_symbols),
+        "question": str(getattr(event, "question", "") or ""),
+        "pipeline_name": pipeline_name,
         "result": compact,
     }
     return True
 
 
-def pick_ohlcv(settings: Settings, toss: TossClient, symbol: str):
-    """
-    LIVE:
-    - technical_entries/SDE???곕뒗 罹붾뱾? ?ㅼ젣 candles媛 ?꾩슂?섎떎.
-    - BLOCK_LIVE_ON_OHLCV_FALLBACK=true?대㈃ mock OHLCV濡?二쇰Ц?섏? ?딅뒗??
+def pick_ohlcv(
+    settings: Settings,
+    toss: TossClient,
+    symbol: str,
+    history_store: MarketHistoryStore | None = None,
+):
+    """Load strategy daily bars from the persistent history store.
+
+    LIVE calculations require real OHLCV. A newly listed symbol may have less
+    history than requested; charts can display that partial history, while the
+    strategy still requires at least 60 daily observations before trading.
     """
     if settings.dry_run:
         return make_mock_ohlcv(getattr(settings, "research_ohlcv_bars", 260)), {"source": "dry_run_mock_ohlcv"}
@@ -600,28 +792,36 @@ def pick_ohlcv(settings: Settings, toss: TossClient, symbol: str):
     try:
         requested_count = int(getattr(settings, "research_ohlcv_bars", 200))
         candle_count = max(60, requested_count)
-        raw, page_meta = fetch_candles_paginated(
+        store = history_store or MarketHistoryStore(
+            getattr(settings, "market_history_db_path", "data/market_history.sqlite3"),
+            legacy_cache_dir=getattr(settings, "toss_candle_cache_dir", None),
+        )
+        df, history_meta = store.strategy_ohlcv(
             toss,
             symbol,
-            interval="1d",
-            total_count=candle_count,
-            page_size=200,
-            cache_dir=getattr(settings, "toss_candle_cache_dir", None),
-            cache_ttl_seconds=float(getattr(settings, "toss_candle_cache_ttl_seconds", 0)),
+            bars=candle_count,
+            freshness_seconds=float(
+                getattr(
+                    settings,
+                    "market_history_refresh_seconds",
+                    getattr(settings, "toss_candle_cache_ttl_seconds", 900),
+                )
+            ),
         )
-        df = candles_response_to_ohlcv(raw)
         if len(df) >= 60:
             return df, {
-                "source": "toss_candles_cached_real" if page_meta.get("cache_hit") else "toss_candles_real",
-                **page_meta,
+                "source": "market_history_sqlite_real",
+                **history_meta,
                 "candle_count": len(df),
-                "raw": raw,
             }
 
         if settings.block_live_on_ohlcv_fallback:
             raise LiveDataError(f"[LIVE BLOCKED] insufficient real candles for {symbol}: {len(df)} rows")
 
-        return make_mock_ohlcv(getattr(settings, "research_ohlcv_bars", 260)), {"source": "live_mock_fallback_allowed", "raw": raw}
+        return make_mock_ohlcv(getattr(settings, "research_ohlcv_bars", 260)), {
+            "source": "live_mock_fallback_allowed",
+            "history_meta": history_meta,
+        }
 
     except Exception as e:
         if settings.block_live_on_ohlcv_fallback:
@@ -1043,18 +1243,22 @@ def run_once(settings: Settings) -> None:
         if reconciliation["reconciled"]:
             print("[broker] reconciled terminal orders: " + ", ".join(reconciliation["reconciled"]))
 
-    # The NVIDIA Nemotron team is opt-in and fail-closed.  Keeping the legacy
-    # dual-provider pipeline as the default prevents a key in .env from
-    # changing live behaviour until the new workflow has been dry-run tested.
+    # The trading path has one fail-closed AI architecture: Super evidence
+    # analysis -> Ultra debate/trade/risk -> GLM final comparison. Disabling
+    # the feature blocks new model-approved buys; it never falls back to the
+    # removed Google -> single-NVIDIA probability judgement.
+    llm_pipeline = NvidiaNemotronAgentOrchestrator(settings)
     if settings.enable_nvidia_nemotron_agents:
-        llm_pipeline = NvidiaNemotronAgentOrchestrator(settings)
-        print("[llm] NVIDIA Nemotron multi-agent workflow enabled")
+        print(f"[llm] NVIDIA three-model workflow enabled ({settings.nvidia_nemotron_pipeline})")
     else:
-        llm_pipeline = DualProviderLLMPipeline(settings)
-        print("[llm] legacy dual-provider workflow enabled")
+        print("[llm] NVIDIA three-model workflow disabled; new buys fail closed")
     financial_sources = FreeFinancialSources(settings)
     sapience = SapienceClient(settings)
     naver_search = NaverSearchClient(settings)
+    history_store = MarketHistoryStore(
+        settings.market_history_db_path,
+        legacy_cache_dir=settings.toss_candle_cache_dir,
+    )
 
     # Broker preflight is deliberately read-only.  It proves that balance,
     # positions, currency, and outstanding-order data can all be reconciled
@@ -1144,11 +1348,115 @@ def run_once(settings: Settings) -> None:
         f"{settings.auto_buy_total_cap_krw:,.0f} positions={len(positions_map)}"
     )
 
-    for event in load_events(rotate_questions=settings.rotate_event_questions):
-        if settings.max_symbols_per_event > 0 and len(event.mapped_symbols) > settings.max_symbols_per_event:
+    research_day = event_research_day(settings)
+    events = load_events(
+        rotate_questions=settings.rotate_event_questions,
+        question_date=research_day,
+    )
+    cash_priority_symbols = {
+        str(symbol)
+        for candidate_event in events
+        if candidate_event.event_id not in {"cash_affordable_candidates", "kr_domestic_top_candidates"}
+        for symbol in candidate_event.mapped_symbols
+    }
+    for event in events:
+        cash_affordability = None
+        cash_public_question = None
+        preloaded_price_cache = None
+        preloaded_price_errors = None
+        if is_cash_affordable_event(event):
+            cash_public_question = event.question
+            scan_symbols = list(event.mapped_symbols)
+            scan_symbol_infos = {symbol: describe_symbol(symbol) for symbol in scan_symbols}
+            scan_prices, scan_price_errors = fetch_prices_batched(settings, toss, scan_symbols)
+            market_order_budgets = cash_market_order_budgets(
+                settings,
+                deployable_bankroll_krw=deployable_bankroll,
+                deployed_this_run_krw=deployed_this_loop,
+                buying_power_after_reserve=buying_power_after_reserve,
+                deployed_by_market=deployed_by_market,
+            )
+            cash_affordability = select_cash_affordable_candidates(
+                settings,
+                candidate_symbols=scan_symbols,
+                symbol_infos=scan_symbol_infos,
+                price_values=scan_prices,
+                market_order_budgets_krw=market_order_budgets,
+                research_day=research_day,
+                priority_symbols=sorted(cash_priority_symbols),
+                held_symbols=sorted(positions_map),
+                total_limit=int(getattr(settings, "cash_affordable_max_symbols", 40)),
+                per_market_limit=int(getattr(settings, "cash_affordable_max_symbols_per_market", 20)),
+            )
+            cash_affordability["price_error_count"] = len(scan_price_errors)
+            cash_affordability["price_error_samples"] = dict(list(scan_price_errors.items())[:20])
+            event.mapped_symbols = list(cash_affordability["selected_symbols"])
+            event.question = build_cash_affordable_question(
+                event.question,
+                krw_buying_power=krw_buying_power,
+                usd_buying_power=usd_buying_power,
+                usd_krw_rate=live_fx,
+                affordability=cash_affordability,
+            )
+            preloaded_price_cache = {
+                symbol: scan_prices[symbol]
+                for symbol in event.mapped_symbols
+                if symbol in scan_prices
+            }
+            preloaded_price_errors = {
+                symbol: scan_price_errors.get(symbol, "real current price unavailable")
+                for symbol in event.mapped_symbols
+                if symbol not in preloaded_price_cache
+            }
+            append_jsonl(
+                settings.log_path,
+                {
+                    "runtime_run_id": runtime_run_id,
+                    "decision_time_utc": dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+                    "event_id": event.event_id,
+                    "action": "CASH_AFFORDABLE_UNIVERSE",
+                    "dry_run": bool(settings.dry_run),
+                    "krw_buying_power": krw_buying_power,
+                    "usd_buying_power": usd_buying_power,
+                    "usd_krw_reference_rate": live_fx,
+                    "affordability": cash_affordability,
+                },
+            )
+            kr_symbols = [
+                row["symbol"] for row in cash_affordability["selected_candidates"] if row["market"] == "KR"
+            ]
+            us_symbols = [
+                row["symbol"] for row in cash_affordability["selected_candidates"] if row["market"] == "US"
+            ]
+            print(
+                f"[cash-universe] affordable={cash_affordability['affordable_counts']} "
+                f"selected={cash_affordability['selected_counts']} "
+                f"budget_krw={cash_affordability['market_order_budgets_krw']}"
+            )
+            print(f"[cash-universe] KR={','.join(kr_symbols) or '-'}")
+            print(f"[cash-universe] US={','.join(us_symbols) or '-'}")
+        elif settings.max_symbols_per_event > 0 and len(event.mapped_symbols) > settings.max_symbols_per_event:
             event.mapped_symbols = event.mapped_symbols[:settings.max_symbols_per_event]
 
         print(f"[event] {event.event_id} | theme={event.theme} | symbols={len(event.mapped_symbols)} | q={event.question}")
+        daily_mode = bool(getattr(settings, "event_llm_once_per_day", True))
+        if daily_mode:
+            process_start_refresh = process_start_event_refresh_required(settings, event, research_day)
+            if process_start_refresh:
+                llm_result = None
+            else:
+                llm_result = get_daily_event_llm_result(
+                    settings,
+                    state,
+                    event,
+                    llm_pipeline,
+                    research_day=research_day,
+                )
+            daily_cache_hit = llm_result is not None
+        else:
+            llm_result = None
+            daily_cache_hit = False
+            process_start_refresh = False
 
         lmsr = get_lmsr(state, event)
         lmsr_price_before = lmsr.yes_price()
@@ -1164,7 +1472,11 @@ def run_once(settings: Settings) -> None:
         symbol_info_map = {symbol: describe_symbol(symbol) for symbol in event_symbols}
         fundamentals_map = {}
         factor_inputs_map = {}
-        price_cache, price_errors = fetch_prices_batched(settings, toss, event_symbols)
+        if preloaded_price_cache is not None:
+            price_cache = preloaded_price_cache
+            price_errors = preloaded_price_errors or {}
+        else:
+            price_cache, price_errors = fetch_prices_batched(settings, toss, event_symbols)
         ohlcv_cache = {}
         technical_cache = {}
         market_features_map = {}
@@ -1185,7 +1497,7 @@ def run_once(settings: Settings) -> None:
                 continue
             price, price_meta = price_cache[symbol]
             try:
-                ohlcv, ohlcv_meta = pick_ohlcv(settings, toss, symbol)
+                ohlcv, ohlcv_meta = pick_ohlcv(settings, toss, symbol, history_store)
             except Exception as exc:
                 append_jsonl(settings.log_path, {
                     "runtime_run_id": runtime_run_id,
@@ -1240,7 +1552,9 @@ def run_once(settings: Settings) -> None:
         # agent but never turns one directly into a broker order.
         lead_lag_candidates = []
         lead_lag_status = "disabled"
-        if settings.enable_lead_lag_research:
+        if daily_cache_hit:
+            lead_lag_status = "daily_llm_cache_hit_not_recomputed"
+        elif settings.enable_lead_lag_research:
             try:
                 price_series = {
                     symbol: ohlcv_cache[symbol][0]["close"].astype(float).tolist()
@@ -1293,10 +1607,47 @@ def run_once(settings: Settings) -> None:
         symbol_infos_for_llm = [symbol_info_map[symbol] for symbol in llm_symbols]
         # ?ㅼ씠踰??댁뒪(?ъ떎)쨌釉붾줈洹?二쇨?) evidence ??LLM ?먮떒 ?щ즺濡쒕쭔 ?ъ슜?섎ŉ
         # 吏곸젒 二쇰Ц???앹꽦?섏? ?딅뒗?? ?ㅽ뙣?대룄 利앷굅 ?놁쓬?쇰줈留??묒슜?쒕떎.
-        try:
-            naver_evidence = naver_search.build_event_evidence(event, symbol_infos_for_llm)
-        except Exception as exc:
-            naver_evidence = {"enabled": False, "error": str(exc)}
+        if daily_cache_hit:
+            naver_evidence = {"enabled": False, "status": "daily_llm_cache_hit_not_requeried"}
+        else:
+            try:
+                naver_event = event
+                if cash_public_question:
+                    # Do not send private balance amounts in a public news
+                    # search query. The model receives them only in the
+                    # structured affordability packet below.
+                    naver_event = EventSpec(
+                        event_id=event.event_id,
+                        theme=event.theme,
+                        question=cash_public_question,
+                        mapped_symbols=list(event.mapped_symbols),
+                        b=event.b,
+                    )
+                naver_evidence = naver_search.build_event_evidence(naver_event, symbol_infos_for_llm)
+            except Exception as exc:
+                naver_evidence = {"enabled": False, "error": str(exc)}
+        portfolio_affordability = None
+        if cash_affordability is not None:
+            portfolio_affordability = {
+                "constraint_only_not_return_evidence": True,
+                "krw_buying_power": krw_buying_power,
+                "usd_buying_power": usd_buying_power,
+                "usd_krw_reference_rate": live_fx,
+                "market_order_budgets_krw": cash_affordability["market_order_budgets_krw"],
+                "scanned_by_market": cash_affordability["scanned_by_market"],
+                "affordable_counts": cash_affordability["affordable_counts"],
+                "selection_policy": cash_affordability["selection_policy"],
+                "candidate_details": [
+                    row
+                    for row in cash_affordability["selected_candidates"]
+                    if row["symbol"] in llm_symbols
+                ],
+                "rules": [
+                    "select only from candidate_symbols",
+                    "cash is an affordability constraint, not evidence of expected return",
+                    "Python rechecks balance, price, market status, and order book before an order",
+                ],
+            }
         research_context = {
             "symbols": {symbol: research_packets[symbol] for symbol in llm_symbols},
             "naver_news": naver_evidence,
@@ -1307,34 +1658,63 @@ def run_once(settings: Settings) -> None:
                 "candidates": lead_lag_candidates,
             },
         }
-        if settings.enable_nvidia_nemotron_agents:
+        if portfolio_affordability is not None:
+            research_context["portfolio_affordability"] = portfolio_affordability
+        fresh_model_question = False
+        hourly_cache_hit = False
+        if not daily_mode:
             llm_result = get_cached_live_llm_result(settings, state, event, llm_symbols, llm_pipeline)
-            if llm_result is None and llm_symbols:
-                llm_result = llm_pipeline.analyze_event(
-                    event,
-                    llm_symbols,
-                    symbol_infos_for_llm,
-                    research_context,
-                )
-                llm_result.setdefault("model_pipeline", "nvidia_nemotron_live_event_research")
-                cache_live_llm_result(settings, state, event, llm_symbols, llm_result)
-            elif llm_result is None:
-                llm_result = skipped_live_llm_result(
-                    llm_pipeline,
-                    "no_python_pre_screened_new_buy_candidate",
-                )
-        else:
-            # Retain the legacy provider's historical behaviour when it is
-            # explicitly configured; only the live Gemini workflow is
-            # constrained by this project's low-rate research budget.
-            legacy_symbols = ranked_llm_symbols
+            hourly_cache_hit = llm_result is not None
+        if llm_result is None and llm_symbols:
+            fresh_model_question = True
             llm_result = llm_pipeline.analyze_event(
                 event,
-                legacy_symbols,
-                [symbol_info_map[symbol] for symbol in legacy_symbols],
-                extra_evidence=naver_evidence,
+                llm_symbols,
+                symbol_infos_for_llm,
+                research_context,
             )
-            llm_symbols = legacy_symbols
+            llm_result.setdefault(
+                "model_pipeline",
+                f"nvidia_three_model_{settings.nvidia_nemotron_pipeline}",
+            )
+            cache_live_llm_result(settings, state, event, llm_symbols, llm_result)
+        elif llm_result is None:
+            llm_result = skipped_live_llm_result(
+                llm_pipeline,
+                "no_python_pre_screened_new_buy_candidate",
+            )
+
+        if daily_mode and not daily_cache_hit:
+            cache_daily_event_llm_result(
+                settings,
+                state,
+                event,
+                llm_symbols,
+                llm_result,
+                research_day=research_day,
+                model_called=fresh_model_question,
+                write_reason="process_start_refresh" if process_start_refresh else "daily_first_attempt",
+            )
+            # Persist the daily attempt immediately. A later loop in this same
+            # process must not ask the same expensive question again.
+            save_state(settings.state_path, state)
+            mark_process_event_refresh_complete(settings, event, research_day)
+
+        if daily_cache_hit:
+            research_source = "daily_cache"
+        elif hourly_cache_hit:
+            research_source = "ttl_cache"
+        elif fresh_model_question:
+            if process_start_refresh:
+                research_source = "process_start_refresh"
+            else:
+                research_source = "fresh_daily_model_call" if daily_mode else "fresh_model_call"
+        else:
+            research_source = "python_pre_screen_no_call"
+        print(
+            f"[event-research] {event.event_id} | day={research_day} | "
+            f"source={research_source} | llm_candidates={len(llm_symbols)}"
+        )
 
         llm_prob = float(np.clip(llm_result["yes_probability"], 0.01, 0.99))
         confidence = float(np.clip(llm_result["confidence"], 0.0, 1.0))
@@ -1345,13 +1725,16 @@ def run_once(settings: Settings) -> None:
         agent_size_multiplier = float(np.clip(llm_result.get("size_multiplier", 1.0), 0.0, 1.0))
         agent_block_reason = str(llm_result.get("block_reason", ""))
         agent_selected_symbols = {str(symbol) for symbol in llm_result.get("selected_symbols", []) if str(symbol) in llm_symbols}
-        if not agent_selected_symbols:
-            legacy_candidates = (llm_result.get("nvidia_judgement") or {}).get("top_candidate_symbols", [])
-            for candidate in legacy_candidates if isinstance(legacy_candidates, list) else []:
-                selected = str(candidate.get("symbol", "")) if isinstance(candidate, dict) else str(candidate)
-                if selected in llm_symbols:
-                    agent_selected_symbols.add(selected)
-                    break
+        if cash_affordability is not None:
+            top_cash_symbols = []
+            for candidate in llm_result.get("top_candidate_symbols", []) or []:
+                candidate_symbol = str(candidate.get("symbol") or "") if isinstance(candidate, dict) else str(candidate)
+                if candidate_symbol in llm_symbols and candidate_symbol not in top_cash_symbols:
+                    top_cash_symbols.append(candidate_symbol)
+            print(
+                f"[cash-model] selected={','.join(sorted(agent_selected_symbols)) or '-'} "
+                f"ranked={','.join(top_cash_symbols[:10]) or '-'}"
+            )
 
         gate_ok, gate_reason = survival_gate(settings, state, confidence)
 
@@ -1774,6 +2157,14 @@ def run_once(settings: Settings) -> None:
                 "research_missing_modalities": research_packets[symbol]["missing_modalities"],
                 "lead_lag_status": lead_lag_status,
                 "lead_lag_candidate_count": len(lead_lag_candidates),
+                "cash_affordability_candidate": next(
+                    (
+                        candidate
+                        for candidate in (cash_affordability or {}).get("selected_candidates", [])
+                        if candidate.get("symbol") == symbol
+                    ),
+                    None,
+                ),
                 "llm_candidate_symbols": llm_symbols,
                 "agent_selected_symbols": sorted(agent_selected_symbols),
                 "position": position,
@@ -2037,6 +2428,13 @@ def start_dashboard_if_enabled(settings: Settings) -> None:
     if not settings.enable_dashboard:
         return
 
+    try:
+        access_log_path = configure_dashboard_access_logging(settings)
+    except Exception as exc:
+        access_log_path = "unavailable"
+        logging.getLogger("werkzeug").setLevel(logging.ERROR)
+        print(f"[dashboard] access log setup failed: {exc}")
+
     def _run():
         from dashboard_server import app
         app.run(
@@ -2050,7 +2448,7 @@ def start_dashboard_if_enabled(settings: Settings) -> None:
     t.start()
 
     url = f"http://{settings.dashboard_host}:{settings.dashboard_port}"
-    print(f"[dashboard] {url}")
+    print(f"[dashboard] {url} | access_log={access_log_path}")
 
     if settings.dashboard_open_browser:
         try:

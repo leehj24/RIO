@@ -62,11 +62,8 @@ class Settings:
     max_api_errors: int = env_int("MAX_API_ERRORS", 5)
     min_llm_confidence: float = env_float("MIN_LLM_CONFIDENCE", 0.55)
 
-    # llm
-    llm_provider: str = os.getenv("LLM_PROVIDER", "mock")
-    nvidia_api_key: str = os.getenv("NVIDIA_API_KEY", "")
-    nvidia_base_url: str = os.getenv("NVIDIA_BASE_URL", "https://integrate.api.nvidia.com/v1")
-    nvidia_model: str = os.getenv("NVIDIA_MODEL", "deepseek-ai/deepseek-r1")
+    # Google remains available for the dashboard's explicit research action;
+    # the automatic trading path uses only the three dedicated NVIDIA groups.
     gemini_api_key: str = os.getenv("GEMINI_API_KEY", "")
     gemini_model: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 
@@ -116,15 +113,17 @@ class Settings:
     gemini_api2_enable_grounding: bool = env_bool("ENABLE_GEMINI_API2_GROUNDING", False)
 
     # The agent workflow uses three role-specific model groups on NVIDIA's
-    # OpenAI-compatible endpoint. Each group has its own dedicated key/model;
-    # generic NVIDIA_API_KEY/NVIDIA_MODEL remain reserved for the legacy path.
+    # OpenAI-compatible endpoint. Each group has its own dedicated key/model.
     enable_nvidia_nemotron_agents: bool = env_bool("ENABLE_NVIDIA_NEMOTRON_AGENTS", False)
     nvidia_nemotron_api_key: str = os.getenv("NVIDIA_NEMOTRON_API_KEY", "")
     nvidia_nemotron_base_url: str = os.getenv(
         "NVIDIA_NEMOTRON_BASE_URL", os.getenv("NVIDIA_BASE_URL", "https://integrate.api.nvidia.com/v1")
     )
     nvidia_nemotron_model: str = os.getenv("NVIDIA_NEMOTRON_MODEL", "nvidia/nemotron-3-ultra-550b-a55b")
-    nvidia_nemotron_daily_call_limit: int = env_int("NVIDIA_NEMOTRON_DAILY_CALL_LIMIT", 30)
+    # event_research uses 19 sequential roles per event. This shared ceiling
+    # covers one complete eight-event research cycle while explicit enablement
+    # and the one-hour decision cache prevent continuous high-rate polling.
+    nvidia_nemotron_daily_call_limit: int = env_int("NVIDIA_NEMOTRON_DAILY_CALL_LIMIT", 200)
     nvidia_nemotron_timeout_seconds: int = env_int("NVIDIA_NEMOTRON_TIMEOUT_SECONDS", 180)
     nvidia_nemotron_temperature: float = env_float("NVIDIA_NEMOTRON_TEMPERATURE", 1.0)
     nvidia_nemotron_top_p: float = env_float("NVIDIA_NEMOTRON_TOP_P", 0.95)
@@ -138,8 +137,8 @@ class Settings:
         "NVIDIA_NEMOTRON_MIN_REQUEST_INTERVAL_SECONDS", 0.0
     )
     nvidia_nemotron_max_retries: int = env_int("NVIDIA_NEMOTRON_MAX_RETRIES", 0)
-    nvidia_nemotron_max_agents_per_run: int = env_int("NVIDIA_NEMOTRON_MAX_AGENTS_PER_RUN", 20)
-    nvidia_nemotron_pipeline: str = os.getenv("NVIDIA_NEMOTRON_PIPELINE", "live_event_research")
+    nvidia_nemotron_max_agents_per_run: int = env_int("NVIDIA_NEMOTRON_MAX_AGENTS_PER_RUN", 19)
+    nvidia_nemotron_pipeline: str = os.getenv("NVIDIA_NEMOTRON_PIPELINE", "event_research")
     nvidia_nemotron_memory_top_k: int = env_int("NVIDIA_NEMOTRON_MEMORY_TOP_K", 5)
     nvidia_nemotron_prompt_root: str = os.getenv("NVIDIA_NEMOTRON_PROMPT_ROOT", "agent")
     nvidia_nemotron_audit_path: str = os.getenv("NVIDIA_NEMOTRON_AUDIT_PATH", "data/agentic/audit.jsonl")
@@ -200,18 +199,36 @@ class Settings:
     toss_rate_limit_safety_factor: float = env_float("TOSS_RATE_LIMIT_SAFETY_FACTOR", 0.80)
     toss_max_get_retries: int = env_int("TOSS_MAX_GET_RETRIES", 2)
     toss_retry_backoff_max_seconds: float = env_float("TOSS_RETRY_BACKOFF_MAX_SECONDS", 15.0)
+    # Persistent, de-duplicated raw OHLCV shared by the trading strategy and
+    # dashboard. Weekly/monthly chart bars are derived from 1m/1d rows.
+    market_history_db_path: str = os.getenv("MARKET_HISTORY_DB_PATH", "data/market_history.sqlite3")
+    market_history_refresh_seconds: int = env_int("MARKET_HISTORY_REFRESH_SECONDS", 900)
+    # The former JSON cache is imported once so existing 260-day histories do
+    # not have to be downloaded again. New writes go to SQLite.
     toss_candle_cache_dir: str = os.getenv("TOSS_CANDLE_CACHE_DIR", "data_cache/toss_candles")
-    # Daily-bar indicators do not need a second full-history download every
-    # loop.  The current price is nevertheless refreshed immediately before a
-    # live order.
+    # Retained as a compatibility refresh setting for existing deployments.
     toss_candle_cache_ttl_seconds: int = env_int("TOSS_CANDLE_CACHE_TTL_SECONDS", 900)
 
     enable_dashboard: bool = env_bool("ENABLE_DASHBOARD", True)
     dashboard_host: str = os.getenv("DASHBOARD_HOST", "127.0.0.1")
     dashboard_port: int = env_int("DASHBOARD_PORT", 5000)
     dashboard_open_browser: bool = env_bool("DASHBOARD_OPEN_BROWSER", True)
+    # Keep routine Flask/Werkzeug request lines out of the trading console
+    # while retaining them in a rotating operational log.
+    dashboard_access_log_path: str = os.getenv("DASHBOARD_ACCESS_LOG_PATH", "log/dashboard_access.log")
+    dashboard_access_log_max_bytes: int = env_int("DASHBOARD_ACCESS_LOG_MAX_BYTES", 5_000_000)
+    dashboard_access_log_backup_count: int = env_int("DASHBOARD_ACCESS_LOG_BACKUP_COUNT", 3)
 
     rotate_event_questions: bool = env_bool("ROTATE_EVENT_QUESTIONS", True)
+    # Expensive event research is attempted once per local research day. The
+    # normal strategy loop can still recalculate Python signals from that saved
+    # verdict without sending the same question to the models every 10 minutes.
+    event_llm_once_per_day: bool = env_bool("EVENT_LLM_ONCE_PER_DAY", True)
+    event_llm_daily_timezone: str = os.getenv("EVENT_LLM_DAILY_TIMEZONE", "Asia/Seoul")
+    # DRY_RUN/testing option: ignore a persisted same-day verdict once for each
+    # event after this Python process starts, then overwrite it with the fresh
+    # attempt. Later loops in the same process use the updated daily cache.
+    event_llm_refresh_on_process_start: bool = env_bool("EVENT_LLM_REFRESH_ON_PROCESS_START", False)
     # Country events include broker-verified ETFs and ADRs.  Keep the default
     # above that universe so an arbitrary first 50 does not silently become
     # the only automatic-trading candidates.
@@ -256,6 +273,10 @@ class Settings:
     # model produces several valid BUY signals in successive bot cycles.
     auto_buy_total_cap_krw: float = env_float("AUTO_BUY_TOTAL_CAP_KRW", 30000)
     auto_buy_per_symbol_cap_krw: float = env_float("AUTO_BUY_PER_SYMBOL_CAP_KRW", 15000)
+    # The cash-aware event price-scans the enabled KR/US registry, then sends
+    # only a bounded, market-balanced subset through expensive deep research.
+    cash_affordable_max_symbols: int = env_int("CASH_AFFORDABLE_MAX_SYMBOLS", 40)
+    cash_affordable_max_symbols_per_market: int = env_int("CASH_AFFORDABLE_MAX_SYMBOLS_PER_MARKET", 20)
     max_live_price_move_pct: float = env_float("MAX_LIVE_PRICE_MOVE_PCT", 0.02)
     # Market orders are only submitted after a fresh order-book check.  These
     # are intentionally conservative hard caps, not alpha-model inputs.

@@ -273,14 +273,8 @@ class GoogleGeminiGroundingClient:
         return parsed
 
 
-class NvidiaNIMClient:
-    """
-    NVIDIA NIM OpenAI-compatible client.
-
-    역할:
-    - Google evidence를 받아 최종 확률 판단
-    - yes_probability / confidence / news_score / top_candidate_symbols JSON 생성
-    """
+class NvidiaOpenAIClientConfig:
+    """Connection fields shared by the three NVIDIA-hosted agent clients."""
 
     def __init__(
         self,
@@ -295,46 +289,7 @@ class NvidiaNIMClient:
         self.model = model
         self.timeout = timeout
 
-    def generate_json(self, prompt: str) -> Dict[str, Any]:
-        if not self.api_key:
-            raise RuntimeError("NVIDIA_API_KEY missing")
-
-        url = self.base_url + "/chat/completions"
-
-        headers = {
-            "Authorization": f"Bearer {self.api_key}",
-            "Content-Type": "application/json",
-        }
-
-        body = {
-            "model": self.model,
-            "temperature": 0.1,
-            "max_tokens": 1200,
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "Return strict JSON only. Do not include markdown.",
-                },
-                {
-                    "role": "user",
-                    "content": prompt,
-                },
-            ],
-        }
-
-        resp = requests.post(url, headers=headers, json=body, timeout=self.timeout)
-
-        if resp.status_code >= 400:
-            raise RuntimeError(f"NVIDIA API error {resp.status_code}: {resp.text}")
-
-        data = resp.json()
-        text = data.get("choices", [{}])[0].get("message", {}).get("content", "")
-        parsed = extract_json_object(text)
-        parsed["_raw_provider_response"] = data
-        return parsed
-
-
-class NvidiaNemotronAgentClient(NvidiaNIMClient):
+class NvidiaNemotronAgentClient(NvidiaOpenAIClientConfig):
     """Streaming OpenAI-compatible client for NVIDIA-hosted agent models.
 
     NVIDIA's hosted endpoint does not expose Gemini-style response schemas or

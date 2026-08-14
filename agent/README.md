@@ -51,4 +51,6 @@ agent_registry.json         실행 순서·의존성·문서 연결 정보
 
 각 역할 MD의 `depends_on`은 설명용 문구가 아니라 실제 실행 선행 조건이다. 현재 선택된 파이프라인 안에서 선행 역할의 보고서가 없거나 `status: ok`가 아니면 후속 역할은 모델을 호출하지 않고 `required_dependency_unavailable`로 차단된다. 따라서 상세 연구 경로의 `portfolio_manager`는 Bull·Bear·토론 조정·거래 제안·Risk·의미 필터 결과가 모두 유효할 때만 최종 비교를 수행한다.
 
-`live_event_research`는 호출 지연을 줄인 4역할 경로라 `debate_risk`와 `final_comparison`만 호출한다. 뉴스·재무·기술 분석 모델과 Bull/Bear까지 실제로 모두 실행하려면 `NVIDIA_NEMOTRON_PIPELINE=event_research`와 충분한 `NVIDIA_NEMOTRON_MAX_AGENTS_PER_RUN`을 사용해야 한다. 이는 호출 수와 지연을 크게 늘리므로 DRY RUN에서 먼저 검증한다.
+현재 자동매매 기본값은 `event_research`다. 한 이벤트마다 `evidence_analysis`의 Super 7역할, `debate_risk`의 Ultra 11역할, `final_comparison`의 GLM 1역할을 실행하므로 `NVIDIA_NEMOTRON_MAX_AGENTS_PER_RUN`은 최소 19가 필요하다. 마지막 `portfolio_manager`의 GLM JSON만 Python에 전달되는 최종 판단이며, 필수 필드가 없거나 계약 검증에 실패해도 Ultra 결과로 대체하지 않는다. 호출 수와 지연이 크므로 `DRY_RUN=true`에서 먼저 검증한다. `live_event_research`는 Super 분석과 전체 Bull/Bear 토론을 생략하는 실험용 4역할 축약 경로다.
+
+`cash_affordable_candidates` 이벤트에서는 `research_packets.portfolio_affordability`가 추가된다. 이는 Python이 실제 KRW·USD·환율·최소주문·종목당 상한으로 검증한 실행 제약이다. Trader와 Portfolio Manager는 이 목록과 `candidate_symbols` 안에서만 심볼을 선택하며, 잔액을 기대수익 근거나 주문 수량 지시로 사용하지 않는다. 실제 금액과 체결 여부는 계속 Python과 브로커 검증이 결정한다.

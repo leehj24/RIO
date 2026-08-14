@@ -203,16 +203,16 @@
     "category": "LLM/API",
     "requirement": "Google/Gemini API",
     "status": "O",
-    "code_location": "llm_pipeline.py",
-    "formula_or_rule": "evidence",
+    "code_location": "dashboard_server.py, strategy/llm_providers.py",
+    "formula_or_rule": "manual grounding research",
     "note": ""
   },
   {
     "category": "LLM/API",
     "requirement": "NVIDIA API",
     "status": "O",
-    "code_location": "llm_pipeline.py",
-    "formula_or_rule": "probability",
+    "code_location": "strategy/agentic/orchestrator.py",
+    "formula_or_rule": "Super -> Ultra -> GLM",
     "note": ""
   },
   {
@@ -275,16 +275,16 @@
     "category": "LLM/API",
     "requirement": "확률 JSON 판단",
     "status": "O",
-    "code_location": "build_nvidia_prompt",
-    "formula_or_rule": "yes_probability/confidence/news_score",
+    "code_location": "portfolio_manager.md, strategy/agentic/orchestrator.py",
+    "formula_or_rule": "GLM final JSON contract",
     "note": ""
   },
   {
     "category": "LLM/API",
-    "requirement": "API 소진 fallback",
+    "requirement": "API 소진 시 fail-closed",
     "status": "O",
-    "code_location": "mock_*",
-    "formula_or_rule": "budget exceeded",
+    "code_location": "strategy/agentic/orchestrator.py",
+    "formula_or_rule": "budget exceeded blocks new buy",
     "note": ""
   },
   {

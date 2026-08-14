@@ -1,4 +1,5 @@
 ﻿event_id,theme,question,mapped_symbols,b,enabled
+cash_affordable_candidates,Cash Affordable,현재 원화·달러 주문가능 현금과 위험 한도 안에서 실제 구매 가능하면서 향후 3개월 점수가 우수할 가능성이 높은 종목은 무엇인가?,"MARKET:KR,MARKET:US",100,true
 kr_domestic_top_candidates,KR Domestic,향후 3개월 동안 국내 주식의 가능성이 높은 종목은?,MARKET:KR,100,true
 global_ai_semiconductor,AI Semiconductor,향후 3개월 동안 AI 반도체 관련 종목 중 가능성이 높은 종목은?,THEME:AI Semiconductor,100,true
 global_defense_space,Space/Defense,향후 3개월 동안 우주·방산 관련 종목 중 가능성이 높은 종목은?,THEME:Space/Defense,100,true

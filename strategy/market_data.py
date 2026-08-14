@@ -59,6 +59,7 @@ def fetch_candles_paginated(
                     "raw_count": target,
                     "cache_hit": 1,
                     "cache_age_seconds": int(age),
+                    "source_exhausted": 0,
                 }
         except (OSError, ValueError, TypeError, json.JSONDecodeError):
             # A cache miss/corrupt cache must never make a real-data request
@@ -68,6 +69,7 @@ def fetch_candles_paginated(
     pages = 0
     all_candles: list[dict] = []
     seen_timestamps: set[str] = set()
+    source_exhausted = False
 
     while len(all_candles) < target:
         remaining = target - len(all_candles)
@@ -76,6 +78,7 @@ def fetch_candles_paginated(
         candles, next_before = _candle_page(page)
         pages += 1
         if not candles:
+            source_exhausted = True
             break
 
         for candle in candles:
@@ -91,6 +94,7 @@ def fetch_candles_paginated(
                 break
 
         if not next_before or next_before == cursor:
+            source_exhausted = True
             break
         cursor = next_before
 
@@ -120,6 +124,7 @@ def fetch_candles_paginated(
         "raw_count": len(all_candles),
         "cache_hit": 0,
         "cache_age_seconds": 0,
+        "source_exhausted": int(source_exhausted and len(all_candles) < target),
     }
 
 

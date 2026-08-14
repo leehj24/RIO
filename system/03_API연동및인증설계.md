@@ -119,7 +119,8 @@ sequenceDiagram
 | `GET /api/positions` | account, profit | 보유종목, 선택적으로 추정 손익 |
 | `GET /api/stocks` | symbols | 토스 종목 정보 |
 | `GET /api/prices` | symbols | 토스 현재가 |
-| `GET /api/candles` | symbol, interval, count | 토스 캔들 |
+| `GET /api/chart` | symbol, range | SQLite 누적 이력과 부족분 토스 동기화 결과. 표시 해상도와 부분 이력 메타 포함 |
+| `GET /api/candles` | symbol, interval, count | 토스 원본 캔들 직접 조회. 기존 호출 호환용이며 대시보드 주 차트는 사용하지 않음 |
 | `GET /api/stock/analyze` | symbol, refresh/generate | 캐시 또는 Gemini 종목 설명 |
 | `GET /api/bot/status` | 없음 | 설정 모드, 상태, 마지막 거래 로그 |
 | `GET /api/bot/trades` | n | 최근 거래 판단 JSONL |
@@ -129,6 +130,8 @@ sequenceDiagram
 | `GET /api/bot/llm-calls` | n | 최근 LLM 호출 로그 |
 | `GET /api/bot/api-usage` | 없음 | 공급자별 일일 사용량 |
 | `GET /api/bot/summary` | 없음 | 최근 주문·판단·손익 요약 |
+
+`/api/chart`의 `range`는 `1d`, `1w`, `1m`, `3m`, `1y`, `3y`, `5y`, `10y` 중 하나다. 요청 기간보다 상장 이력이 짧아도 오류나 가짜 캔들을 만들지 않고 실제 가능한 시작일부터 반환하며, `meta.history_status=partial`과 실제 제공 범위를 함께 보낸다.
 
 ### 변경·주문
 
@@ -146,8 +149,8 @@ sequenceDiagram
 
 | 공급자 | 용도 | 자격 증명 | 캐시/예산 |
 |---|---|---|---|
-| Google Gemini | Grounding 기반 리서치·레거시 LLM | Google/Gemini API key | 일일 호출 예산, 종목 분석 캐시 |
-| NVIDIA NIM | 분석 판단 또는 Nemotron 에이전트 | NVIDIA API key | 일일 호출 예산, 최소 호출 간격 |
+| Google Gemini | 대시보드의 수동 Grounding 리서치 | Google/Gemini API key | 일일 호출 예산, 종목 분석 캐시 |
+| NVIDIA NIM | Super 분석 → Ultra Bull/Bear·Risk → GLM 최종 JSON | 역할별 NVIDIA API key 3개 | 공통 일일 호출 예산, 최소 호출 간격, 이벤트 판단 캐시 |
 | Naver Search | 뉴스·블로그·주가 관련 근거 | client id/secret | 일일 한도와 TTL 캐시 |
 | OpenDART | 국내 공식 공시·재무 | OpenDART key | 파일 캐시 |
 | SEC EDGAR | 미국 공식 companyfacts | User-Agent 필수 | 파일 캐시 |
@@ -160,7 +163,7 @@ sequenceDiagram
 
 ## LLM API 요청 데이터
 
-LLM에는 이벤트 질문, 제한된 후보 심볼, 종목 정보, 연구 패킷, 뉴스 근거, 이전 에이전트 보고서와 메모리가 들어갈 수 있다. 계좌 주문 권한과 토스 Bearer 토큰은 넣지 않는다. 감사 로그에는 프롬프트/입력/응답의 해시, 모델, 지연시간, 데이터 기준 시각이 남는다. 일부 감사 이벤트는 재현을 위해 입력 스냅샷과 결과 본문도 보존하므로 개인정보나 비밀을 프롬프트에 섞지 않는 정책이 필요하다.
+LLM에는 이벤트 질문, 제한된 후보 심볼, 종목 정보, 연구 패킷, 뉴스 근거, 이전 에이전트 보고서와 메모리가 들어갈 수 있다. 현금 맞춤 이벤트에는 현재 KRW·USD 주문가능액, 환율, Python이 계산한 시장별 최대 검토금액과 구매 가능 후보도 들어간다. 이 값은 수익 신호가 아니라 실행 제약이며 계좌번호, 계좌 주문 권한과 토스 Bearer 토큰은 넣지 않는다. 잔액이 포함된 동적 질문은 NVIDIA 연구 입력과 감사 원장에 남을 수 있지만 Naver 공개 검색에는 잔액 없는 기본 질문을 사용한다. 감사 로그에는 프롬프트/입력/응답의 해시, 모델, 지연시간, 데이터 기준 시각이 남는다. 일부 감사 이벤트는 재현을 위해 입력 스냅샷과 결과 본문도 보존하므로 개인정보나 비밀을 프롬프트에 섞지 않는 정책이 필요하다.
 
 ## API 로그와 민감정보
 
@@ -192,4 +195,3 @@ flowchart LR
 ```
 
 외부 접속이 꼭 필요하면 Flask 개발 서버를 직접 공개하지 말고 TLS 역방향 프록시, 강한 사용자 인증, IP 제한, 주문 권한 재인증, CSRF 보호, 요청별 감사 주체, 비밀 저장소를 포함한 별도 운영 설계가 필요하다.
-

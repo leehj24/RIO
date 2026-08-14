@@ -23,7 +23,7 @@
 
 ## 시스템 설계 문서
 
-전체 구조와 데이터·API·AI·주문·운영 흐름은 [system/01_전체시스템아키텍처.md](system/01_전체시스템아키텍처.md)에서 시작합니다. `system/`에는 다음 10개 상세 설계서가 있습니다.
+전체 구조와 데이터·API·AI·주문·운영 흐름은 [system/01_전체시스템아키텍처.md](system/01_전체시스템아키텍처.md)에서 시작합니다. `system/`에는 다음 11개 상세 설계서가 있습니다.
 
 1. 전체 시스템 아키텍처
 2. 백엔드 실행 및 운영
@@ -35,6 +35,7 @@
 8. 주문 실행 및 포지션 수명주기
 9. 대시보드 및 사용자 흐름
 10. 로그·감사·장애복구 및 운영 점검
+11. 콘솔 출력값 해석 및 3초 응답 성능 설계
 
 ## 설치
 
@@ -216,8 +217,10 @@ python main.py
 출력:
 
 ```text
-[dashboard] http://127.0.0.1:5000
+[dashboard] http://127.0.0.1:5000 | access_log=log/dashboard_access.log
 ```
+
+대시보드의 `127.0.0.1 ... GET ... 200` 요청 기록은 계속 보존하지만 전략 질문과 계산 결과 사이에 섞이지 않도록 `log/dashboard_access.log`로 보냅니다. 콘솔에는 대시보드 주소, 전략 출력과 실제 오류만 표시됩니다.
 
 브라우저도 자동으로 열립니다. 끄고 싶으면 `.env`에서:
 
@@ -248,10 +251,10 @@ event_id,theme,question,mapped_symbols,b,enabled
 ai_semiconductor_demand,AI Semiconductor,향후 3개월 동안 AI 반도체 수요 기대가 더 강해질 가능성은?,"NVDA,SMH,QQQ,005930,000660",100,true
 ```
 
-## 질문이 매번 똑같으면 안 되는 문제
+## 질문 문구와 하루 한 번 실행 정책
 
-`data/question_templates.csv`를 추가했습니다.  
-`ROTATE_EVENT_QUESTIONS=true`이면 같은 theme 안에서 질문 템플릿을 랜덤으로 선택합니다.
+`data/question_templates.csv`에는 테마별 질문 문구가 들어 있습니다.
+`ROTATE_EVENT_QUESTIONS=true`이면 같은 테마의 템플릿 중 하나를 선택하되, 같은 한국 날짜에는 같은 문구가 유지됩니다. 날짜·이벤트 ID·테마를 기준으로 선택하므로 10분 루프 안에서 문구가 임의로 바뀌지 않습니다.
 
 예:
 
@@ -262,7 +265,49 @@ AI Semiconductor theme
 → HBM/AI 서버 수요
 ```
 
-즉 매번 같은 질문만 던지는 게 아니라, 같은 테마 안에서 조금씩 다른 질문을 던질 수 있습니다.
+기본 설정은 다음과 같습니다.
+
+```env
+EVENT_LLM_ONCE_PER_DAY=true
+EVENT_LLM_DAILY_TIMEZONE=Asia/Seoul
+EVENT_LLM_REFRESH_ON_PROCESS_START=true
+```
+
+각 이벤트의 실제 NVIDIA 모델 질문은 한국 날짜 기준 하루에 한 번만 시도합니다. 다만 현재 DRY RUN 테스트 설정은 `EVENT_LLM_REFRESH_ON_PROCESS_START=true`이므로 `python main.py`를 새로 시작하면 기존 당일 캐시가 있어도 이벤트별 첫 시도를 다시 실행하고 같은 key의 결과를 새 결과로 덮어씁니다. 그 프로세스를 끄지 않은 상태의 다음 10분 루프부터는 갱신한 당일 캐시를 사용하여 19개 역할을 재호출하지 않습니다.
+
+실제 운영에서 프로세스 재시작 후에도 당일 판단을 그대로 이어 쓰려면 `EVENT_LLM_REFRESH_ON_PROCESS_START=false`로 바꿉니다. 성공뿐 아니라 자료 부족이나 모델 실패도 그날 결과로 저장되며, 저장 결과를 쓰는 루프에서도 현재 가격·기술지표·포지션·예산·위험 게이트는 다시 계산합니다.
+
+프로세스를 재시작해도 공급자별 일일 호출 사용량과 한도는 초기화하지 않습니다. 이미 당일 호출 한도를 사용했다면 강제 갱신은 안전한 `unavailable` 결과로 끝날 수 있으며, 테스트 목적으로 한도를 자동 우회하지 않습니다.
+
+정해진 자정 시각에 별도 예약 실행되는 방식은 아닙니다. 봇이 실행 중이면 한국 날짜가 바뀐 뒤 처음 시작한 정상 전략 주기에서 질문하고, 봇을 나중에 켰다면 그날 처음 켠 시점에 질문합니다.
+
+질문 사이의 인위적인 5초·10초 대기는 제거했습니다. 한 이벤트의 모델 분석과 종목별 계산 출력이 끝나면 별도 `sleep` 없이 다음 이벤트의 데이터 준비와 질문으로 바로 넘어갑니다. `LOOP_SECONDS=600`은 모든 이벤트가 끝난 뒤 다음 전체 전략 주기를 기다리는 값으로 그대로 유지됩니다.
+
+### 현재 현금으로 구매 가능한 종목을 묻는 일일 이벤트
+
+`cash_affordable_candidates`가 질문 목록의 첫 이벤트로 추가되었습니다. 원본 후보는 `symbols.csv`에서 활성화된 KR/US 종목뿐이며 모델이 목록 밖 심볼을 새로 만들어 주문 대상으로 확장할 수 없습니다.
+
+```text
+KRW·USD 주문가능액과 환율 조회
+→ 현금 reserve·전체 노출·종목당 상한 적용
+→ 전체 활성 KR/US 종목 최신가격 묶음 조회
+→ 국내는 해당 금액으로 최소 1주 가능한 종목만 통과
+→ 미국은 금액주문 최소값을 만족하는 종목만 통과
+→ 테마 후보 우선 + 날짜별 순환으로 KR/US 최대 20개씩, 총 40개 정밀분석
+→ 기술 신규매수 후보와 기존 미보유 종목만 모델 입력
+→ 모델이 입력 후보 안에서 순위와 정확한 심볼 반환
+→ 기존 alpha·SDE·trend·Kelly·confidence·위험·예산·호가 게이트
+→ DRY RUN 모의체결 또는 LIVE 실제 주문
+```
+
+```env
+CASH_AFFORDABLE_MAX_SYMBOLS=40
+CASH_AFFORDABLE_MAX_SYMBOLS_PER_MARKET=20
+```
+
+전체 465개 종목의 가격은 LIVE에서 최대 200개씩 묶어 조회하지만, 모든 종목의 장기 OHLCV·재무·19역할 분석까지 한 번에 수행하지는 않습니다. 비싼 정밀분석은 시장별 최대 20개로 제한하고 같은 날짜에는 결정적인 순서를 사용합니다. 모델에 전달되는 `portfolio_affordability`의 잔액은 수익 근거가 아니라 구매 가능성 제약이며, 공개 Naver 검색어에는 잔액을 넣지 않습니다.
+
+콘솔의 `[cash-universe]`는 가격 기준 전체 구매 가능 수와 이번 정밀분석 심볼 목록을, `[cash-model]`은 모델의 최종 선택과 순위 심볼을 보여줍니다. `tech_buy=True`만으로 매수되지 않으며 기존 모든 Python 및 브로커 게이트를 통과해야 합니다. `DRY_RUN=true`의 잔액·가격·체결은 테스트 값이므로 실제 투자 가능 종목을 의미하지 않습니다.
 
 
 ## v4 변경점: 대형 관심종목 universe + 동적 종목 매핑
@@ -352,10 +397,25 @@ python cli.py verify-execution-symbols
 
 검증 결과는 `data/toss_execution_verification.csv`에 저장된다. 이 명령은 조회만 하며, 종목을 활성화하거나 주문을 만들지 않는다.
 
+## 장기 시세 차트와 저장 방식
 
-# v5 변경점: Google + NVIDIA 실제 호출 파이프라인
+대시보드의 종목 차트는 `1일`, `1주`, `1개월`, `3개월`, `1년`, `3년`, `5년`, `10년` 범위를 제공한다. 범위에 따라 1분봉, 15분봉, 일봉, 주봉, 월봉으로 표시한다. 1분봉과 일봉 원본만 `data/market_history.sqlite3`에 심볼·시각 기준으로 누적하고, 15분봉·주봉·월봉은 화면 조회 시 집계한다. 예전처럼 요청 개수마다 별도 JSON을 계속 만드는 구조가 아니다.
 
-v5는 사용자가 요구한 대로 Google API와 NVIDIA API를 둘 다 사용한다.
+첫 조회에는 부족한 과거 이력을 토스 cursor로 채우기 때문에 시간이 걸릴 수 있다. 이후에는 저장 이력을 즉시 사용하고 기본 15분 주기로 최신 구간만 확인한다.
+
+```env
+MARKET_HISTORY_DB_PATH=data/market_history.sqlite3
+MARKET_HISTORY_REFRESH_SECONDS=900
+```
+
+상장 1년인 종목에서 10년 버튼을 눌러도 가짜 과거값을 채우거나 오류로 숨기지 않는다. 실제 가능한 1년만 보여주고 “상장일 또는 데이터 제공 시작일 이전은 표시하지 않음”이라고 안내한다. 공급자 시작점까지 확인한 상태를 DB에 기록하므로 이후에는 없는 9년을 반복 조회하지 않는다. 다만 LIVE 전략은 안전을 위해 최소 60개 일봉이 없으면 그 종목의 계산·주문을 계속 차단한다.
+
+`data_cache/toss_candles/`의 기존 JSON은 시작 시 한 번 SQLite로 가져오기 위한 호환 자료다. 자동으로 삭제하지 않으며 신규 대시보드 차트는 SQLite를 사용한다. `market_history.sqlite3`와 `-wal`, `-shm` 파일은 Git에서 제외된다.
+
+
+# v5 변경점: Google + NVIDIA 실제 호출 파이프라인(과거 구조)
+
+아래 v5 절은 이전 구조를 설명하는 이력 문서다. 자동매매 루프에서 사용하던 Google evidence + 단일 NVIDIA 판단 경로는 삭제되었으며, 현재 자동 판단은 이 문서 아래쪽의 v10 3모델 에이전트 경로만 사용한다. Google/Gemini 리서치는 대시보드의 수동 조회 기능에만 남아 있다.
 
 ## API 역할 분리
 
@@ -535,10 +595,10 @@ budget
 | LMSR 내부 예측시장 | O | strategy/lmsr.py |
 | Sapience 선택 외부가격 | O | strategy/data_sources.py placeholder |
 | OpenClaw 안 쓰고 Python router | O | main.py |
-| Gemini/Google API 사용 | O | strategy/llm_pipeline.py, strategy/llm_providers.py |
-| NVIDIA API 사용 | O | strategy/llm_pipeline.py, strategy/llm_providers.py |
-| Google은 뉴스/정치/경제/기상/스포츠/온체인 evidence | O | Google prompt |
-| NVIDIA는 확률/JSON 최종 판단 | O | NVIDIA prompt |
+| Gemini/Google API 사용 | O | 대시보드 수동 리서치, strategy/llm_providers.py |
+| NVIDIA API 사용 | O | strategy/agentic/orchestrator.py, strategy/llm_providers.py |
+| Google은 수동 Grounding 리서치 | O | 대시보드 리서치 API |
+| NVIDIA 3모델은 분석·판단·최종 JSON을 분담 | O | Super → Ultra → GLM |
 | 유료 뉴스 API 없이 LLM 검색 우선 | O | Google Gemini grounding |
 | 멀티팩터 계산 | O | strategy/factors.py |
 | 7대 팩터 | O | Value/Momentum/Quality/Risk/Liquidity/Growth/News |
@@ -786,18 +846,20 @@ NVIDIA_FINAL_MODEL=z-ai/glm-5.2
 NVIDIA_FINAL_SEED=42
 NVIDIA_FINAL_STREAM=true
 
-NVIDIA_NEMOTRON_PIPELINE=live_event_research
+NVIDIA_NEMOTRON_PIPELINE=event_research
+NVIDIA_NEMOTRON_MAX_AGENTS_PER_RUN=19
+NVIDIA_NEMOTRON_DAILY_CALL_LIMIT=200
 ```
 
 `ai_prompt/02_트레이딩팀.md`부터 `11_추측디코딩.md`까지의 연구 메모를 실행 가능한 역할 프롬프트와 Python 안전장치로 옮겼다. 런타임 프롬프트와 역할별 모델 표는 [agent/README.md](agent/README.md)에 있다.
 
 ## 활성화 전제
 
-기본값은 비활성화다. 먼저 `DRY_RUN=true`에서 `ENABLE_NVIDIA_NEMOTRON_AGENTS=true`로 켜고 역할별 호출 모델이 감사 로그와 일치하는지 확인해야 한다. 세 역할군은 각각 `NVIDIA_SUPER_API_KEY`, `NVIDIA_NEMOTRON_API_KEY`, `NVIDIA_FINAL_API_KEY`를 사용하며 키가 없으면 해당 모델 호출은 안전하게 실패한다. 필수 보고서 호출·검증에 실패하면 신규 매수는 차단된다.
+자동 LLM 판단 경로는 이 3모델 오케스트레이터 하나뿐이다. `ENABLE_NVIDIA_NEMOTRON_AGENTS=false`이거나 세 역할군 중 필요한 키가 없으면 이전 모델로 되돌아가지 않고 해당 이벤트의 신규 매수를 안전하게 차단한다. 먼저 `DRY_RUN=true`에서 역할별 호출 모델이 감사 로그와 일치하는지 확인한다. 세 역할군은 각각 `NVIDIA_SUPER_API_KEY`, `NVIDIA_NEMOTRON_API_KEY`, `NVIDIA_FINAL_API_KEY`를 사용한다.
 
 세 클라이언트는 모두 NVIDIA의 OpenAI 호환 endpoint를 `OpenAI(...).chat.completions.create(stream=True)`로 호출한다. Ultra·Super의 `reasoning_content`는 감사용으로 수집하고, 일반 `content` 청크를 합쳐 역할 JSON으로 파싱한다. GLM 최종 비교는 thinking 옵션 없이 `seed=42`, `top_p=1`로 호출한다.
 
-기본 `live_event_research`는 지연을 줄이기 위해 실거래 제안·Risk·최종 비교 4역할만 실행한다. 뉴스·재무·기술 분석 모델과 Bull/Bear 토론을 포함한 전체 3모델 흐름은 `NVIDIA_NEMOTRON_PIPELINE=event_research`에서 실행되며 한 이벤트당 호출 수가 크게 증가한다.
+현재 기본 `event_research`는 한 이벤트에서 Super 7역할, Ultra 11역할, GLM 최종 비교 1역할을 순서대로 실행한다. 총 19회 모델 호출이 필요하므로 일일 한도는 감시 대상 이벤트 수와 캐시 적중률을 고려해 정한다. `live_event_research` 4역할 경로는 실험용으로 남아 있지만 Super 분석과 전체 Bull/Bear 토론이 생략되므로 전체 3모델 운용 설정으로 간주하지 않는다.
 
 ## 반영 범위
 
@@ -812,4 +874,4 @@ NVIDIA_NEMOTRON_PIPELINE=live_event_research
 | 10 | 의미 위험필터가 신규 매수를 허용·축소·보류하고 Python 리스크가 최종 강제 |
 | 11 | 관리형 모델 API에서 직접 구현하지 않고, 호출 예산·짧은 JSON·캐시 가능한 설계로 분리 |
 
-에이전트는 `direction`, `target_exposure`, `confidence`, `evidence_ids`, `invalidation`, `risk_flags`만 제안한다. 실제 주문 수량·가격·시장 상태·손절 및 Toss 호출은 계속 Python 리스크/주문 모듈만 결정한다. LLM의 `hold` 또는 위험필터 차단은 신규 매수만 막으며, 기존 포지션의 결정론적 손절·청산은 막지 않는다.
+GLM 최종 비교 모델은 앞선 Super·Ultra 보고서를 비교해 `direction`, `target_exposure`, `confidence`, `yes_probability`, `news_score`, `top_candidate_symbols`, `avoid_symbols`, `evidence_ids`, `invalidation`, `risk_flags`를 하나의 최종 JSON으로 확정한다. 이 JSON이 누락되거나 계약을 어기면 Ultra 결과로 대체하지 않고 신규 매수를 차단한다. 실제 주문 수량·가격·시장 상태·손절 및 Toss 호출은 계속 Python 리스크/주문 모듈만 결정한다. LLM의 `hold` 또는 위험필터 차단은 신규 매수만 막으며, 기존 포지션의 결정론적 손절·청산은 막지 않는다.
