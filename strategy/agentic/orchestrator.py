@@ -1155,3 +1155,70 @@ class NvidiaNemotronAgentOrchestrator:
         )
         return reports
 
+    def discover_cash_symbols(
+        self,
+        *,
+        krw_buying_power: float,
+        usd_buying_power: float,
+        krw_usd_rate: float,
+        known_universe_sample: Sequence[Mapping[str, Any]],
+    ) -> Dict[str, Any]:
+        """NVIDIA fallback path for AI-driven, registry-external symbol discovery.
+
+        This calls the standalone ``cash_symbol_discovery`` pipeline (one
+        role, see agent/agents/cash_symbol_discovery.md). It never places an
+        order and never trusts the model's ticker guess by itself -- the
+        caller (strategy/agentic/symbol_discovery.py) is responsible for
+        re-verifying every returned ``symbol_guess`` against the real Toss
+        API via strategy/toss_symbol_verifier.verify_symbol_guesses before
+        any of it can reach data/symbols.csv or the order flow.
+        """
+        enabled, reason = self._enabled()
+        run_id = uuid.uuid4().hex
+        if not enabled:
+            self.audit.append_event("agent_run", run_id=run_id, status="unavailable", reason=reason, pipeline="cash_symbol_discovery")
+            return {"status": "unavailable", "reason": reason, "candidates": []}
+
+        cutoff = utc_now()
+        run_context: Dict[str, Any] = {
+            "run_id": run_id,
+            "decision_time_utc": cutoff,
+            "data_cutoff_utc": cutoff,
+            "krw_buying_power": float(krw_buying_power or 0.0),
+            "usd_buying_power": float(usd_buying_power or 0.0),
+            "krw_usd_rate": float(krw_usd_rate or 0.0),
+            "known_universe_sample": [dict(item) for item in known_universe_sample][:60],
+            "reports": {},
+        }
+        reports = self._run_pipeline("cash_symbol_discovery", run_context)
+        self.audit.append_event(
+            "cash_symbol_discovery_run",
+            run_id=run_id,
+            reports=reports,
+        )
+        role_report = reports.get("cash_symbol_discovery")
+        if not isinstance(role_report, Mapping) or role_report.get("status") != "ok":
+            return {"status": "unavailable", "reason": "role_report_not_ok", "candidates": [], "run_id": run_id}
+
+        raw_candidates = role_report.get("candidates")
+        candidates: list[Dict[str, Any]] = []
+        if isinstance(raw_candidates, list):
+            for item in raw_candidates[:4]:
+                if not isinstance(item, Mapping):
+                    continue
+                symbol_guess = str(item.get("symbol_guess") or "").strip()
+                if not symbol_guess:
+                    continue
+                candidates.append(
+                    {
+                        "symbol_guess": symbol_guess,
+                        "symbol_confidence": str(item.get("symbol_confidence") or "low"),
+                        "name": str(item.get("name") or ""),
+                        "market_guess": str(item.get("market_guess") or ""),
+                        "lens": str(item.get("lens") or ""),
+                        "thesis": str(item.get("thesis") or "")[:500],
+                        "source": "nvidia_nemotron",
+                    }
+                )
+        return {"status": "ok", "run_id": run_id, "candidates": candidates}
+

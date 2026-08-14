@@ -61,6 +61,24 @@ class Settings:
     # system/14_1분봉단타실행엔진및확률모델설계.md 13.3.
     paper_trading: bool = env_bool("PAPER_TRADING", False)
 
+    # AI 기반 레지스트리 외부 종목 발굴(system/14_...md 13.5).
+    # data/symbols.csv에 없는 종목도 AI가 정성적으로 제안하게 한 뒤, Python이
+    # 토스 API로 실존/거래가능 여부를 재검증하고, 검증에 성공한 종목만
+    # data/symbols.csv에 resolved=ai_discovered_verified로 추가한다. AI의
+    # symbol_guess는 그 자체로 신뢰되지 않으며, 이후 기존 현금가용 후보
+    # 파이프라인의 모든 하드 게이트(잔고/거래정지/스프레드/생존게이트 등)를
+    # 그대로 통과해야 실제 매매 후보가 된다. 기본값은 꺼짐이며, 새 기능이므로
+    # 사용자가 명시적으로 켜기 전까지 실거래 흐름에 아무 영향도 주지 않는다.
+    cash_symbol_discovery_enabled: bool = env_bool("CASH_SYMBOL_DISCOVERY_ENABLED", False)
+    # 하루 한 번만 실행(daily_event_llm_cache와 동일한 캐시 정책).
+    cash_symbol_discovery_max_candidates: int = env_int("CASH_SYMBOL_DISCOVERY_MAX_CANDIDATES", 4)
+    # 제미나이(실시간 검색 가능)를 우선 시도하고, 사용 불가/실패 시에만
+    # NVIDIA(검색 없음, 기존 지식 기반) 파이프라인으로 폴백한다.
+    cash_symbol_discovery_prefer_gemini: bool = env_bool("CASH_SYMBOL_DISCOVERY_PREFER_GEMINI", True)
+    cash_symbol_discovery_pipeline: str = os.getenv("CASH_SYMBOL_DISCOVERY_PIPELINE", "cash_symbol_discovery")
+    # AI가 제안한 심볼을 토스로 재검증할 때 배치 크기.
+    cash_symbol_discovery_verify_batch_size: int = env_int("CASH_SYMBOL_DISCOVERY_VERIFY_BATCH_SIZE", 50)
+
     # aggressive bankroll/risk
     max_managed_bankroll_krw: float = env_float("MAX_MANAGED_BANKROLL_KRW", 300000)
     max_position_fraction: float = env_float("MAX_POSITION_FRACTION", 0.06)

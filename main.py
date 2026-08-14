@@ -36,6 +36,7 @@ from strategy.affordable_universe import (
     is_cash_affordable_event,
     select_cash_affordable_candidates,
 )
+from strategy.agentic.symbol_discovery import run_cash_symbol_discovery
 from strategy.free_financial_sources import FreeFinancialSources
 from strategy.live_data_guard import (
     LiveDataError,
@@ -1439,6 +1440,31 @@ def run_once(settings: Settings) -> None:
     )
 
     research_day = event_research_day(settings)
+
+    # AI 기반 레지스트리 외부 종목 발굴(system/14_...md 13.5). load_events()보다
+    # 먼저 실행해, 이번 루프에서 검증/추가된 종목이 곧바로 아래 MARKET:KR /
+    # MARKET:US 토큰 해석에 포함되게 한다. 기본값 꺼짐이며, 실패해도 예외를
+    # 던지지 않고(run_cash_symbol_discovery 내부에서 처리) 항상 기존 실주문
+    # 후보 스캔으로 그대로 진행한다.
+    if settings.cash_symbol_discovery_enabled:
+        discovery_summary = run_cash_symbol_discovery(
+            settings,
+            state,
+            orchestrator=llm_pipeline,
+            toss=toss,
+            research_day=research_day,
+            krw_buying_power=krw_buying_power,
+            usd_buying_power=usd_buying_power,
+            usd_krw_rate=live_fx,
+        )
+        print(
+            f"[cash-symbol-discovery] status={discovery_summary.get('status')} "
+            f"provider={discovery_summary.get('provider')} "
+            f"proposed={discovery_summary.get('proposed', 0)} "
+            f"verified={discovery_summary.get('verified', 0)} "
+            f"appended={discovery_summary.get('appended_symbols', [])}"
+        )
+
     events = load_events(
         rotate_questions=settings.rotate_event_questions,
         question_date=research_day,

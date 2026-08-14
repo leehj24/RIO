@@ -59,6 +59,9 @@
       "simulation_designer",
       "distillation_teacher",
       "latency_optimizer"
+    ],
+    "cash_symbol_discovery": [
+      "cash_symbol_discovery"
     ]
   },
   "agents": [
@@ -89,6 +92,7 @@
     {"id": "memory_curator", "path": "agents/memory_curator.md", "stage": "learning", "output_schema": "memory_note"},
     {"id": "simulation_designer", "path": "agents/simulation_designer.md", "stage": "offline", "output_schema": "simulation_scenario"},
     {"id": "distillation_teacher", "path": "agents/distillation_teacher.md", "stage": "offline", "output_schema": "distillation_plan"},
-    {"id": "latency_optimizer", "path": "agents/latency_optimizer.md", "stage": "offline", "output_schema": "optimization_plan"}
+    {"id": "latency_optimizer", "path": "agents/latency_optimizer.md", "stage": "offline", "output_schema": "optimization_plan"},
+    {"id": "cash_symbol_discovery", "path": "agents/cash_symbol_discovery.md", "stage": "discovery", "output_schema": "cash_symbol_discovery_result", "depends_on": []}
   ]
 }

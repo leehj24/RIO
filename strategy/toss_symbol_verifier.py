@@ -151,6 +151,111 @@ def verify_execution_symbols(
     return report
 
 
+def verify_symbol_guesses(
+    client: Any,
+    guesses: Iterable[Mapping[str, Any]] | Iterable[str],
+    *,
+    batch_size: int = 50,
+    verified_at_utc: str | None = None,
+) -> dict[str, dict[str, Any]]:
+    """Verify AI-proposed symbol guesses against the real Toss API.
+
+    ``guesses`` may be plain symbol strings or dicts with at least a
+    ``symbol_guess``/``symbol`` key (as produced by the
+    ``cash_symbol_discovery`` agent role). This is fail-closed: on any
+    lookup error, or when Toss does not return both a stock record and a
+    usable last price, the symbol is marked unverified and MUST NOT be
+    treated as tradable. This function never writes to data/symbols.csv or
+    any execution config on its own -- callers decide what to do with a
+    verified result.
+
+    Returns a dict keyed by the (uppercased/stripped) input symbol guess,
+    each value containing at minimum: symbol, verified (bool), name,
+    market_hint (best-effort, from Toss data when available), last_price,
+    currency, failure_reason.
+    """
+
+    if batch_size < 1 or batch_size > 200:
+        raise ValueError("batch_size must be between 1 and 200")
+
+    normalized: list[str] = []
+    seen: set[str] = set()
+    for guess in guesses:
+        if isinstance(guess, Mapping):
+            raw = guess.get("symbol_guess") or guess.get("symbol") or ""
+        else:
+            raw = guess
+        symbol = str(raw or "").strip().upper()
+        if symbol and symbol not in seen:
+            normalized.append(symbol)
+            seen.add(symbol)
+
+    stock_by_symbol: dict[str, dict[str, Any]] = {}
+    price_by_symbol: dict[str, dict[str, Any]] = {}
+    errors: dict[str, str] = {}
+
+    for batch in _chunks(normalized, batch_size):
+        try:
+            stock_rows = _items(client.stocks(batch))
+            price_rows = _items(client.prices(batch))
+        except Exception:
+            # One malformed/unknown AI-guessed ticker must not sink the
+            # rest of the batch -- retry singly, same pattern as
+            # verify_execution_symbols.
+            for symbol in batch:
+                try:
+                    stock_rows = _items(client.stocks([symbol]))
+                    price_rows = _items(client.prices([symbol]))
+                except Exception as exc:
+                    errors[symbol] = str(exc)
+                    continue
+                for item in stock_rows:
+                    item_symbol = _symbol(item)
+                    if item_symbol:
+                        stock_by_symbol[item_symbol.upper()] = item
+                for item in price_rows:
+                    item_symbol = _symbol(item)
+                    if item_symbol:
+                        price_by_symbol[item_symbol.upper()] = item
+            continue
+
+        for item in stock_rows:
+            item_symbol = _symbol(item)
+            if item_symbol:
+                stock_by_symbol[item_symbol.upper()] = item
+        for item in price_rows:
+            item_symbol = _symbol(item)
+            if item_symbol:
+                price_by_symbol[item_symbol.upper()] = item
+
+    timestamp = verified_at_utc or dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+    results: dict[str, dict[str, Any]] = {}
+    for symbol in normalized:
+        stock = stock_by_symbol.get(symbol, {})
+        price = price_by_symbol.get(symbol, {})
+        stock_found = bool(stock)
+        price_value = _value(price, "lastPrice", "closePrice", "currentPrice", "price")
+        price_found = price_value not in (None, "", 0, "0", "0.0")
+        failure_reason = errors.get(symbol, "")
+        if not stock_found:
+            failure_reason = failure_reason or "toss_stock_lookup_empty"
+        elif not price_found:
+            failure_reason = failure_reason or "toss_price_lookup_empty"
+        verified = stock_found and price_found and not failure_reason
+        results[symbol] = {
+            "symbol": symbol,
+            "verified": verified,
+            "name": _value(stock, "name", "stockName", "korName") or "",
+            "market_hint": _value(stock, "market", "exchange", "nation") or "",
+            "last_price": price_value or "",
+            "currency": _value(price, "currency") or _value(stock, "currency") or "",
+            "failure_reason": "" if verified else failure_reason,
+            "verified_at_utc": timestamp,
+        }
+    return results
+
+
 def write_verification_report(rows: Iterable[Mapping[str, Any]], path: str | Path) -> Path:
     """Atomically write the lookup report; execution configuration is untouched."""
 
