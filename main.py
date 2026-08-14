@@ -1564,7 +1564,9 @@ def run_once(settings: Settings) -> None:
         elif settings.max_symbols_per_event > 0 and len(event.mapped_symbols) > settings.max_symbols_per_event:
             event.mapped_symbols = event.mapped_symbols[:settings.max_symbols_per_event]
 
-        print(f"[event] {event.event_id} | theme={event.theme} | symbols={len(event.mapped_symbols)} | q={event.question}")
+        # 질문 전체 텍스트(q=...)는 매 루프 반복 출력하지 않는다. 실제로 AI를
+        # 새로 호출하는 루프에서만(아래 fresh_model_question 분기) 찍는다.
+        print(f"[event] {event.event_id} | theme={event.theme} | symbols={len(event.mapped_symbols)}")
         daily_mode = bool(getattr(settings, "event_llm_once_per_day", True))
         if daily_mode:
             process_start_refresh = process_start_event_refresh_required(settings, event, research_day)
@@ -1841,6 +1843,11 @@ def run_once(settings: Settings) -> None:
             f"[event-research] {event.event_id} | day={research_day} | "
             f"source={research_source} | llm_candidates={len(llm_symbols)}"
         )
+        # 진짜로 AI를 새로 호출한 루프에서만 실제로 보낸 질문 전체 텍스트를 출력한다.
+        # source가 daily_cache/ttl_cache/python_pre_screen_no_call이면(=이번 루프에
+        # AI를 안 불렀으면) 위 [event-research] 한 줄이면 충분하고 질문을 또 찍지 않는다.
+        if fresh_model_question:
+            print(f"[event-question] {event.event_id} | REAL AI CALL (source={research_source}) | q={event.question}")
 
         llm_prob = float(np.clip(llm_result["yes_probability"], 0.01, 0.99))
         confidence = float(np.clip(llm_result["confidence"], 0.0, 1.0))
@@ -2374,6 +2381,27 @@ def run_once(settings: Settings) -> None:
                 result["forecast_record_error"] = str(exc)
 
             append_jsonl(settings.log_path, result)
+
+            # 실제로 브로커에 제출된(=진짜 매수/매도가 일어난) 주문만 이 [ORDER]
+            # 줄로 별도 표시한다. HOLD/SELL_SIGNAL_NO_POSITION 등 40개 종목 스캔
+            # 줄 사이에 묻히지 않게 하기 위함. 대시보드(log_path의 execution 필드)
+            # 에는 이전과 동일하게 계속 전부 기록된다.
+            if execution.get("submitted"):
+                status = "FILLED" if execution.get("terminal") else "SUBMITTED"
+                if execution.get("rejected"):
+                    status = "REJECTED"
+                elif execution.get("canceled"):
+                    status = "CANCELED"
+                elif execution.get("reconciliation_required"):
+                    status = "RECONCILIATION_REQUIRED"
+                print(
+                    f"[ORDER] {action} {symbol} | "
+                    f"qty={order_spec.get('quantity')} amount={order_spec.get('order_amount')} "
+                    f"notional_krw={float(order_spec.get('notional_krw', order_value) or 0.0):,.0f} "
+                    f"price={pretrade_price if pretrade_price is not None else price} "
+                    f"status={status} live={execution.get('live')} dry_run={settings.dry_run} "
+                    f"order_id={execution.get('order_id') or execution.get('client_order_id')}"
+                )
 
             print(
                 f"{action:>16} | {symbol:<8} | "
