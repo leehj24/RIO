@@ -6,6 +6,11 @@ from typing import Dict, Any, Optional
 
 import requests
 
+try:
+    from openai import OpenAI
+except Exception:  # pragma: no cover - handled explicitly at call time
+    OpenAI = None
+
 from strategy.json_utils import extract_json_object
 
 
@@ -330,11 +335,13 @@ class NvidiaNIMClient:
 
 
 class NvidiaNemotronAgentClient(NvidiaNIMClient):
-    """OpenAI-compatible NVIDIA NIM client for the debate and risk agents.
+    """Streaming OpenAI-compatible client for NVIDIA-hosted agent models.
 
     NVIDIA's hosted endpoint does not expose Gemini-style response schemas or
     Google Search grounding.  The orchestration layer consequently keeps its
     existing JSON validation and deterministic risk gate as the final guard.
+    Reasoning chunks are collected for audit only; the final JSON is parsed
+    from normal content chunks.
     """
 
     provider_id = "nvidia_nemotron"
@@ -358,6 +365,8 @@ class NvidiaNemotronAgentClient(NvidiaNIMClient):
         min_request_interval_seconds: float = 0.0,
         max_retries: int = 0,
         enable_thinking: bool = True,
+        seed: Optional[int] = None,
+        stream: bool = True,
     ):
         super().__init__(api_key=api_key, base_url=base_url, model=model, timeout=timeout)
         self.enable_grounding = enable_grounding
@@ -365,9 +374,13 @@ class NvidiaNemotronAgentClient(NvidiaNIMClient):
         self.max_output_tokens = max_output_tokens
         self.top_p = top_p
         self.reasoning_budget = reasoning_budget
-        self.min_request_interval_seconds = min_request_interval_seconds
-        self.max_retries = max_retries
+        self.min_request_interval_seconds = max(0.0, float(min_request_interval_seconds))
+        self.max_retries = max(0, int(max_retries))
         self.enable_thinking = enable_thinking
+        self.seed = seed
+        self.stream = bool(stream)
+        self._pacer_lock = threading.Lock()
+        self._next_request_at = 0.0
 
     @property
     def capabilities(self) -> Dict[str, bool]:
@@ -376,6 +389,8 @@ class NvidiaNemotronAgentClient(NvidiaNIMClient):
             "structured_output": self.supports_structured_output,
             "google_search_grounding": self.supports_google_search_grounding,
             "token_level_speculative_decoding": self.supports_token_level_speculative_decoding,
+            "streaming": self.stream,
+            "reasoning_content": self.enable_thinking,
         }
 
     def generate_json(
@@ -384,42 +399,102 @@ class NvidiaNemotronAgentClient(NvidiaNIMClient):
         *,
         system_instruction: str = "",
         response_schema: Optional[Dict[str, Any]] = None,
-        temperature: float = 0.1,
+        temperature: Optional[float] = None,
         enable_grounding: bool = False,
     ) -> Dict[str, Any]:
         if not self.api_key:
-            raise RuntimeError("NVIDIA_NEMOTRON_API_KEY/NVIDIA_API_KEY missing")
+            raise RuntimeError("Dedicated NVIDIA agent API key missing")
+        if OpenAI is None:
+            raise RuntimeError("openai package is not installed")
         if enable_grounding:
             raise RuntimeError("NVIDIA NIM Nemotron does not support Google Search grounding")
 
-        url = self.base_url + "/chat/completions"
         messages = []
         if system_instruction.strip():
             messages.append({"role": "system", "content": system_instruction})
         messages.append({"role": "user", "content": prompt})
-        body = {
+        extra_body: Dict[str, Any] = {}
+        if self.enable_thinking:
+            extra_body["chat_template_kwargs"] = {"enable_thinking": True}
+        if self.reasoning_budget:
+            extra_body["reasoning_budget"] = int(self.reasoning_budget)
+
+        request: Dict[str, Any] = {
             "model": self.model,
-            "temperature": float(temperature),
+            "temperature": float(self.temperature if temperature is None else temperature),
             "top_p": self.top_p,
             "max_tokens": self.max_output_tokens or 2048,
             "messages": messages,
+            "stream": self.stream,
         }
-        if self.enable_thinking:
-            body["chat_template_kwargs"] = {"enable_thinking": True}
-        if self.reasoning_budget:
-            body["reasoning_budget"] = self.reasoning_budget
+        if extra_body:
+            request["extra_body"] = extra_body
+        if self.seed is not None:
+            request["seed"] = int(self.seed)
         # `response_schema` is intentionally not sent: this model endpoint is
         # OpenAI-compatible but does not guarantee JSON-schema support.
-        response = requests.post(
-            url,
-            headers={"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"},
-            json=body,
+        if self.min_request_interval_seconds > 0:
+            with self._pacer_lock:
+                now = time.monotonic()
+                scheduled = max(now, self._next_request_at)
+                self._next_request_at = scheduled + self.min_request_interval_seconds
+            delay = scheduled - time.monotonic()
+            if delay > 0:
+                time.sleep(delay)
+
+        client = OpenAI(
+            base_url=self.base_url,
+            api_key=self.api_key,
             timeout=self.timeout,
+            max_retries=self.max_retries,
         )
-        if response.status_code >= 400:
-            raise RuntimeError(f"NVIDIA API error {response.status_code}: {response.text}")
-        data = response.json()
-        text = data.get("choices", [{}])[0].get("message", {}).get("content", "")
+        completion = client.chat.completions.create(**request)
+
+        content_parts = []
+        reasoning_parts = []
+        finish_reason = None
+        if self.stream:
+            for chunk in completion:
+                choices = getattr(chunk, "choices", None)
+                if not choices:
+                    continue
+                choice = choices[0]
+                delta = getattr(choice, "delta", None)
+                if delta is None:
+                    continue
+                reasoning = getattr(delta, "reasoning_content", None)
+                if reasoning:
+                    reasoning_parts.append(str(reasoning))
+                content = getattr(delta, "content", None)
+                if content:
+                    content_parts.append(str(content))
+                if getattr(choice, "finish_reason", None) is not None:
+                    finish_reason = str(choice.finish_reason)
+        else:
+            choices = getattr(completion, "choices", None) or []
+            if choices:
+                choice = choices[0]
+                message = getattr(choice, "message", None)
+                if message is not None:
+                    reasoning = getattr(message, "reasoning_content", None)
+                    content = getattr(message, "content", None)
+                    if reasoning:
+                        reasoning_parts.append(str(reasoning))
+                    if content:
+                        content_parts.append(str(content))
+                if getattr(choice, "finish_reason", None) is not None:
+                    finish_reason = str(choice.finish_reason)
+
+        text = "".join(content_parts)
+        reasoning_text = "".join(reasoning_parts)
+        if not text.strip() and reasoning_text.strip():
+            text = reasoning_text
         parsed = extract_json_object(text)
-        parsed["_raw_provider_response"] = data
+        parsed["_raw_provider_response"] = {
+            "model": self.model,
+            "stream": self.stream,
+            "finish_reason": finish_reason,
+            "content": text,
+            "reasoning_content": reasoning_text,
+        }
         return parsed

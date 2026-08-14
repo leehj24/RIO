@@ -1,7 +1,7 @@
 """Weekly-return-bin forecasts and immutable evaluation records.
 
 This implements the evaluation contract documented in
-``ai_prompot/07_원문확인.md``.  It is a research evaluator, not an order
+``ai_prompt/07_원문확인.md``.  It is a research evaluator, not an order
 signal: a 13-bin forecast is logged at decision time and can only be scored
 after its future observation window has closed.
 """

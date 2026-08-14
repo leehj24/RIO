@@ -21,6 +21,21 @@
 - 기본 DRY_RUN=true
 - 실제 매수/매도는 토스증권 API
 
+## 시스템 설계 문서
+
+전체 구조와 데이터·API·AI·주문·운영 흐름은 [system/01_전체시스템아키텍처.md](system/01_전체시스템아키텍처.md)에서 시작합니다. `system/`에는 다음 10개 상세 설계서가 있습니다.
+
+1. 전체 시스템 아키텍처
+2. 백엔드 실행 및 운영
+3. API 연동 및 인증
+4. 데이터 저장 및 논리 테이블
+5. 시장 데이터 및 종목 유니버스
+6. AI 에이전트 분석 파이프라인
+7. 신호 판단 및 리스크 관리
+8. 주문 실행 및 포지션 수명주기
+9. 대시보드 및 사용자 흐름
+10. 로그·감사·장애복구 및 운영 점검
+
 ## 설치
 
 ```powershell
@@ -79,12 +94,12 @@ http://127.0.0.1:5000
 
 ## 연구 문서 기반 분석·감사 경로
 
-`ENABLE_GEMINI_API2=true`이면 주문 판단 전에 종목별 가격·OHLCV·재무·기술지표를
-고정한 ResearchPacket을 Gemini_Api2 역할팀과 Python 규칙이 함께 사용합니다. 누락
+`ENABLE_NVIDIA_NEMOTRON_AGENTS=true`이면 주문 판단 전에 종목별 가격·OHLCV·재무·기술지표를
+고정한 ResearchPacket을 역할별 멀티모델 팀과 Python 규칙이 함께 사용합니다. 누락
 필드는 무작위 mock 값으로 채우지 않습니다.
 
 - 13-bin 예측과 이후 결과는 `data/forecast_ledger.jsonl`에 append-only로 기록됩니다.
-- Gemini prompt/input/response hash와 latency는 `data/agentic/audit.jsonl`에 기록됩니다.
+- 모델 그룹·실제 모델·prompt/input/response hash와 latency는 `data/agentic/audit.jsonl`에 기록됩니다.
 - 선행-후행 Granger/FDR 후보는 `ENABLE_LEAD_LAG_RESEARCH=true`일 때만 분석 context에
   제공되며, 단독으로 주문을 만들지 않습니다.
 - 문서 02~11의 기능·수식·한계 매핑은 [논문_자동투자_구현_매핑.md](docs/논문_자동투자_구현_매핑.md)에 있습니다.
@@ -744,36 +759,45 @@ docs/requirements_checklist_v9.json
 ```
 
 
-# v10 변경점: Gemini_Api2 멀티에이전트 연구 워크플로
+# v10 변경점: 역할별 멀티모델 에이전트 연구 워크플로
 
-> 현재 Bull/Bear 토론 및 리스크 역할팀은 NVIDIA Nemotron NIM으로 전환되었다.
-> NVIDIA Build의 `deepseek-ai/deepseek-v4-pro` 호스티드 엔드포인트는 종료되었으므로,
-> 기본 모델은 현재 계정에서 조회되는 `nvidia/nemotron-3-ultra-550b-a55b`이다.
+현재 에이전트 경로는 하나의 모델이 모든 역할을 수행하지 않는다. 뉴스·재무·기술 등 증거 분석, Bull/Bear·Risk 판단, 최종 비교 승인을 서로 다른 모델 그룹으로 분리한다. 실제 모델 ID는 환경변수로 바꾸며 각 호출의 모델과 그룹은 감사 로그에 남는다.
 
 ```env
-ENABLE_NVIDIA_DEEPSEEK_AGENTS=true
-NVIDIA_DEEPSEEK_API_KEY=your_nvidia_key
-NVIDIA_DEEPSEEK_MODEL=nvidia/nemotron-3-ultra-550b-a55b
+ENABLE_NVIDIA_NEMOTRON_AGENTS=true
+
+# 뉴스·재무·기술·통계·사실/주관 분석
+NVIDIA_SUPER_API_KEY=your_nvidia_key
+NVIDIA_SUPER_MODEL=nvidia/nemotron-3-super-120b-a12b
+NVIDIA_SUPER_REASONING_BUDGET=16384
+NVIDIA_SUPER_ENABLE_THINKING=true
+NVIDIA_SUPER_STREAM=true
+
+# Bull/Bear·거래 제안·Risk
+NVIDIA_NEMOTRON_API_KEY=your_nvidia_key
+NVIDIA_NEMOTRON_MODEL=nvidia/nemotron-3-ultra-550b-a55b
+NVIDIA_NEMOTRON_REASONING_BUDGET=16384
+NVIDIA_NEMOTRON_ENABLE_THINKING=true
+NVIDIA_NEMOTRON_STREAM=true
+
+# 앞선 보고서를 비교하는 최종 승인 모델
+NVIDIA_FINAL_API_KEY=your_final_model_nvidia_key
+NVIDIA_FINAL_MODEL=z-ai/glm-5.2
+NVIDIA_FINAL_SEED=42
+NVIDIA_FINAL_STREAM=true
+
+NVIDIA_NEMOTRON_PIPELINE=live_event_research
 ```
 
-`ai_prompot/02_트레이딩팀.md`부터 `11_추측디코딩.md`까지의 연구 메모를 실행 가능한 역할 프롬프트와 Python 안전장치로 옮겼다. 런타임 프롬프트는 [ai_prompts/README.md](ai_prompts/README.md)에 있으며, 모든 에이전트는 전용 `Gemini_Api2` 키만 사용한다.
+`ai_prompt/02_트레이딩팀.md`부터 `11_추측디코딩.md`까지의 연구 메모를 실행 가능한 역할 프롬프트와 Python 안전장치로 옮겼다. 런타임 프롬프트와 역할별 모델 표는 [agent/README.md](agent/README.md)에 있다.
 
 ## 활성화 전제
 
-기본값은 비활성화다. 기존 `.env`의 `Gemini_Api2` 키를 그대로 사용할 수 있지만, 새 설정명은 `GEMINI_API2_KEY`다. 먼저 `DRY_RUN=true`로 확인한 뒤에만 활성화한다.
+기본값은 비활성화다. 먼저 `DRY_RUN=true`에서 `ENABLE_NVIDIA_NEMOTRON_AGENTS=true`로 켜고 역할별 호출 모델이 감사 로그와 일치하는지 확인해야 한다. 세 역할군은 각각 `NVIDIA_SUPER_API_KEY`, `NVIDIA_NEMOTRON_API_KEY`, `NVIDIA_FINAL_API_KEY`를 사용하며 키가 없으면 해당 모델 호출은 안전하게 실패한다. 필수 보고서 호출·검증에 실패하면 신규 매수는 차단된다.
 
-```env
-ENABLE_GEMINI_API2=true
-GEMINI_API2_KEY=your_dedicated_agent_key
-GEMINI_API2_MODEL=gemini-2.5-flash
-GEMINI_API2_DAILY_CALL_LIMIT=30
-GEMINI_API2_MAX_AGENTS_PER_RUN=20
-GEMINI_API2_TIMEOUT_SECONDS=60
-ENABLE_GEMINI_API2_GROUNDING=false
-GEMINI_API2_ENABLE_RESPONSE_SCHEMA=false
-```
+세 클라이언트는 모두 NVIDIA의 OpenAI 호환 endpoint를 `OpenAI(...).chat.completions.create(stream=True)`로 호출한다. Ultra·Super의 `reasoning_content`는 감사용으로 수집하고, 일반 `content` 청크를 합쳐 역할 JSON으로 파싱한다. GLM 최종 비교는 thinking 옵션 없이 `seed=42`, `top_p=1`로 호출한다.
 
-`GEMINI_API2_MAX_AGENTS_PER_RUN=20`은 한 이벤트의 전체 분석팀·토론·위험위원회를 실행할 수 있는 상한이다. 일일 한도보다 이벤트 수가 많으면 이후 실행은 안전하게 `hold` 처리된다. `Gemini_Api2` 키가 없거나 호출·검증에 실패해도 다른 Gemini/NVIDIA 키로 자동 폴백하지 않으며, 신규 매수는 차단된다.
+기본 `live_event_research`는 지연을 줄이기 위해 실거래 제안·Risk·최종 비교 4역할만 실행한다. 뉴스·재무·기술 분석 모델과 Bull/Bear 토론을 포함한 전체 3모델 흐름은 `NVIDIA_NEMOTRON_PIPELINE=event_research`에서 실행되며 한 이벤트당 호출 수가 크게 증가한다.
 
 ## 반영 범위
 
@@ -782,10 +806,10 @@ GEMINI_API2_ENABLE_RESPONSE_SCHEMA=false
 | 02, 03 | 분석팀, 사실/주관 분리, Bull/Bear 토론, 거래 제안 |
 | 04 | 입력 스냅샷·프롬프트 해시·모델·응답 append-only 감사 로그 |
 | 05 | 실거래와 분리된 가격-시간 우선·부분체결 주문장 시뮬레이터 |
-| 06, 07 | Gemini_Api2 전용 provider와 멀티모달/차트 분석 역할 |
+| 06, 07 | 증거 분석·토론/위험·최종 비교 모델 분리와 멀티모달/차트 분석 역할 |
 | 08 | 검증 전 Teacher 결과·하이퍼엣지·증류 레이블 저장소 |
 | 09 | 수정 불가 기억 노트와 키워드·태그 검색 |
 | 10 | 의미 위험필터가 신규 매수를 허용·축소·보류하고 Python 리스크가 최종 강제 |
-| 11 | 호스티드 Gemini API에서 직접 구현하지 않고, 호출 예산·짧은 JSON·캐시 가능한 설계로 분리 |
+| 11 | 관리형 모델 API에서 직접 구현하지 않고, 호출 예산·짧은 JSON·캐시 가능한 설계로 분리 |
 
 에이전트는 `direction`, `target_exposure`, `confidence`, `evidence_ids`, `invalidation`, `risk_flags`만 제안한다. 실제 주문 수량·가격·시장 상태·손절 및 Toss 호출은 계속 Python 리스크/주문 모듈만 결정한다. LLM의 `hold` 또는 위험필터 차단은 신규 매수만 막으며, 기존 포지션의 결정론적 손절·청산은 막지 않는다.

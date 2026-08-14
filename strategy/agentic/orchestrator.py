@@ -1,7 +1,8 @@
 """NVIDIA Nemotron multi-agent orchestration for the research-to-risk workflow.
 
 The class in this module is intentionally an *analysis* service.  It loads the
-role prompts in ``ai_prompts/``, runs them with the dedicated NVIDIA Nemotron key,
+role prompts in ``agent/``, routes evidence analysis, debate/risk, and final
+comparison to their declared NVIDIA-hosted model groups,
 records every turn, and returns a normalized recommendation.  It does not
 create broker orders and it fails closed when the dedicated key, budget, or a
 required final decision is unavailable.
@@ -92,7 +93,7 @@ def _payload_hash(value: Any) -> str:
 
 
 class NvidiaNemotronAgentOrchestrator:
-    """Run the 02--11-inspired NVIDIA Nemotron team and produce a safe proposal."""
+    """Run the 02--11-inspired multi-model team and produce a safe proposal."""
 
     provider_id = "nvidia_nemotron"
 
@@ -126,6 +127,8 @@ class NvidiaNemotronAgentOrchestrator:
                 getattr(settings, "nvidia_nemotron_min_request_interval_seconds", 0.0)
             ),
             max_retries=int(getattr(settings, "nvidia_nemotron_max_retries", 0)),
+            enable_thinking=getattr(settings, "nvidia_nemotron_enable_thinking", True),
+            stream=getattr(settings, "nvidia_nemotron_stream", True),
         )
         self.analysis_client = NvidiaNemotronAgentClient(
             api_key=getattr(settings, "nvidia_super_api_key", settings.nvidia_nemotron_api_key),
@@ -142,15 +145,24 @@ class NvidiaNemotronAgentOrchestrator:
             ),
             max_retries=int(getattr(settings, "nvidia_nemotron_max_retries", 0)),
             enable_thinking=getattr(settings, "nvidia_super_enable_thinking", True),
+            stream=getattr(settings, "nvidia_super_stream", True),
         )
         self.approval_client = NvidiaNemotronAgentClient(
-            api_key=getattr(settings, "nvidia_api_key", settings.nvidia_nemotron_api_key),
-            model=getattr(settings, "nvidia_model", "z-ai/glm-5.2"),
-            base_url=getattr(settings, "nvidia_base_url", settings.nvidia_nemotron_base_url),
+            api_key=getattr(
+                settings,
+                "nvidia_final_api_key",
+                getattr(settings, "nvidia_api_key", settings.nvidia_nemotron_api_key),
+            ),
+            model=getattr(settings, "nvidia_final_model", "z-ai/glm-5.2"),
+            base_url=getattr(
+                settings,
+                "nvidia_final_base_url",
+                getattr(settings, "nvidia_base_url", settings.nvidia_nemotron_base_url),
+            ),
             enable_grounding=False,
-            temperature=1.0,
-            max_output_tokens=16384,
-            top_p=1.0,
+            temperature=getattr(settings, "nvidia_final_temperature", 1.0),
+            max_output_tokens=getattr(settings, "nvidia_final_max_output_tokens", 16384),
+            top_p=getattr(settings, "nvidia_final_top_p", 1.0),
             reasoning_budget=None,
             timeout=settings.nvidia_nemotron_timeout_seconds,
             min_request_interval_seconds=float(
@@ -158,6 +170,8 @@ class NvidiaNemotronAgentOrchestrator:
             ),
             max_retries=int(getattr(settings, "nvidia_nemotron_max_retries", 0)),
             enable_thinking=False,
+            seed=getattr(settings, "nvidia_final_seed", 42),
+            stream=getattr(settings, "nvidia_final_stream", True),
         )
         self.budget = DailyAPIBudget(settings.api_usage_path)
         self.logger = LLMCallLogger(settings.llm_log_path)
@@ -279,11 +293,80 @@ class NvidiaNemotronAgentOrchestrator:
         if metadata.get("provider") != self.provider_id or metadata.get("direct_order_execution") is not False:
             return {"status": "blocked", "agent_id": agent_id, "error": "unsafe_agent_configuration"}
 
+        stage = str(entry.get("stage") or "")
+        model_group = str(metadata.get("model_group") or "").strip()
+        declared_model_env = str(metadata.get("model_env") or "").strip()
+        expected_model_env = {
+            "evidence_analysis": "NVIDIA_SUPER_MODEL",
+            "debate_risk": "NVIDIA_NEMOTRON_MODEL",
+            "final_comparison": "NVIDIA_FINAL_MODEL",
+        }.get(model_group)
+        allowed_stages = {
+            "evidence_analysis": {"analysis"},
+            "debate_risk": {"reasoning", "debate", "proposal", "risk", "learning", "offline"},
+            "final_comparison": {"approval"},
+        }.get(model_group, set())
+        if (
+            expected_model_env is None
+            or declared_model_env != expected_model_env
+            or stage not in allowed_stages
+        ):
+            result = {
+                "status": "blocked",
+                "agent_id": agent_id,
+                "error": "invalid_model_group_configuration",
+            }
+            self.audit.append_event(
+                "agent_turn",
+                run_id=run_id,
+                agent_id=agent_id,
+                status="blocked",
+                reason="invalid_model_group_configuration",
+                model_group=model_group or None,
+                model_env=declared_model_env or None,
+                stage=stage or None,
+            )
+            return result
+
         allowed, reason = self._enabled()
         if not allowed:
             result = {"status": "unavailable", "agent_id": agent_id, "error": reason}
             self.audit.append_event("agent_turn", run_id=run_id, agent_id=agent_id, status="unavailable", reason=reason)
             return result
+
+        use_fallback_routing = (
+            not hasattr(self.settings, "nvidia_super_api_key")
+            or not hasattr(self.settings, "nvidia_final_api_key")
+            or getattr(self.client.generate_json, "__self__", None) is not self.client
+        )
+        if model_group == "evidence_analysis" and not use_fallback_routing:
+            active_client = self.analysis_client
+            default_temp = getattr(self.settings, "nvidia_super_temperature", 1.0)
+        elif model_group == "final_comparison" and not use_fallback_routing:
+            active_client = self.approval_client
+            default_temp = getattr(self.settings, "nvidia_final_temperature", 1.0)
+        else:
+            active_client = self.client
+            default_temp = getattr(self.settings, "nvidia_nemotron_temperature", 1.0)
+        active_model = str(active_client.model)
+        if not active_client.api_key:
+            key_reason = {
+                "evidence_analysis": "nvidia_super_key_missing",
+                "debate_risk": "nvidia_nemotron_key_missing",
+                "final_comparison": "nvidia_final_key_missing",
+            }[model_group]
+            result = {"status": "unavailable", "agent_id": agent_id, "error": key_reason}
+            self.audit.append_event(
+                "agent_turn",
+                run_id=run_id,
+                agent_id=agent_id,
+                status="unavailable",
+                reason=key_reason,
+                model=active_model,
+                model_group=model_group,
+            )
+            return result
+
         if not self.budget.can_call(self.provider_id, self.settings.nvidia_nemotron_daily_call_limit):
             result = {"status": "unavailable", "agent_id": agent_id, "error": "daily_budget_exhausted"}
             self.audit.append_event("agent_turn", run_id=run_id, agent_id=agent_id, status="unavailable", reason="daily_budget_exhausted")
@@ -294,28 +377,13 @@ class NvidiaNemotronAgentOrchestrator:
         response_schema = self._response_schema(schema_name) if self.settings.nvidia_nemotron_enable_response_schema else None
         self.budget.record_call(
             self.provider_id,
-            {"run_id": run_id, "agent_id": agent_id, "prompt_hash": prompt.source_hash},
+            {
+                "run_id": run_id,
+                "agent_id": agent_id,
+                "model_group": model_group,
+                "prompt_hash": prompt.source_hash,
+            },
         )
-        stage = entry.get("stage")
-        use_fallback_routing = (
-            not hasattr(self.settings, "nvidia_super_api_key")
-            or not hasattr(self.settings, "nvidia_model")
-            or getattr(self.client.generate_json, "__self__", None) is not self.client
-        )
-
-        if stage == "analysis" and not use_fallback_routing:
-            active_client = self.analysis_client
-            active_model = getattr(self.settings, "nvidia_super_model", "nvidia/nemotron-3-super-120b-a12b")
-            default_temp = getattr(self.settings, "nvidia_super_temperature", 1.0)
-        elif stage == "approval" and not use_fallback_routing:
-            active_client = self.approval_client
-            active_model = getattr(self.settings, "nvidia_model", "z-ai/glm-5.2")
-            default_temp = 1.0
-        else:
-            active_client = self.client
-            active_model = getattr(self.settings, "nvidia_nemotron_model", "nvidia/nemotron-3-ultra-550b-a55b")
-            default_temp = getattr(self.settings, "nvidia_nemotron_temperature", 1.0)
-
         started = time.perf_counter()
         try:
             raw = active_client.generate_json(
@@ -341,6 +409,8 @@ class NvidiaNemotronAgentOrchestrator:
             "run_id": run_id,
             "provider": self.provider_id,
             "model": active_model,
+            "model_group": model_group,
+            "model_env": declared_model_env,
             "prompt_hash": prompt.source_hash,
             "prompt_version": metadata.get("prompt_version"),
             "data_cutoff_utc": task_context.get("data_cutoff_utc"),
@@ -353,6 +423,8 @@ class NvidiaNemotronAgentOrchestrator:
             {
                 "provider": self.provider_id,
                 "called_api": result.get("status") != "error",
+                "model": active_model,
+                "model_group": model_group,
                 "prompt_type": f"agent:{agent_id}",
                 "run_id": run_id,
                 "agent_id": agent_id,
@@ -372,6 +444,7 @@ class NvidiaNemotronAgentOrchestrator:
             status=result.get("status"),
             provider=self.provider_id,
             model=active_model,
+            model_group=model_group,
             prompt_hash=prompt.source_hash,
             data_cutoff_utc=task_context.get("data_cutoff_utc"),
             latency_ms=latency_ms,
@@ -522,14 +595,22 @@ class NvidiaNemotronAgentOrchestrator:
         requested = self.registry.get("pipelines", {}).get(pipeline_name, [])
         if not isinstance(requested, list):
             return reports
+        requested_ids = {str(agent_id) for agent_id in requested if isinstance(agent_id, str)}
         limit = max(0, int(self.settings.nvidia_nemotron_max_agents_per_run))
         for agent_id in requested[:limit]:
             if not isinstance(agent_id, str):
                 continue
             entry = self.entries.get(agent_id, {})
-            dependencies = entry.get("depends_on", []) if isinstance(entry, Mapping) else []
+            dependencies: Any = []
+            if isinstance(entry, Mapping) and entry.get("path"):
+                prompt = self.loader.load(str(entry["path"]))
+                dependencies = prompt.metadata.get("depends_on", entry.get("depends_on", []))
             if not isinstance(dependencies, list):
                 dependencies = []
+            # Prompt metadata is authoritative. Dependencies belonging to another
+            # pipeline (for example offline jobs that consume a prior live run)
+            # are external prerequisites and are not awaited in this invocation.
+            dependencies = [str(dependency) for dependency in dependencies if str(dependency) in requested_ids]
             missing = [
                 dependency
                 for dependency in dependencies
