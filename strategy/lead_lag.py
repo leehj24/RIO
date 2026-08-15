@@ -110,7 +110,17 @@ def granger_f_test(leader_returns: Sequence[float], follower_returns: Sequence[f
     else:
         f_stat = max(0.0, ((restricted_rss - unrestricted_rss) / q) / (unrestricted_rss / dof))
         p_value = float(f_distribution.sf(f_stat, q, dof))
-    correlation = float(np.corrcoef(leader, follower)[0, 1]) if len(leader) > 1 else 0.0
+    # A near-flat return series (e.g. a thinly traded symbol whose OHLCV
+    # window has ~zero variance) makes numpy's corrcoef divide by a zero
+    # stddev. The resulting NaN/inf is already normalized to 0.0 right
+    # below -- this is expected, handled data, not a real error -- so the
+    # RuntimeWarning is suppressed only for this one computation rather
+    # than silencing numpy warnings project-wide.
+    if len(leader) > 1:
+        with np.errstate(invalid="ignore", divide="ignore"):
+            correlation = float(np.corrcoef(leader, follower)[0, 1])
+    else:
+        correlation = 0.0
     if not math.isfinite(correlation):
         correlation = 0.0
     return GrangerResult(
